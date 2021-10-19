@@ -15,13 +15,11 @@ namespace AugustosFashion.Views
     {
         private readonly ListaClienteController _listaClienteController;
 
-        public FrmListaClientes(ListaClienteController listaClienteController )
-        {
-            _listaClienteController = listaClienteController;
-        }
-        public FrmListaClientes()
+        public FrmListaClientes(ListaClienteController listaClienteController)
         {
             InitializeComponent();
+
+            _listaClienteController = listaClienteController;
         }
     }
 }

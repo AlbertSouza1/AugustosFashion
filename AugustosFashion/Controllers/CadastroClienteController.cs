@@ -1,4 +1,8 @@
 ﻿using AugustosFashion.Entidades;
+using AugustosFashion.Entidades.Cliente;
+using AugustosFashion.Entidades.Endereco;
+using AugustosFashion.Entidades.Telefone;
+using AugustosFashion.Repositorios;
 using AugustosFashion.Views;
 using System;
 using System.Collections.Generic;
@@ -17,5 +21,13 @@ namespace AugustosFashion.Controllers
 
             frmCadastroCliente.Show();
         }
+
+        public void CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones){
+            //validar cliente
+            //validar endereco
+            //validar telefones
+            new ClienteRepositorio().CadastrarCliente(cliente, endereco, telefones);
+        }
+
     }
 }

@@ -48,7 +48,7 @@ namespace AugustosFashion
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(737, 24);
+            this.menuStrip.Size = new System.Drawing.Size(909, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -65,7 +65,7 @@ namespace AugustosFashion
             // 
             this.tsNovoCliente.Image = ((System.Drawing.Image)(resources.GetObject("tsNovoCliente.Image")));
             this.tsNovoCliente.Name = "tsNovoCliente";
-            this.tsNovoCliente.Size = new System.Drawing.Size(180, 22);
+            this.tsNovoCliente.Size = new System.Drawing.Size(168, 22);
             this.tsNovoCliente.Text = "Novo Cliente";
             this.tsNovoCliente.Click += new System.EventHandler(this.tsNovoCliente_Click);
             // 
@@ -73,7 +73,7 @@ namespace AugustosFashion
             // 
             this.tsListarClientes.Image = ((System.Drawing.Image)(resources.GetObject("tsListarClientes.Image")));
             this.tsListarClientes.Name = "tsListarClientes";
-            this.tsListarClientes.Size = new System.Drawing.Size(180, 22);
+            this.tsListarClientes.Size = new System.Drawing.Size(168, 22);
             this.tsListarClientes.Text = "Visualizar Clientes";
             this.tsListarClientes.Click += new System.EventHandler(this.tsListarClientes_Click);
             // 
@@ -104,7 +104,7 @@ namespace AugustosFashion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 523);
+            this.ClientSize = new System.Drawing.Size(909, 678);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
