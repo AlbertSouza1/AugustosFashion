@@ -21,5 +21,15 @@ namespace AugustosFashion.Views
 
             _listaClienteController = listaClienteController;
         }
+
+        private void FrmListaClientes_Load(object sender, EventArgs e)
+        {
+            ListarClientes();
+        }
+
+        private void ListarClientes()
+        {
+
+        }
     }
 }

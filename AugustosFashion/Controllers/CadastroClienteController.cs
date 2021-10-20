@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers
 {
@@ -22,11 +23,17 @@ namespace AugustosFashion.Controllers
             frmCadastroCliente.Show();
         }
 
-        public void CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones){
-            //validar cliente
-            //validar endereco
-            //validar telefones
-            new ClienteRepositorio().CadastrarCliente(cliente, endereco, telefones);
+        public void CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
+        {
+            try
+            {
+                new ClienteRepositorio().CadastrarCliente(cliente, endereco, telefones);
+                MessageBox.Show("Cliente cadastrado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao cadastrar cliente. Erro: "+ex.Message);
+            }
         }
 
     }

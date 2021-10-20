@@ -12,6 +12,7 @@ namespace AugustosFashion.Repositorios
 {
     public class ClienteRepositorio
     {
+        SqlConnection sqlCon = SqlHelper.ObterConexao();
         public void CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
         {
             endereco.Bairro = "a";
@@ -22,22 +23,17 @@ namespace AugustosFashion.Repositorios
             endereco.Numero = 1;
             endereco.UF = "AB";
 
-            var strSqlUsuario = "Insert into Usuarios " +
-                "output inserted.IdUsuario " +
-                "values (@Nome, @SobreNome, @Sexo, @DataNascimento, @Email, @CPF)";
+            int insertedId = 0;
 
             var strSqlCliente = "Insert into Clientes " +
                 "values (@IdUsuario, @LimiteCompraAPrazo, @Observacao)";
 
-            var strSqlEndereco = "Insert into Enderecos " +
-                "values (@IdUsuario, @CEP, @Logradouro, @Numero, @Cidade, @UF, @Complemento, @Bairro)";
+            var strSqlUsuario = UsuarioRepositorio.ObterStringInsertUsuario();
+           
+            var strSqlEndereco = EnderecoRepositorio.ObterStringInsertEndereco();
 
-            var strSqlTelefones = "Insert into Telefones " +
-                "values(@IdUsuario, @Numero)";
+            var strSqlTelefones = TelefoneRepositorio.ObterStringInsertTelefone();
 
-            int insertedId = 0;
-            var sqlCon = SqlHelper.ObterConexao();
-            
             sqlCon.Open();
 
             SqlTransaction tran = sqlCon.BeginTransaction();
@@ -55,14 +51,14 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Execute(strSqlCliente, cliente, tran);
                     sqlCon.Execute(strSqlEndereco, endereco, tran);
 
-                    //sqlCon.Execute(strSqlTelefones, telefones);
+                    sqlCon.Execute(strSqlTelefones, telefones, tran);
 
                     tran.Commit();
                 }        
             }catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 tran.Rollback();
+                throw new Exception(ex.Message);
             }
         }
     }

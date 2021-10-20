@@ -490,13 +490,11 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtSobreNome;
         private System.Windows.Forms.ComboBox cbSexo;
         private System.Windows.Forms.DateTimePicker dtpDataNascimento;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.MaskedTextBox mtxtCpf;
-        private System.Windows.Forms.TextBox txtCep;
         private System.Windows.Forms.TextBox txtLogradouro;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtBairro;
@@ -512,5 +510,7 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnCadastrarCliente;
+        internal System.Windows.Forms.TextBox txtNome;
+        public System.Windows.Forms.TextBox txtCep;
     }
 }
