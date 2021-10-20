@@ -11,5 +11,7 @@ namespace AugustosFashion.Repositorios
         public static string ObterStringInsertUsuario() => "Insert into Usuarios " +
                 "output inserted.IdUsuario " +
                 "values (@Nome, @SobreNome, @Sexo, @DataNascimento, @Email, @CPF)";
+        public static string ObterStringExclusaoUsuario() => "delete from Usuarios " +
+                "where IdUsuario = @IdUsuario";
     }
 }

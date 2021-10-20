@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers
 {
@@ -23,6 +24,19 @@ namespace AugustosFashion.Controllers
         {
             List<ClienteConsulta> listaClientes = new ClienteRepositorio().ListarClientes();
             return listaClientes;
+        }
+
+        public void ExcluirCliente(int idCliente)
+        {
+            try
+            {
+                new ClienteRepositorio().ExcluirCliente(idCliente);
+                MessageBox.Show("Cliente excluído com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao excluir cliente. Erro: " + ex.Message);
+            }
         }
     }
 }

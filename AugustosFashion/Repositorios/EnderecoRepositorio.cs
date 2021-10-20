@@ -10,5 +10,7 @@ namespace AugustosFashion.Repositorios
     {
         public static string ObterStringInsertEndereco() => "Insert into Enderecos " +
                 "values (@IdUsuario, @CEP, @Logradouro, @Numero, @Cidade, @UF, @Complemento, @Bairro)";
+
+        public static string ObterStringExcluisaoEndereco() => "delete from Enderecos where IdUsuario = @IdUsuario";
     }
 }

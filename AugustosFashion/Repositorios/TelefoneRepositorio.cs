@@ -10,5 +10,7 @@ namespace AugustosFashion.Repositorios
     {
         public static string ObterStringInsertTelefone() => "Insert into Telefones " +
                 "values(@IdUsuario, @Numero)";
+        public static string ObterStringExclusaoTelefone() => "delete from Telefones " +
+               "where IdUsuario = @IdUsuario";
     }
 }

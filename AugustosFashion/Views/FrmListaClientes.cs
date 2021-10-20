@@ -46,7 +46,7 @@ namespace AugustosFashion.Views
         {
             int id = RecuperarIdClienteParaExcluir();
 
-            MessageBox.Show(id.ToString());
+            _listaClienteController.ExcluirCliente(id);
         }
         private int RecuperarIdClienteParaExcluir()
         {
