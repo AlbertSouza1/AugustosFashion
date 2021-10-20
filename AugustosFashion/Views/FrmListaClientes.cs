@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Controllers;
+using AugustosFashion.Entidades.Cliente;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,16 @@ namespace AugustosFashion.Views
 
         private void ListarClientes()
         {
+            List<ClienteConsulta> listaClientes =_listaClienteController.ListarClientes();
 
+            foreach (var item in listaClientes)
+            {
+                item.Sexo = item.Sexo == "m" ? "Masculino" : "Feminino";
+            }
+
+            dgvClientes.DataSource = listaClientes;
         }
+
+        
     }
 }

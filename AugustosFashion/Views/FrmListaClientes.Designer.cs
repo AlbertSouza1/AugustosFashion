@@ -70,12 +70,12 @@ namespace AugustosFashion.Views
             // dgvClientes
             // 
             this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Location = new System.Drawing.Point(91, 133);
+            this.dgvClientes.Location = new System.Drawing.Point(12, 133);
             this.dgvClientes.MultiSelect = false;
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.RowTemplate.Height = 25;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(687, 325);
+            this.dgvClientes.Size = new System.Drawing.Size(862, 325);
             this.dgvClientes.TabIndex = 4;
             // 
             // btnAlterarCliente
@@ -120,6 +120,7 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.btnBuscarCliente);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmListaClientes";
             this.Text = "Clientes Cadastrados";
             this.Load += new System.EventHandler(this.FrmListaClientes_Load);

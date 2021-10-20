@@ -1,4 +1,6 @@
 ﻿using AugustosFashion.Entidades;
+using AugustosFashion.Entidades.Cliente;
+using AugustosFashion.Repositorios;
 using AugustosFashion.Views;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,12 @@ namespace AugustosFashion.Controllers
             var frmListaCliente = new FrmListaClientes(this);
             frmListaCliente.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             frmListaCliente.Show();
+        }
+
+        public List<ClienteConsulta> ListarClientes()
+        {
+            List<ClienteConsulta> listaClientes = new ClienteRepositorio().ListarClientes();
+            return listaClientes;
         }
     }
 }
