@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
+using AugustosFashion.Helpers;
 
 namespace AugustosFashion.Views
 {
@@ -16,6 +17,7 @@ namespace AugustosFashion.Views
         {
             InitializeComponent();
             _cadastroClienteController = cadastroClienteController;
+            this.BringToFront();
         }
 
         private void FrmCadastroCliente_Load(object sender, EventArgs e)
@@ -34,7 +36,7 @@ namespace AugustosFashion.Views
 
         public ClienteModel InstanciarClienteParaCadastro()
         {
-            var cpfSemPontos = RemoverMaskCpf();
+            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
             ClienteModel cliente = new ClienteModel(
                 nome: txtNome.Text,
@@ -79,18 +81,6 @@ namespace AugustosFashion.Views
             telefones.Add(fixo);
 
             return telefones;
-        }
-
-        private string RemoverMaskCpf()
-        {
-            string cpfSemPontos = mtxtCpf.Text;
-
-            cpfSemPontos = new string((from c in cpfSemPontos
-                                       where char.IsDigit(c)
-                                       select c
-            ).ToArray());
-
-            return cpfSemPontos;
         }
     }
 }

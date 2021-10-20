@@ -413,7 +413,7 @@ namespace AugustosFashion.Views
             this.btnCadastrarCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCadastrarCliente.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarCliente.Location = new System.Drawing.Point(378, 563);
+            this.btnCadastrarCliente.Location = new System.Drawing.Point(382, 583);
             this.btnCadastrarCliente.Name = "btnCadastrarCliente";
             this.btnCadastrarCliente.Size = new System.Drawing.Size(135, 37);
             this.btnCadastrarCliente.TabIndex = 35;
@@ -425,7 +425,7 @@ namespace AugustosFashion.Views
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(886, 612);
+            this.ClientSize = new System.Drawing.Size(910, 642);
             this.Controls.Add(this.btnCadastrarCliente);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);

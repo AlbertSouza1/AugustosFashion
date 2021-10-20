@@ -38,8 +38,21 @@ namespace AugustosFashion.Views
             }
 
             dgvClientes.DataSource = listaClientes;
+
+            dgvClientes.Columns[0].HeaderText = "Código";
         }
 
-        
+        private void btnExcluirCliente_Click(object sender, EventArgs e)
+        {
+            int id = RecuperarIdClienteParaExcluir();
+
+            MessageBox.Show(id.ToString());
+        }
+        private int RecuperarIdClienteParaExcluir()
+        {
+            int id = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value);
+
+            return id;
+        }
     }
 }

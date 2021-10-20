@@ -9,6 +9,7 @@ namespace AugustosFashion.Entidades.ContaBancaria
     public class ContaBancariaModel
     {
         public int IdContaBancaria { get; set; }
+        public int IdColaborador { get; set; }
         public string Banco { get; set; }
         public int Agencia { get; set; }
         public int Conta { get; set; }

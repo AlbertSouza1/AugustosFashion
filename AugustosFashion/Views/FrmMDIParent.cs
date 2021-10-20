@@ -84,7 +84,7 @@ namespace AugustosFashion
 
         private void FrmMDIParent_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void tsNovoCliente_Click(object sender, EventArgs e)
@@ -95,6 +95,16 @@ namespace AugustosFashion
         private void tsListarClientes_Click(object sender, EventArgs e)
         {
             new ListaClienteController().AbrirFormularioLista();
+        }
+
+        private void btnCloseMDI_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void novoColaboradorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CadastroColaboradorController().AbrirFormCadastroColaborador();
         }
     }
 }

@@ -97,6 +97,7 @@ namespace AugustosFashion.Views
             this.btnExcluirCliente.TabIndex = 6;
             this.btnExcluirCliente.Text = "Excluir cliente selecionado";
             this.btnExcluirCliente.UseVisualStyleBackColor = true;
+            this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
             // 
             // label2
             // 

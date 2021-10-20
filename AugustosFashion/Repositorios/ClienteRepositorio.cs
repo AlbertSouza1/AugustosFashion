@@ -13,7 +13,7 @@ namespace AugustosFashion.Repositorios
 {
     public class ClienteRepositorio
     {
-        SqlConnection sqlCon = SqlHelper.ObterConexao();
+        SqlConnection sqlCon = new SqlHelper().ObterConexao();
         public void CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
         {
             int insertedId = 0;
