@@ -87,6 +87,7 @@ namespace AugustosFashion.Views
             this.btnAlterarCliente.TabIndex = 5;
             this.btnAlterarCliente.Text = "Alterar cliente selecionado";
             this.btnAlterarCliente.UseVisualStyleBackColor = true;
+            this.btnAlterarCliente.Click += new System.EventHandler(this.btnAlterarCliente_Click);
             // 
             // btnExcluirCliente
             // 

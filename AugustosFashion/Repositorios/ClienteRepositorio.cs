@@ -13,7 +13,7 @@ namespace AugustosFashion.Repositorios
 {
     public class ClienteRepositorio
     {
-        
+
         public void CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
@@ -61,7 +61,7 @@ namespace AugustosFashion.Repositorios
             //}
         }
 
-        public List<ClienteConsulta> ListarClientes()
+        public List<ClienteListagem> ListarClientes()
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -78,7 +78,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<ClienteConsulta, EnderecoModel, ClienteConsulta>(
+                    return sqlCon.Query<ClienteListagem, EnderecoModel, ClienteListagem>(
                         strSql,
                         (clienteModel, enderecoModel) => MapearCliente(clienteModel, enderecoModel),
                         splitOn: "IdUsuario"
@@ -91,13 +91,49 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        public void AlterarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
+        {
+            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+
+            string strSqlAlterarCliente = @"update Clientes  
+                set Observacao = @Observacao, ValorLimiteCompraAPrazo = @LimiteCompraAPrazo where IdCliente = @IdCliente";
+
+            string strSqlAlterarEndereco = EnderecoRepositorio.ObterStringAlterarEndereco();
+            string strSqlAlterarTel = TelefoneRepositorio.ObterStringAlterarTelefone();
+            string strSqlAlterarUsuario = UsuarioRepositorio.ObterStringAlterarUsuario();
+
+            sqlCon.Open();
+
+            SqlTransaction tran = sqlCon.BeginTransaction();
+
+            try
+            {
+                //using (sqlCon)
+                //{
+                int idUsuario = RecuperarIdUsuario(cliente.IdCliente);
+
+                sqlCon.Execute(strSqlAlterarCliente, cliente , tran);
+                sqlCon.Execute(strSqlAlterarEndereco, endereco, tran);
+                sqlCon.Execute(strSqlAlterarTel, telefones, tran);
+                sqlCon.Execute(strSqlAlterarUsuario, cliente, tran);
+
+                tran.Commit();
+                //}
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                sqlCon.Close();
+            }
+        }
         public void ExcluirCliente(int idCliente)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
-            int idUsuario = 0;
-
-            string strSqlRecuperaIdUsuario = @"select IdUsuario from Clientes where IdCliente = @IdCliente";
             string strSqlExcluirCliente = "delete from Clientes where IdCliente = @IdCliente";
             string strSqlExcluirEndereco = EnderecoRepositorio.ObterStringExcluisaoEndereco();
             string strSqlExcluirTel = TelefoneRepositorio.ObterStringExclusaoTelefone();
@@ -111,14 +147,14 @@ namespace AugustosFashion.Repositorios
             {
                 //using (sqlCon)
                 //{
-                    idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdCliente = idCliente }, tran);
+                int idUsuario = RecuperarIdUsuario(idCliente);
 
-                    sqlCon.Execute(strSqlExcluirCliente, new {IdCliente = idCliente }, tran);
-                    sqlCon.Execute(strSqlExcluirEndereco, new {IdUsuario = idUsuario }, tran);
-                    sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, tran);
-                    sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, tran);
+                sqlCon.Execute(strSqlExcluirCliente, new { IdCliente = idCliente }, tran);
+                sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, tran);
+                sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, tran);
+                sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, tran);
 
-                    tran.Commit();
+                tran.Commit();
                 //}
             }
             catch (Exception ex)
@@ -132,7 +168,48 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        private ClienteConsulta MapearCliente(ClienteConsulta clienteModel, EnderecoModel enderecoModel)
+        public ClienteConsulta RecuperarInfoCliente(int idCliente)
+        {
+            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+
+            string strSqlRecuperarInfoCliente = "select idCliente, idUsuario, ValorLimiteCompraAPrazo, Observacao from Clientes where IdCliente = @IdCliente";
+
+            sqlCon.Open();
+
+            try
+            {
+                ClienteConsulta cliente = sqlCon.QuerySingle<ClienteConsulta>(strSqlRecuperarInfoCliente, new { IdCliente = idCliente });
+
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public int RecuperarIdUsuario(int idCliente)
+        {
+            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+
+            string strSqlRecuperaIdUsuario = @"select IdUsuario from Clientes where IdCliente = @IdCliente";
+            try
+            {
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+
+                    int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdCliente = idCliente });
+
+                    return idUsuario;
+                }
+
+            } catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        private ClienteListagem MapearCliente(ClienteListagem clienteModel, EnderecoModel enderecoModel)
         {
             clienteModel.Endereco = enderecoModel;
 

@@ -55,7 +55,7 @@ namespace AugustosFashion
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(909, 24);
+            this.menuStrip.Size = new System.Drawing.Size(959, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -107,6 +107,7 @@ namespace AugustosFashion
             this.visualizarColaboradoresToolStripMenuItem.Name = "visualizarColaboradoresToolStripMenuItem";
             this.visualizarColaboradoresToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.visualizarColaboradoresToolStripMenuItem.Text = "Visualizar Colaboradores";
+            this.visualizarColaboradoresToolStripMenuItem.Click += new System.EventHandler(this.visualizarColaboradoresToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -165,7 +166,7 @@ namespace AugustosFashion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 678);
+            this.ClientSize = new System.Drawing.Size(959, 728);
             this.Controls.Add(this.panelCentral);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

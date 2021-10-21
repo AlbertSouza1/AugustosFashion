@@ -19,5 +19,6 @@ namespace AugustosFashion.Entidades.Telefone
         public int IdTelefone { get; set; }
         public int IdUsuario { get; set; }
         public string Numero { get; set; }
+        public TipoTelefone TipoTelefone { get; set; }
     }
 }

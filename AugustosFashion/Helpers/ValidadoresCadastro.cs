@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using AugustosFashion.Entidades.Endereco;
 
 namespace AugustosFashion.Helpers
@@ -39,7 +40,7 @@ namespace AugustosFashion.Helpers
                 return true;
         }
         
-        public static ValidarUsuario(string nome, string sobreNome, string email, string cpf, string sexo, DateTime dataNascimento)
+        public static bool ValidarUsuario(string nome, string sobreNome, string email, string cpf, string sexo, DateTime dataNascimento)
         {
             bool retorno = false;
 
@@ -53,7 +54,7 @@ namespace AugustosFashion.Helpers
                 MessageBox.Show("É necessário informar um cpf.");
             else if (sexo == string.Empty)
                 MessageBox.Show("É necessário informar o sexo.");
-            else if (dataNascimento == string.Empty)
+            else if (dataNascimento.ToString() == string.Empty)
                 MessageBox.Show("É necessário informar a data de nascimento.");
             else
                 retorno = true;

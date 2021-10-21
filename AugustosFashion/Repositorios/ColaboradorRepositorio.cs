@@ -8,9 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AugustosFashion.Repositorios
 {
@@ -66,11 +63,43 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        public List<ColaboradorListagem> ListarColaboradores()
+        {
+            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+
+            var strSql = @"select
+                c.idColaborador, u.Nome, u.SobreNome, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
+                e.IdUsuario, e.Cidade, e.UF
+                from
+                Usuarios u join Colaboradores c on u.IdUsuario = c.IdUsuario 
+                inner join Enderecos e on u.IdUsuario = e.IdUsuario; ";
+            try
+            {
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ColaboradorListagem, EnderecoModel, ColaboradorListagem>(
+                        strSql,
+                        (colaboradorModel, enderecoModel) => MapearColaborador(colaboradorModel, enderecoModel),
+                        splitOn: "IdUsuario"
+                     ).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public void AlterarColaborador()
+        {
+
+        }
+
         public void ExcluirColaborador(int idColaborador)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
-            int idUsuario = 0;
-
+            
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Colaboradores where IdColaborador = @IdColaborador";
             string strSqlExcluirColaborador = "delete from Colaboradores where IdColaborador = @IdColaborador";
             string strSqlExcluirContaBancaria = ContaBancariaRepositorio.ObterStringExclusaoConta();
@@ -86,7 +115,7 @@ namespace AugustosFashion.Repositorios
             {
                 //using (sqlCon)
                 //{
-                idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdColaborador = idColaborador }, tran);
+                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdColaborador = idColaborador }, tran);
 
                 sqlCon.Execute(strSqlExcluirContaBancaria, new { IdColaborador = idColaborador }, tran);
                 sqlCon.Execute(strSqlExcluirColaborador, new { IdColaborador = idColaborador }, tran);
@@ -106,6 +135,13 @@ namespace AugustosFashion.Repositorios
             {
                 sqlCon.Close();
             }
+        }
+
+        private ColaboradorListagem MapearColaborador(ColaboradorListagem colaboradorModel, EnderecoModel enderecoModel)
+        {
+            colaboradorModel.Endereco = enderecoModel;
+
+            return colaboradorModel;
         }
     }
 }

@@ -20,9 +20,9 @@ namespace AugustosFashion.Controllers
             frmListaCliente.Show();
         }
 
-        public List<ClienteConsulta> ListarClientes()
+        public List<ClienteListagem> ListarClientes()
         {
-            List<ClienteConsulta> listaClientes = new ClienteRepositorio().ListarClientes();
+            List<ClienteListagem> listaClientes = new ClienteRepositorio().ListarClientes();
             return listaClientes;
         }
 

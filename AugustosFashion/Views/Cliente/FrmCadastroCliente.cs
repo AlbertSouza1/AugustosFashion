@@ -68,14 +68,19 @@ namespace AugustosFashion.Views
             return endereco;
         }
 
-        public  List<TelefoneModel> InstanciarTelefonesParaCadastro()
+        public List<TelefoneModel> InstanciarTelefonesParaCadastro()
         {
-            var celular = new TelefoneModel(
-                numero: txtCelular.Text
-                );
-            var fixo = new TelefoneModel(
-                numero: txtTelefoneFixo.Text
-                );
+            var celular = new TelefoneModel {
+                Numero =  txtCelular.Text,
+                TipoTelefone = TipoTelefone.Celular
+                };
+
+            var fixo = new TelefoneModel
+            {
+                Numero = txtTelefoneFixo.Text,
+                TipoTelefone = TipoTelefone.Fixo
+            };
+
             var telefones = new List<TelefoneModel>();
 
             telefones.Add(celular);

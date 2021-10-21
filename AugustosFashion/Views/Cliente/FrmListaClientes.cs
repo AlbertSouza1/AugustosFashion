@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Controllers;
+using AugustosFashion.Controllers.Cliente;
 using AugustosFashion.Entidades.Cliente;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace AugustosFashion.Views
 
         private void ListarClientes()
         {
-            List<ClienteConsulta> listaClientes =_listaClienteController.ListarClientes();
+            List<ClienteListagem> listaClientes =_listaClienteController.ListarClientes();
 
             foreach (var item in listaClientes)
             {
@@ -60,6 +61,21 @@ namespace AugustosFashion.Views
             return id;
         }
         private bool VerificarSeHaRegistroSelecionado() => 
-            dgvClientes.SelectedRows.Count == 0 ? false : true;       
+            dgvClientes.SelectedRows.Count == 0 ? false : true;
+
+        private void btnAlterarCliente_Click(object sender, EventArgs e)
+        {
+            if (VerificarSeHaRegistroSelecionado())
+            {
+                int id = RecuperarIdClienteSelecionado();
+
+                this.Close();
+                new AlteraClienteController().AbrirFormularioAlteracao(id);
+            }
+            else
+            {
+                MessageBox.Show("Selecione um cliente na tabela para excluir", "Aviso");
+            }
+        }
     }
 }
