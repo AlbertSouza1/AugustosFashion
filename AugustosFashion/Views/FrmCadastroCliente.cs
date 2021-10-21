@@ -26,12 +26,13 @@ namespace AugustosFashion.Views
         }
 
         private void btnCadastrarCliente_Click(object sender, EventArgs e)
-        {
+        {          
             var cliente = InstanciarClienteParaCadastro();
             var endereco = InstanciarEnderecoParaCadastro();
             var telefones = InstanciarTelefonesParaCadastro();
-
-            new CadastroClienteController().CadastrarCliente(cliente, endereco, telefones);
+       
+            if(VerificarValidacoesDeCliente(endereco))
+                new CadastroClienteController().CadastrarCliente(cliente, endereco, telefones);
         }
 
         public ClienteModel InstanciarClienteParaCadastro()
@@ -81,6 +82,35 @@ namespace AugustosFashion.Views
             telefones.Add(fixo);
 
             return telefones;
+        }
+
+        private bool VerificarValidacoesDeCliente(EnderecoModel endereco)
+        {
+            bool validacoes = true;
+
+            if(!ValidadoresCadastro.ValidarUsuario(txtNome.Text, txtSobreNome.Text, txtEmail.Text, mtxtCpf.Text, cbSexo.Text, dtpDataNascimento.Value))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarEndereco(endereco))
+                validacoes = false;
+            else if (!ValidarCamposDeCliente())
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarTelefones(txtCelular.Text, txtTelefoneFixo.Text))
+                validacoes = false;
+
+            return validacoes;
+        }
+        private bool ValidarCamposDeCliente()
+        {
+            var retorno = false;
+
+            if (txtLimiteCompraPrazo.Text == string.Empty)
+            {
+                MessageBox.Show("É necessário informar um limite para compra a prazo.");
+            }
+            else
+                retorno = true;
+
+            return retorno;
         }
     }
 }

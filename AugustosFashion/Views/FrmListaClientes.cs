@@ -44,15 +44,22 @@ namespace AugustosFashion.Views
 
         private void btnExcluirCliente_Click(object sender, EventArgs e)
         {
-            int id = RecuperarIdClienteParaExcluir();
+            if (VerificarSeHaRegistroSelecionado()) {
+                int id = RecuperarIdClienteSelecionado();
 
-            _listaClienteController.ExcluirCliente(id);
+                _listaClienteController.ExcluirCliente(id);
+            }
+            else
+            {
+                MessageBox.Show("Selecione um cliente na tabela para excluir", "Aviso");
+            }
         }
-        private int RecuperarIdClienteParaExcluir()
+        private int RecuperarIdClienteSelecionado()
         {
             int id = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value);
-
             return id;
         }
+        private bool VerificarSeHaRegistroSelecionado() => 
+            dgvClientes.SelectedRows.Count == 0 ? false : true;       
     }
 }
