@@ -1,7 +1,7 @@
 ﻿
-namespace AugustosFashion.Views
+namespace AugustosFashion.Views.Colaborador
 {
-    partial class FrmCadastroColaboradores
+    partial class FrmConsultaColaborador
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,17 @@ namespace AugustosFashion.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnCadastrarColaborador = new System.Windows.Forms.Button();
+            this.txtComissao = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cbTipoConta = new System.Windows.Forms.ComboBox();
+            this.txtConta = new System.Windows.Forms.TextBox();
+            this.txtAgencia = new System.Windows.Forms.TextBox();
+            this.txtBanco = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.txtSalario = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -63,94 +72,163 @@ namespace AugustosFashion.Views
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtBanco = new System.Windows.Forms.TextBox();
-            this.txtAgencia = new System.Windows.Forms.TextBox();
-            this.txtConta = new System.Windows.Forms.TextBox();
-            this.cbTipoConta = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtComissao = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtIdColaborador = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // txtComissao
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(317, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 30);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Cadastrar Colaborador";
+            this.txtComissao.Location = new System.Drawing.Point(264, 434);
+            this.txtComissao.Name = "txtComissao";
+            this.txtComissao.Size = new System.Drawing.Size(111, 23);
+            this.txtComissao.TabIndex = 124;
             // 
-            // btnCadastrarColaborador
+            // label17
             // 
-            this.btnCadastrarColaborador.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnCadastrarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCadastrarColaborador.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCadastrarColaborador.ForeColor = System.Drawing.Color.White;
-            this.btnCadastrarColaborador.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarColaborador.Location = new System.Drawing.Point(380, 593);
-            this.btnCadastrarColaborador.Name = "btnCadastrarColaborador";
-            this.btnCadastrarColaborador.Size = new System.Drawing.Size(135, 37);
-            this.btnCadastrarColaborador.TabIndex = 70;
-            this.btnCadastrarColaborador.Text = "Cadastrar";
-            this.btnCadastrarColaborador.UseVisualStyleBackColor = false;
-            this.btnCadastrarColaborador.Click += new System.EventHandler(this.btnCadastrarColaborador_Click);
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.Location = new System.Drawing.Point(63, 436);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(195, 21);
+            this.label17.TabIndex = 123;
+            this.label17.Text = "Porcentagem de Comissão";
+            // 
+            // cbTipoConta
+            // 
+            this.cbTipoConta.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cbTipoConta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoConta.FormattingEnabled = true;
+            this.cbTipoConta.Items.AddRange(new object[] {
+            "Corrente",
+            "Poupança",
+            "Salário"});
+            this.cbTipoConta.Location = new System.Drawing.Point(661, 558);
+            this.cbTipoConta.Name = "cbTipoConta";
+            this.cbTipoConta.Size = new System.Drawing.Size(223, 23);
+            this.cbTipoConta.TabIndex = 122;
+            // 
+            // txtConta
+            // 
+            this.txtConta.Location = new System.Drawing.Point(606, 515);
+            this.txtConta.Name = "txtConta";
+            this.txtConta.Size = new System.Drawing.Size(279, 23);
+            this.txtConta.TabIndex = 121;
+            // 
+            // txtAgencia
+            // 
+            this.txtAgencia.Location = new System.Drawing.Point(131, 556);
+            this.txtAgencia.Name = "txtAgencia";
+            this.txtAgencia.Size = new System.Drawing.Size(290, 23);
+            this.txtAgencia.TabIndex = 120;
+            // 
+            // txtBanco
+            // 
+            this.txtBanco.Location = new System.Drawing.Point(131, 515);
+            this.txtBanco.Name = "txtBanco";
+            this.txtBanco.Size = new System.Drawing.Size(290, 23);
+            this.txtBanco.TabIndex = 119;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label23.Location = new System.Drawing.Point(549, 558);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(106, 21);
+            this.label23.TabIndex = 118;
+            this.label23.Text = "Tipo da Conta";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label22.Location = new System.Drawing.Point(549, 517);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(51, 21);
+            this.label22.TabIndex = 117;
+            this.label22.Text = "Conta";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label21.Location = new System.Drawing.Point(60, 558);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(65, 21);
+            this.label21.TabIndex = 116;
+            this.label21.Text = "Agência";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label20.Location = new System.Drawing.Point(61, 517);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(52, 21);
+            this.label20.TabIndex = 115;
+            this.label20.Text = "Banco";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label19.Location = new System.Drawing.Point(416, 484);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(145, 21);
+            this.label19.TabIndex = 114;
+            this.label19.Text = "Valores Bancários";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label18.Location = new System.Drawing.Point(221, 307);
+            this.label18.Location = new System.Drawing.Point(257, 329);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(58, 21);
-            this.label18.TabIndex = 69;
+            this.label18.TabIndex = 113;
             this.label18.Text = "Salário";
             // 
             // txtSalario
             // 
-            this.txtSalario.Location = new System.Drawing.Point(285, 307);
+            this.txtSalario.Location = new System.Drawing.Point(321, 329);
             this.txtSalario.Name = "txtSalario";
             this.txtSalario.Size = new System.Drawing.Size(134, 23);
-            this.txtSalario.TabIndex = 67;
+            this.txtSalario.TabIndex = 112;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(285, 344);
+            this.label16.Location = new System.Drawing.Point(321, 366);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(101, 21);
-            this.label16.TabIndex = 65;
+            this.label16.TabIndex = 111;
             this.label16.Text = "Telefone Fixo";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(71, 344);
+            this.label15.Location = new System.Drawing.Point(107, 366);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 21);
-            this.label15.TabIndex = 64;
+            this.label15.TabIndex = 110;
             this.label15.Text = "Celular";
             // 
             // txtTelefoneFixo
             // 
-            this.txtTelefoneFixo.Location = new System.Drawing.Point(256, 368);
+            this.txtTelefoneFixo.Location = new System.Drawing.Point(292, 390);
             this.txtTelefoneFixo.Name = "txtTelefoneFixo";
             this.txtTelefoneFixo.Size = new System.Drawing.Size(163, 23);
-            this.txtTelefoneFixo.TabIndex = 63;
+            this.txtTelefoneFixo.TabIndex = 109;
             // 
             // txtCelular
             // 
-            this.txtCelular.Location = new System.Drawing.Point(24, 368);
+            this.txtCelular.Location = new System.Drawing.Point(60, 390);
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(155, 23);
-            this.txtCelular.TabIndex = 62;
+            this.txtCelular.TabIndex = 108;
             // 
             // cbUf
             // 
@@ -185,75 +263,75 @@ namespace AugustosFashion.Views
             "SP",
             "SE",
             "TO"});
-            this.cbUf.Location = new System.Drawing.Point(727, 186);
+            this.cbUf.Location = new System.Drawing.Point(763, 208);
             this.cbUf.Name = "cbUf";
             this.cbUf.Size = new System.Drawing.Size(121, 25);
-            this.cbUf.TabIndex = 61;
+            this.cbUf.TabIndex = 107;
             // 
             // txtCidade
             // 
-            this.txtCidade.Location = new System.Drawing.Point(513, 371);
+            this.txtCidade.Location = new System.Drawing.Point(549, 393);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(336, 23);
-            this.txtCidade.TabIndex = 60;
+            this.txtCidade.TabIndex = 106;
             // 
             // txtComplemento
             // 
-            this.txtComplemento.Location = new System.Drawing.Point(513, 311);
+            this.txtComplemento.Location = new System.Drawing.Point(549, 333);
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(336, 23);
-            this.txtComplemento.TabIndex = 59;
+            this.txtComplemento.TabIndex = 105;
             // 
             // txtBairro
             // 
-            this.txtBairro.Location = new System.Drawing.Point(513, 251);
+            this.txtBairro.Location = new System.Drawing.Point(549, 273);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(336, 23);
-            this.txtBairro.TabIndex = 58;
+            this.txtBairro.TabIndex = 104;
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(578, 188);
+            this.txtNumero.Location = new System.Drawing.Point(614, 210);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(85, 23);
-            this.txtNumero.TabIndex = 57;
+            this.txtNumero.TabIndex = 103;
             // 
             // txtLogradouro
             // 
-            this.txtLogradouro.Location = new System.Drawing.Point(513, 130);
+            this.txtLogradouro.Location = new System.Drawing.Point(549, 152);
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(335, 23);
-            this.txtLogradouro.TabIndex = 56;
+            this.txtLogradouro.TabIndex = 102;
             // 
             // txtCep
             // 
-            this.txtCep.Location = new System.Drawing.Point(594, 73);
+            this.txtCep.Location = new System.Drawing.Point(630, 95);
             this.txtCep.Name = "txtCep";
             this.txtCep.Size = new System.Drawing.Size(255, 23);
-            this.txtCep.TabIndex = 55;
+            this.txtCep.TabIndex = 101;
             // 
             // mtxtCpf
             // 
-            this.mtxtCpf.Location = new System.Drawing.Point(56, 305);
+            this.mtxtCpf.Location = new System.Drawing.Point(92, 327);
             this.mtxtCpf.Mask = "000.000.000-00";
             this.mtxtCpf.Name = "mtxtCpf";
             this.mtxtCpf.Size = new System.Drawing.Size(100, 23);
-            this.mtxtCpf.TabIndex = 54;
+            this.mtxtCpf.TabIndex = 100;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(24, 260);
+            this.txtEmail.Location = new System.Drawing.Point(60, 282);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(395, 23);
-            this.txtEmail.TabIndex = 53;
+            this.txtEmail.TabIndex = 99;
             // 
             // dtpDataNascimento
             // 
             this.dtpDataNascimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataNascimento.Location = new System.Drawing.Point(178, 201);
+            this.dtpDataNascimento.Location = new System.Drawing.Point(214, 223);
             this.dtpDataNascimento.Name = "dtpDataNascimento";
             this.dtpDataNascimento.Size = new System.Drawing.Size(241, 23);
-            this.dtpDataNascimento.TabIndex = 52;
+            this.dtpDataNascimento.TabIndex = 98;
             // 
             // cbSexo
             // 
@@ -262,263 +340,191 @@ namespace AugustosFashion.Views
             this.cbSexo.Items.AddRange(new object[] {
             "Masculino",
             "Feminino"});
-            this.cbSexo.Location = new System.Drawing.Point(24, 201);
+            this.cbSexo.Location = new System.Drawing.Point(60, 223);
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.Size = new System.Drawing.Size(121, 23);
-            this.cbSexo.TabIndex = 51;
+            this.cbSexo.TabIndex = 97;
             // 
             // txtSobreNome
             // 
-            this.txtSobreNome.Location = new System.Drawing.Point(24, 130);
+            this.txtSobreNome.Location = new System.Drawing.Point(60, 152);
             this.txtSobreNome.Name = "txtSobreNome";
             this.txtSobreNome.Size = new System.Drawing.Size(395, 23);
-            this.txtSobreNome.TabIndex = 50;
+            this.txtSobreNome.TabIndex = 96;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(24, 75);
+            this.txtNome.Location = new System.Drawing.Point(119, 101);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(395, 23);
-            this.txtNome.TabIndex = 49;
+            this.txtNome.Size = new System.Drawing.Size(324, 23);
+            this.txtNome.TabIndex = 95;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(513, 227);
+            this.label14.Location = new System.Drawing.Point(549, 249);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 21);
-            this.label14.TabIndex = 48;
+            this.label14.TabIndex = 94;
             this.label14.Text = "Bairro";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(513, 287);
+            this.label13.Location = new System.Drawing.Point(549, 309);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(109, 21);
-            this.label13.TabIndex = 47;
+            this.label13.TabIndex = 93;
             this.label13.Text = "Complemento";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(692, 190);
+            this.label12.Location = new System.Drawing.Point(728, 212);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(29, 21);
-            this.label12.TabIndex = 46;
+            this.label12.TabIndex = 92;
             this.label12.Text = "UF";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(513, 347);
+            this.label11.Location = new System.Drawing.Point(549, 369);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(58, 21);
-            this.label11.TabIndex = 45;
+            this.label11.TabIndex = 91;
             this.label11.Text = "Cidade";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(513, 186);
+            this.label10.Location = new System.Drawing.Point(549, 212);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(68, 21);
-            this.label10.TabIndex = 44;
+            this.label10.TabIndex = 90;
             this.label10.Text = "Número";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(513, 106);
+            this.label9.Location = new System.Drawing.Point(549, 128);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 21);
-            this.label9.TabIndex = 43;
+            this.label9.TabIndex = 89;
             this.label9.Text = "Logradouro";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(513, 75);
+            this.label8.Location = new System.Drawing.Point(549, 97);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 21);
-            this.label8.TabIndex = 42;
+            this.label8.TabIndex = 88;
             this.label8.Text = "CEP";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(24, 307);
+            this.label7.Location = new System.Drawing.Point(60, 329);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 21);
-            this.label7.TabIndex = 41;
+            this.label7.TabIndex = 87;
             this.label7.Text = "CPF";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(24, 236);
+            this.label6.Location = new System.Drawing.Point(60, 258);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 21);
-            this.label6.TabIndex = 40;
+            this.label6.TabIndex = 86;
             this.label6.Text = "Email";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(178, 166);
+            this.label5.Location = new System.Drawing.Point(214, 188);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(150, 21);
-            this.label5.TabIndex = 39;
+            this.label5.TabIndex = 85;
             this.label5.Text = "Data de Nascimento";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(24, 166);
+            this.label4.Location = new System.Drawing.Point(60, 188);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 21);
-            this.label4.TabIndex = 38;
+            this.label4.TabIndex = 84;
             this.label4.Text = "Sexo";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(24, 106);
+            this.label3.Location = new System.Drawing.Point(60, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 21);
-            this.label3.TabIndex = 37;
+            this.label3.TabIndex = 83;
             this.label3.Text = "Sobrenome";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(24, 51);
+            this.label2.Location = new System.Drawing.Point(60, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 21);
-            this.label2.TabIndex = 36;
+            this.label2.TabIndex = 82;
             this.label2.Text = "Nome";
             // 
-            // label19
+            // label1
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(380, 462);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(145, 21);
-            this.label19.TabIndex = 71;
-            this.label19.Text = "Valores Bancários";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(60, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 21);
+            this.label1.TabIndex = 126;
+            this.label1.Text = "Código";
             // 
-            // label20
+            // txtIdColaborador
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(25, 495);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(52, 21);
-            this.label20.TabIndex = 72;
-            this.label20.Text = "Banco";
+            this.txtIdColaborador.Enabled = false;
+            this.txtIdColaborador.Location = new System.Drawing.Point(119, 68);
+            this.txtIdColaborador.Name = "txtIdColaborador";
+            this.txtIdColaborador.Size = new System.Drawing.Size(100, 23);
+            this.txtIdColaborador.TabIndex = 125;
             // 
-            // label21
+            // label24
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label21.Location = new System.Drawing.Point(24, 536);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(65, 21);
-            this.label21.TabIndex = 73;
-            this.label21.Text = "Agência";
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label24.Location = new System.Drawing.Point(335, 9);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(266, 30);
+            this.label24.TabIndex = 127;
+            this.label24.Text = "Visualizando Colaborador";
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label22.Location = new System.Drawing.Point(513, 495);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(51, 21);
-            this.label22.TabIndex = 74;
-            this.label22.Text = "Conta";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label23.Location = new System.Drawing.Point(513, 536);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(106, 21);
-            this.label23.TabIndex = 75;
-            this.label23.Text = "Tipo da Conta";
-            // 
-            // txtBanco
-            // 
-            this.txtBanco.Location = new System.Drawing.Point(95, 493);
-            this.txtBanco.Name = "txtBanco";
-            this.txtBanco.Size = new System.Drawing.Size(290, 23);
-            this.txtBanco.TabIndex = 76;
-            // 
-            // txtAgencia
-            // 
-            this.txtAgencia.Location = new System.Drawing.Point(95, 534);
-            this.txtAgencia.Name = "txtAgencia";
-            this.txtAgencia.Size = new System.Drawing.Size(290, 23);
-            this.txtAgencia.TabIndex = 77;
-            // 
-            // txtConta
-            // 
-            this.txtConta.Location = new System.Drawing.Point(570, 493);
-            this.txtConta.Name = "txtConta";
-            this.txtConta.Size = new System.Drawing.Size(279, 23);
-            this.txtConta.TabIndex = 78;
-            // 
-            // cbTipoConta
-            // 
-            this.cbTipoConta.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cbTipoConta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipoConta.FormattingEnabled = true;
-            this.cbTipoConta.Items.AddRange(new object[] {
-            "Corrente",
-            "Poupança",
-            "Salário"});
-            this.cbTipoConta.Location = new System.Drawing.Point(625, 536);
-            this.cbTipoConta.Name = "cbTipoConta";
-            this.cbTipoConta.Size = new System.Drawing.Size(223, 23);
-            this.cbTipoConta.TabIndex = 79;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(27, 414);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(195, 21);
-            this.label17.TabIndex = 80;
-            this.label17.Text = "Porcentagem de Comissão";
-            // 
-            // txtComissao
-            // 
-            this.txtComissao.Location = new System.Drawing.Point(228, 412);
-            this.txtComissao.Name = "txtComissao";
-            this.txtComissao.Size = new System.Drawing.Size(111, 23);
-            this.txtComissao.TabIndex = 81;
-            // 
-            // FrmCadastroColaboradores
+            // FrmConsultaColaborador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(910, 642);
+            this.ClientSize = new System.Drawing.Size(944, 654);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtIdColaborador);
             this.Controls.Add(this.txtComissao);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.cbTipoConta);
@@ -530,7 +536,6 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.btnCadastrarColaborador);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.txtSalario);
             this.Controls.Add(this.label16);
@@ -563,11 +568,8 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmCadastroColaboradores";
-            this.Text = "FrmCadastroColaboradores";
-            this.Load += new System.EventHandler(this.FrmCadastroColaboradores_Load);
+            this.Name = "FrmConsultaColaborador";
+            this.Text = "VisualizarColaborador";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -575,8 +577,17 @@ namespace AugustosFashion.Views
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnCadastrarColaborador;
+        private System.Windows.Forms.TextBox txtComissao;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cbTipoConta;
+        private System.Windows.Forms.TextBox txtConta;
+        private System.Windows.Forms.TextBox txtAgencia;
+        private System.Windows.Forms.TextBox txtBanco;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtSalario;
         private System.Windows.Forms.Label label16;
@@ -609,16 +620,8 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtBanco;
-        private System.Windows.Forms.TextBox txtAgencia;
-        private System.Windows.Forms.TextBox txtConta;
-        private System.Windows.Forms.ComboBox cbTipoConta;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtComissao;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtIdColaborador;
+        private System.Windows.Forms.Label label24;
     }
 }

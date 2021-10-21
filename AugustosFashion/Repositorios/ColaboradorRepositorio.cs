@@ -137,6 +137,27 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        public ColaboradorConsulta RecuperarInfoColaborador(int idColaborador)
+        {
+            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+
+            string strSqlRecuperarInfoColaborador = @"select idColaborador, idUsuario, Salario, PorcentagemComissao from Colaboradores 
+                where IdColaborador = @IdColaborador";
+
+            sqlCon.Open();
+
+            try
+            {
+                ColaboradorConsulta colaborador = sqlCon.QuerySingle<ColaboradorConsulta>(strSqlRecuperarInfoColaborador, new { IdColaborador = idColaborador });
+
+                return colaborador;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         private ColaboradorListagem MapearColaborador(ColaboradorListagem colaboradorModel, EnderecoModel enderecoModel)
         {
             colaboradorModel.Endereco = enderecoModel;

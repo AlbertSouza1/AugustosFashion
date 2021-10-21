@@ -47,5 +47,15 @@ namespace AugustosFashion.Controllers.Colaborador
                 MessageBox.Show("Falha ao excluir colaborador. Erro: " + ex.Message);
             }
         }
+
+        internal void VisualizarColaborador(int id)
+        {
+            AbrirFormularioVisualizacaoColaborador(id);
+        }
+
+        public void AbrirFormularioVisualizacaoColaborador(int id)
+        {
+            new ConsultaColaboradorController().AbrirFormConsultaColaborador(id);
+        }
     }
 }

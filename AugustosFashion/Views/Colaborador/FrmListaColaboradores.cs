@@ -34,5 +34,26 @@ namespace AugustosFashion.Views.Colaborador
 
             dgvColaboradores.Columns[0].HeaderText = "Código";
         }
+
+        private void btnVisualizarColaborador_Click(object sender, EventArgs e)
+        {
+            if (VerificarSeHaRegistroSelecionado())
+            {
+                int id = RecuperarIdColaboradorSelecionado();
+
+                _listaColaboradorController.VisualizarColaborador(id);
+            }
+            else
+            {
+                MessageBox.Show("Selecione um cliente na tabela para excluir", "Aviso");
+            }
+        }
+        private int RecuperarIdColaboradorSelecionado()
+        {
+            int id = Convert.ToInt32(dgvColaboradores.SelectedRows[0].Cells[0].Value);
+            return id;
+        }
+        private bool VerificarSeHaRegistroSelecionado() =>
+           dgvColaboradores.SelectedRows.Count == 0 ? false : true;
     }
 }

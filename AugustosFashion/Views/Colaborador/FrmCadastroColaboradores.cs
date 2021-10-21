@@ -34,7 +34,7 @@ namespace AugustosFashion.Views
             var telefones = InstanciarTelefonesParaCadastro();
             var contaBancaria = InstanciarContaBancariaParaCadastro();
 
-            _cadastroColaboradorController.CadastrarColaborador(colaborador, endereco,  telefones, contaBancaria);
+            _cadastroColaboradorController.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria);
         }
         public ColaboradorModel InstanciarColaboradorParaCadastro()
         {
@@ -71,25 +71,30 @@ namespace AugustosFashion.Views
 
         public List<TelefoneModel> InstanciarTelefonesParaCadastro()
         {
-            var celular = new TelefoneModel(
-                numero: txtCelular.Text
-                );
-            var fixo = new TelefoneModel(
-                numero: txtTelefoneFixo.Text
-                );
+            var celular = new TelefoneModel
+            {
+                Numero = txtCelular.Text,
+                TipoTelefone = TipoTelefone.Celular
+            };
+
+            var fixo = new TelefoneModel
+            {
+                Numero = txtTelefoneFixo.Text,
+                TipoTelefone = TipoTelefone.Fixo
+            };
             var telefones = new List<TelefoneModel>();
 
             telefones.Add(celular);
             telefones.Add(fixo);
 
             return telefones;
-        } 
-        
+        }
+
         public ContaBancariaModel InstanciarContaBancariaParaCadastro()
         {
             TipoConta tipoConta = 0;
 
-            if(cbTipoConta.SelectedItem.ToString() == "Corrente")
+            if (cbTipoConta.SelectedItem.ToString() == "Corrente")
             {
                 tipoConta = TipoConta.ContaCorrente;
             }

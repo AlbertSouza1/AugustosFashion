@@ -30,8 +30,7 @@ namespace AugustosFashion.Views.Colaborador
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.btnExcluirColaborador = new System.Windows.Forms.Button();
-            this.btnAlterarColaborador = new System.Windows.Forms.Button();
+            this.btnVisualizarColaborador = new System.Windows.Forms.Button();
             this.dgvColaboradores = new System.Windows.Forms.DataGridView();
             this.btnBuscarColaborador = new System.Windows.Forms.Button();
             this.txtBusca = new System.Windows.Forms.TextBox();
@@ -43,31 +42,22 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(206, 479);
+            this.label2.Location = new System.Drawing.Point(206, 475);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(518, 18);
             this.label2.TabIndex = 14;
             this.label2.Text = "Selecione um cliente na tabela para interagir com as opções abaixo";
             // 
-            // btnExcluirColaborador
+            // btnVisualizarColaborador
             // 
-            this.btnExcluirColaborador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnExcluirColaborador.Location = new System.Drawing.Point(499, 516);
-            this.btnExcluirColaborador.Name = "btnExcluirColaborador";
-            this.btnExcluirColaborador.Size = new System.Drawing.Size(119, 49);
-            this.btnExcluirColaborador.TabIndex = 13;
-            this.btnExcluirColaborador.Text = "Excluir cliente selecionado";
-            this.btnExcluirColaborador.UseVisualStyleBackColor = true;
-            // 
-            // btnAlterarColaborador
-            // 
-            this.btnAlterarColaborador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAlterarColaborador.Location = new System.Drawing.Point(269, 516);
-            this.btnAlterarColaborador.Name = "btnAlterarColaborador";
-            this.btnAlterarColaborador.Size = new System.Drawing.Size(119, 49);
-            this.btnAlterarColaborador.TabIndex = 12;
-            this.btnAlterarColaborador.Text = "Alterar cliente selecionado";
-            this.btnAlterarColaborador.UseVisualStyleBackColor = true;
+            this.btnVisualizarColaborador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnVisualizarColaborador.Location = new System.Drawing.Point(373, 513);
+            this.btnVisualizarColaborador.Name = "btnVisualizarColaborador";
+            this.btnVisualizarColaborador.Size = new System.Drawing.Size(119, 49);
+            this.btnVisualizarColaborador.TabIndex = 12;
+            this.btnVisualizarColaborador.Text = "Exibir mais informações";
+            this.btnVisualizarColaborador.UseVisualStyleBackColor = true;
+            this.btnVisualizarColaborador.Click += new System.EventHandler(this.btnVisualizarColaborador_Click);
             // 
             // dgvColaboradores
             // 
@@ -83,7 +73,7 @@ namespace AugustosFashion.Views.Colaborador
             // btnBuscarColaborador
             // 
             this.btnBuscarColaborador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBuscarColaborador.Location = new System.Drawing.Point(451, 84);
+            this.btnBuscarColaborador.Location = new System.Drawing.Point(451, 82);
             this.btnBuscarColaborador.Name = "btnBuscarColaborador";
             this.btnBuscarColaborador.Size = new System.Drawing.Size(176, 30);
             this.btnBuscarColaborador.TabIndex = 10;
@@ -114,8 +104,7 @@ namespace AugustosFashion.Views.Colaborador
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(870, 574);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnExcluirColaborador);
-            this.Controls.Add(this.btnAlterarColaborador);
+            this.Controls.Add(this.btnVisualizarColaborador);
             this.Controls.Add(this.dgvColaboradores);
             this.Controls.Add(this.btnBuscarColaborador);
             this.Controls.Add(this.txtBusca);
@@ -132,8 +121,7 @@ namespace AugustosFashion.Views.Colaborador
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnExcluirColaborador;
-        private System.Windows.Forms.Button btnAlterarColaborador;
+        private System.Windows.Forms.Button btnVisualizarColaborador;
         private System.Windows.Forms.DataGridView dgvColaboradores;
         private System.Windows.Forms.Button btnBuscarColaborador;
         private System.Windows.Forms.TextBox txtBusca;
