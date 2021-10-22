@@ -83,8 +83,7 @@ namespace AugustosFashion.Views
             var telefones = InstanciarTelefonesParaCadastro();
 
             if (VerificarValidacoesDeCliente(endereco))
-                _alteraClienteController.AlterarCliente(cliente, endereco, telefones)
-                   
+                _alteraClienteController.AlterarCliente(cliente, endereco, telefones);
         }
 
         public ClienteModel InstanciarClienteParaCadastro()

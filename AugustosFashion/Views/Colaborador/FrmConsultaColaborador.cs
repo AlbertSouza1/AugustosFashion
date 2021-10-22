@@ -79,17 +79,60 @@ namespace AugustosFashion.Views.Colaborador
 
         private void btnAlterarColaborador_Click(object sender, EventArgs e)
         {
-            var colaborador = InstanciarColaboradorParaAlteracao();
+            var cpf = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
+
+            var colaborador = InstanciarColaboradorParaAlteracao(cpf);
             var endereco = InstanciarEnderecoParaAlteracao();
             var telefones = InstanciarTelefonesParaAlteracao();
             var contaBancaria = InstanciarContaBancariaParaAlteracao();
 
-            _consultaColaboradorController.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
+            if(VerificarValidacoesDeColaborador(cpf))
+                _consultaColaboradorController.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
         }
-        public ColaboradorModel InstanciarColaboradorParaAlteracao()
+        private bool VerificarValidacoesDeColaborador(string cpf)
         {
-            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
+            bool validacoes = true;
 
+            if (!ValidadoresCadastro.ValidarNumeroResidencial(txtNumero.Text))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarCEP(txtCep.Text))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarCPF(cpf))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarUsuario(txtNome.Text, txtSobreNome.Text, txtEmail.Text, mtxtCpf.Text, cbSexo.Text, dtpDataNascimento.Value))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarEndereco(InstanciarEnderecoParaAlteracao()))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarContaBancaria(txtBanco, txtAgencia, txtConta, cbTipoConta))
+                validacoes = false;
+            else if (!ValidarCamposDeColaborador())
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarTelefones(txtCelular.Text, txtTelefoneFixo.Text))
+                validacoes = false;
+
+            return validacoes;
+        }
+
+        private bool ValidarCamposDeColaborador()
+        {
+            var retorno = false;
+
+            if (txtSalario.Text == string.Empty)
+            {
+                MessageBox.Show("É necessário informar o salário do colaborador.");
+            }
+            else if (txtComissao.Text == string.Empty)
+            {
+                MessageBox.Show("É necessário informar a porcentagem de comissão.");
+            }
+            else
+                retorno = true;
+
+            return retorno;
+        }
+
+        public ColaboradorModel InstanciarColaboradorParaAlteracao(string cpf)
+        {
             ColaboradorModel colaborador = new ColaboradorModel
             {
                 IdColaborador = int.Parse(txtIdColaborador.Text),
@@ -98,14 +141,13 @@ namespace AugustosFashion.Views.Colaborador
                 Sexo = cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
                 DataNascimento = dtpDataNascimento.Value,
                 Email = txtEmail.Text,
-                CPF = cpfSemPontos,
+                CPF = cpf,
                 Salario = double.Parse(txtSalario.Text),
                 PorcentagemComissao = int.Parse(txtComissao.Text)
             };
 
             return colaborador;
         }
-
         public EnderecoModel InstanciarEnderecoParaAlteracao()
         {
             var endereco = new EnderecoModel(
