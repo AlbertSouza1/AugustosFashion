@@ -78,14 +78,17 @@ namespace AugustosFashion.Views
 
         private void btnAlterarCliente_Click(object sender, EventArgs e)
         {
-            var cliente = InstanciarClienteParaCadastro();
-            var endereco = InstanciarEnderecoParaCadastro();
-            var telefones = InstanciarTelefonesParaCadastro();
+            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
-            if (VerificarValidacoesDeCliente(endereco))
+            if (VerificarValidacoesDeCliente(cpfSemPontos))
+            {
+                var cliente = InstanciarClienteParaCadastro();
+                var endereco = InstanciarEnderecoParaCadastro();
+                var telefones = InstanciarTelefonesParaCadastro();
+
                 _alteraClienteController.AlterarCliente(cliente, endereco, telefones);
+            }
         }
-
         public ClienteModel InstanciarClienteParaCadastro()
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
@@ -141,13 +144,15 @@ namespace AugustosFashion.Views
             return telefones;
         }
 
-        private bool VerificarValidacoesDeCliente(EnderecoModel endereco)
+        private bool VerificarValidacoesDeCliente(string cpf)
         {
             bool validacoes = true;
 
             if (!ValidadoresCadastro.ValidarUsuario(txtNome.Text, txtSobreNome.Text, txtEmail.Text, mtxtCpf.Text, cbSexo.Text, dtpDataNascimento.Value))
                 validacoes = false;
-            else if (!ValidadoresCadastro.ValidarEndereco(endereco))
+            else if (!ValidadoresCadastro.ValidarSexoEUf(cbSexo.SelectedItem, cbUf.SelectedItem))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarEndereco(InstanciarEnderecoParaCadastro()))
                 validacoes = false;
             else if (!ValidarCamposDeCliente())
                 validacoes = false;
