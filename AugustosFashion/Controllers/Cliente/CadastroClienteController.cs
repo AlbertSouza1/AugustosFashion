@@ -23,16 +23,18 @@ namespace AugustosFashion.Controllers
             frmCadastroCliente.Show();
         }
 
-        public void CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
+        public bool CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
         {
             try
             {
                 new ClienteRepositorio().CadastrarCliente(cliente, endereco, telefones);
                 MessageBox.Show("Cliente cadastrado com sucesso!");
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Falha ao cadastrar cliente. Erro: "+ex.Message);
+                return false;
             }
         }
 

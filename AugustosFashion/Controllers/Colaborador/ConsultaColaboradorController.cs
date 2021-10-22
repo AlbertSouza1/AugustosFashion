@@ -59,6 +59,35 @@ namespace AugustosFashion.Controllers.Colaborador
             }
         }
 
+        internal void AlterarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        {
+            try
+            {
+                new ColaboradorRepositorio().AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
+                MessageBox.Show("Colaborador alterado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public bool ExcluirColaborador(int idColaborador)
+        {
+            try
+            {
+                new ColaboradorRepositorio().ExcluirColaborador(idColaborador);
+                MessageBox.Show("Colaborador excluído com sucesso!");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao excluir colaborador. Erro: " + ex.Message);
+                return false;
+            }
+        }
+
         public UsuarioConsulta RecuperarInfoUsuario(int idUsuario)
         {
             try
@@ -99,7 +128,6 @@ namespace AugustosFashion.Controllers.Colaborador
                 throw new Exception(ex.Message);
             }
         }
-
         public ContaBancariaModel RecuperarInfoContaBancaria(int idColaborador)
         {
             try

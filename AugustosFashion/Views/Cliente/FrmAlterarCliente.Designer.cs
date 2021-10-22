@@ -485,6 +485,7 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmAlterarCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmAlterarCliente";
             this.Load += new System.EventHandler(this.FrmAlterarCliente_Load);
             this.ResumeLayout(false);

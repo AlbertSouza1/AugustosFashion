@@ -35,6 +35,7 @@ namespace AugustosFashion.Views.Colaborador
             this.btnBuscarColaborador = new System.Windows.Forms.Button();
             this.txtBusca = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnFechar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaboradores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,18 +99,35 @@ namespace AugustosFashion.Views.Colaborador
             this.label1.TabIndex = 8;
             this.label1.Text = "Colaboradores Cadastrados";
             // 
+            // btnFechar
+            // 
+            this.btnFechar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnFechar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnFechar.Location = new System.Drawing.Point(836, 0);
+            this.btnFechar.Name = "btnFechar";
+            this.btnFechar.Size = new System.Drawing.Size(30, 23);
+            this.btnFechar.TabIndex = 15;
+            this.btnFechar.Text = "X";
+            this.btnFechar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnFechar.UseVisualStyleBackColor = false;
+            // 
             // FrmListaColaboradores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(870, 574);
+            this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnVisualizarColaborador);
             this.Controls.Add(this.dgvColaboradores);
             this.Controls.Add(this.btnBuscarColaborador);
             this.Controls.Add(this.txtBusca);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmListaColaboradores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmListaColaboradores";
             this.Load += new System.EventHandler(this.FrmListaColaboradores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaboradores)).EndInit();
@@ -126,5 +144,6 @@ namespace AugustosFashion.Views.Colaborador
         private System.Windows.Forms.Button btnBuscarColaborador;
         private System.Windows.Forms.TextBox txtBusca;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnFechar;
     }
 }

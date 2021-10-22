@@ -23,18 +23,19 @@ namespace AugustosFashion.Controllers
 
             frmCadastroColaborador.Show();
         }
-        public void CadastrarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        public bool CadastrarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
         {
             try
             {
                 new ColaboradorRepositorio().CadastrarColaborador(colaborador, endereco, telefones, contaBancaria);
                 MessageBox.Show("Colaborador cadastrado com sucesso!");
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao cadastrar cliente. Erro: " + ex.Message);
+                MessageBox.Show("Falha ao cadastrar colaborador. Erro: " + ex.Message);
+                return false;
             }
-
-        }
+        }        
     }
 }

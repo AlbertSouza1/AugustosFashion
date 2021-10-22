@@ -4,6 +4,7 @@ using AugustosFashion.Entidades.ContaBancaria;
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashion.Entidades.Usuario;
+using AugustosFashion.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -74,6 +75,113 @@ namespace AugustosFashion.Views.Colaborador
             txtAgencia.Text = contaBancaria.Agencia.ToString();
             cbTipoConta.SelectedIndex = 1/*contaBancaria.Conta*/;
 
+        }
+
+        private void btnAlterarColaborador_Click(object sender, EventArgs e)
+        {
+            var colaborador = InstanciarColaboradorParaAlteracao();
+            var endereco = InstanciarEnderecoParaAlteracao();
+            var telefones = InstanciarTelefonesParaAlteracao();
+            var contaBancaria = InstanciarContaBancariaParaAlteracao();
+
+            _consultaColaboradorController.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
+        }
+        public ColaboradorModel InstanciarColaboradorParaAlteracao()
+        {
+            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
+
+            ColaboradorModel colaborador = new ColaboradorModel
+            {
+                IdColaborador = int.Parse(txtIdColaborador.Text),
+                Nome = txtNome.Text,
+                SobreNome = txtSobreNome.Text,
+                Sexo = cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
+                DataNascimento = dtpDataNascimento.Value,
+                Email = txtEmail.Text,
+                CPF = cpfSemPontos,
+                Salario = double.Parse(txtSalario.Text),
+                PorcentagemComissao = int.Parse(txtComissao.Text)
+            };
+
+            return colaborador;
+        }
+
+        public EnderecoModel InstanciarEnderecoParaAlteracao()
+        {
+            var endereco = new EnderecoModel(
+                cep: txtCep.Text,
+                logradouro: txtLogradouro.Text,
+                numero: int.Parse(txtNumero.Text),
+                cidade: txtCidade.Text,
+                uf: cbUf.Text,
+                complemento: txtComplemento.Text,
+                bairro: txtBairro.Text
+                );
+
+            return endereco;
+        }
+
+        public List<TelefoneModel> InstanciarTelefonesParaAlteracao()
+        {
+            var celular = new TelefoneModel
+            {
+                IdTelefone = idCelular,
+                Numero = txtCelular.Text,
+                TipoTelefone = TipoTelefone.Celular
+            };
+
+            var fixo = new TelefoneModel
+            {
+                IdTelefone = idFixo,
+                Numero = txtTelefoneFixo.Text,
+                TipoTelefone = TipoTelefone.Fixo
+            };
+            var telefones = new List<TelefoneModel>();
+
+            telefones.Add(celular);
+            telefones.Add(fixo);
+
+            return telefones;
+        }
+
+        public ContaBancariaModel InstanciarContaBancariaParaAlteracao()
+        {
+            TipoConta tipoConta = 0;
+
+            if (cbTipoConta.SelectedItem.ToString() == "Corrente")
+            {
+                tipoConta = TipoConta.ContaCorrente;
+            }
+            else if (cbTipoConta.SelectedItem.ToString() == "Poupança")
+            {
+                tipoConta = TipoConta.ContaPoupanca;
+            }
+            else
+            {
+                tipoConta = TipoConta.ContaSalario;
+            }
+
+            var contaBancaria = new ContaBancariaModel
+            {
+                Banco = txtBanco.Text,
+                Agencia = int.Parse(txtAgencia.Text),
+                Conta = int.Parse(txtConta.Text),
+                TipoConta = tipoConta
+            };
+
+            return contaBancaria;
+        }
+
+        private void btnExcluirColaborador_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Você está prestes a excluir este colaborador. Deseja prosseguir com esta ação?", "Confirmação",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                bool retorno = _consultaColaboradorController.ExcluirColaborador(int.Parse(txtIdColaborador.Text));
+                if (retorno)
+                    this.Close();
+            }
         }
     }
 }

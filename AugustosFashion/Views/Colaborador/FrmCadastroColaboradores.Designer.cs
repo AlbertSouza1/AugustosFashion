@@ -564,8 +564,9 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmCadastroColaboradores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmCadastroColaboradores";
             this.Load += new System.EventHandler(this.FrmCadastroColaboradores_Load);
             this.ResumeLayout(false);

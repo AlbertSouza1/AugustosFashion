@@ -29,17 +29,64 @@ namespace AugustosFashion.Views
 
         private void btnCadastrarColaborador_Click(object sender, EventArgs e)
         {
-            var colaborador = InstanciarColaboradorParaCadastro();
-            var endereco = InstanciarEnderecoParaCadastro();
-            var telefones = InstanciarTelefonesParaCadastro();
-            var contaBancaria = InstanciarContaBancariaParaCadastro();
-
-            _cadastroColaboradorController.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria);
-        }
-        public ColaboradorModel InstanciarColaboradorParaCadastro()
-        {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
+            if (ValidadoresCadastro.ValidarSexoEUf(cbSexo.SelectedItem, cbUf.SelectedItem) && VerificarValidacoesDeColaborador(cpfSemPontos))
+            {
+                var colaborador = InstanciarColaboradorParaCadastro(cpfSemPontos);
+                var endereco = InstanciarEnderecoParaCadastro();
+                var telefones = InstanciarTelefonesParaCadastro();
+                var contaBancaria = InstanciarContaBancariaParaCadastro();
+
+                if (_cadastroColaboradorController.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria))
+                    this.Close();
+            }
+        }
+
+        private bool VerificarValidacoesDeColaborador(string cpf)
+        {
+            bool validacoes = true;
+
+            if (!ValidadoresCadastro.ValidarNumeroResidencial(txtNumero.Text))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarCEP(txtCep.Text))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarCPF(cpf))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarUsuario(txtNome.Text, txtSobreNome.Text, txtEmail.Text, mtxtCpf.Text, cbSexo.Text, dtpDataNascimento.Value))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarEndereco(InstanciarEnderecoParaCadastro()))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarContaBancaria(txtBanco, txtAgencia, txtConta, cbTipoConta))           
+                validacoes = false;
+            else if (!ValidarCamposDeColaborador())
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarTelefones(txtCelular.Text, txtTelefoneFixo.Text))
+                validacoes = false;
+
+            return validacoes;
+        }
+
+        private bool ValidarCamposDeColaborador()
+        {
+            var retorno = false;
+
+            if (txtSalario.Text == string.Empty)
+            {
+                MessageBox.Show("É necessário informar o salário do colaborador.");
+            }
+            else if(txtComissao.Text == string.Empty)
+            {
+                MessageBox.Show("É necessário informar a porcentagem de comissão.");
+            }
+            else
+                retorno = true;
+
+            return retorno;
+        }
+
+        public ColaboradorModel InstanciarColaboradorParaCadastro(string cpfSemPontos)
+        {
             ColaboradorModel colaborador = new ColaboradorModel(
                 nome: txtNome.Text,
                 sobreNome: txtSobreNome.Text,

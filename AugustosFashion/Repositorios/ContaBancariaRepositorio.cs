@@ -36,5 +36,10 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
+        public static string ObterStringAlterarContaBancaria() =>
+             @"update ContaBancaria set Agencia = @Agencia, Conta = @Conta, TipoConta = @TipoConta, Banco = @Banco  
+                where IdColaborador = @IdColaborador";
+
     }
 }

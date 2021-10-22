@@ -8,6 +8,7 @@ namespace AugustosFashion.Entidades.Endereco
 {
     public class EnderecoModel
     {
+        List<string> _mensagens;
         public EnderecoModel(string cep, string logradouro, int numero, string cidade, string uf, string complemento, string bairro)
         {
             CEP = cep;
@@ -19,7 +20,9 @@ namespace AugustosFashion.Entidades.Endereco
             Bairro = bairro;
         }
 
-        public EnderecoModel(){ }
+        public EnderecoModel(){
+            _mensagens = new List<string>();
+        }
 
         public int IdEndereco { get; set; }
         public int IdUsuario { get; set; }
@@ -30,5 +33,27 @@ namespace AugustosFashion.Entidades.Endereco
         public string UF { get; set; }
         public string Complemento { get; set; }
         public string Bairro { get; set; }
+
+        public bool EnderecoEhValido()
+        {
+            if (CEP.Length != 8)
+                _mensagens.Add("CEP inválido");
+            if (string.IsNullOrEmpty(Logradouro))
+                _mensagens.Add("Logradouro não pode ser vazio");
+            if (string.IsNullOrEmpty(Numero.ToString()))
+                _mensagens.Add("Número residencial não pode ser vazio");
+            if (string.IsNullOrEmpty(Cidade))
+                _mensagens.Add("Cidade não pode ser vazia");
+            if (string.IsNullOrEmpty(UF))
+                _mensagens.Add("Estado não pode ser vazio");
+            if (string.IsNullOrEmpty(Bairro))
+                _mensagens.Add("Bairro não pode ser vazio");
+
+            if (_mensagens.Count == 0)
+                return true;
+            else
+                return false;
+
+        }
     }
 }

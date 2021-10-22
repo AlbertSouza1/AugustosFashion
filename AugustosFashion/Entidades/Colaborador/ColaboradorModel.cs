@@ -11,6 +11,11 @@ namespace AugustosFashion.Entidades.Colaborador
         public int IdColaborador { get; set; }
         public double Salario { get; set; }
         public int PorcentagemComissao { get; set; }
+
+        public ColaboradorModel()
+        {
+
+        }
         public ColaboradorModel(string nome, string sobreNome, char sexo, DateTime dataNascimento, string email, string cpf, double salario, int porcentagemComissao)
         {
             Nome = nome;

@@ -34,8 +34,6 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                using (sqlCon)
-                {
                     insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario, cliente, tran);
 
                     cliente.IdUsuario = insertedId;
@@ -47,18 +45,17 @@ namespace AugustosFashion.Repositorios
 
                     sqlCon.Execute(strSqlTelefones, telefones, tran);
 
-                    tran.Commit();
-                }
+                    tran.Commit();                
             }
             catch (Exception ex)
             {
                 tran.Rollback();
                 throw new Exception(ex.Message);
             }
-            //finally
-            //{
-            //    sqlCon.Close();
-            //}
+            finally
+            {
+                sqlCon.Close();
+            }
         }
 
         public List<ClienteListagem> ListarClientes()
@@ -111,6 +108,8 @@ namespace AugustosFashion.Repositorios
                 //using (sqlCon)
                 //{
                 int idUsuario = RecuperarIdUsuario(cliente.IdCliente);
+
+                cliente.IdUsuario = idUsuario;
 
                 sqlCon.Execute(strSqlAlterarCliente, cliente , tran);
                 sqlCon.Execute(strSqlAlterarEndereco, endereco, tran);

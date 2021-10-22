@@ -75,6 +75,8 @@ namespace AugustosFashion.Views.Colaborador
             this.label1 = new System.Windows.Forms.Label();
             this.txtIdColaborador = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.btnAlterarColaborador = new System.Windows.Forms.Button();
+            this.btnExcluirColaborador = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtComissao
@@ -103,28 +105,28 @@ namespace AugustosFashion.Views.Colaborador
             "Corrente",
             "Poupança",
             "Salário"});
-            this.cbTipoConta.Location = new System.Drawing.Point(661, 558);
+            this.cbTipoConta.Location = new System.Drawing.Point(661, 541);
             this.cbTipoConta.Name = "cbTipoConta";
             this.cbTipoConta.Size = new System.Drawing.Size(223, 23);
             this.cbTipoConta.TabIndex = 122;
             // 
             // txtConta
             // 
-            this.txtConta.Location = new System.Drawing.Point(606, 515);
+            this.txtConta.Location = new System.Drawing.Point(606, 498);
             this.txtConta.Name = "txtConta";
             this.txtConta.Size = new System.Drawing.Size(279, 23);
             this.txtConta.TabIndex = 121;
             // 
             // txtAgencia
             // 
-            this.txtAgencia.Location = new System.Drawing.Point(131, 556);
+            this.txtAgencia.Location = new System.Drawing.Point(131, 539);
             this.txtAgencia.Name = "txtAgencia";
             this.txtAgencia.Size = new System.Drawing.Size(290, 23);
             this.txtAgencia.TabIndex = 120;
             // 
             // txtBanco
             // 
-            this.txtBanco.Location = new System.Drawing.Point(131, 515);
+            this.txtBanco.Location = new System.Drawing.Point(131, 498);
             this.txtBanco.Name = "txtBanco";
             this.txtBanco.Size = new System.Drawing.Size(290, 23);
             this.txtBanco.TabIndex = 119;
@@ -133,7 +135,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label23.Location = new System.Drawing.Point(549, 558);
+            this.label23.Location = new System.Drawing.Point(549, 541);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(106, 21);
             this.label23.TabIndex = 118;
@@ -143,7 +145,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label22.Location = new System.Drawing.Point(549, 517);
+            this.label22.Location = new System.Drawing.Point(549, 500);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(51, 21);
             this.label22.TabIndex = 117;
@@ -153,7 +155,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label21.Location = new System.Drawing.Point(60, 558);
+            this.label21.Location = new System.Drawing.Point(60, 541);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(65, 21);
             this.label21.TabIndex = 116;
@@ -163,7 +165,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(61, 517);
+            this.label20.Location = new System.Drawing.Point(61, 500);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(52, 21);
             this.label20.TabIndex = 115;
@@ -173,7 +175,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(416, 484);
+            this.label19.Location = new System.Drawing.Point(416, 467);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(145, 21);
             this.label19.TabIndex = 114;
@@ -517,11 +519,41 @@ namespace AugustosFashion.Views.Colaborador
             this.label24.TabIndex = 127;
             this.label24.Text = "Visualizando Colaborador";
             // 
+            // btnAlterarColaborador
+            // 
+            this.btnAlterarColaborador.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAlterarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAlterarColaborador.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAlterarColaborador.ForeColor = System.Drawing.Color.Black;
+            this.btnAlterarColaborador.Location = new System.Drawing.Point(264, 597);
+            this.btnAlterarColaborador.Name = "btnAlterarColaborador";
+            this.btnAlterarColaborador.Size = new System.Drawing.Size(157, 45);
+            this.btnAlterarColaborador.TabIndex = 128;
+            this.btnAlterarColaborador.Text = "Confirmar alterações nos dados";
+            this.btnAlterarColaborador.UseVisualStyleBackColor = false;
+            this.btnAlterarColaborador.Click += new System.EventHandler(this.btnAlterarColaborador_Click);
+            // 
+            // btnExcluirColaborador
+            // 
+            this.btnExcluirColaborador.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnExcluirColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExcluirColaborador.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExcluirColaborador.ForeColor = System.Drawing.Color.White;
+            this.btnExcluirColaborador.Location = new System.Drawing.Point(549, 597);
+            this.btnExcluirColaborador.Name = "btnExcluirColaborador";
+            this.btnExcluirColaborador.Size = new System.Drawing.Size(150, 45);
+            this.btnExcluirColaborador.TabIndex = 129;
+            this.btnExcluirColaborador.Text = "Confirmar Exclusão do colaborador";
+            this.btnExcluirColaborador.UseVisualStyleBackColor = false;
+            this.btnExcluirColaborador.Click += new System.EventHandler(this.btnExcluirColaborador_Click);
+            // 
             // FrmConsultaColaborador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 654);
+            this.Controls.Add(this.btnExcluirColaborador);
+            this.Controls.Add(this.btnAlterarColaborador);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtIdColaborador);
@@ -569,6 +601,7 @@ namespace AugustosFashion.Views.Colaborador
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "FrmConsultaColaborador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "VisualizarColaborador";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -623,5 +656,7 @@ namespace AugustosFashion.Views.Colaborador
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIdColaborador;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btnAlterarColaborador;
+        private System.Windows.Forms.Button btnExcluirColaborador;
     }
 }

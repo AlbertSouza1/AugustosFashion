@@ -26,19 +26,22 @@ namespace AugustosFashion.Views
         }
 
         private void btnCadastrarCliente_Click(object sender, EventArgs e)
-        {          
-            var cliente = InstanciarClienteParaCadastro();
-            var endereco = InstanciarEnderecoParaCadastro();
-            var telefones = InstanciarTelefonesParaCadastro();
-       
-            if(VerificarValidacoesDeCliente(endereco))
-                new CadastroClienteController().CadastrarCliente(cliente, endereco, telefones);
-        }
-
-        public ClienteModel InstanciarClienteParaCadastro()
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
+            if (ValidadoresCadastro.ValidarSexoEUf(cbSexo.SelectedItem, cbUf.SelectedItem) && VerificarValidacoesDeCliente(cpfSemPontos))
+            {
+                var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
+                var endereco = InstanciarEnderecoParaCadastro();
+                var telefones = InstanciarTelefonesParaCadastro();
+
+                if (new CadastroClienteController().CadastrarCliente(cliente, endereco, telefones))
+                    this.Close();
+            }
+        }
+
+        public ClienteModel InstanciarClienteParaCadastro(string cpfSemPontos)
+        {          
             ClienteModel cliente = new ClienteModel(
                 nome: txtNome.Text,
                 sobreNome: txtSobreNome.Text,
@@ -49,7 +52,6 @@ namespace AugustosFashion.Views
                 limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
                 observacao: txtObservacoes.Text
                 );
-
             return cliente;
         }
 
@@ -70,10 +72,11 @@ namespace AugustosFashion.Views
 
         public List<TelefoneModel> InstanciarTelefonesParaCadastro()
         {
-            var celular = new TelefoneModel {
-                Numero =  txtCelular.Text,
+            var celular = new TelefoneModel
+            {
+                Numero = txtCelular.Text,
                 TipoTelefone = TipoTelefone.Celular
-                };
+            };
 
             var fixo = new TelefoneModel
             {
@@ -89,13 +92,18 @@ namespace AugustosFashion.Views
             return telefones;
         }
 
-        private bool VerificarValidacoesDeCliente(EnderecoModel endereco)
+        private bool VerificarValidacoesDeCliente(string cpf)
         {
             bool validacoes = true;
-
-            if(!ValidadoresCadastro.ValidarUsuario(txtNome.Text, txtSobreNome.Text, txtEmail.Text, mtxtCpf.Text, cbSexo.Text, dtpDataNascimento.Value))
+            if (!ValidadoresCadastro.ValidarNumeroResidencial(txtNumero.Text))
                 validacoes = false;
-            else if (!ValidadoresCadastro.ValidarEndereco(endereco))
+            else if (!ValidadoresCadastro.ValidarCEP(txtCep.Text))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarCPF(cpf))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarUsuario(txtNome.Text, txtSobreNome.Text, txtEmail.Text, mtxtCpf.Text, cbSexo.Text, dtpDataNascimento.Value))
+                validacoes = false;
+            else if (!ValidadoresCadastro.ValidarEndereco(InstanciarEnderecoParaCadastro()))
                 validacoes = false;
             else if (!ValidarCamposDeCliente())
                 validacoes = false;

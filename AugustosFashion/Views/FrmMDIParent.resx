@@ -139,16 +139,6 @@
         RK5CYII=
 </value>
   </data>
-  <data name="btnCloseMDI.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAEDSURBVGhD7ZjBCsIwEET7gV5ExYN+vn6Fiu5AB0JIS9puzQbmwRzaw2aepi3tIIQQQohOOFie
-        Y0444czRwvlYy52H5TvmZblavMAszOR8rOVOKuApkZdHdhHAtskX2ipRKo9jbKddOFvyBd+Wu2UpF0tp
-        1s2yKx4SzcqTLRLNy5M1EmHKkyUS4cqTGomw5cmcRPjypCTxsaBsei5keVKSSBO6PIFE/qsj+DfClwfY
-        81MCNc+JppQu2DQQCytRKj91EYeTmLtV1jwnmlJznw8rUVOehJNYUp6EkVhTnjSX2FKeNJPwKE/+LtH9
-        S333n1VSAa/yJJfYRaD7T4tCCCGE8GUYfj9LF2waoKclAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

@@ -41,6 +41,7 @@ namespace AugustosFashion.Views.Colaborador
             {
                 int id = RecuperarIdColaboradorSelecionado();
 
+                this.Close();
                 _listaColaboradorController.VisualizarColaborador(id);
             }
             else

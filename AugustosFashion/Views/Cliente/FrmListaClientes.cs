@@ -31,7 +31,7 @@ namespace AugustosFashion.Views
 
         private void ListarClientes()
         {
-            List<ClienteListagem> listaClientes =_listaClienteController.ListarClientes();
+            List<ClienteListagem> listaClientes = _listaClienteController.ListarClientes();
 
             foreach (var item in listaClientes)
             {
@@ -45,10 +45,19 @@ namespace AugustosFashion.Views
 
         private void btnExcluirCliente_Click(object sender, EventArgs e)
         {
-            if (VerificarSeHaRegistroSelecionado()) {
-                int id = RecuperarIdClienteSelecionado();
 
-                _listaClienteController.ExcluirCliente(id);
+            if (VerificarSeHaRegistroSelecionado())
+            {
+                DialogResult result = MessageBox.Show("Você está prestes a excluir este cliente. Deseja prosseguir com esta ação?", "Confirmação",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    int id = RecuperarIdClienteSelecionado();
+
+                    this.Close();
+                    _listaClienteController.ExcluirCliente(id);
+                }
             }
             else
             {
@@ -60,7 +69,7 @@ namespace AugustosFashion.Views
             int id = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value);
             return id;
         }
-        private bool VerificarSeHaRegistroSelecionado() => 
+        private bool VerificarSeHaRegistroSelecionado() =>
             dgvClientes.SelectedRows.Count == 0 ? false : true;
 
         private void btnAlterarCliente_Click(object sender, EventArgs e)
