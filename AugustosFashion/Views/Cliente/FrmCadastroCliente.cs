@@ -29,7 +29,7 @@ namespace AugustosFashion.Views
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
-            if (ValidadoresCadastro.ValidarSexoEUf(cbSexo.SelectedItem, cbUf.SelectedItem) && VerificarValidacoesDeCliente(cpfSemPontos))
+            if (VerificarValidacoesDeCliente(cpfSemPontos))
             {
                 var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
                 var endereco = InstanciarEnderecoParaCadastro();
@@ -95,20 +95,75 @@ namespace AugustosFashion.Views
         private bool VerificarValidacoesDeCliente(string cpf)
         {
             bool validacoes = true;
-            if (!ValidadoresCadastro.ValidarNumeroResidencial(txtNumero.Text))
+            if(!ValidadoresCadastro.ValidarSexo(cbSexo.SelectedItem))
+            {
                 validacoes = false;
+                MessageBox.Show("Sexo inválido.");
+            }
+            else if (!ValidadoresCadastro.ValidarUf(cbUf.SelectedItem))
+            {
+                validacoes = false;
+                MessageBox.Show("UF inválida.");
+            }
+            else if (!ValidadoresCadastro.ValidarNumeroResidencial(txtNumero.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Número residencial inválido.");
+            }
             else if (!ValidadoresCadastro.ValidarCEP(txtCep.Text))
+            {
                 validacoes = false;
+                MessageBox.Show("CEP inválido.");
+            }
             else if (!ValidadoresCadastro.ValidarCPF(cpf))
+            {
+                MessageBox.Show("CPF inválido.");
                 validacoes = false;
-            else if (!ValidadoresCadastro.ValidarUsuario(txtNome.Text, txtSobreNome.Text, txtEmail.Text, mtxtCpf.Text, cbSexo.Text, dtpDataNascimento.Value))
+            }
+            else if (!ValidadoresCadastro.ValidarNome(txtNome.Text))
+            {
+                MessageBox.Show("Nome inválido.");
                 validacoes = false;
-            else if (!ValidadoresCadastro.ValidarEndereco(InstanciarEnderecoParaCadastro()))
+            }
+            else if (!ValidadoresCadastro.ValidarSobreNome(txtSobreNome.Text))
+            {
+                MessageBox.Show("Sobrenome inválido.");
                 validacoes = false;
+            }
+            else if (!ValidadoresCadastro.ValidarEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Email inválido.");
+                validacoes = false;
+            }
+            else if (!ValidadoresCadastro.ValidarDataNascimento(dtpDataNascimento.Value))
+            {
+                MessageBox.Show("Data de nascimento inválido.");
+                validacoes = false;
+            }
+            else if (!ValidadoresCadastro.ValidarLogradouro(txtLogradouro.Text))
+            {
+                MessageBox.Show("Logradouro inválido.");
+                validacoes = false;
+            }
+            else if (!ValidadoresCadastro.ValidarBairro(txtBairro.Text))
+            {
+                MessageBox.Show("Bairro inválido.");
+                validacoes = false;
+            }
+            else if (!ValidadoresCadastro.ValidarCidade(txtCidade.Text))
+            {
+                MessageBox.Show("Cidade inválida.");
+                validacoes = false;
+            }
             else if (!ValidarCamposDeCliente())
+            {
                 validacoes = false;
+            }
             else if (!ValidadoresCadastro.ValidarTelefones(txtCelular.Text, txtTelefoneFixo.Text))
+            {
                 validacoes = false;
+                MessageBox.Show("É necessário informar um número para contato.");
+            }
 
             return validacoes;
         }
