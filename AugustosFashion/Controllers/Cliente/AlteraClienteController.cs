@@ -31,7 +31,7 @@ namespace AugustosFashion.Controllers.Cliente
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Não foi possível recuperar as informações do cliente. Erro: "+ex.Message);
             }
         }
 
@@ -63,7 +63,7 @@ namespace AugustosFashion.Controllers.Cliente
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -77,9 +77,8 @@ namespace AugustosFashion.Controllers.Cliente
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
-
         }
         public EnderecoModel RecuperarInfoEndereco(int idUsuario)
         {
@@ -89,10 +88,9 @@ namespace AugustosFashion.Controllers.Cliente
 
                 return endereco;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception(ex.Message);
             }
         }
         public List<TelefoneModel> RecuperarInfoTelefones(int idUsuario)
@@ -103,10 +101,9 @@ namespace AugustosFashion.Controllers.Cliente
 
                 return telefones;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }
