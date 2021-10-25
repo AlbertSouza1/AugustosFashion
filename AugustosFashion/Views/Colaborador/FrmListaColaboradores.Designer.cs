@@ -80,6 +80,7 @@ namespace AugustosFashion.Views.Colaborador
             this.btnBuscarColaborador.TabIndex = 10;
             this.btnBuscarColaborador.Text = "Buscar por nome";
             this.btnBuscarColaborador.UseVisualStyleBackColor = true;
+            this.btnBuscarColaborador.Visible = false;
             // 
             // txtBusca
             // 
@@ -88,6 +89,7 @@ namespace AugustosFashion.Views.Colaborador
             this.txtBusca.Name = "txtBusca";
             this.txtBusca.Size = new System.Drawing.Size(204, 27);
             this.txtBusca.TabIndex = 9;
+            this.txtBusca.Visible = false;
             // 
             // label1
             // 

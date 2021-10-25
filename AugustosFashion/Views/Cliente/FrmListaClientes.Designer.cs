@@ -56,6 +56,7 @@ namespace AugustosFashion.Views
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(204, 27);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Visible = false;
             // 
             // btnBuscarCliente
             // 
@@ -66,6 +67,7 @@ namespace AugustosFashion.Views
             this.btnBuscarCliente.TabIndex = 3;
             this.btnBuscarCliente.Text = "Buscar por nome";
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
+            this.btnBuscarCliente.Visible = false;
             // 
             // dgvClientes
             // 
