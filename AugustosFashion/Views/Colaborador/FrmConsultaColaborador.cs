@@ -58,7 +58,7 @@ namespace AugustosFashion.Views.Colaborador
             txtNome.Text = usuario.Nome;
             txtSobreNome.Text = usuario.SobreNome;
             txtEmail.Text = usuario.Email;
-            cbSexo.SelectedIndex = usuario.Sexo == 'm' ? 0 : 1;
+            cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(usuario.Sexo);
             dtpDataNascimento.Value = usuario.DataNascimento;
             mtxtCpf.Text = usuario.CPF;
 
@@ -68,12 +68,12 @@ namespace AugustosFashion.Views.Colaborador
             txtBairro.Text = endereco.Bairro;
             txtNumero.Text = endereco.Numero.ToString();
             txtCep.Text = endereco.CEP;
-            cbUf.SelectedIndex = 0;
+            cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(endereco.UF);
 
             txtBanco.Text = contaBancaria.Banco;
             txtConta.Text = contaBancaria.Conta.ToString();
             txtAgencia.Text = contaBancaria.Agencia.ToString();
-            cbTipoConta.SelectedIndex = 1/*contaBancaria.Conta*/;
+            cbTipoConta.SelectedIndex = TipoContaBancariaComboBoxHelper.RetornarIndexComboBoxUfCadastrado(contaBancaria.TipoConta);
 
         }
 

@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entidades\**" />
+    <Compile Remove="Helpers\**" />
+    <EmbeddedResource Remove="Entidades\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <None Remove="Entidades\**" />
+    <None Remove="Helpers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -24,6 +33,12 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.90" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Models">
+      <HintPath>..\..\AugustosFashionModels\Models\obj\Debug\Models.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

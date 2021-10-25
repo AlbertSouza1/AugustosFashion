@@ -112,6 +112,7 @@ namespace AugustosFashion.Views.Colaborador
             this.btnFechar.Text = "X";
             this.btnFechar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnFechar.UseVisualStyleBackColor = false;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
             // FrmListaColaboradores
             // 
