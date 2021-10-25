@@ -12,17 +12,17 @@ namespace AugustosFashion.Helpers
         {
             var retorno = false;
 
-            if (endereco.CEP == string.Empty)
+            if (ValidarSeEhNuloOuVazio(endereco.CEP))
                 MessageBox.Show("É necessário informar um CEP.");
-            else if (endereco.Bairro == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(endereco.Bairro))
                 MessageBox.Show("É necessário informar um Bairro.");
-            else if (endereco.Cidade == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(endereco.Cidade))
                 MessageBox.Show("É necessário informar uma Cidade.");
-            else if (endereco.Logradouro == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(endereco.Logradouro))
                 MessageBox.Show("É necessário informar um logradouro.");
-            else if (endereco.Numero.ToString() == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(endereco.Numero.ToString()))
                 MessageBox.Show("É necessário informar um número residencial.");
-            else if (endereco.UF == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(endereco.UF))
                 MessageBox.Show("É necessário informar um Estado.");
             else
                 retorno = true;
@@ -33,7 +33,7 @@ namespace AugustosFashion.Helpers
         {
             bool retorno = true;
 
-            if (cel == string.Empty && fixo == string.Empty)
+            if (ValidarSeEhNuloOuVazio(cel) && ValidarSeEhNuloOuVazio(fixo))
             {
                 MessageBox.Show("É necessário informar ao menos um telefone para contato.");
                 retorno = false;           
@@ -55,17 +55,17 @@ namespace AugustosFashion.Helpers
         {
             bool retorno = false;
 
-            if (nome == string.Empty)
+            if (ValidarSeEhNuloOuVazio(nome))
                 MessageBox.Show("É necessário informar um nome.");
-            else if (sobreNome == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(sobreNome))
                 MessageBox.Show("É necessário informar um sobrenome.");
-            else if (email == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(email))
                 MessageBox.Show("É necessário informar um email.");
-            else if (cpf == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(cpf))
                 MessageBox.Show("É necessário informar um cpf.");
-            else if (sexo == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(sexo))
                 MessageBox.Show("É necessário informar o sexo.");
-            else if (dataNascimento.ToString() == string.Empty)
+            else if (ValidarSeEhNuloOuVazio(dataNascimento.ToString()))
                 MessageBox.Show("É necessário informar a data de nascimento.");
             else
                 retorno = true;
@@ -77,17 +77,17 @@ namespace AugustosFashion.Helpers
         {
             var retorno = true;
 
-            if (string.IsNullOrEmpty(txtConta.Text))
+            if (ValidarSeEhNuloOuVazio(txtConta.Text))
             {
                 retorno = false;
                 MessageBox.Show("Número da conta não pode ser vazio");
             }
-            else if (string.IsNullOrEmpty(txtAgencia.Text))
+            else if (ValidarSeEhNuloOuVazio(txtAgencia.Text))
             {
                 retorno = false;
                 MessageBox.Show("Agência não pode ser vazia");
             }
-            else if (string.IsNullOrEmpty(txtBanco.Text))
+            else if (ValidarSeEhNuloOuVazio(txtBanco.Text))
             {
                 retorno = false;
                 MessageBox.Show("Banco não pode ser vazio");
@@ -137,7 +137,7 @@ namespace AugustosFashion.Helpers
         {
             var retorno = true;
 
-            if (txtNumero != string.Empty)
+            if (!ValidarSeEhNuloOuVazio(txtNumero))
             {
                 retorno = ValidarSePossuiApenasNumeros(txtNumero);
             }
@@ -155,7 +155,7 @@ namespace AugustosFashion.Helpers
         {
             var retorno = true;
 
-            if (cpf != string.Empty)
+            if (!ValidarSeEhNuloOuVazio(cpf))
             {
                 retorno = ValidarSePossuiApenasNumeros(cpf);
             }
@@ -173,7 +173,7 @@ namespace AugustosFashion.Helpers
         {
             var retorno = true;
 
-            if (txtCep != string.Empty)
+            if (!ValidarSeEhNuloOuVazio(txtCep))
             {
                 retorno = ValidarSePossuiApenasNumeros(txtCep);
             }
@@ -202,6 +202,14 @@ namespace AugustosFashion.Helpers
                 }
             }
             return retorno;
+        }
+
+        public bool ValidarSeEhNuloOuVazio(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return false;
+            else
+                return true;
         }
     }
 }

@@ -63,7 +63,7 @@ namespace AugustosFashion.Views
             txtNome.Text = usuario.Nome;
             txtSobreNome.Text = usuario.SobreNome;
             txtEmail.Text = usuario.Email;
-            cbSexo.SelectedIndex = 0;
+            cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(usuario.Sexo);
             dtpDataNascimento.Value = usuario.DataNascimento;
             mtxtCpf.Text = usuario.CPF;
 
@@ -73,7 +73,7 @@ namespace AugustosFashion.Views
             txtBairro.Text = endereco.Bairro;
             txtNumero.Text = endereco.Numero.ToString();
             txtCep.Text = endereco.CEP;
-            cbUf.SelectedIndex = 0;
+            cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(endereco.UF);
         }
 
         private void btnAlterarCliente_Click(object sender, EventArgs e)
