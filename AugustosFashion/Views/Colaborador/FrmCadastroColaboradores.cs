@@ -113,10 +113,25 @@ namespace AugustosFashion.Views
                 validacoes = false;
                 MessageBox.Show("É necessário informar um número para contato.");
             }
-            else if (!ValidadoresCadastro.ValidarContaBancaria(txtBanco.Text, txtAgencia.Text, txtConta.Text, cbTipoConta.SelectedItem))
+            else if (!ValidadoresCadastro.ValidarBanco(txtBanco.Text))
             {
                 validacoes = false;
-                MessageBox.Show("Dados de conta bancária inválidos.");
+                MessageBox.Show("Banco inválido.");
+            }
+            else if (!ValidadoresCadastro.ValidarAgencia(txtAgencia.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Agência inválida.");
+            }
+            else if (!ValidadoresCadastro.ValidarConta(txtConta.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Conta inválida.");
+            }
+            else if (!ValidadoresCadastro.ValidarTipoConta(cbTipoConta.SelectedItem))
+            {
+                validacoes = false;
+                MessageBox.Show("Tipo da conta inválido.");
             }
 
             return validacoes;

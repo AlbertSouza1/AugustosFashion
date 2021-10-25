@@ -7,12 +7,6 @@ using AugustosFashion.Entidades.Usuario;
 using AugustosFashion.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Colaborador
@@ -81,17 +75,20 @@ namespace AugustosFashion.Views.Colaborador
         {
             var cpf = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
-            var colaborador = InstanciarColaboradorParaAlteracao(cpf);
-            var endereco = InstanciarEnderecoParaAlteracao();
-            var telefones = InstanciarTelefonesParaAlteracao();
-            var contaBancaria = InstanciarContaBancariaParaAlteracao();
+            if (VerificarValidacoesDeColaborador(cpf))
+            {
+                var colaborador = InstanciarColaboradorParaAlteracao(cpf);
+                var endereco = InstanciarEnderecoParaAlteracao();
+                var telefones = InstanciarTelefonesParaAlteracao();
+                var contaBancaria = InstanciarContaBancariaParaAlteracao();
 
-            if(VerificarValidacoesDeColaborador(cpf))
                 _consultaColaboradorController.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
+            }
         }
         private bool VerificarValidacoesDeColaborador(string cpf)
         {
             bool validacoes = true;
+
             if (!ValidadoresCadastro.ValidarSexo(cbSexo.SelectedItem))
             {
                 validacoes = false;
@@ -159,10 +156,25 @@ namespace AugustosFashion.Views.Colaborador
                 validacoes = false;
                 MessageBox.Show("É necessário informar um número para contato.");
             }
-            else if (!ValidadoresCadastro.ValidarContaBancaria(txtBanco.Text, txtAgencia.Text, txtConta.Text, cbTipoConta.SelectedItem))
+            else if (!ValidadoresCadastro.ValidarBanco(txtBanco.Text))
             {
                 validacoes = false;
-                MessageBox.Show("Dados de conta bancária inválidos.");
+                MessageBox.Show("Banco inválido.");
+            }
+            else if (!ValidadoresCadastro.ValidarAgencia(txtAgencia.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Agência inválida.");
+            }
+            else if (!ValidadoresCadastro.ValidarConta(txtConta.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Conta inválida.");
+            }
+            else if (!ValidadoresCadastro.ValidarTipoConta(cbTipoConta.SelectedItem))
+            {
+                validacoes = false;
+                MessageBox.Show("Tipo da conta inválido.");
             }
 
             return validacoes;
