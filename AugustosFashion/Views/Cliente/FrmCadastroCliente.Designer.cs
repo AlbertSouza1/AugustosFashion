@@ -467,7 +467,7 @@ namespace AugustosFashion.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "FrmCadastroCliente";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar Cliente";
             this.Load += new System.EventHandler(this.FrmCadastroCliente_Load);
             this.ResumeLayout(false);

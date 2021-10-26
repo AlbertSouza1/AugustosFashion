@@ -33,7 +33,6 @@ namespace AugustosFashion.Views
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtObservacoes = new System.Windows.Forms.TextBox();
-            this.txtLimiteCompraPrazo = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txtTelefoneFixo = new System.Windows.Forms.TextBox();
@@ -67,6 +66,7 @@ namespace AugustosFashion.Views
             this.label1 = new System.Windows.Forms.Label();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.mtxtLimiteCompraPrazo = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // btnAlterarCliente
@@ -111,13 +111,6 @@ namespace AugustosFashion.Views
             this.txtObservacoes.Name = "txtObservacoes";
             this.txtObservacoes.Size = new System.Drawing.Size(355, 83);
             this.txtObservacoes.TabIndex = 68;
-            // 
-            // txtLimiteCompraPrazo
-            // 
-            this.txtLimiteCompraPrazo.Location = new System.Drawing.Point(545, 558);
-            this.txtLimiteCompraPrazo.Name = "txtLimiteCompraPrazo";
-            this.txtLimiteCompraPrazo.Size = new System.Drawing.Size(298, 23);
-            this.txtLimiteCompraPrazo.TabIndex = 67;
             // 
             // label16
             // 
@@ -440,18 +433,26 @@ namespace AugustosFashion.Views
             this.label19.TabIndex = 73;
             this.label19.Text = "Código";
             // 
+            // mtxtLimiteCompraPrazo
+            // 
+            this.mtxtLimiteCompraPrazo.Location = new System.Drawing.Point(545, 557);
+            this.mtxtLimiteCompraPrazo.Mask = "0000,00";
+            this.mtxtLimiteCompraPrazo.Name = "mtxtLimiteCompraPrazo";
+            this.mtxtLimiteCompraPrazo.Size = new System.Drawing.Size(49, 23);
+            this.mtxtLimiteCompraPrazo.TabIndex = 74;
+            // 
             // FrmAlterarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 654);
+            this.Controls.Add(this.mtxtLimiteCompraPrazo);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.txtIdCliente);
             this.Controls.Add(this.btnAlterarCliente);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.txtObservacoes);
-            this.Controls.Add(this.txtLimiteCompraPrazo);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtTelefoneFixo);
@@ -485,7 +486,7 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmAlterarCliente";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAlterarCliente";
             this.Load += new System.EventHandler(this.FrmAlterarCliente_Load);
             this.ResumeLayout(false);
@@ -499,7 +500,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtObservacoes;
-        private System.Windows.Forms.TextBox txtLimiteCompraPrazo;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtTelefoneFixo;
@@ -533,5 +533,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIdCliente;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.MaskedTextBox mtxtLimiteCompraPrazo;
     }
 }

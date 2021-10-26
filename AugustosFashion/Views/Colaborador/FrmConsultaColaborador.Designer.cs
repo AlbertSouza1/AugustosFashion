@@ -601,7 +601,7 @@ namespace AugustosFashion.Views.Colaborador
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "FrmConsultaColaborador";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VisualizarColaborador";
             this.ResumeLayout(false);
             this.PerformLayout();

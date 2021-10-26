@@ -58,7 +58,7 @@ namespace AugustosFashion.Views
 
             txtIdCliente.Text = cliente.IdCliente.ToString();
             txtObservacoes.Text = cliente.Observacao;
-            txtLimiteCompraPrazo.Text = cliente.ValorLimiteCompraAPrazo;
+            mtxtLimiteCompraPrazo.Text = cliente.ValorLimiteCompraAPrazo;
 
             txtNome.Text = usuario.Nome;
             txtSobreNome.Text = usuario.SobreNome;
@@ -101,7 +101,7 @@ namespace AugustosFashion.Views
                 DataNascimento = dtpDataNascimento.Value,
                 Email = txtEmail.Text,
                 CPF = cpfSemPontos,
-                LimiteCompraAPrazo = double.Parse(txtLimiteCompraPrazo.Text),
+                LimiteCompraAPrazo = double.Parse(mtxtLimiteCompraPrazo.Text),
                 Observacao = txtObservacoes.Text
                 };
 
@@ -221,7 +221,7 @@ namespace AugustosFashion.Views
         {
             var retorno = false;
 
-            if (txtLimiteCompraPrazo.Text == string.Empty)
+            if (mtxtLimiteCompraPrazo.Text == string.Empty)
             {
                 MessageBox.Show("É necessário informar um limite para compra a prazo.");
             }

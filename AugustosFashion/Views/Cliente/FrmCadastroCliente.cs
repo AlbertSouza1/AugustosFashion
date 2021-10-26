@@ -35,7 +35,7 @@ namespace AugustosFashion.Views
                 var endereco = InstanciarEnderecoParaCadastro();
                 var telefones = InstanciarTelefonesParaCadastro();
 
-                if (new CadastroClienteController().CadastrarCliente(cliente, endereco, telefones))
+                if (_cadastroClienteController.CadastrarCliente(cliente, endereco, telefones))
                     this.Close();
             }
         }
