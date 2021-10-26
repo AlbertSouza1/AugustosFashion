@@ -54,9 +54,10 @@ namespace AugustosFashion.Views
                 if (result == DialogResult.Yes)
                 {
                     int id = RecuperarIdClienteSelecionado();
-
-                    this.Close();
+                   
                     _listaClienteController.ExcluirCliente(id);
+
+                    ListarClientes();
                 }
             }
             else

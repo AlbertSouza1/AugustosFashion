@@ -105,11 +105,11 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                //using (sqlCon)
-                //{
                 int idUsuario = RecuperarIdUsuario(cliente.IdCliente);
 
                 cliente.IdUsuario = idUsuario;
+                endereco.IdUsuario = idUsuario;
+                telefones.ForEach(x => x.IdUsuario = idUsuario);
 
                 sqlCon.Execute(strSqlAlterarCliente, cliente , tran);
                 sqlCon.Execute(strSqlAlterarEndereco, endereco, tran);
@@ -117,7 +117,6 @@ namespace AugustosFashion.Repositorios
                 sqlCon.Execute(strSqlAlterarUsuario, cliente, tran);
 
                 tran.Commit();
-                //}
             }
             catch (Exception ex)
             {
