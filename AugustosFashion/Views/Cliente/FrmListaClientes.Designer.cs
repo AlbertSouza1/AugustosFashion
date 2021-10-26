@@ -42,10 +42,10 @@ namespace AugustosFashion.Views
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(343, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 30);
+            this.label1.Size = new System.Drawing.Size(228, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Clientes Cadastrados";
             // 
@@ -82,24 +82,30 @@ namespace AugustosFashion.Views
             // 
             // btnAlterarCliente
             // 
-            this.btnAlterarCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAlterarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAlterarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAlterarCliente.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAlterarCliente.ForeColor = System.Drawing.Color.Black;
             this.btnAlterarCliente.Location = new System.Drawing.Point(277, 516);
             this.btnAlterarCliente.Name = "btnAlterarCliente";
-            this.btnAlterarCliente.Size = new System.Drawing.Size(119, 49);
+            this.btnAlterarCliente.Size = new System.Drawing.Size(124, 49);
             this.btnAlterarCliente.TabIndex = 5;
             this.btnAlterarCliente.Text = "Alterar cliente selecionado";
-            this.btnAlterarCliente.UseVisualStyleBackColor = true;
+            this.btnAlterarCliente.UseVisualStyleBackColor = false;
             this.btnAlterarCliente.Click += new System.EventHandler(this.btnAlterarCliente_Click);
             // 
             // btnExcluirCliente
             // 
-            this.btnExcluirCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnExcluirCliente.Location = new System.Drawing.Point(507, 516);
+            this.btnExcluirCliente.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnExcluirCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExcluirCliente.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnExcluirCliente.ForeColor = System.Drawing.Color.White;
+            this.btnExcluirCliente.Location = new System.Drawing.Point(513, 516);
             this.btnExcluirCliente.Name = "btnExcluirCliente";
-            this.btnExcluirCliente.Size = new System.Drawing.Size(119, 49);
+            this.btnExcluirCliente.Size = new System.Drawing.Size(122, 49);
             this.btnExcluirCliente.TabIndex = 6;
             this.btnExcluirCliente.Text = "Excluir cliente selecionado";
-            this.btnExcluirCliente.UseVisualStyleBackColor = true;
+            this.btnExcluirCliente.UseVisualStyleBackColor = false;
             this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
             // 
             // label2

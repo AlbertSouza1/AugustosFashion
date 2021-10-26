@@ -71,10 +71,10 @@ namespace AugustosFashion.Views
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(351, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 30);
+            this.label1.Size = new System.Drawing.Size(190, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cadastrar Cliente";
             // 
@@ -411,7 +411,7 @@ namespace AugustosFashion.Views
             // 
             this.btnCadastrarCliente.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnCadastrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCadastrarCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCadastrarCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCadastrarCliente.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCadastrarCliente.Location = new System.Drawing.Point(382, 583);

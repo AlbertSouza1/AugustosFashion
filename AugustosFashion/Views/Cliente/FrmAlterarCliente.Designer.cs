@@ -73,7 +73,7 @@ namespace AugustosFashion.Views
             // 
             this.btnAlterarCliente.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnAlterarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAlterarCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAlterarCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnAlterarCliente.ForeColor = System.Drawing.Color.White;
             this.btnAlterarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAlterarCliente.Location = new System.Drawing.Point(390, 605);
@@ -408,10 +408,10 @@ namespace AugustosFashion.Views
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(390, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 30);
+            this.label1.Size = new System.Drawing.Size(157, 25);
             this.label1.TabIndex = 36;
             this.label1.Text = "Alterar Cliente";
             // 

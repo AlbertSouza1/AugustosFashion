@@ -289,7 +289,10 @@ namespace AugustosFashion.Views.Colaborador
             {
                 bool retorno = _consultaColaboradorController.ExcluirColaborador(int.Parse(txtIdColaborador.Text));
                 if (retorno)
+                {
                     this.Close();
+                    new ListaColaboradorController().AbrirFormularioLista();
+                }
             }
         }
     }

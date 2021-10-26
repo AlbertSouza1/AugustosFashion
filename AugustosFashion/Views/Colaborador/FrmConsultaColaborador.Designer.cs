@@ -523,7 +523,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.btnAlterarColaborador.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAlterarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAlterarColaborador.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAlterarColaborador.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnAlterarColaborador.ForeColor = System.Drawing.Color.Black;
             this.btnAlterarColaborador.Location = new System.Drawing.Point(264, 597);
             this.btnAlterarColaborador.Name = "btnAlterarColaborador";
@@ -537,7 +537,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.btnExcluirColaborador.BackColor = System.Drawing.Color.OrangeRed;
             this.btnExcluirColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExcluirColaborador.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExcluirColaborador.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnExcluirColaborador.ForeColor = System.Drawing.Color.White;
             this.btnExcluirColaborador.Location = new System.Drawing.Point(549, 597);
             this.btnExcluirColaborador.Name = "btnExcluirColaborador";

@@ -51,13 +51,16 @@ namespace AugustosFashion.Views.Colaborador
             // 
             // btnVisualizarColaborador
             // 
-            this.btnVisualizarColaborador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnVisualizarColaborador.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnVisualizarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVisualizarColaborador.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnVisualizarColaborador.ForeColor = System.Drawing.Color.White;
             this.btnVisualizarColaborador.Location = new System.Drawing.Point(373, 513);
             this.btnVisualizarColaborador.Name = "btnVisualizarColaborador";
-            this.btnVisualizarColaborador.Size = new System.Drawing.Size(119, 49);
+            this.btnVisualizarColaborador.Size = new System.Drawing.Size(125, 49);
             this.btnVisualizarColaborador.TabIndex = 12;
             this.btnVisualizarColaborador.Text = "Exibir mais informações";
-            this.btnVisualizarColaborador.UseVisualStyleBackColor = true;
+            this.btnVisualizarColaborador.UseVisualStyleBackColor = false;
             this.btnVisualizarColaborador.Click += new System.EventHandler(this.btnVisualizarColaborador_Click);
             // 
             // dgvColaboradores
@@ -94,10 +97,10 @@ namespace AugustosFashion.Views.Colaborador
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(335, 9);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(318, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(280, 30);
+            this.label1.Size = new System.Drawing.Size(300, 25);
             this.label1.TabIndex = 8;
             this.label1.Text = "Colaboradores Cadastrados";
             // 
