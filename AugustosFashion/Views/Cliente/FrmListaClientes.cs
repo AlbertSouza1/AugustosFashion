@@ -26,13 +26,18 @@ namespace AugustosFashion.Views
 
         private void FrmListaClientes_Load(object sender, EventArgs e)
         {
-            ListarClientes();
+            RecuperarClientesParaListar();
         }
 
-        private void ListarClientes()
+        private void RecuperarClientesParaListar()
         {
             List<ClienteListagem> listaClientes = _listaClienteController.ListarClientes();
 
+            ListarClientes(listaClientes);
+        }
+
+        private void ListarClientes(List<ClienteListagem> listaClientes)
+        {
             foreach (var item in listaClientes)
             {
                 item.Sexo = item.Sexo == "m" ? "Masculino" : "Feminino";
@@ -54,10 +59,10 @@ namespace AugustosFashion.Views
                 if (result == DialogResult.Yes)
                 {
                     int id = RecuperarIdClienteSelecionado();
-                   
+
                     _listaClienteController.ExcluirCliente(id);
 
-                    ListarClientes();
+                    RecuperarClientesParaListar();
                 }
             }
             else
@@ -85,6 +90,21 @@ namespace AugustosFashion.Views
             else
             {
                 MessageBox.Show("Selecione um cliente na tabela para excluir", "Aviso");
+            }
+        }
+
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            if (txtNomeBuscado.Text != string.Empty)
+            {
+                try
+                {
+                    var listaClientes = _listaClienteController.BuscarCliente(txtNomeBuscado.Text);
+                    ListarClientes(listaClientes);
+                } catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

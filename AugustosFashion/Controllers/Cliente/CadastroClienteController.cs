@@ -27,7 +27,7 @@ namespace AugustosFashion.Controllers
         {
             try
             {
-                new ClienteRepositorio().CadastrarCliente(cliente, endereco, telefones);
+                ClienteRepositorio.CadastrarCliente(cliente, endereco, telefones);
                 MessageBox.Show("Cliente cadastrado com sucesso!");
                 return true;
             }

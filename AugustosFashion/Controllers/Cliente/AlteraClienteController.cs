@@ -44,7 +44,7 @@ namespace AugustosFashion.Controllers.Cliente
         {
             try
             {
-                new ClienteRepositorio().AlterarCliente(cliente, endereco, telefones);
+                ClienteRepositorio.AlterarCliente(cliente, endereco, telefones);
                 MessageBox.Show("Cliente alterado com sucesso!");
             }
             catch (Exception ex)
@@ -57,7 +57,7 @@ namespace AugustosFashion.Controllers.Cliente
         {
             try
             {
-                var clienteConsulta = new ClienteRepositorio().RecuperarInfoCliente(idCliente);
+                var clienteConsulta = ClienteRepositorio.RecuperarInfoCliente(idCliente);
 
                 return clienteConsulta;
             }

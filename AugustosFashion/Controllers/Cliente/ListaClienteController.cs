@@ -22,7 +22,7 @@ namespace AugustosFashion.Controllers
 
         public List<ClienteListagem> ListarClientes()
         {
-            List<ClienteListagem> listaClientes = new ClienteRepositorio().ListarClientes();
+            List<ClienteListagem> listaClientes = ClienteRepositorio.ListarClientes();
             return listaClientes;
         }
 
@@ -30,12 +30,27 @@ namespace AugustosFashion.Controllers
         {
             try
             {
-                new ClienteRepositorio().ExcluirCliente(idCliente);
+                ClienteRepositorio.ExcluirCliente(idCliente);
                 MessageBox.Show("Cliente excluído com sucesso!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Falha ao excluir cliente. Erro: " + ex.Message);
+            }
+        }
+
+        public List<ClienteListagem> BuscarCliente(string text)
+        {
+            try
+            {
+                List<ClienteListagem> clientes = ClienteRepositorio.BuscarCliente(text);
+                if (clientes.Count == 0)
+                    MessageBox.Show("Nenhum cliente encontrado.");
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

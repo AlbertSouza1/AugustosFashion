@@ -28,7 +28,6 @@ namespace AugustosFashion.Helpers
 
         public static bool ValidarSeTelefonesEstaoVazios(string cel, string fixo) =>  ValidarSeEhNuloOuVazio(cel) && ValidarSeEhNuloOuVazio(fixo);
 
-
         public static bool ValidarNome(string nome) => !ValidarSeEhNuloOuVazio(nome);
         public static bool ValidarSobreNome(string sobreNome) => !ValidarSeEhNuloOuVazio(sobreNome);
         public static bool ValidarEmail(string email) => !ValidarSeEhNuloOuVazio(email);

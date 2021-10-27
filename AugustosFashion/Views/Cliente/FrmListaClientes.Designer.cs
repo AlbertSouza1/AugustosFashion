@@ -31,7 +31,7 @@ namespace AugustosFashion.Views
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNomeBuscado = new System.Windows.Forms.TextBox();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
             this.btnAlterarCliente = new System.Windows.Forms.Button();
@@ -50,14 +50,13 @@ namespace AugustosFashion.Views
             this.label1.TabIndex = 0;
             this.label1.Text = "Clientes Cadastrados";
             // 
-            // textBox1
+            // txtNomeBuscado
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(258, 84);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(204, 27);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Visible = false;
+            this.txtNomeBuscado.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtNomeBuscado.Location = new System.Drawing.Point(258, 84);
+            this.txtNomeBuscado.Name = "txtNomeBuscado";
+            this.txtNomeBuscado.Size = new System.Drawing.Size(204, 27);
+            this.txtNomeBuscado.TabIndex = 1;
             // 
             // btnBuscarCliente
             // 
@@ -68,7 +67,7 @@ namespace AugustosFashion.Views
             this.btnBuscarCliente.TabIndex = 3;
             this.btnBuscarCliente.Text = "Buscar por nome";
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
-            this.btnBuscarCliente.Visible = false;
+            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 
             // dgvClientes
             // 
@@ -140,7 +139,7 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.btnAlterarCliente);
             this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.btnBuscarCliente);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtNomeBuscado);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmListaClientes";
@@ -156,7 +155,7 @@ namespace AugustosFashion.Views
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNomeBuscado;
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.Button btnAlterarCliente;
