@@ -86,6 +86,7 @@ namespace AugustosFashion.Views
             this.dgvClientes.Location = new System.Drawing.Point(12, 133);
             this.dgvClientes.MultiSelect = false;
             this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.ReadOnly = true;
             this.dgvClientes.RowTemplate.Height = 25;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClientes.Size = new System.Drawing.Size(862, 325);

@@ -10,12 +10,10 @@ namespace AugustosFashion.Entidades.Cliente
         public string Nome { get; set; }
         public string SobreNome { get; set; }
         public string Sexo { get; set; }
-
         public int Idade { get; set; }
 
         [DisplayName("Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
-
         public EnderecoModel Endereco { get; set; }
         
     }

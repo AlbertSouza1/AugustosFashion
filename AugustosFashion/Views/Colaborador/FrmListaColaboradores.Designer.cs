@@ -69,6 +69,7 @@ namespace AugustosFashion.Views.Colaborador
             this.dgvColaboradores.Location = new System.Drawing.Point(4, 133);
             this.dgvColaboradores.MultiSelect = false;
             this.dgvColaboradores.Name = "dgvColaboradores";
+            this.dgvColaboradores.ReadOnly = true;
             this.dgvColaboradores.RowTemplate.Height = 25;
             this.dgvColaboradores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvColaboradores.Size = new System.Drawing.Size(862, 325);
