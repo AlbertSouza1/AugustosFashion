@@ -7,43 +7,32 @@ namespace AugustosFashionTestes
     [TestClass]
     public class ValidadoresCadastroTestes
     {
-        [TestMethod]
-        public void Validar_se_possui_apenas_numeros_apenas_numeros_deve_retornar_true()
+        [DataTestMethod]
+        [DataRow("4123", true)]
+        [DataRow("512k", false)]
+        [DataRow("f", false)]
+        public void Validar_se_possui_apenas_numeros_apenas_numeros_deve_retornar_true(string valor, bool esperado)
         {
-            //arrange
-            string text = "5323";
-
-            //act
-            var retorno = ValidadoresCadastro.ValidarSePossuiApenasNumeros(text);
-
-            //assert
-            Assert.IsTrue(retorno);
+            Assert.AreEqual(ValidadoresCadastro.ValidarSePossuiApenasNumeros(valor), esperado);
         }
 
-        [TestMethod]
-        public void Vakidar_se_valor_for_nulo_ou_vazio_deve_retornar_true()
+        [DataTestMethod]
+        [DataRow("g1", false)]
+        [DataRow("", true)]
+        [DataRow(null, true)]
+        public void Validar_se_valor_for_nulo_ou_vazio_deve_retornar_true(string valor, bool esperado)
         {
-            //arrange
-            string text = "";
-
-            //act
-            var retorno = ValidadoresCadastro.ValidarSeEhNuloOuVazio(text);
-
-            //assert
-            Assert.IsTrue(retorno);
+            Assert.AreEqual(ValidadoresCadastro.ValidarSeEhNuloOuVazio(valor), esperado);
         }
 
-        [TestMethod]
-        public void Se_numero_residencial_possuir_apenas_numeros_deve_retornar_true()
+        [DataTestMethod]
+        [DataRow("1234", true)]
+        [DataRow("", false)]
+        [DataRow(null, false)]
+        [DataRow("444221r", false)]
+        public void Validar_se_numero_residencial_possuir_apenas_numeros_deve_retornar_true(string valor, bool esperado)
         {
-            //arrange
-            string numero = "44";
-
-            //act
-            var retorno = ValidadoresCadastro.ValidarNumeroResidencial(numero);
-
-            //assert
-            Assert.IsTrue(retorno);
+            Assert.AreEqual(ValidadoresCadastro.ValidarNumeroResidencial(valor), esperado);
         }
 
         [TestMethod]
@@ -84,15 +73,6 @@ namespace AugustosFashionTestes
             Assert.IsTrue(retorno);
         }
 
-        //[DataTestMethod]
-        //[DataRow("Jales", true)]
-        //[DataRow(2, 3)]
-        //[DataRow(3, 4)]
-        //public void Teste(string a, bool esperado)
-        //{
-        //    Assert.AreEqual(ValidadoresCadastro.ValidarCidade(a), esperado);
-        //}
-
         [TestMethod]
         public void Validar_se_logradouro_for_vazio_deve_retornar_false()
         {
@@ -106,18 +86,14 @@ namespace AugustosFashionTestes
             Assert.IsFalse(retorno);
         }
 
-        [TestMethod]
-        public void Validar_todos_telefone_forem_vazios_deve_retornar_true()
+        [DataTestMethod]
+        [DataRow("12345", "", false)]
+        [DataRow("", "12345", false)]
+        [DataRow("", "", true)]
+        [DataRow("12345", "12345", false)]
+        public void Validar_se_todos_telefone_forem_vazios_deve_retornar_true(string cel, string fixo, bool esperado)
         {
-            //arrange
-            string cel = "";
-            string fixo = "";
-
-            //act
-            var retorno = ValidadoresCadastro.ValidarSeTelefonesEstaoVazios(cel, fixo);
-
-            //assert
-            Assert.IsTrue(retorno);
+            Assert.AreEqual(ValidadoresCadastro.ValidarSeTelefonesEstaoVazios(cel, fixo), esperado);
         }
 
         [TestMethod]
@@ -186,17 +162,12 @@ namespace AugustosFashionTestes
             Assert.IsTrue(retorno);
         }
 
-        [TestMethod]
-        public void Validar_se_UF_for_null_deve_retornar_false()
+        [DataTestMethod]
+        [DataRow(null, false)]
+        [DataRow("SP", true)]
+        public void Validar_se_UF_for_null_deve_retornar_false(object valor, bool esperado)
         {
-            //arrange
-            string text = null;
-
-            //act
-            var retorno = ValidadoresCadastro.ValidarUf(text);
-
-            //assert
-            Assert.IsFalse(retorno);
+            Assert.AreEqual(ValidadoresCadastro.ValidarUf(valor), esperado);
         }
         [TestMethod]
         public void Validar_se_sexo_for_null_deve_retornar_false()

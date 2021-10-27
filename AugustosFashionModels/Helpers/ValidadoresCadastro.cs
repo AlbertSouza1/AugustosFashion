@@ -51,19 +51,16 @@ namespace AugustosFashion.Helpers
 
         public static bool ValidarSePossuiApenasNumeros(string text)
         {
-            var retorno = true;
-
             var txtEmArrayChar = text.ToCharArray();
 
             foreach (var x in txtEmArrayChar)
             {
                 if (!Char.IsDigit(x))
                 {
-                    retorno = false;
-                    break;
+                    return false;             
                 }
             }
-            return retorno;
+            return true;
         }
 
         public static bool ValidarSeEhNuloOuVazio(string text)
