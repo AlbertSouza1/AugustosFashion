@@ -55,5 +55,10 @@ namespace AugustosFashion.Entidades.Endereco
                 return false;
 
         }
+
+        public override string ToString()
+        {
+            return $"CEP: {CEP};  Logradouro: {Logradouro} N°{Numero}, {Complemento}, {Bairro} -  {Cidade}-{UF}";
+        }
     }
 }

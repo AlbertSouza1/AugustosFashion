@@ -22,7 +22,6 @@ namespace AugustosFashion.Entidades.Cliente
             LimiteCompraAPrazo = limiteCompraAPrazo;
             Observacao = observacao;
         }
-
         public ClienteModel() { }
     }
 }
