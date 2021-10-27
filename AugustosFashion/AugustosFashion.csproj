@@ -36,9 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Models">
-      <HintPath>..\..\AugustosFashionModels\Models\obj\Debug\Models.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\AugustosFashionModels\AugustosFashionModels.csproj" />
   </ItemGroup>
-
+	
 </Project>
