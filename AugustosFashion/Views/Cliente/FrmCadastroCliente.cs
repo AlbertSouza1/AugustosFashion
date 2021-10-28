@@ -32,16 +32,14 @@ namespace AugustosFashion.Views
             if (VerificarValidacoesDeCliente(cpfSemPontos))
             {
                 var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
-                var endereco = InstanciarEnderecoParaCadastro();
-                var telefones = InstanciarTelefonesParaCadastro();
 
-                if (_cadastroClienteController.CadastrarCliente(cliente, endereco, telefones))
+                if (_cadastroClienteController.CadastrarCliente(cliente))
                     this.Close();
             }
         }
 
         public ClienteModel InstanciarClienteParaCadastro(string cpfSemPontos)
-        {          
+        {
             ClienteModel cliente = new ClienteModel(
                 nome: txtNome.Text,
                 sobreNome: txtSobreNome.Text,
@@ -50,7 +48,9 @@ namespace AugustosFashion.Views
                 email: txtEmail.Text,
                 cpf: cpfSemPontos,
                 limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
-                observacao: txtObservacoes.Text
+                observacao: txtObservacoes.Text,
+                endereco: InstanciarEnderecoParaCadastro(),
+                telefones: InstanciarTelefonesParaCadastro()
                 );
             return cliente;
         }

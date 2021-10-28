@@ -22,24 +22,7 @@ namespace AugustosFashion.Repositorios
         where
             IdUsuario = @IdUsuario;";
 
-        public static UsuarioConsulta RecuperarInfoUsuario(int idUsuario)
-        {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
-
-            var strSqlUsuarioConsulta = "select Nome, Sobrenome, Sexo, DataNascimento, Email, CPF from Usuarios where IdUsuario = @IdUsuario";
-
-            sqlCon.Open();
-
-            try
-            {
-                UsuarioConsulta usuario = sqlCon.QuerySingle<UsuarioConsulta>(strSqlUsuarioConsulta, new { IdUsuario = idUsuario });
-
-                return usuario;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        public static string ObterStringRecuperarInfoUsuario(int idUsuario) =>
+            "select Nome, Sobrenome, Sexo, DataNascimento, Email, CPF from Usuarios where IdUsuario = @IdUsuario";
     }
 }

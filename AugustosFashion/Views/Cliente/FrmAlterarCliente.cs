@@ -27,9 +27,9 @@ namespace AugustosFashion.Views
 
         }
 
-        public void ObterDadosParaAlteracao(ClienteConsulta cliente, UsuarioConsulta usuario, EnderecoModel endereco, List<TelefoneModel> telefones)
+        public void ObterDadosParaAlteracao(ClienteModel cliente)
         {
-            foreach (var tel in telefones)
+            foreach (var tel in cliente.Telefones)
             {
                 if (tel.Numero.ToString() == string.Empty)
                     continue;
@@ -52,22 +52,22 @@ namespace AugustosFashion.Views
 
             txtIdCliente.Text = cliente.IdCliente.ToString();
             txtObservacoes.Text = cliente.Observacao;
-            mtxtLimiteCompraPrazo.Text = cliente.ValorLimiteCompraAPrazo;
+            mtxtLimiteCompraPrazo.Text = cliente.LimiteCompraAPrazo.ToString();
 
-            txtNome.Text = usuario.Nome;
-            txtSobreNome.Text = usuario.SobreNome;
-            txtEmail.Text = usuario.Email;
-            cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(usuario.Sexo);
-            dtpDataNascimento.Value = usuario.DataNascimento;
-            mtxtCpf.Text = usuario.CPF;
+            txtNome.Text = cliente.Nome;
+            txtSobreNome.Text = cliente.SobreNome;
+            txtEmail.Text = cliente.Email;
+            cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(cliente.Sexo);
+            dtpDataNascimento.Value = cliente.DataNascimento;
+            mtxtCpf.Text = cliente.CPF;
 
-            txtLogradouro.Text = endereco.Logradouro;
-            txtCidade.Text = endereco.Cidade;
-            txtComplemento.Text = endereco.Complemento;
-            txtBairro.Text = endereco.Bairro;
-            txtNumero.Text = endereco.Numero.ToString();
-            txtCep.Text = endereco.CEP;
-            cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(endereco.UF);
+            txtLogradouro.Text = cliente.Endereco.Logradouro;
+            txtCidade.Text = cliente.Endereco.Cidade;
+            txtComplemento.Text = cliente.Endereco.Complemento;
+            txtBairro.Text = cliente.Endereco.Bairro;
+            txtNumero.Text = cliente.Endereco.Numero.ToString();
+            txtCep.Text = cliente.Endereco.CEP;
+            cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(cliente.Endereco.UF);
         }
 
         private void btnAlterarCliente_Click(object sender, EventArgs e)
@@ -77,12 +77,10 @@ namespace AugustosFashion.Views
             if (VerificarValidacoesDeCliente(cpfSemPontos))
             {
                 var cliente = InstanciarClienteParaCadastro();
-                var endereco = InstanciarEnderecoParaCadastro();
-                var telefones = InstanciarTelefonesParaCadastro();
 
                 try
                 {
-                    _alteraClienteController.AlterarCliente(cliente, endereco, telefones);
+                    _alteraClienteController.AlterarCliente(cliente);
                     MessageBox.Show("Cliente alterado com sucesso!");
                 }
                 catch (Exception ex)
@@ -105,7 +103,9 @@ namespace AugustosFashion.Views
                 Email = txtEmail.Text,
                 CPF = cpfSemPontos,
                 LimiteCompraAPrazo = double.Parse(mtxtLimiteCompraPrazo.Text),
-                Observacao = txtObservacoes.Text
+                Observacao = txtObservacoes.Text,
+                Endereco = InstanciarEnderecoParaCadastro(),
+                Telefones = InstanciarTelefonesParaCadastro()
             };
 
             return cliente;

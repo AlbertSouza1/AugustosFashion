@@ -22,12 +22,12 @@ namespace AugustosFashion.Controllers.Cliente
 
             try
             {
-                ClienteConsulta cliente = RecuperarInfoCliente(id);
-                UsuarioConsulta usuario = RecuperarInfoUsuario(cliente.IdUsuario);
-                EnderecoModel endereco = RecuperarInfoEndereco(cliente.IdUsuario);
-                List<TelefoneModel> telefones = RecuperarInfoTelefones(cliente.IdUsuario);
-
-                PreencherCamposParaAlteracao(frmAlteracaoCliente, cliente, usuario, endereco, telefones);
+                ClienteModel cliente = RecuperarInfoCliente(id);
+                //UsuarioConsulta usuario = RecuperarInfoUsuario(cliente.IdUsuario);              
+                //EnderecoModel endereco = RecuperarInfoEndereco(cliente.IdUsuario);
+                //List<TelefoneModel> telefones = RecuperarInfoTelefones(cliente.IdUsuario);
+ 
+                PreencherCamposParaAlteracao(frmAlteracaoCliente, cliente);
             }
             catch (Exception ex)
             {
@@ -35,16 +35,16 @@ namespace AugustosFashion.Controllers.Cliente
             }
         }
 
-        public void PreencherCamposParaAlteracao(FrmAlterarCliente frmAlterarCliente, ClienteConsulta cliente, UsuarioConsulta usuario, EnderecoModel endereco, List<TelefoneModel> telefones)
+        public void PreencherCamposParaAlteracao(FrmAlterarCliente frmAlterarCliente, ClienteModel cliente)
         {
-            frmAlterarCliente.ObterDadosParaAlteracao(cliente, usuario, endereco, telefones);
+            frmAlterarCliente.ObterDadosParaAlteracao(cliente);
         }
 
-        public void AlterarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
+        public void AlterarCliente(ClienteModel cliente)
         {
             try
             {
-                ClienteRepositorio.AlterarCliente(cliente, endereco, telefones);              
+                ClienteRepositorio.AlterarCliente(cliente);              
             }
             catch (Exception ex)
             {
@@ -64,13 +64,13 @@ namespace AugustosFashion.Controllers.Cliente
             }
         }
 
-        public ClienteConsulta RecuperarInfoCliente(int idCliente)
+        public ClienteModel RecuperarInfoCliente(int idCliente)
         {
             try
             {
-                var clienteConsulta = ClienteRepositorio.RecuperarInfoCliente(idCliente);
+                var cliente = ClienteRepositorio.RecuperarInfoCliente(idCliente);
 
-                return clienteConsulta;
+                return cliente;
             }
             catch (Exception ex)
             {
@@ -78,44 +78,44 @@ namespace AugustosFashion.Controllers.Cliente
             }
         }
 
-        public UsuarioConsulta RecuperarInfoUsuario(int idUsuario)
-        {
-            try
-            {
-                var usuarioConsulta = UsuarioRepositorio.RecuperarInfoUsuario(idUsuario);
+        //public UsuarioConsulta RecuperarInfoUsuario(int idUsuario)
+        //{
+        //    try
+        //    {
+        //        var usuarioConsulta = UsuarioRepositorio.ObterStringRecuperarInfoUsuario(idUsuario);
 
-                return usuarioConsulta;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public EnderecoModel RecuperarInfoEndereco(int idUsuario)
-        {
-            try
-            {
-                var endereco = EnderecoRepositorio.RecuperarInfoEndereco(idUsuario);
+        //        return usuarioConsulta;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
+        //public EnderecoModel RecuperarInfoEndereco(int idUsuario)
+        //{
+        //    try
+        //    {
+        //        var endereco = EnderecoRepositorio.RecuperarInfoEndereco(idUsuario);
 
-                return endereco;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public List<TelefoneModel> RecuperarInfoTelefones(int idUsuario)
-        {
-            try
-            {
-                var telefones = TelefoneRepositorio.RecuperarInfoTelefones(idUsuario);
+        //        return endereco;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
+        //public List<TelefoneModel> RecuperarInfoTelefones(int idUsuario)
+        //{
+        //    try
+        //    {
+        //        var telefones = TelefoneRepositorio.RecuperarInfoTelefones(idUsuario);
 
-                return telefones;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //        return telefones;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
     }
 }

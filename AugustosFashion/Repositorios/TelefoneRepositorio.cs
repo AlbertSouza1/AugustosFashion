@@ -25,24 +25,7 @@ namespace AugustosFashion.Repositorios
             where
 	            IdUsuario = @IdUsuario and IdTelefone = @IdTelefone;";
 
-        public static List<TelefoneModel> RecuperarInfoTelefones(int idUsuario)
-        {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
-
-            var strSqlUsuarioConsulta = "select IdTelefone, IdUsuario, Numero, TipoTelefone from Telefones where IdUsuario = @IdUsuario";
-
-            sqlCon.Open();
-
-            try
-            {
-                List<TelefoneModel> telefones = sqlCon.Query<TelefoneModel>(strSqlUsuarioConsulta, new { IdUsuario = idUsuario }).ToList<TelefoneModel>();
-
-                return telefones;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        public static string ObterStringRecuperarInfoTelefones(int idUsuario) =>
+            "select IdTelefone, IdUsuario, Numero, TipoTelefone from Telefones where IdUsuario = @IdUsuario";
     }
 }

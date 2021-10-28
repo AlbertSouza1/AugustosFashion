@@ -24,12 +24,12 @@ namespace AugustosFashion.Controllers.Colaborador
             try
             {
                 ColaboradorConsulta colaborador = RecuperarInfoColaborador(idColaborador);
-                UsuarioConsulta usuario = RecuperarInfoUsuario(colaborador.IdUsuario);
-                EnderecoModel endereco = RecuperarInfoEndereco(colaborador.IdUsuario);
-                List<TelefoneModel> telefones = RecuperarInfoTelefones(colaborador.IdUsuario);
-                ContaBancariaModel contaBancaria = RecuperarInfoContaBancaria(idColaborador);
+                //UsuarioConsulta usuario = RecuperarInfoUsuario(colaborador.IdUsuario);
+                //EnderecoModel endereco = RecuperarInfoEndereco(colaborador.IdUsuario);
+                //List<TelefoneModel> telefones = RecuperarInfoTelefones(colaborador.IdUsuario);
+                //ContaBancariaModel contaBancaria = RecuperarInfoContaBancaria(idColaborador);
 
-                PreencherCampos(frmConsultaColaborador, colaborador, usuario, endereco, telefones, contaBancaria);
+                //PreencherCampos(frmConsultaColaborador, colaborador/*, usuario, endereco, telefones, contaBancaria*/);
             }
             catch (Exception ex)
             {
@@ -80,58 +80,58 @@ namespace AugustosFashion.Controllers.Colaborador
             }
         }
 
-        public UsuarioConsulta RecuperarInfoUsuario(int idUsuario)
-        {
-            try
-            {
-                var usuarioConsulta = UsuarioRepositorio.RecuperarInfoUsuario(idUsuario);
+    //    public UsuarioConsulta RecuperarInfoUsuario(int idUsuario)
+    //    {
+    //        try
+    //        {
+    //            var usuarioConsulta = UsuarioRepositorio.ObterStringRecuperarInfoUsuario(idUsuario);
 
-                return usuarioConsulta;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+    //            return usuarioConsulta;
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            throw new Exception(ex.Message);
+    //        }
 
-        }
-        public EnderecoModel RecuperarInfoEndereco(int idUsuario)
-        {
-            try
-            {
-                var endereco = EnderecoRepositorio.RecuperarInfoEndereco(idUsuario);
+    //    }
+    //    public EnderecoModel RecuperarInfoEndereco(int idUsuario)
+    //    {
+    //        try
+    //        {
+    //            var endereco = EnderecoRepositorio.RecuperarInfoEndereco(idUsuario);
 
-                return endereco;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public List<TelefoneModel> RecuperarInfoTelefones(int idUsuario)
-        {
-            try
-            {
-                var telefones = TelefoneRepositorio.RecuperarInfoTelefones(idUsuario);
+    //            return endereco;
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            throw new Exception(ex.Message);
+    //        }
+    //    }
+    //    public List<TelefoneModel> RecuperarInfoTelefones(int idUsuario)
+    //    {
+    //        try
+    //        {
+    //            var telefones = TelefoneRepositorio.RecuperarInfoTelefones(idUsuario);
 
-                return telefones;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public ContaBancariaModel RecuperarInfoContaBancaria(int idColaborador)
-        {
-            try
-            {
-                var conta = ContaBancariaRepositorio.RecuperarInfoContaBancaria(idColaborador);
+    //            return telefones;
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            throw new Exception(ex.Message);
+    //        }
+    //    }
+    //    public ContaBancariaModel RecuperarInfoContaBancaria(int idColaborador)
+    //    {
+    //        try
+    //        {
+    //            var conta = ContaBancariaRepositorio.RecuperarInfoContaBancaria(idColaborador);
 
-                return conta;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+    //            return conta;
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            throw new Exception(ex.Message);
+    //        }
+    //    }
     }
 }

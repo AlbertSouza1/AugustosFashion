@@ -52,7 +52,6 @@
     <Compile Include="Entidades\Endereco\EnderecoModel.cs" />
     <Compile Include="Entidades\Telefone\TelefoneModel.cs" />
     <Compile Include="Entidades\Telefone\TipoTelefone.cs" />
-    <Compile Include="Entidades\Usuario\UsuarioConsulta.cs" />
     <Compile Include="Entidades\Usuario\UsuarioModel.cs" />
     <Compile Include="Helpers\EstadoIndexHelper.cs" />
     <Compile Include="Helpers\InstanciaModelsParaCadastro.cs" />

@@ -26,24 +26,7 @@ namespace AugustosFashion.Repositorios
             where
                 IdUsuario = @IdUsuario";
 
-        public static EnderecoModel RecuperarInfoEndereco(int idUsuario)
-        {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
-
-            var strSqlEnderecoConsulta = "select CEP, Logradouro, Numero, Cidade, UF, Complemento, Bairro from Enderecos where IdUsuario = @IdUsuario";
-
-            sqlCon.Open();
-
-            try
-            {
-                EnderecoModel endereco = sqlCon.QuerySingle<EnderecoModel>(strSqlEnderecoConsulta, new { IdUsuario = idUsuario });
-
-                return endereco;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        public static string ObterStringRecuperarInfoEndereco(int idUsuario) =>
+            "select CEP, Logradouro, Numero, Cidade, UF, Complemento, Bairro from Enderecos where IdUsuario = @IdUsuario";            
     }
 }

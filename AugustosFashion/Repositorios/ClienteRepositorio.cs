@@ -12,7 +12,7 @@ namespace AugustosFashion.Repositorios
 {
     public static class ClienteRepositorio
     {
-        public static void CadastrarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
+        public static void CadastrarCliente(ClienteModel cliente)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
             int insertedId = 0;
@@ -32,18 +32,18 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                    insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario, cliente, tran);
+                insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario, cliente, tran);
 
-                    cliente.IdUsuario = insertedId;
-                    endereco.IdUsuario = insertedId;
-                    telefones.ForEach(x => x.IdUsuario = insertedId);
+                cliente.IdUsuario = insertedId;
+                cliente.Endereco.IdUsuario = insertedId;
+                cliente.Telefones.ForEach(x => x.IdUsuario = insertedId);
 
-                    sqlCon.Execute(strSqlCliente, cliente, tran);
-                    sqlCon.Execute(strSqlEndereco, endereco, tran);
+                sqlCon.Execute(strSqlCliente, cliente, tran);
+                sqlCon.Execute(strSqlEndereco, cliente.Endereco, tran);
 
-                    sqlCon.Execute(strSqlTelefones, telefones, tran);
+                sqlCon.Execute(strSqlTelefones, cliente.Telefones, tran);
 
-                    tran.Commit();                
+                tran.Commit();
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace AugustosFashion.Repositorios
             {
                 sqlCon.Close();
             }
-        }     
+        }
         public static List<ClienteListagem> ListarClientes()
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
@@ -84,7 +84,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        public static void AlterarCliente(ClienteModel cliente, EnderecoModel endereco, List<TelefoneModel> telefones)
+        public static void AlterarCliente(ClienteModel cliente)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -104,12 +104,12 @@ namespace AugustosFashion.Repositorios
                 int idUsuario = RecuperarIdUsuario(cliente.IdCliente);
 
                 cliente.IdUsuario = idUsuario;
-                endereco.IdUsuario = idUsuario;
-                telefones.ForEach(x => x.IdUsuario = idUsuario);
+                cliente.Endereco.IdUsuario = idUsuario;
+                cliente.Telefones.ForEach(x => x.IdUsuario = idUsuario);
 
-                sqlCon.Execute(strSqlAlterarCliente, cliente , tran);
-                sqlCon.Execute(strSqlAlterarEndereco, endereco, tran);
-                sqlCon.Execute(strSqlAlterarTel, telefones, tran);
+                sqlCon.Execute(strSqlAlterarCliente, cliente, tran);
+                sqlCon.Execute(strSqlAlterarEndereco, cliente.Endereco, tran);
+                sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, tran);
                 sqlCon.Execute(strSqlAlterarUsuario, cliente, tran);
 
                 tran.Commit();
@@ -123,7 +123,7 @@ namespace AugustosFashion.Repositorios
             {
                 sqlCon.Close();
             }
-        }      
+        }
         public static void ExcluirCliente(int idCliente)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
@@ -161,17 +161,33 @@ namespace AugustosFashion.Repositorios
                 sqlCon.Close();
             }
         }
-        public static ClienteConsulta RecuperarInfoCliente(int idCliente)
+        public static ClienteModel RecuperarInfoCliente(int idCliente)
         {
+            int idUsuario = RecuperarIdUsuario(idCliente);
+
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
-            string strSqlRecuperarInfoCliente = "select idCliente, idUsuario, ValorLimiteCompraAPrazo, Observacao from Clientes where IdCliente = @IdCliente";
+            string strSqlRecuperarInfoCliente = @"
+                select c.idCliente, c.idUsuario, c.ValorLimiteCompraAPrazo, c.Observacao,
+                u.Nome, u.SobreNome, u.Email, u.DataNascimento, u.CPF,
+				u.Sexo, u.idUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
+				from Clientes c
+				inner join Usuarios u on c.IdUsuario = u.IdUsuario
+				inner join Enderecos e on c.IdUsuario = e.IdUsuario					
+				where IdCliente = @IdCliente";
+
+            string strSqlRecuperarInfoTelefones = TelefoneRepositorio.ObterStringRecuperarInfoTelefones(idUsuario);
 
             sqlCon.Open();
 
             try
             {
-                ClienteConsulta cliente = sqlCon.QuerySingle<ClienteConsulta>(strSqlRecuperarInfoCliente, new { IdCliente = idCliente });
+                var cliente = sqlCon.Query<ClienteModel, EnderecoModel, ClienteModel>(
+                    strSqlRecuperarInfoCliente,
+                    (cliente, endereco) => MapearClienteParaConsulta(cliente, endereco), new { IdCliente = idCliente },
+                    splitOn: "IdUsuario").FirstOrDefault();
+
+                cliente.Telefones = sqlCon.Query<TelefoneModel>(strSqlRecuperarInfoTelefones, new { IdUsuario = idUsuario }).ToList();
 
                 return cliente;
             }
@@ -200,7 +216,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     return sqlCon.Query<ClienteListagem, EnderecoModel, ClienteListagem>(
-                        strSql, 
+                        strSql,
                         (clienteModel, enderecoModel) => MapearCliente(clienteModel, enderecoModel), new { nomeBuscado },
                         splitOn: "IdUsuario"
                      ).ToList();
@@ -227,7 +243,8 @@ namespace AugustosFashion.Repositorios
                     return idUsuario;
                 }
 
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -237,6 +254,13 @@ namespace AugustosFashion.Repositorios
             clienteModel.Endereco = enderecoModel;
 
             return clienteModel;
+        }
+
+        private static ClienteModel MapearClienteParaConsulta(ClienteModel cliente, EnderecoModel endereco)
+        {
+            cliente.Endereco = endereco;
+
+            return cliente;
         }
     }
 }
