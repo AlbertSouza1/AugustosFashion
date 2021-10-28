@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AugustosFashion.Entidades.ContaBancaria;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace AugustosFashion.Entidades.Colaborador
         public double Salario { get; set; }
         public int PorcentagemComissao { get; set; }
 
+        public ContaBancariaModel ContaBancaria { get; set; }
+
         public ColaboradorModel()
         {
-
+            ContaBancaria = new ContaBancariaModel();
         }
         public ColaboradorModel(string nome, string sobreNome, char sexo, DateTime dataNascimento, string email, string cpf, double salario, int porcentagemComissao)
         {
@@ -26,6 +29,8 @@ namespace AugustosFashion.Entidades.Colaborador
             CPF = cpf;
             Salario = salario;
             PorcentagemComissao = porcentagemComissao;
+
+            ContaBancaria = new ContaBancariaModel();
         }
     }
 }

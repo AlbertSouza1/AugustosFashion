@@ -176,7 +176,7 @@ namespace AugustosFashion.Repositorios
 				inner join Enderecos e on c.IdUsuario = e.IdUsuario					
 				where IdCliente = @IdCliente";
 
-            string strSqlRecuperarInfoTelefones = TelefoneRepositorio.ObterStringRecuperarInfoTelefones(idUsuario);
+            string strSqlRecuperarInfoTelefones = TelefoneRepositorio.ObterStringRecuperarInfoTelefones();
 
             sqlCon.Open();
 

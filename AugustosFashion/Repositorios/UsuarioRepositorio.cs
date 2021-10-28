@@ -1,10 +1,4 @@
-﻿using AugustosFashion.Entidades.Usuario;
-using AugustosFashion.Helpers;
-using Dapper;
-using System;
-using System.Data.SqlClient;
-
-namespace AugustosFashion.Repositorios
+﻿namespace AugustosFashion.Repositorios
 {
     public static class UsuarioRepositorio
     {
@@ -22,7 +16,7 @@ namespace AugustosFashion.Repositorios
         where
             IdUsuario = @IdUsuario;";
 
-        public static string ObterStringRecuperarInfoUsuario(int idUsuario) =>
+        public static string ObterStringRecuperarInfoUsuario() =>
             "select Nome, Sobrenome, Sexo, DataNascimento, Email, CPF from Usuarios where IdUsuario = @IdUsuario";
     }
 }

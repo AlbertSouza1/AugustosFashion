@@ -1,15 +1,4 @@
-﻿using AugustosFashion.Entidades.Endereco;
-using AugustosFashion.Entidades.Usuario;
-using AugustosFashion.Helpers;
-using Dapper;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AugustosFashion.Repositorios
+﻿namespace AugustosFashion.Repositorios
 {
     public static class EnderecoRepositorio
     {
@@ -26,7 +15,7 @@ namespace AugustosFashion.Repositorios
             where
                 IdUsuario = @IdUsuario";
 
-        public static string ObterStringRecuperarInfoEndereco(int idUsuario) =>
+        public static string ObterStringRecuperarInfoEndereco() =>
             "select CEP, Logradouro, Numero, Cidade, UF, Complemento, Bairro from Enderecos where IdUsuario = @IdUsuario";            
     }
 }

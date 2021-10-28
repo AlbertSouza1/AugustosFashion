@@ -2,11 +2,10 @@
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
+using AugustosFashion.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Linq;
-using AugustosFashion.Helpers;
 
 namespace AugustosFashion.Views
 {

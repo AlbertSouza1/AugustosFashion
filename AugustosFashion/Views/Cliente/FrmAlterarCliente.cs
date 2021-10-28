@@ -2,7 +2,6 @@
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
-using AugustosFashion.Entidades.Usuario;
 using AugustosFashion.Helpers;
 using System;
 using System.Collections.Generic;

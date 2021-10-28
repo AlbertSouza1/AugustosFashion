@@ -203,18 +203,35 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static ColaboradorConsulta RecuperarInfoColaborador(int idColaborador)
+        public static ColaboradorModel RecuperarInfoColaborador(int idColaborador)
         {
+            int idUsuario = RecuperarIdUsuario(idColaborador);
+
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
-            string strSqlRecuperarInfoColaborador = @"select idColaborador, idUsuario, Salario, PorcentagemComissao from Colaboradores 
-                where IdColaborador = @IdColaborador";
+            string strSqlRecuperarInfoColaborador = @"
+                select c.idColaborador, c.idUsuario, c.Salario, c.PorcentagemComissao,
+                u.Nome, u.SobreNome, u.Email, u.DataNascimento, u.CPF,
+				u.Sexo, u.idUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro, u.IdUsuario,
+				cb.Banco, cb.Agencia, cb.Conta, cb.TipoConta
+				from Colaboradores c
+				inner join Usuarios u on c.IdUsuario = u.IdUsuario
+				inner join Enderecos e on c.IdUsuario = e.IdUsuario		
+				inner join ContaBancaria cb on c.IdColaborador = cb.IdColaborador
+				where c.idColaborador = @IdColaborador";
+            string strSqlRecuperarInfoTelefones = TelefoneRepositorio.ObterStringRecuperarInfoTelefones();
 
             sqlCon.Open();
 
             try
             {
-                ColaboradorConsulta colaborador = sqlCon.QuerySingle<ColaboradorConsulta>(strSqlRecuperarInfoColaborador, new { IdColaborador = idColaborador });
+                var colaborador = sqlCon.Query<ColaboradorModel, EnderecoModel, ContaBancariaModel, ColaboradorModel>(
+                    strSqlRecuperarInfoColaborador,
+                    (colaborador, endereco, contaBancaria) => MapearColaboradorParaConsulta(colaborador, endereco, contaBancaria),
+                    new { IdColaborador = idColaborador },
+                    splitOn: "IdUsuario").FirstOrDefault();
+
+                colaborador.Telefones = sqlCon.Query<TelefoneModel>(strSqlRecuperarInfoTelefones, new { IdUsuario = idUsuario }).ToList();
 
                 return colaborador;
             }
@@ -250,6 +267,13 @@ namespace AugustosFashion.Repositorios
         private static ColaboradorListagem MapearColaborador(ColaboradorListagem colaboradorModel, EnderecoModel enderecoModel)
         {
             colaboradorModel.Endereco = enderecoModel;
+
+            return colaboradorModel;
+        }
+        private static ColaboradorModel MapearColaboradorParaConsulta(ColaboradorModel colaboradorModel, EnderecoModel enderecoModel, ContaBancariaModel contaBancaria)
+        {
+            colaboradorModel.Endereco = enderecoModel;
+            colaboradorModel.ContaBancaria = contaBancaria;
 
             return colaboradorModel;
         }

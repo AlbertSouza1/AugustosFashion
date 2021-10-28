@@ -1,12 +1,8 @@
 ﻿using AugustosFashion.Entidades;
 using AugustosFashion.Entidades.Cliente;
-using AugustosFashion.Entidades.Endereco;
-using AugustosFashion.Entidades.Telefone;
-using AugustosFashion.Entidades.Usuario;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers.Cliente
@@ -23,10 +19,7 @@ namespace AugustosFashion.Controllers.Cliente
             try
             {
                 ClienteModel cliente = RecuperarInfoCliente(id);
-                //UsuarioConsulta usuario = RecuperarInfoUsuario(cliente.IdUsuario);              
-                //EnderecoModel endereco = RecuperarInfoEndereco(cliente.IdUsuario);
-                //List<TelefoneModel> telefones = RecuperarInfoTelefones(cliente.IdUsuario);
- 
+                
                 PreencherCamposParaAlteracao(frmAlteracaoCliente, cliente);
             }
             catch (Exception ex)
@@ -76,46 +69,6 @@ namespace AugustosFashion.Controllers.Cliente
             {
                 throw new Exception(ex.Message);
             }
-        }
-
-        //public UsuarioConsulta RecuperarInfoUsuario(int idUsuario)
-        //{
-        //    try
-        //    {
-        //        var usuarioConsulta = UsuarioRepositorio.ObterStringRecuperarInfoUsuario(idUsuario);
-
-        //        return usuarioConsulta;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
-        //public EnderecoModel RecuperarInfoEndereco(int idUsuario)
-        //{
-        //    try
-        //    {
-        //        var endereco = EnderecoRepositorio.RecuperarInfoEndereco(idUsuario);
-
-        //        return endereco;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
-        //public List<TelefoneModel> RecuperarInfoTelefones(int idUsuario)
-        //{
-        //    try
-        //    {
-        //        var telefones = TelefoneRepositorio.RecuperarInfoTelefones(idUsuario);
-
-        //        return telefones;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+        }       
     }
 }

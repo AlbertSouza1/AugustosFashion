@@ -3,7 +3,6 @@ using AugustosFashion.Entidades.Colaborador;
 using AugustosFashion.Entidades.ContaBancaria;
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
-using AugustosFashion.Entidades.Usuario;
 using AugustosFashion.Helpers;
 using System;
 using System.Collections.Generic;
@@ -22,9 +21,9 @@ namespace AugustosFashion.Views.Colaborador
             _consultaColaboradorController = consultaColaboradorController;
         }
 
-        internal void ObterDadosParaAlteracao(ColaboradorConsulta colaborador, UsuarioConsulta usuario, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        internal void ObterDadosParaAlteracao(ColaboradorModel colaborador)
         {
-            foreach (var tel in telefones)
+            foreach (var tel in colaborador.Telefones)
             {
                 if (tel.Numero.ToString() == string.Empty)
                     continue;
@@ -49,25 +48,25 @@ namespace AugustosFashion.Views.Colaborador
             txtSalario.Text = colaborador.Salario.ToString();
             txtComissao.Text = colaborador.PorcentagemComissao.ToString();
 
-            txtNome.Text = usuario.Nome;
-            txtSobreNome.Text = usuario.SobreNome;
-            txtEmail.Text = usuario.Email;
-            cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(usuario.Sexo);
-            dtpDataNascimento.Value = usuario.DataNascimento;
-            mtxtCpf.Text = usuario.CPF;
+            txtNome.Text = colaborador.Nome;
+            txtSobreNome.Text = colaborador.SobreNome;
+            txtEmail.Text = colaborador.Email;
+            cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(colaborador.Sexo);
+            dtpDataNascimento.Value = colaborador.DataNascimento;
+            mtxtCpf.Text = colaborador.CPF;
 
-            txtLogradouro.Text = endereco.Logradouro;
-            txtCidade.Text = endereco.Cidade;
-            txtComplemento.Text = endereco.Complemento;
-            txtBairro.Text = endereco.Bairro;
-            txtNumero.Text = endereco.Numero.ToString();
-            txtCep.Text = endereco.CEP;
-            cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(endereco.UF);
+            txtLogradouro.Text = colaborador.Endereco.Logradouro;
+            txtCidade.Text = colaborador.Endereco.Cidade;
+            txtComplemento.Text = colaborador.Endereco.Complemento;
+            txtBairro.Text = colaborador.Endereco.Bairro;
+            txtNumero.Text = colaborador.Endereco.Numero.ToString();
+            txtCep.Text = colaborador.Endereco.CEP;
+            cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(colaborador.Endereco.UF);
 
-            txtBanco.Text = contaBancaria.Banco;
-            txtConta.Text = contaBancaria.Conta.ToString();
-            txtAgencia.Text = contaBancaria.Agencia.ToString();
-            cbTipoConta.SelectedIndex = TipoContaBancariaComboBoxHelper.RetornarIndexComboBoxUfCadastrado(contaBancaria.TipoConta);
+            txtBanco.Text = colaborador.ContaBancaria.Banco;
+            txtConta.Text = colaborador.ContaBancaria.Conta.ToString();
+            txtAgencia.Text = colaborador.ContaBancaria.Agencia.ToString();
+            cbTipoConta.SelectedIndex = TipoContaBancariaComboBoxHelper.RetornarIndexComboBoxUfCadastrado(colaborador.ContaBancaria.TipoConta);
 
         }
 
