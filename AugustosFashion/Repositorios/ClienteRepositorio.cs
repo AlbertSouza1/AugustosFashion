@@ -190,7 +190,7 @@ namespace AugustosFashion.Repositorios
                 from
                 Usuarios u join Clientes c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario
-                where u.Nome like '%'+ @NomeBuscado + '%'
+                where u.Nome like '%'+ @nomeBuscado + '%'
                 ; ";
 
             try
@@ -201,7 +201,7 @@ namespace AugustosFashion.Repositorios
 
                     return sqlCon.Query<ClienteListagem, EnderecoModel, ClienteListagem>(
                         strSql, 
-                        (clienteModel, enderecoModel) => MapearCliente(clienteModel, enderecoModel), new { NomeBuscado = nomeBuscado },
+                        (clienteModel, enderecoModel) => MapearCliente(clienteModel, enderecoModel), new { nomeBuscado },
                         splitOn: "IdUsuario"
                      ).ToList();
                 }

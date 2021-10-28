@@ -3,12 +3,6 @@ using AugustosFashion.Controllers.Cliente;
 using AugustosFashion.Entidades.Cliente;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views
@@ -26,10 +20,10 @@ namespace AugustosFashion.Views
 
         private void FrmListaClientes_Load(object sender, EventArgs e)
         {
-            RecuperarClientesParaListar();
+            RecuperarTodosOsClientesParaListar();
         }
 
-        private void RecuperarClientesParaListar()
+        private void RecuperarTodosOsClientesParaListar()
         {
             List<ClienteListagem> listaClientes = _listaClienteController.ListarClientes();
 
@@ -62,7 +56,7 @@ namespace AugustosFashion.Views
 
                     _listaClienteController.ExcluirCliente(id);
 
-                    RecuperarClientesParaListar();
+                    RecuperarTodosOsClientesParaListar();
                 }
             }
             else
@@ -105,6 +99,10 @@ namespace AugustosFashion.Views
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }   
+            else
+            {
+                RecuperarTodosOsClientesParaListar();
             }
         }
     }
