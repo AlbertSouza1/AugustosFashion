@@ -67,20 +67,21 @@ namespace AugustosFashion.Views
             this.txtIdCliente = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.mtxtLimiteCompraPrazo = new System.Windows.Forms.MaskedTextBox();
+            this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAlterarCliente
             // 
-            this.btnAlterarCliente.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAlterarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAlterarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAlterarCliente.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAlterarCliente.ForeColor = System.Drawing.Color.White;
+            this.btnAlterarCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAlterarCliente.ForeColor = System.Drawing.Color.Black;
             this.btnAlterarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlterarCliente.Location = new System.Drawing.Point(390, 605);
+            this.btnAlterarCliente.Location = new System.Drawing.Point(159, 603);
             this.btnAlterarCliente.Name = "btnAlterarCliente";
-            this.btnAlterarCliente.Size = new System.Drawing.Size(204, 37);
+            this.btnAlterarCliente.Size = new System.Drawing.Size(204, 48);
             this.btnAlterarCliente.TabIndex = 71;
-            this.btnAlterarCliente.Text = "Confirmar Alterações";
+            this.btnAlterarCliente.Text = "Confirmar Alterações no Cadastro";
             this.btnAlterarCliente.UseVisualStyleBackColor = false;
             this.btnAlterarCliente.Click += new System.EventHandler(this.btnAlterarCliente_Click);
             // 
@@ -441,11 +442,26 @@ namespace AugustosFashion.Views
             this.mtxtLimiteCompraPrazo.Size = new System.Drawing.Size(49, 23);
             this.mtxtLimiteCompraPrazo.TabIndex = 74;
             // 
+            // btnExcluirCliente
+            // 
+            this.btnExcluirCliente.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnExcluirCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExcluirCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnExcluirCliente.ForeColor = System.Drawing.Color.White;
+            this.btnExcluirCliente.Location = new System.Drawing.Point(588, 602);
+            this.btnExcluirCliente.Name = "btnExcluirCliente";
+            this.btnExcluirCliente.Size = new System.Drawing.Size(164, 49);
+            this.btnExcluirCliente.TabIndex = 75;
+            this.btnExcluirCliente.Text = "Excluir Cliente";
+            this.btnExcluirCliente.UseVisualStyleBackColor = false;
+            this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
+            // 
             // FrmAlterarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 654);
+            this.Controls.Add(this.btnExcluirCliente);
             this.Controls.Add(this.mtxtLimiteCompraPrazo);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.txtIdCliente);
@@ -534,5 +550,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.TextBox txtIdCliente;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.MaskedTextBox mtxtLimiteCompraPrazo;
+        private System.Windows.Forms.Button btnExcluirCliente;
     }
 }

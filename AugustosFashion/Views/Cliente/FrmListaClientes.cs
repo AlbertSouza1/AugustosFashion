@@ -42,50 +42,14 @@ namespace AugustosFashion.Views
             dgvClientes.Columns[0].HeaderText = "Código";
         }
 
-        private void btnExcluirCliente_Click(object sender, EventArgs e)
-        {
-
-            if (VerificarSeHaRegistroSelecionado())
-            {
-                DialogResult result = MessageBox.Show("Você está prestes a excluir este cliente. Deseja prosseguir com esta ação?", "Confirmação",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (result == DialogResult.Yes)
-                {
-                    int id = RecuperarIdClienteSelecionado();
-
-                    _listaClienteController.ExcluirCliente(id);
-
-                    RecuperarTodosOsClientesParaListar();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecione um cliente na tabela para excluir", "Aviso");
-            }
-        }
         private int RecuperarIdClienteSelecionado()
         {
             int id = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value);
             return id;
         }
+
         private bool VerificarSeHaRegistroSelecionado() =>
             dgvClientes.SelectedRows.Count == 0 ? false : true;
-
-        private void btnAlterarCliente_Click(object sender, EventArgs e)
-        {
-            if (VerificarSeHaRegistroSelecionado())
-            {
-                int id = RecuperarIdClienteSelecionado();
-
-                this.Close();
-                new AlteraClienteController().AbrirFormularioAlteracao(id);
-            }
-            else
-            {
-                MessageBox.Show("Selecione um cliente na tabela para excluir", "Aviso");
-            }
-        }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
@@ -108,6 +72,21 @@ namespace AugustosFashion.Views
             else
             {
                 RecuperarTodosOsClientesParaListar();
+            }
+        }
+
+        private void btnConsultarCliente_Click(object sender, EventArgs e)
+        {
+            if (VerificarSeHaRegistroSelecionado())
+            {
+                int id = RecuperarIdClienteSelecionado();
+
+                this.Close();
+                new AlteraClienteController().AbrirFormularioAlteracao(id);
+            }
+            else
+            {
+                MessageBox.Show("Selecione um cliente na tabela para excluir", "Aviso");
             }
         }
     }

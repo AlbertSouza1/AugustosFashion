@@ -6,12 +6,6 @@ using AugustosFashion.Entidades.Usuario;
 using AugustosFashion.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views
@@ -30,7 +24,7 @@ namespace AugustosFashion.Views
 
         private void FrmAlterarCliente_Load(object sender, EventArgs e)
         {
-                      
+
         }
 
         public void ObterDadosParaAlteracao(ClienteConsulta cliente, UsuarioConsulta usuario, EnderecoModel endereco, List<TelefoneModel> telefones)
@@ -86,14 +80,23 @@ namespace AugustosFashion.Views
                 var endereco = InstanciarEnderecoParaCadastro();
                 var telefones = InstanciarTelefonesParaCadastro();
 
-                _alteraClienteController.AlterarCliente(cliente, endereco, telefones);
+                try
+                {
+                    _alteraClienteController.AlterarCliente(cliente, endereco, telefones);
+                    MessageBox.Show("Cliente alterado com sucesso!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falha ao altear cliente. Erro: " + ex.Message);
+                }
             }
         }
         public ClienteModel InstanciarClienteParaCadastro()
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
-            ClienteModel cliente = new ClienteModel {
+            ClienteModel cliente = new ClienteModel
+            {
                 IdCliente = int.Parse(txtIdCliente.Text),
                 Nome = txtNome.Text,
                 SobreNome = txtSobreNome.Text,
@@ -103,7 +106,7 @@ namespace AugustosFashion.Views
                 CPF = cpfSemPontos,
                 LimiteCompraAPrazo = double.Parse(mtxtLimiteCompraPrazo.Text),
                 Observacao = txtObservacoes.Text
-                };
+            };
 
             return cliente;
         }
@@ -230,5 +233,31 @@ namespace AugustosFashion.Views
 
             return retorno;
         }
+
+        private void btnExcluirCliente_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Você está prestes a excluir este cliente. Deseja prosseguir com esta ação?", "Confirmação",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    int id = int.Parse(txtIdCliente.Text);
+
+                    _alteraClienteController.ExcluirCliente(id);
+
+                    MessageBox.Show("Cliente excluído com sucesso!");
+
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falha ao excluir cliente. Erro: " + ex.Message);
+                }
+            }
+
+        }
     }
 }
+

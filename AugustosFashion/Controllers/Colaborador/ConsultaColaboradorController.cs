@@ -8,9 +8,6 @@ using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Colaborador;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers.Colaborador

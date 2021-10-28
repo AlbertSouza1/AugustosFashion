@@ -44,12 +44,23 @@ namespace AugustosFashion.Controllers.Cliente
         {
             try
             {
-                ClienteRepositorio.AlterarCliente(cliente, endereco, telefones);
-                MessageBox.Show("Cliente alterado com sucesso!");
+                ClienteRepositorio.AlterarCliente(cliente, endereco, telefones);              
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao altear cliente. Erro: " + ex.Message);
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void ExcluirCliente(int idCliente)
+        {
+            try
+            {
+                ClienteRepositorio.ExcluirCliente(idCliente);                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 

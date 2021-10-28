@@ -57,9 +57,9 @@ namespace AugustosFashion.Views.Colaborador
             this.btnVisualizarColaborador.ForeColor = System.Drawing.Color.White;
             this.btnVisualizarColaborador.Location = new System.Drawing.Point(373, 513);
             this.btnVisualizarColaborador.Name = "btnVisualizarColaborador";
-            this.btnVisualizarColaborador.Size = new System.Drawing.Size(125, 49);
+            this.btnVisualizarColaborador.Size = new System.Drawing.Size(161, 49);
             this.btnVisualizarColaborador.TabIndex = 12;
-            this.btnVisualizarColaborador.Text = "Exibir mais informações";
+            this.btnVisualizarColaborador.Text = "Consultar Cadastro do Colaborador";
             this.btnVisualizarColaborador.UseVisualStyleBackColor = false;
             this.btnVisualizarColaborador.Click += new System.EventHandler(this.btnVisualizarColaborador_Click);
             // 

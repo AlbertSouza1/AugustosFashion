@@ -4,10 +4,6 @@ using AugustosFashion.Repositorios;
 using AugustosFashion.Views;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers
 {
@@ -25,20 +21,6 @@ namespace AugustosFashion.Controllers
             List<ClienteListagem> listaClientes = ClienteRepositorio.ListarClientes();
             return listaClientes;
         }
-
-        public void ExcluirCliente(int idCliente)
-        {
-            try
-            {
-                ClienteRepositorio.ExcluirCliente(idCliente);
-                MessageBox.Show("Cliente excluído com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Falha ao excluir cliente. Erro: " + ex.Message);
-            }
-        }
-
         public List<ClienteListagem> BuscarClientesPorNome(string text)
         {
             try
