@@ -26,7 +26,7 @@ namespace AugustosFashion.Controllers.Colaborador
 
             try
             {
-                listaColaboradores = new ColaboradorRepositorio().ListarColaboradores();
+                listaColaboradores = ColaboradorRepositorio.ListarColaboradores();
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace AugustosFashion.Controllers.Colaborador
         {
             try
             {
-                new ColaboradorRepositorio().ExcluirColaborador(idColaborador);
+                ColaboradorRepositorio.ExcluirColaborador(idColaborador);
                 MessageBox.Show("Colaborador excluído com sucesso!");
             }
             catch (Exception ex)
@@ -56,6 +56,19 @@ namespace AugustosFashion.Controllers.Colaborador
         public void AbrirFormularioVisualizacaoColaborador(int id)
         {
             new ConsultaColaboradorController().AbrirFormConsultaColaborador(id);
+        }
+
+        public List<ColaboradorListagem> BuscarColaboradoresPorNome(string nomeBuscado)
+        {
+            try
+            {
+                var colaboradoresBuscados = ColaboradorRepositorio.BuscarColaboradores(nomeBuscado);
+                return colaboradoresBuscados;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

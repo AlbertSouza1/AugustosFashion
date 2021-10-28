@@ -11,9 +11,9 @@ using System.Linq;
 
 namespace AugustosFashion.Repositorios
 {
-    class ColaboradorRepositorio
+    public static class ColaboradorRepositorio
     {
-        public void CadastrarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        public static void CadastrarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -63,7 +63,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public List<ColaboradorListagem> ListarColaboradores()
+        public static List<ColaboradorListagem> ListarColaboradores()
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -91,7 +91,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        public void AlterarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        public static void AlterarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -136,7 +136,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public void ExcluirColaborador(int idColaborador)
+        public static void ExcluirColaborador(int idColaborador)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -173,7 +173,37 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public ColaboradorConsulta RecuperarInfoColaborador(int idColaborador)
+        public static List<ColaboradorListagem> BuscarColaboradores(string nomeBuscado)
+        {
+            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+
+            var strSql = @"select
+                c.idColaborador, u.Nome, u.SobreNome, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
+                e.IdUsuario, e.Cidade, e.UF
+                from
+                Usuarios u join Colaboradores c on u.IdUsuario = c.IdUsuario 
+                inner join Enderecos e on u.IdUsuario = e.IdUsuario
+                where u.Nome like '%' + @nomeBuscado + '%'; ";
+            try
+            {
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ColaboradorListagem, EnderecoModel, ColaboradorListagem>(
+                        strSql,
+                        (colaboradorModel, enderecoModel) => MapearColaborador(colaboradorModel, enderecoModel), new {nomeBuscado}, 
+                        splitOn: "IdUsuario"
+                     ).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static ColaboradorConsulta RecuperarInfoColaborador(int idColaborador)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -194,7 +224,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public int RecuperarIdUsuario(int idColaborador)
+        public static int RecuperarIdUsuario(int idColaborador)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -217,7 +247,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        private ColaboradorListagem MapearColaborador(ColaboradorListagem colaboradorModel, EnderecoModel enderecoModel)
+        private static ColaboradorListagem MapearColaborador(ColaboradorListagem colaboradorModel, EnderecoModel enderecoModel)
         {
             colaboradorModel.Endereco = enderecoModel;
 

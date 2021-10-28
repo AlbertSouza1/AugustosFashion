@@ -33,7 +33,7 @@ namespace AugustosFashion.Views.Colaborador
             this.btnVisualizarColaborador = new System.Windows.Forms.Button();
             this.dgvColaboradores = new System.Windows.Forms.DataGridView();
             this.btnBuscarColaborador = new System.Windows.Forms.Button();
-            this.txtBusca = new System.Windows.Forms.TextBox();
+            this.txtBuscaColaborador = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFechar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaboradores)).BeginInit();
@@ -84,16 +84,15 @@ namespace AugustosFashion.Views.Colaborador
             this.btnBuscarColaborador.TabIndex = 10;
             this.btnBuscarColaborador.Text = "Buscar por nome";
             this.btnBuscarColaborador.UseVisualStyleBackColor = true;
-            this.btnBuscarColaborador.Visible = false;
+            this.btnBuscarColaborador.Click += new System.EventHandler(this.btnBuscarColaborador_Click);
             // 
-            // txtBusca
+            // txtBuscaColaborador
             // 
-            this.txtBusca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBusca.Location = new System.Drawing.Point(250, 84);
-            this.txtBusca.Name = "txtBusca";
-            this.txtBusca.Size = new System.Drawing.Size(204, 27);
-            this.txtBusca.TabIndex = 9;
-            this.txtBusca.Visible = false;
+            this.txtBuscaColaborador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtBuscaColaborador.Location = new System.Drawing.Point(250, 84);
+            this.txtBuscaColaborador.Name = "txtBuscaColaborador";
+            this.txtBuscaColaborador.Size = new System.Drawing.Size(204, 27);
+            this.txtBuscaColaborador.TabIndex = 9;
             // 
             // label1
             // 
@@ -130,7 +129,7 @@ namespace AugustosFashion.Views.Colaborador
             this.Controls.Add(this.btnVisualizarColaborador);
             this.Controls.Add(this.dgvColaboradores);
             this.Controls.Add(this.btnBuscarColaborador);
-            this.Controls.Add(this.txtBusca);
+            this.Controls.Add(this.txtBuscaColaborador);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmListaColaboradores";
@@ -149,7 +148,7 @@ namespace AugustosFashion.Views.Colaborador
         private System.Windows.Forms.Button btnVisualizarColaborador;
         private System.Windows.Forms.DataGridView dgvColaboradores;
         private System.Windows.Forms.Button btnBuscarColaborador;
-        private System.Windows.Forms.TextBox txtBusca;
+        private System.Windows.Forms.TextBox txtBuscaColaborador;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFechar;
     }

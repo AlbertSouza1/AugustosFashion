@@ -49,7 +49,7 @@ namespace AugustosFashion.Controllers.Colaborador
         {
             try
             {
-                var colaboradorConsulta = new ColaboradorRepositorio().RecuperarInfoColaborador(idColaborador);
+                var colaboradorConsulta = ColaboradorRepositorio.RecuperarInfoColaborador(idColaborador);
 
                 return colaboradorConsulta;
             }
@@ -63,7 +63,7 @@ namespace AugustosFashion.Controllers.Colaborador
         {
             try
             {
-                new ColaboradorRepositorio().AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
+                ColaboradorRepositorio.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
                 MessageBox.Show("Colaborador alterado com sucesso!");
             }
             catch (Exception ex)
@@ -76,7 +76,7 @@ namespace AugustosFashion.Controllers.Colaborador
         {
             try
             {
-                new ColaboradorRepositorio().ExcluirColaborador(idColaborador);
+                ColaboradorRepositorio.ExcluirColaborador(idColaborador);
                 MessageBox.Show("Colaborador excluído com sucesso!");
 
                 return true;

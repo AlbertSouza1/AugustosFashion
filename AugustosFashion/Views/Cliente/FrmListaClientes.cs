@@ -93,8 +93,13 @@ namespace AugustosFashion.Views
             {
                 try
                 {
-                    var listaClientes = _listaClienteController.BuscarCliente(txtNomeBuscado.Text);
+                    var listaClientes = _listaClienteController.BuscarClientesPorNome(txtNomeBuscado.Text);
+
+                    if (listaClientes.Count == 0)
+                        MessageBox.Show("Nenhum cliente encontrado.");
+
                     ListarClientes(listaClientes);
+
                 } catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);

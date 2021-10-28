@@ -39,13 +39,11 @@ namespace AugustosFashion.Controllers
             }
         }
 
-        public List<ClienteListagem> BuscarCliente(string text)
+        public List<ClienteListagem> BuscarClientesPorNome(string text)
         {
             try
             {
-                List<ClienteListagem> clientes = ClienteRepositorio.BuscarCliente(text);
-                if (clientes.Count == 0)
-                    MessageBox.Show("Nenhum cliente encontrado.");
+                List<ClienteListagem> clientes = ClienteRepositorio.BuscarClientes(text);                
                 return clientes;
             }
             catch (Exception ex)

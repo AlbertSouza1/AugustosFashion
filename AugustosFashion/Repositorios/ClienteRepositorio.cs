@@ -180,7 +180,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        public static List<ClienteListagem> BuscarCliente(string nomeBuscado)
+        public static List<ClienteListagem> BuscarClientes(string nomeBuscado)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 

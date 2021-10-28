@@ -2,12 +2,6 @@
 using AugustosFashion.Entidades.Colaborador;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Colaborador
@@ -23,13 +17,17 @@ namespace AugustosFashion.Views.Colaborador
 
         private void FrmListaColaboradores_Load(object sender, EventArgs e)
         {
-            ListarColaboradores();
+            RecuperarTodosOsColaboradoresParaListar();
         }
 
-        private void ListarColaboradores()
+        private void RecuperarTodosOsColaboradoresParaListar()
         {
             List<ColaboradorListagem> listaColaboradores = _listaColaboradorController.ListarColaboradores();
 
+            ListarColaboradores(listaColaboradores);
+        }
+        private void ListarColaboradores(List<ColaboradorListagem> listaColaboradores)
+        {
             dgvColaboradores.DataSource = listaColaboradores;
 
             dgvColaboradores.Columns[0].HeaderText = "Código";
@@ -60,6 +58,30 @@ namespace AugustosFashion.Views.Colaborador
         private void btnFechar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnBuscarColaborador_Click(object sender, EventArgs e)
+        {
+            if (txtBuscaColaborador.Text != string.Empty)
+            {
+                try
+                {
+                    var listaColaboradores = _listaColaboradorController.BuscarColaboradoresPorNome(txtBuscaColaborador.Text);
+
+                    if (listaColaboradores.Count == 0)
+                        MessageBox.Show("Nenhum colaborador encontrado.");
+
+                    ListarColaboradores(listaColaboradores);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problemas ao buscar colaboradores. Erro: " + ex.Message);
+                }
+            }
+            else
+            {
+                RecuperarTodosOsColaboradoresParaListar();
+            }
         }
     }
 }
