@@ -22,9 +22,15 @@ namespace AugustosFashion.Views.Colaborador
 
         private void RecuperarTodosOsColaboradoresParaListar()
         {
-            List<ColaboradorListagem> listaColaboradores = _listaColaboradorController.ListarColaboradores();
+            try
+            {
+                List<ColaboradorListagem> listaColaboradores = _listaColaboradorController.ListarColaboradores();
 
-            ListarColaboradores(listaColaboradores);
+                ListarColaboradores(listaColaboradores);
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Falha ao listar colaboradores. Erro: " + ex.Message);
+            }
         }
         private void ListarColaboradores(List<ColaboradorListagem> listaColaboradores)
         {

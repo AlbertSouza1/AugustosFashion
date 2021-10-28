@@ -27,27 +27,14 @@ namespace AugustosFashion.Controllers.Colaborador
             try
             {
                 listaColaboradores = ColaboradorRepositorio.ListarColaboradores();
+                return listaColaboradores;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao listar colaboradores. Erro: " + ex.Message);
+                throw new Exception(ex.Message);
             }
-            return listaColaboradores;
+            
         }
-
-        public void ExcluirCliente(int idColaborador)
-        {
-            try
-            {
-                ColaboradorRepositorio.ExcluirColaborador(idColaborador);
-                MessageBox.Show("Colaborador excluído com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Falha ao excluir colaborador. Erro: " + ex.Message);
-            }
-        }
-
         internal void VisualizarColaborador(int id)
         {
             AbrirFormularioVisualizacaoColaborador(id);

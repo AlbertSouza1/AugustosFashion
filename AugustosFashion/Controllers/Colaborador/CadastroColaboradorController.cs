@@ -27,14 +27,12 @@ namespace AugustosFashion.Controllers
         {
             try
             {
-                ColaboradorRepositorio.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria);
-                MessageBox.Show("Colaborador cadastrado com sucesso!");
+                ColaboradorRepositorio.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria);              
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao cadastrar colaborador. Erro: " + ex.Message);
-                return false;
+                throw new Exception(ex.Message);
             }
         }        
     }

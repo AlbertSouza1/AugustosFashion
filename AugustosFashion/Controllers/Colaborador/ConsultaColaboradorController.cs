@@ -63,28 +63,23 @@ namespace AugustosFashion.Controllers.Colaborador
         {
             try
             {
-                ColaboradorRepositorio.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
-                MessageBox.Show("Colaborador alterado com sucesso!");
+                ColaboradorRepositorio.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);               
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new Exception(ex.Message);
             }
         }
 
-        public bool ExcluirColaborador(int idColaborador)
+        public void ExcluirColaborador(int idColaborador)
         {
             try
             {
                 ColaboradorRepositorio.ExcluirColaborador(idColaborador);
-                MessageBox.Show("Colaborador excluído com sucesso!");
-
-                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao excluir colaborador. Erro: " + ex.Message);
-                return false;
+                throw new Exception(ex.Message);
             }
         }
 

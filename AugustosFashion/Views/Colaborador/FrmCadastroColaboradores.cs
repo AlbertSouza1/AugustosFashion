@@ -38,11 +38,20 @@ namespace AugustosFashion.Views
                 var telefones = InstanciarTelefonesParaCadastro();
                 var contaBancaria = InstanciarContaBancariaParaCadastro();
 
-                if (_cadastroColaboradorController.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria))
-                    this.Close();
+                try
+                {
+                    if (_cadastroColaboradorController.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria))
+                    {
+                        MessageBox.Show("Colaborador cadastrado com sucesso!");
+                        this.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falha ao cadastrar colaborador. Erro: " + ex.Message);
+                }
             }
         }
-
         private bool VerificarValidacoesDeColaborador(string cpf)
         {
             bool validacoes = true;
@@ -145,7 +154,7 @@ namespace AugustosFashion.Views
             {
                 MessageBox.Show("É necessário informar o salário do colaborador.");
             }
-            else if(txtComissao.Text == string.Empty)
+            else if (txtComissao.Text == string.Empty)
             {
                 MessageBox.Show("É necessário informar a porcentagem de comissão.");
             }

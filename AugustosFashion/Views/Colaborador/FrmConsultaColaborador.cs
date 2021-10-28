@@ -77,12 +77,21 @@ namespace AugustosFashion.Views.Colaborador
 
             if (VerificarValidacoesDeColaborador(cpf))
             {
-                var colaborador = InstanciarColaboradorParaAlteracao(cpf);
-                var endereco = InstanciarEnderecoParaAlteracao();
-                var telefones = InstanciarTelefonesParaAlteracao();
-                var contaBancaria = InstanciarContaBancariaParaAlteracao();
+                try
+                {
+                    var colaborador = InstanciarColaboradorParaAlteracao(cpf);
+                    var endereco = InstanciarEnderecoParaAlteracao();
+                    var telefones = InstanciarTelefonesParaAlteracao();
+                    var contaBancaria = InstanciarContaBancariaParaAlteracao();
 
-                _consultaColaboradorController.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
+                    _consultaColaboradorController.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
+
+                    MessageBox.Show("Colaborador alterado com sucesso!");
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Falha ao alterar colaborador. Erro: "+ex.Message);
+                }
             }
         }
         private bool VerificarValidacoesDeColaborador(string cpf)
@@ -287,12 +296,18 @@ namespace AugustosFashion.Views.Colaborador
                 MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                bool retorno = _consultaColaboradorController.ExcluirColaborador(int.Parse(txtIdColaborador.Text));
-                if (retorno)
+                try
                 {
+                    _consultaColaboradorController.ExcluirColaborador(int.Parse(txtIdColaborador.Text));
+
+                    MessageBox.Show("Colaborador excluído com sucesso!");
+
                     this.Close();
                     new ListaColaboradorController().AbrirFormularioLista();
-                }
+                } catch(Exception ex)
+                {
+                    MessageBox.Show("Falha ao excluir colaborador. Erro: " + ex.Message);
+                }               
             }
         }
     }
