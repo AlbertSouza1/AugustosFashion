@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashion.Entidades.Cliente
 {
@@ -23,5 +19,8 @@ namespace AugustosFashion.Entidades.Cliente
             Observacao = observacao;
         }
         public ClienteModel() { }
+
+        public string VerificarSeEhAniversarioDoCliente() =>
+            DataNascimento == DateTime.Now ? $"{Nome} está fazendo aniversário hoje." : string.Empty;
     }
 }
