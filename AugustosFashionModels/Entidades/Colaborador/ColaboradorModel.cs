@@ -1,9 +1,5 @@
 ﻿using AugustosFashion.Entidades.ContaBancaria;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashion.Entidades.Colaborador
 {
@@ -15,14 +11,13 @@ namespace AugustosFashion.Entidades.Colaborador
 
         public ContaBancariaModel ContaBancaria { get; set; }
 
-        public ColaboradorModel()
+        public ColaboradorModel(string nome, string sobreNome) : base(nome, sobreNome)
         {
             ContaBancaria = new ContaBancariaModel();
         }
         public ColaboradorModel(string nome, string sobreNome, char sexo, DateTime dataNascimento, string email, string cpf, double salario, int porcentagemComissao)
+         : base(nome, sobreNome)
         {
-            Nome = nome;
-            SobreNome = sobreNome;
             Sexo = sexo;
             DataNascimento = dataNascimento;
             Email = email;

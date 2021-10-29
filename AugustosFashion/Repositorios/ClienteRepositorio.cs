@@ -2,6 +2,7 @@
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashion.Helpers;
+using AugustosFashionModels.Entidades.Usuario;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,10 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario, cliente, tran);
+                insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario,
+                    new {Nome = cliente.NomeCompleto.Nome, SobreNome = cliente.NomeCompleto.SobreNome,
+                        Sexo = cliente.Sexo, DataNascimento = cliente.DataNascimento, Email = cliente.Email, CPF = cliente.CPF },                
+                    tran);
 
                 cliente.IdUsuario = insertedId;
                 cliente.Endereco.IdUsuario = insertedId;
@@ -254,6 +258,11 @@ namespace AugustosFashion.Repositorios
             clienteModel.Endereco = enderecoModel;
 
             return clienteModel;
+        }
+
+        private static void MapearClienteParaCadastro(ClienteModel clienteModel, NomeCompleto nomeCompleto)
+        {
+            clienteModel.NomeCompleto = nomeCompleto;
         }
 
         private static ClienteModel MapearClienteParaConsulta(ClienteModel cliente, EnderecoModel endereco)

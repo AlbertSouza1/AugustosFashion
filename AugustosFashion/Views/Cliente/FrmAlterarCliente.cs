@@ -53,8 +53,8 @@ namespace AugustosFashion.Views
             txtObservacoes.Text = cliente.Observacao;
             mtxtLimiteCompraPrazo.Text = cliente.LimiteCompraAPrazo.ToString();
 
-            txtNome.Text = cliente.Nome;
-            txtSobreNome.Text = cliente.SobreNome;
+            txtNome.Text = cliente.NomeCompleto.Nome;
+            txtSobreNome.Text = cliente.NomeCompleto.SobreNome;
             txtEmail.Text = cliente.Email;
             cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(cliente.Sexo);
             dtpDataNascimento.Value = cliente.DataNascimento;
@@ -92,11 +92,9 @@ namespace AugustosFashion.Views
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
-            ClienteModel cliente = new ClienteModel
+            ClienteModel cliente = new ClienteModel(txtNome.Text, txtSobreNome.Text)
             {
                 IdCliente = int.Parse(txtIdCliente.Text),
-                Nome = txtNome.Text,
-                SobreNome = txtSobreNome.Text,
                 Sexo = cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
                 DataNascimento = dtpDataNascimento.Value,
                 Email = txtEmail.Text,

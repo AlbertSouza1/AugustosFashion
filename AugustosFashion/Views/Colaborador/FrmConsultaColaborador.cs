@@ -48,8 +48,8 @@ namespace AugustosFashion.Views.Colaborador
             txtSalario.Text = colaborador.Salario.ToString();
             txtComissao.Text = colaborador.PorcentagemComissao.ToString();
 
-            txtNome.Text = colaborador.Nome;
-            txtSobreNome.Text = colaborador.SobreNome;
+            txtNome.Text = colaborador.NomeCompleto.Nome;
+            txtSobreNome.Text = colaborador.NomeCompleto.SobreNome;
             txtEmail.Text = colaborador.Email;
             cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(colaborador.Sexo);
             dtpDataNascimento.Value = colaborador.DataNascimento;
@@ -208,11 +208,9 @@ namespace AugustosFashion.Views.Colaborador
 
         public ColaboradorModel InstanciarColaboradorParaAlteracao(string cpf)
         {
-            ColaboradorModel colaborador = new ColaboradorModel
+            ColaboradorModel colaborador = new ColaboradorModel(txtNome.Text, txtSobreNome.Text)
             {
                 IdColaborador = int.Parse(txtIdColaborador.Text),
-                Nome = txtNome.Text,
-                SobreNome = txtSobreNome.Text,
                 Sexo = cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
                 DataNascimento = dtpDataNascimento.Value,
                 Email = txtEmail.Text,

@@ -30,28 +30,42 @@ namespace AugustosFashion.Views
 
             if (VerificarValidacoesDeCliente(cpfSemPontos))
             {
-                var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
+                try
+                {
+                    var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
 
-                if (_cadastroClienteController.CadastrarCliente(cliente))
-                    this.Close();
+                    if (_cadastroClienteController.CadastrarCliente(cliente))
+                        this.Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Não foi possível cadastrar o cliente. " + ex.Message);
+                }
             }
         }
 
         public ClienteModel InstanciarClienteParaCadastro(string cpfSemPontos)
         {
-            ClienteModel cliente = new ClienteModel(
-                nome: txtNome.Text,
-                sobreNome: txtSobreNome.Text,
-                sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
-                dataNascimento: dtpDataNascimento.Value,
-                email: txtEmail.Text,
-                cpf: cpfSemPontos,
-                limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
-                observacao: txtObservacoes.Text,
-                endereco: InstanciarEnderecoParaCadastro(),
-                telefones: InstanciarTelefonesParaCadastro()
-                );
-            return cliente;
+            try
+            {
+                ClienteModel cliente = new ClienteModel(
+                    nome: txtNome.Text,
+                    sobreNome: txtSobreNome.Text,
+                    sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
+                    dataNascimento: dtpDataNascimento.Value,
+                    email: txtEmail.Text,
+                    cpf: cpfSemPontos,
+                    limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
+                    observacao: txtObservacoes.Text,
+                    endereco: InstanciarEnderecoParaCadastro(),
+                    telefones: InstanciarTelefonesParaCadastro()
+                    );
+                return cliente;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public EnderecoModel InstanciarEnderecoParaCadastro()
