@@ -13,11 +13,9 @@ namespace AugustosFashion.Repositorios
 {
     public static class ColaboradorRepositorio
     {
-        public static void CadastrarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        public static void CadastrarColaborador(ColaboradorModel colaborador)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
-
-            int insertedId = 0;
 
             var strSqlColaborador = "Insert into Colaboradores output inserted.IdColaborador " +
                 "values (@IdUsuario, @Salario, @PorcentagemComissao)";
@@ -39,19 +37,29 @@ namespace AugustosFashion.Repositorios
                 using (sqlCon)
                 {
 
-                    insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario, colaborador, tran);
+                    int insertedId = sqlCon.ExecuteScalar<int>(
+                        strSqlUsuario,
+                        new {
+                            Nome = colaborador.NomeCompleto.Nome,
+                            SobreNome = colaborador.NomeCompleto.SobreNome,
+                            Sexo = colaborador.Sexo,
+                            DataNascimento = colaborador.DataNascimento,
+                            Email = colaborador.Email,
+                            CPF = colaborador.CPF
+                        },
+                        tran);
 
                     colaborador.IdUsuario = insertedId;
-                    endereco.IdUsuario = insertedId;
-                    telefones.ForEach(x => x.IdUsuario = insertedId);
+                    colaborador.Endereco.IdUsuario = insertedId;
+                    colaborador.Telefones.ForEach(x => x.IdUsuario = insertedId);
 
                     var idColaborador = sqlCon.ExecuteScalar<int>(strSqlColaborador, colaborador, tran);
 
-                    contaBancaria.IdColaborador = idColaborador;
+                    colaborador.ContaBancaria.IdColaborador = idColaborador;
 
-                    sqlCon.Execute(strSqlEndereco, endereco, tran);
-                    sqlCon.Execute(strSqlTelefones, telefones, tran);
-                    sqlCon.Execute(strSqlContaBancaria, contaBancaria, tran);
+                    sqlCon.Execute(strSqlEndereco, colaborador.Endereco, tran);
+                    sqlCon.Execute(strSqlTelefones, colaborador.Telefones, tran);
+                    sqlCon.Execute(strSqlContaBancaria, colaborador.ContaBancaria, tran);
 
                     tran.Commit();
                 }

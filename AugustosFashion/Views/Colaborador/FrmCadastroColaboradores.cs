@@ -34,13 +34,13 @@ namespace AugustosFashion.Views
             if (VerificarValidacoesDeColaborador(cpfSemPontos))
             {
                 var colaborador = InstanciarColaboradorParaCadastro(cpfSemPontos);
-                var endereco = InstanciarEnderecoParaCadastro();
-                var telefones = InstanciarTelefonesParaCadastro();
-                var contaBancaria = InstanciarContaBancariaParaCadastro();
+                colaborador.Endereco = InstanciarEnderecoParaCadastro();
+                colaborador.Telefones = InstanciarTelefonesParaCadastro();
+                colaborador.ContaBancaria = InstanciarContaBancariaParaCadastro();
 
                 try
                 {
-                    if (_cadastroColaboradorController.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria))
+                    if (_cadastroColaboradorController.CadastrarColaborador(colaborador))
                     {
                         MessageBox.Show("Colaborador cadastrado com sucesso!");
                         this.Close();

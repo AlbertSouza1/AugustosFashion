@@ -19,11 +19,11 @@ namespace AugustosFashion.Controllers
 
             frmCadastroColaborador.Show();
         }
-        public bool CadastrarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        public bool CadastrarColaborador(ColaboradorModel colaborador)
         {
             try
             {
-                ColaboradorRepositorio.CadastrarColaborador(colaborador, endereco, telefones, contaBancaria);              
+                ColaboradorRepositorio.CadastrarColaborador(colaborador);              
                 return true;
             }
             catch (Exception ex)
