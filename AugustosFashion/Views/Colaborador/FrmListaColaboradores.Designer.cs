@@ -65,6 +65,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             // dgvColaboradores
             // 
+            this.dgvColaboradores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvColaboradores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvColaboradores.Location = new System.Drawing.Point(4, 133);
             this.dgvColaboradores.MultiSelect = false;

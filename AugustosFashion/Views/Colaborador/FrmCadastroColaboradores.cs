@@ -174,7 +174,9 @@ namespace AugustosFashion.Views
                 email: txtEmail.Text,
                 cpf: cpfSemPontos,
                 salario: double.Parse(txtSalario.Text),
-                porcentagemComissao: int.Parse(txtComissao.Text)
+                porcentagemComissao: int.Parse(txtComissao.Text),
+                endereco: InstanciarEnderecoParaCadastro(),
+                telefones: InstanciarTelefonesParaCadastro()
                 );
 
             return colaborador;

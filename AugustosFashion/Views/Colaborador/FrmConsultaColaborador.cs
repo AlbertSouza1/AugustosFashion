@@ -79,11 +79,8 @@ namespace AugustosFashion.Views.Colaborador
                 try
                 {
                     var colaborador = InstanciarColaboradorParaAlteracao(cpf);
-                    var endereco = InstanciarEnderecoParaAlteracao();
-                    var telefones = InstanciarTelefonesParaAlteracao();
-                    var contaBancaria = InstanciarContaBancariaParaAlteracao();
-
-                    _consultaColaboradorController.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);
+                   
+                    _consultaColaboradorController.AlterarColaborador(colaborador);
 
                     MessageBox.Show("Colaborador alterado com sucesso!");
                 }
@@ -208,16 +205,20 @@ namespace AugustosFashion.Views.Colaborador
 
         public ColaboradorModel InstanciarColaboradorParaAlteracao(string cpf)
         {
-            ColaboradorModel colaborador = new ColaboradorModel(txtNome.Text, txtSobreNome.Text)
-            {
-                IdColaborador = int.Parse(txtIdColaborador.Text),
-                Sexo = cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
-                DataNascimento = dtpDataNascimento.Value,
-                Email = txtEmail.Text,
-                CPF = cpf,
-                Salario = double.Parse(txtSalario.Text),
-                PorcentagemComissao = int.Parse(txtComissao.Text)
-            };
+            ColaboradorModel colaborador = new ColaboradorModel
+            (
+                nome: txtNome.Text,
+                sobreNome: txtSobreNome.Text,               
+                sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
+                dataNascimento: dtpDataNascimento.Value,
+                email: txtEmail.Text,
+                cpf: cpf,
+                salario: double.Parse(txtSalario.Text),
+                porcentagemComissao: int.Parse(txtComissao.Text),
+                endereco: InstanciarEnderecoParaAlteracao(),
+                telefones: InstanciarTelefonesParaAlteracao()
+            );
+            colaborador.IdColaborador = int.Parse(txtIdColaborador.Text);
 
             return colaborador;
         }

@@ -51,11 +51,11 @@ namespace AugustosFashion.Controllers.Colaborador
             }
         }
 
-        internal void AlterarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        internal void AlterarColaborador(ColaboradorModel colaborador)
         {
             try
             {
-                ColaboradorRepositorio.AlterarColaborador(colaborador, endereco, telefones, contaBancaria);               
+                ColaboradorRepositorio.AlterarColaborador(colaborador);               
             }
             catch (Exception ex)
             {

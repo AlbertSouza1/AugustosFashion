@@ -3,6 +3,7 @@ using AugustosFashion.Entidades.ContaBancaria;
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashion.Helpers;
+using AugustosFashionModels.Entidades.Usuario;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -76,8 +77,8 @@ namespace AugustosFashion.Repositorios
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
             var strSql = @"select
-                c.idColaborador, u.Nome, u.SobreNome, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
-                e.IdUsuario, e.Cidade, e.UF
+                c.idColaborador, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
+                e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
                 from
                 Usuarios u join Colaboradores c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario; ";
@@ -87,9 +88,9 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<ColaboradorListagem, EnderecoModel, ColaboradorListagem>(
+                    return sqlCon.Query<ColaboradorListagem, NomeCompleto, EnderecoModel, ColaboradorListagem>(
                         strSql,
-                        (colaboradorModel, enderecoModel) => MapearColaborador(colaboradorModel, enderecoModel),
+                        (colaboradorModel, nomeCompleto, enderecoModel) => MapearColaborador(colaboradorModel, nomeCompleto, enderecoModel),
                         splitOn: "IdUsuario"
                      ).ToList();
                 }
@@ -99,7 +100,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        public static void AlterarColaborador(ColaboradorModel colaborador, EnderecoModel endereco, List<TelefoneModel> telefones, ContaBancariaModel contaBancaria)
+        public static void AlterarColaborador(ColaboradorModel colaborador)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -186,8 +187,8 @@ namespace AugustosFashion.Repositorios
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
             var strSql = @"select
-                c.idColaborador, u.Nome, u.SobreNome, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
-                e.IdUsuario, e.Cidade, e.UF
+                c.idColaborador, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
+                e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
                 from
                 Usuarios u join Colaboradores c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario
@@ -198,9 +199,9 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<ColaboradorListagem, EnderecoModel, ColaboradorListagem>(
+                    return sqlCon.Query<ColaboradorListagem, NomeCompleto, EnderecoModel, ColaboradorListagem>(
                         strSql,
-                        (colaboradorModel, enderecoModel) => MapearColaborador(colaboradorModel, enderecoModel), new {nomeBuscado}, 
+                        (colaboradorModel, nomeCompleto, enderecoModel) => MapearColaborador(colaboradorModel, nomeCompleto, enderecoModel), new {nomeBuscado}, 
                         splitOn: "IdUsuario"
                      ).ToList();
                 }
@@ -272,9 +273,10 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        private static ColaboradorListagem MapearColaborador(ColaboradorListagem colaboradorModel, EnderecoModel enderecoModel)
+        private static ColaboradorListagem MapearColaborador(ColaboradorListagem colaboradorModel, NomeCompleto nomeCompleto, EnderecoModel enderecoModel)
         {
             colaboradorModel.Endereco = enderecoModel;
+            colaboradorModel.NomeCompleto = nomeCompleto;
 
             return colaboradorModel;
         }
