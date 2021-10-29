@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Entidades.Endereco;
+using AugustosFashionModels.Entidades.Usuario;
 using System;
 using System.ComponentModel;
 
@@ -6,9 +7,11 @@ namespace AugustosFashion.Entidades.Cliente
 {
     public class ClienteListagem
     {
+        public ClienteListagem(){}
         public int IdCliente { get; set; }
-        public string Nome { get; set; }
-        public string SobreNome { get; set; }
+
+        [DisplayName("Nome")]
+        public NomeCompleto NomeCompleto { get; set; }
         public string Sexo { get; set; }
         public int Idade { get; set; }
 

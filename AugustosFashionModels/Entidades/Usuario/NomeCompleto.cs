@@ -21,5 +21,10 @@ namespace AugustosFashionModels.Entidades.Usuario
         {
             return $"{Nome} {SobreNome}";
         }
+
+        public NomeCompleto()
+        {
+
+        }
     }
 }

@@ -66,8 +66,8 @@ namespace AugustosFashion.Views
             this.label1 = new System.Windows.Forms.Label();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.mtxtLimiteCompraPrazo = new System.Windows.Forms.MaskedTextBox();
             this.btnExcluirCliente = new System.Windows.Forms.Button();
+            this.txtLimiteCompraPrazo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnAlterarCliente
@@ -434,14 +434,6 @@ namespace AugustosFashion.Views
             this.label19.TabIndex = 73;
             this.label19.Text = "Código";
             // 
-            // mtxtLimiteCompraPrazo
-            // 
-            this.mtxtLimiteCompraPrazo.Location = new System.Drawing.Point(545, 557);
-            this.mtxtLimiteCompraPrazo.Mask = "0000,00";
-            this.mtxtLimiteCompraPrazo.Name = "mtxtLimiteCompraPrazo";
-            this.mtxtLimiteCompraPrazo.Size = new System.Drawing.Size(49, 23);
-            this.mtxtLimiteCompraPrazo.TabIndex = 74;
-            // 
             // btnExcluirCliente
             // 
             this.btnExcluirCliente.BackColor = System.Drawing.Color.OrangeRed;
@@ -456,13 +448,21 @@ namespace AugustosFashion.Views
             this.btnExcluirCliente.UseVisualStyleBackColor = false;
             this.btnExcluirCliente.Click += new System.EventHandler(this.btnExcluirCliente_Click);
             // 
+            // txtLimiteCompraPrazo
+            // 
+            this.txtLimiteCompraPrazo.Location = new System.Drawing.Point(545, 559);
+            this.txtLimiteCompraPrazo.MaxLength = 7;
+            this.txtLimiteCompraPrazo.Name = "txtLimiteCompraPrazo";
+            this.txtLimiteCompraPrazo.Size = new System.Drawing.Size(164, 23);
+            this.txtLimiteCompraPrazo.TabIndex = 76;
+            // 
             // FrmAlterarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 654);
+            this.Controls.Add(this.txtLimiteCompraPrazo);
             this.Controls.Add(this.btnExcluirCliente);
-            this.Controls.Add(this.mtxtLimiteCompraPrazo);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.txtIdCliente);
             this.Controls.Add(this.btnAlterarCliente);
@@ -549,7 +549,7 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIdCliente;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.MaskedTextBox mtxtLimiteCompraPrazo;
         private System.Windows.Forms.Button btnExcluirCliente;
+        private System.Windows.Forms.TextBox txtLimiteCompraPrazo;
     }
 }

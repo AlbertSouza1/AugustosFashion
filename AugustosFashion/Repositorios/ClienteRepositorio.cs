@@ -64,8 +64,8 @@ namespace AugustosFashion.Repositorios
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
             var strSql = @"select
-                c.idCliente, u.Nome, u.SobreNome, u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
-                u.DataNascimento, e.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
+                c.IdCliente, u.IdUsuario,  u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
+                u.DataNascimento, e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
                 from
                 Usuarios u join Clientes c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario; ";
@@ -76,9 +76,9 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<ClienteListagem, EnderecoModel, ClienteListagem>(
+                    return sqlCon.Query<ClienteListagem, NomeCompleto, EnderecoModel, ClienteListagem>(
                         strSql,
-                        (clienteModel, enderecoModel) => MapearCliente(clienteModel, enderecoModel),
+                        (clienteModel, nomeCompleto, enderecoModel) => MapearCliente(clienteModel, nomeCompleto, enderecoModel),
                         splitOn: "IdUsuario"
                      ).ToList();
                 }
@@ -114,7 +114,18 @@ namespace AugustosFashion.Repositorios
                 sqlCon.Execute(strSqlAlterarCliente, cliente, tran);
                 sqlCon.Execute(strSqlAlterarEndereco, cliente.Endereco, tran);
                 sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, tran);
-                sqlCon.Execute(strSqlAlterarUsuario, cliente, tran);
+                sqlCon.Execute(strSqlAlterarUsuario, 
+                new
+                {
+                    Nome = cliente.NomeCompleto.Nome,
+                    SobreNome = cliente.NomeCompleto.SobreNome,
+                    Sexo = cliente.Sexo,
+                    DataNascimento = cliente.DataNascimento,
+                    Email = cliente.Email,
+                    CPF = cliente.CPF,
+                    IdUsuario = cliente.IdUsuario
+                },         
+                tran);
 
                 tran.Commit();
             }
@@ -173,8 +184,8 @@ namespace AugustosFashion.Repositorios
 
             string strSqlRecuperarInfoCliente = @"
                 select c.idCliente, c.idUsuario, c.ValorLimiteCompraAPrazo, c.Observacao,
-                u.Nome, u.SobreNome, u.Email, u.DataNascimento, u.CPF,
-				u.Sexo, u.idUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
+                u.IdUsuario, u.Email, u.DataNascimento, u.CPF,
+				u.Sexo, u.idUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
 				from Clientes c
 				inner join Usuarios u on c.IdUsuario = u.IdUsuario
 				inner join Enderecos e on c.IdUsuario = e.IdUsuario					
@@ -186,9 +197,9 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                var cliente = sqlCon.Query<ClienteModel, EnderecoModel, ClienteModel>(
+                var cliente = sqlCon.Query<ClienteModel, NomeCompleto, EnderecoModel, ClienteModel>(
                     strSqlRecuperarInfoCliente,
-                    (cliente, endereco) => MapearClienteParaConsulta(cliente, endereco), new { IdCliente = idCliente },
+                    (cliente, nomeCompleto, endereco) => MapearClienteParaConsulta(cliente, nomeCompleto, endereco), new { IdCliente = idCliente },
                     splitOn: "IdUsuario").FirstOrDefault();
 
                 cliente.Telefones = sqlCon.Query<TelefoneModel>(strSqlRecuperarInfoTelefones, new { IdUsuario = idUsuario }).ToList();
@@ -205,8 +216,8 @@ namespace AugustosFashion.Repositorios
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
             var strSql = @"select
-                c.idCliente, u.Nome, u.SobreNome, u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
-                u.DataNascimento, e.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
+                c.idCliente, u.IdUsuario, u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
+                u.DataNascimento, e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
                 from
                 Usuarios u join Clientes c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario
@@ -218,10 +229,10 @@ namespace AugustosFashion.Repositorios
                 using (sqlCon)
                 {
                     sqlCon.Open();
-
-                    return sqlCon.Query<ClienteListagem, EnderecoModel, ClienteListagem>(
+                
+                    return sqlCon.Query<ClienteListagem, NomeCompleto, EnderecoModel, ClienteListagem>(
                         strSql,
-                        (clienteModel, enderecoModel) => MapearCliente(clienteModel, enderecoModel), new { nomeBuscado },
+                        (clienteModel, nomeCompleto, enderecoModel) => MapearCliente(clienteModel, nomeCompleto, enderecoModel), new { nomeBuscado },
                         splitOn: "IdUsuario"
                      ).ToList();
                 }
@@ -253,21 +264,17 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        private static ClienteListagem MapearCliente(ClienteListagem clienteModel, EnderecoModel enderecoModel)
+        private static ClienteListagem MapearCliente(ClienteListagem clienteModel, NomeCompleto nomeCompleto, EnderecoModel enderecoModel)
         {
             clienteModel.Endereco = enderecoModel;
+            clienteModel.NomeCompleto = nomeCompleto;
 
             return clienteModel;
         }
-
-        private static void MapearClienteParaCadastro(ClienteModel clienteModel, NomeCompleto nomeCompleto)
-        {
-            clienteModel.NomeCompleto = nomeCompleto;
-        }
-
-        private static ClienteModel MapearClienteParaConsulta(ClienteModel cliente, EnderecoModel endereco)
+        private static ClienteModel MapearClienteParaConsulta(ClienteModel cliente, NomeCompleto nomeCompleto, EnderecoModel endereco)
         {
             cliente.Endereco = endereco;
+            cliente.NomeCompleto = nomeCompleto;
 
             return cliente;
         }

@@ -3,12 +3,13 @@ using AugustosFashion.Entidades.Telefone;
 using AugustosFashionModels.Entidades.Usuario;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace AugustosFashion.Entidades
 {
     public abstract class UsuarioModel
     {
-        public int IdUsuario { get; set; }
+        public int IdUsuario { get; set; }      
         public NomeCompleto NomeCompleto { get; set; }
         public char Sexo { get; set; }
         public DateTime DataNascimento { get; set; }
@@ -25,5 +26,7 @@ namespace AugustosFashion.Entidades
 
             //CPF = new CPF();
         }
+
+        public UsuarioModel(){}
     }
 }

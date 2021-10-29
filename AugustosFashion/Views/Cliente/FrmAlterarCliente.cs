@@ -51,7 +51,7 @@ namespace AugustosFashion.Views
 
             txtIdCliente.Text = cliente.IdCliente.ToString();
             txtObservacoes.Text = cliente.Observacao;
-            mtxtLimiteCompraPrazo.Text = cliente.LimiteCompraAPrazo.ToString();
+            txtLimiteCompraPrazo.Text = cliente.LimiteCompraAPrazo.ToString();
 
             txtNome.Text = cliente.NomeCompleto.Nome;
             txtSobreNome.Text = cliente.NomeCompleto.SobreNome;
@@ -92,18 +92,20 @@ namespace AugustosFashion.Views
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
-            ClienteModel cliente = new ClienteModel(txtNome.Text, txtSobreNome.Text)
-            {
-                IdCliente = int.Parse(txtIdCliente.Text),
-                Sexo = cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
-                DataNascimento = dtpDataNascimento.Value,
-                Email = txtEmail.Text,
-                CPF = cpfSemPontos,
-                LimiteCompraAPrazo = double.Parse(mtxtLimiteCompraPrazo.Text),
-                Observacao = txtObservacoes.Text,
-                Endereco = InstanciarEnderecoParaCadastro(),
-                Telefones = InstanciarTelefonesParaCadastro()
-            };
+            ClienteModel cliente = new ClienteModel
+            (
+                nome: txtNome.Text,
+                sobreNome: txtSobreNome.Text,
+                sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
+                dataNascimento : dtpDataNascimento.Value,
+                email: txtEmail.Text,
+                cpf: cpfSemPontos,
+                limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
+                observacao: txtObservacoes.Text,
+                endereco: InstanciarEnderecoParaCadastro(),
+                telefones: InstanciarTelefonesParaCadastro()
+            );
+            cliente.IdCliente = int.Parse(txtIdCliente.Text);
 
             return cliente;
         }
@@ -221,7 +223,7 @@ namespace AugustosFashion.Views
         {
             var retorno = false;
 
-            if (mtxtLimiteCompraPrazo.Text == string.Empty)
+            if (txtLimiteCompraPrazo.Text == string.Empty)
             {
                 MessageBox.Show("É necessário informar um limite para compra a prazo.");
             }

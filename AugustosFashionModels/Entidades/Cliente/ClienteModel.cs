@@ -22,8 +22,7 @@ namespace AugustosFashion.Entidades.Cliente
             Endereco = endereco;
             Telefones = telefones;                    
         }
-        public ClienteModel(string nome, string sobreNome) : base(nome, sobreNome) { }
-
+        public ClienteModel(){ }
         public string VerificarSeEhAniversarioDoCliente() =>
             DataNascimento == DateTime.Now ? $"{NomeCompleto.Nome} está fazendo aniversário hoje." : string.Empty;
     }
