@@ -59,6 +59,39 @@ namespace AugustosFashion.Repositorios
                 sqlCon.Close();
             }
         }
+
+        public static List<ClienteListagem> BuscarClientesPorId(int idBuscado)
+        {
+            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+
+            var strSqlBusca = @"select
+                c.idCliente, u.IdUsuario, u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
+                u.DataNascimento, e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
+                from
+                Usuarios u join Clientes c on u.IdUsuario = c.IdUsuario 
+                inner join Enderecos e on u.IdUsuario = e.IdUsuario
+                where c.IdCliente = @idBuscado
+                ";
+
+            try
+            {
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ClienteListagem, NomeCompleto, EnderecoModel, ClienteListagem>(
+                        strSqlBusca,
+                        (clienteModel, nomeCompleto, enderecoModel) => MapearCliente(clienteModel, nomeCompleto, enderecoModel), new { idBuscado },
+                        splitOn: "IdUsuario"
+                     ).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static List<ClienteListagem> ListarClientes()
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
@@ -211,17 +244,17 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        public static List<ClienteListagem> BuscarClientes(string nomeBuscado)
+        public static List<ClienteListagem> BuscarClientesPorNome(string nomeBuscado)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
-            var strSql = @"select
+            var stringSqlBusca = @"select
                 c.idCliente, u.IdUsuario, u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
                 u.DataNascimento, e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
                 from
                 Usuarios u join Clientes c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario
-                where u.Nome like '%'+ @nomeBuscado + '%'
+                where u.Nome like @nomeBuscado + '%'
                 ; ";
 
             try
@@ -231,7 +264,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
                 
                     return sqlCon.Query<ClienteListagem, NomeCompleto, EnderecoModel, ClienteListagem>(
-                        strSql,
+                        stringSqlBusca,
                         (clienteModel, nomeCompleto, enderecoModel) => MapearCliente(clienteModel, nomeCompleto, enderecoModel), new { nomeBuscado },
                         splitOn: "IdUsuario"
                      ).ToList();

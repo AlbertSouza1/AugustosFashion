@@ -19,8 +19,7 @@ namespace AugustosFashion.Views
         }
 
         private void FrmListaClientes_Load(object sender, EventArgs e)
-        {
-            RecuperarTodosOsClientesParaListar();
+        {       
         }
 
         private void RecuperarTodosOsClientesParaListar()
@@ -53,25 +52,57 @@ namespace AugustosFashion.Views
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
-            if (txtNomeBuscado.Text != string.Empty)
+            if(txtNomeBuscado.Text == string.Empty)
             {
-                try
-                {
-                    var listaClientes = _listaClienteController.BuscarClientesPorNome(txtNomeBuscado.Text);
+                return;
+            }
 
-                    if (listaClientes.Count == 0)
-                        MessageBox.Show("Nenhum cliente encontrado.");
-
-                    ListarClientes(listaClientes);
-
-                } catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }   
-            else
+            if (txtNomeBuscado.Text == "%")
             {
                 RecuperarTodosOsClientesParaListar();
+            }   
+            else if(int.TryParse(txtNomeBuscado.Text, out int idBuscado))
+            {
+                BuscarClientesPorId(idBuscado);
+            }
+            else
+            {
+                BuscarClientesPorNome(txtNomeBuscado.Text);
+            }
+        }
+
+        private void BuscarClientesPorNome(string nomeBuscado)
+        {
+            try
+            {
+                var listaClientes = _listaClienteController.BuscarClientesPorNome(nomeBuscado);
+
+                if (listaClientes.Count == 0)
+                    MessageBox.Show("Nenhum cliente encontrado.");
+
+                ListarClientes(listaClientes);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void BuscarClientesPorId(int idBuscado)
+        {
+            try
+            {
+                var listaClientes = _listaClienteController.BuscarClientesPorId(idBuscado);
+
+                if (listaClientes.Count == 0)
+                    MessageBox.Show("Nenhum cliente encontrado.");
+
+                ListarClientes(listaClientes);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

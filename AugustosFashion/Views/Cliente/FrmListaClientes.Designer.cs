@@ -65,9 +65,9 @@ namespace AugustosFashion.Views
             this.btnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnBuscarCliente.Location = new System.Drawing.Point(459, 84);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(176, 30);
+            this.btnBuscarCliente.Size = new System.Drawing.Size(345, 30);
             this.btnBuscarCliente.TabIndex = 3;
-            this.btnBuscarCliente.Text = "Buscar por nome";
+            this.btnBuscarCliente.Text = "Buscar por nome ou código (% para trazer todos)";
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
             this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 

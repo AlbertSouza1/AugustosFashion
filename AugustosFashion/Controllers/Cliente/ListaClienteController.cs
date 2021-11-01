@@ -25,7 +25,20 @@ namespace AugustosFashion.Controllers
         {
             try
             {
-                List<ClienteListagem> clientes = ClienteRepositorio.BuscarClientes(text);                
+                List<ClienteListagem> clientes = ClienteRepositorio.BuscarClientesPorNome(text);                
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<ClienteListagem> BuscarClientesPorId(int idBuscado)
+        {
+            try
+            {
+                List<ClienteListagem> clientes = ClienteRepositorio.BuscarClientesPorId(idBuscado);
                 return clientes;
             }
             catch (Exception ex)
