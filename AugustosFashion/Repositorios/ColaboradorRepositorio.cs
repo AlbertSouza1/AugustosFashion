@@ -193,7 +193,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static List<ColaboradorListagem> BuscarColaboradores(string nomeBuscado)
+        public static List<ColaboradorListagem> BuscarColaboradoresPorNome(string nomeBuscado)
         {
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
@@ -203,7 +203,7 @@ namespace AugustosFashion.Repositorios
                 from
                 Usuarios u join Colaboradores c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario
-                where u.Nome like '%' + @nomeBuscado + '%'; ";
+                where u.Nome like @nomeBuscado + '%'; ";
             try
             {
                 using (sqlCon)
@@ -213,6 +213,36 @@ namespace AugustosFashion.Repositorios
                     return sqlCon.Query<ColaboradorListagem, NomeCompleto, EnderecoModel, ColaboradorListagem>(
                         strSql,
                         (colaboradorModel, nomeCompleto, enderecoModel) => MapearColaborador(colaboradorModel, nomeCompleto, enderecoModel), new {nomeBuscado}, 
+                        splitOn: "IdUsuario"
+                     ).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static List<ColaboradorListagem> BuscarColaboradoresPorId(int idBuscado)
+        {
+            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+
+            var strSql = @"select
+                c.idColaborador, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
+                e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
+                from
+                Usuarios u join Colaboradores c on u.IdUsuario = c.IdUsuario 
+                inner join Enderecos e on u.IdUsuario = e.IdUsuario
+                where c.IdColaborador =  @idBuscado";
+            try
+            {
+                using (sqlCon)
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ColaboradorListagem, NomeCompleto, EnderecoModel, ColaboradorListagem>(
+                        strSql,
+                        (colaboradorModel, nomeCompleto, enderecoModel) => MapearColaborador(colaboradorModel, nomeCompleto, enderecoModel), new { idBuscado },
                         splitOn: "IdUsuario"
                      ).ToList();
                 }

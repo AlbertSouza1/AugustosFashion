@@ -17,7 +17,6 @@ namespace AugustosFashion.Views.Colaborador
 
         private void FrmListaColaboradores_Load(object sender, EventArgs e)
         {
-            RecuperarTodosOsColaboradoresParaListar();
         }
 
         private void RecuperarTodosOsColaboradoresParaListar()
@@ -68,25 +67,56 @@ namespace AugustosFashion.Views.Colaborador
 
         private void btnBuscarColaborador_Click(object sender, EventArgs e)
         {
-            if (txtBuscaColaborador.Text != string.Empty)
+            if (txtBuscaColaborador.Text == string.Empty)
             {
-                try
-                {
-                    var listaColaboradores = _listaColaboradorController.BuscarColaboradoresPorNome(txtBuscaColaborador.Text);
+                return;
+            }
 
-                    if (listaColaboradores.Count == 0)
-                        MessageBox.Show("Nenhum colaborador encontrado.");
-
-                    ListarColaboradores(listaColaboradores);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Problemas ao buscar colaboradores. Erro: " + ex.Message);
-                }
+            if (txtBuscaColaborador.Text == "%")
+            {
+                RecuperarTodosOsColaboradoresParaListar();
+            }
+            else if (int.TryParse(txtBuscaColaborador.Text, out int idBuscado))
+            {
+                BuscarColaboradoresPorId(idBuscado);
             }
             else
             {
-                RecuperarTodosOsColaboradoresParaListar();
+                BuscarColaboradoresPorNome(txtBuscaColaborador.Text);
+            }
+        }
+
+        private void BuscarColaboradoresPorNome(string nomeBuscado)
+        {
+            try
+            {
+                var listaColaboradores = _listaColaboradorController.BuscarColaboradoresPorNome(nomeBuscado);
+
+                if (listaColaboradores.Count == 0)
+                    MessageBox.Show("Nenhum colaborador encontrado.");
+
+                ListarColaboradores(listaColaboradores);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problemas ao buscar colaboradores. Erro: " + ex.Message);
+            }
+        }
+        private void BuscarColaboradoresPorId(int idBuscado)
+        {
+            try
+            {
+                var listaClientes = _listaColaboradorController.BuscarColaboradoresPorId(idBuscado);
+
+                if (listaClientes.Count == 0)
+                    MessageBox.Show("Nenhum cliente encontrado.");
+
+                ListarColaboradores(listaClientes);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

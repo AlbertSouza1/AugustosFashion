@@ -45,10 +45,23 @@ namespace AugustosFashion.Controllers.Colaborador
         {
             try
             {
-                var colaboradoresBuscados = ColaboradorRepositorio.BuscarColaboradores(nomeBuscado);
+                var colaboradoresBuscados = ColaboradorRepositorio.BuscarColaboradoresPorNome(nomeBuscado);
                 return colaboradoresBuscados;
             }
             catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        internal List<ColaboradorListagem> BuscarColaboradoresPorId(int idBuscado)
+        {
+            try
+            {
+                var colaboradoresBuscados = ColaboradorRepositorio.BuscarColaboradoresPorId(idBuscado);
+                return colaboradoresBuscados;
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
