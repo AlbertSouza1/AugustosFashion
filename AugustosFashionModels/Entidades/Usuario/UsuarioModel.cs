@@ -14,7 +14,7 @@ namespace AugustosFashion.Entidades
         public char Sexo { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Email { get; set; }
-        public /*CPF*/string CPF { get; set; }
+        public CPF CPF { get; set; }
         public EnderecoModel Endereco { get; set; }
         public List<TelefoneModel> Telefones { get; set; }
 
