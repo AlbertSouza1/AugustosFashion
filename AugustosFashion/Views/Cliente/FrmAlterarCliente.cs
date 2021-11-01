@@ -67,6 +67,10 @@ namespace AugustosFashion.Views
             txtNumero.Text = cliente.Endereco.Numero.ToString();
             txtCep.Text = cliente.Endereco.CEP;
             cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(cliente.Endereco.UF);
+
+            var avisoDeAniversario = cliente.VerificarSeEhAniversarioDoCliente();
+            if (avisoDeAniversario != string.Empty)
+                MessageBox.Show(avisoDeAniversario, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnAlterarCliente_Click(object sender, EventArgs e)

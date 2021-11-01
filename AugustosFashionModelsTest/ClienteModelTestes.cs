@@ -12,7 +12,7 @@ namespace AugustosFashionModelsTest
         {
             //arrange
             ClienteModel cliente = new ClienteModel();
-            cliente.Nome = "Carlos";
+            cliente.NomeCompleto.Nome = "Carlos";
             cliente.DataNascimento = DateTime.Now;
             
             //act
@@ -27,7 +27,7 @@ namespace AugustosFashionModelsTest
         {
             //arrange
             ClienteModel cliente = new ClienteModel();
-            cliente.Nome = "Carlos";
+            cliente.NomeCompleto.Nome = "Carlos";
             cliente.DataNascimento = new DateTime(2001, 10, 09);
 
             //act

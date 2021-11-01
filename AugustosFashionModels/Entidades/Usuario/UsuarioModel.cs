@@ -27,6 +27,10 @@ namespace AugustosFashion.Entidades
             //CPF = new CPF();
         }
 
-        public UsuarioModel(){}
+        public UsuarioModel(){
+            Endereco = new EnderecoModel();
+            Telefones = new List<TelefoneModel>();
+            NomeCompleto = new NomeCompleto();
+        }
     }
 }

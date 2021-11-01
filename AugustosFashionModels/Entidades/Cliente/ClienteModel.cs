@@ -23,7 +23,16 @@ namespace AugustosFashion.Entidades.Cliente
             Telefones = telefones;                    
         }
         public ClienteModel(){ }
-        public string VerificarSeEhAniversarioDoCliente() =>
-            DataNascimento == DateTime.Now ? $"{NomeCompleto.Nome} está fazendo aniversário hoje." : string.Empty;
+        public string VerificarSeEhAniversarioDoCliente()
+        {
+            var mensagem = string.Empty;
+
+            if(DataNascimento.Month == DateTime.Now.Month  && DataNascimento.Day == DateTime.Now.Day)
+            {
+                mensagem =  $"{NomeCompleto.Nome} está fazendo aniversário hoje.";
+            }
+
+            return mensagem;
+        }              
     }
 }

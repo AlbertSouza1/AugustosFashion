@@ -14,8 +14,8 @@ namespace AugustosFashionModels.Entidades.Usuario
             Nome = nome;
             SobreNome = sobreNome;
         }
-        public string Nome { get; }
-        public string SobreNome { get; }
+        public string Nome { get; set; }
+        public string SobreNome { get; set; }
 
         public override string ToString()
         {
