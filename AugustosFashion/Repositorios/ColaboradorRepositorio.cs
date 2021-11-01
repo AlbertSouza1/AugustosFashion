@@ -116,21 +116,32 @@ namespace AugustosFashion.Repositorios
 
             SqlTransaction tran = sqlCon.BeginTransaction();
 
-            contaBancaria.IdColaborador = colaborador.IdColaborador;
+            colaborador.ContaBancaria.IdColaborador = colaborador.IdColaborador;
 
             try
             {   
                 int idUsuario = RecuperarIdUsuario(colaborador.IdColaborador);
 
                 colaborador.IdUsuario = idUsuario;
-                endereco.IdUsuario = idUsuario;
-                telefones.ForEach(x => x.IdUsuario = idUsuario);
+                colaborador.Endereco.IdUsuario = idUsuario;
+                colaborador.Telefones.ForEach(x => x.IdUsuario = idUsuario);
 
                 sqlCon.Execute(strSqlAlterarColaborador, colaborador, tran);
-                sqlCon.Execute(strSqlAlterarEndereco, endereco, tran);
-                sqlCon.Execute(strSqlAlterarTel, telefones, tran);
-                sqlCon.Execute(strSqlAlterarUsuario, colaborador, tran);
-                sqlCon.Execute(strSqlAlterarContaBancaria, contaBancaria, tran);
+                sqlCon.Execute(strSqlAlterarEndereco, colaborador.Endereco, tran);
+                sqlCon.Execute(strSqlAlterarTel, colaborador.Telefones, tran);
+                sqlCon.Execute(
+                    strSqlAlterarUsuario,
+                    new {
+                        Nome = colaborador.NomeCompleto.Nome,
+                        SobreNome = colaborador.NomeCompleto.SobreNome,
+                        Sexo = colaborador.Sexo,
+                        DataNascimento = colaborador.DataNascimento,
+                        Email = colaborador.Email,
+                        CPF = colaborador.CPF,
+                        IdUsuario = colaborador.IdUsuario
+                    },
+                    tran);
+                sqlCon.Execute(strSqlAlterarContaBancaria, colaborador.ContaBancaria, tran);
 
                 tran.Commit();            
             }
@@ -219,9 +230,9 @@ namespace AugustosFashion.Repositorios
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
             string strSqlRecuperarInfoColaborador = @"
-                select c.idColaborador, c.idUsuario, c.Salario, c.PorcentagemComissao,
-                u.Nome, u.SobreNome, u.Email, u.DataNascimento, u.CPF,
-				u.Sexo, u.idUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro, u.IdUsuario,
+                select c.IdColaborador, c.IdUsuario, c.Salario, c.PorcentagemComissao,
+                u.Email, u.DataNascimento, u.CPF, u.Sexo,
+                u.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro, u.IdUsuario,
 				cb.Banco, cb.Agencia, cb.Conta, cb.TipoConta
 				from Colaboradores c
 				inner join Usuarios u on c.IdUsuario = u.IdUsuario
@@ -234,9 +245,9 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                var colaborador = sqlCon.Query<ColaboradorModel, EnderecoModel, ContaBancariaModel, ColaboradorModel>(
+                var colaborador = sqlCon.Query<ColaboradorModel, NomeCompleto, EnderecoModel, ContaBancariaModel, ColaboradorModel>(
                     strSqlRecuperarInfoColaborador,
-                    (colaborador, endereco, contaBancaria) => MapearColaboradorParaConsulta(colaborador, endereco, contaBancaria),
+                    (colaborador, nomeCompleto, endereco, contaBancaria) => MapearColaboradorParaConsulta(colaborador, nomeCompleto, endereco, contaBancaria),
                     new { IdColaborador = idColaborador },
                     splitOn: "IdUsuario").FirstOrDefault();
 
@@ -280,10 +291,11 @@ namespace AugustosFashion.Repositorios
 
             return colaboradorModel;
         }
-        private static ColaboradorModel MapearColaboradorParaConsulta(ColaboradorModel colaboradorModel, EnderecoModel enderecoModel, ContaBancariaModel contaBancaria)
+        private static ColaboradorModel MapearColaboradorParaConsulta(ColaboradorModel colaboradorModel, NomeCompleto nomeCompleto, EnderecoModel enderecoModel, ContaBancariaModel contaBancaria)
         {
             colaboradorModel.Endereco = enderecoModel;
             colaboradorModel.ContaBancaria = contaBancaria;
+            colaboradorModel.NomeCompleto = nomeCompleto;
 
             return colaboradorModel;
         }

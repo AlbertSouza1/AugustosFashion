@@ -176,7 +176,8 @@ namespace AugustosFashion.Views
                 salario: double.Parse(txtSalario.Text),
                 porcentagemComissao: int.Parse(txtComissao.Text),
                 endereco: InstanciarEnderecoParaCadastro(),
-                telefones: InstanciarTelefonesParaCadastro()
+                telefones: InstanciarTelefonesParaCadastro(),
+                contaBancaria: InstanciarContaBancariaParaCadastro()
                 );
 
             return colaborador;
