@@ -16,6 +16,8 @@ namespace AugustosFashionModels.Entidades.Cpfs
 
         public string RecuperarMensagemErro { get => _mensagemErro; }
 
+        public string RetornaValor { get => _valor; }
+
         public CPF(string valor)
         {
             _valor = valor;

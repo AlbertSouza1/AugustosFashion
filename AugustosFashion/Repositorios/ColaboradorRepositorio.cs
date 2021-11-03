@@ -45,8 +45,8 @@ namespace AugustosFashion.Repositorios
                             SobreNome = colaborador.NomeCompleto.SobreNome,
                             Sexo = colaborador.Sexo,
                             DataNascimento = colaborador.DataNascimento,
-                            Email = colaborador.Email,
-                            CPF = colaborador.CPF
+                            Email = colaborador.Email.RetornaValor,
+                            CPF = colaborador.CPF.RetornaValor
                         },
                         tran);
 
@@ -136,8 +136,8 @@ namespace AugustosFashion.Repositorios
                         SobreNome = colaborador.NomeCompleto.SobreNome,
                         Sexo = colaborador.Sexo,
                         DataNascimento = colaborador.DataNascimento,
-                        Email = colaborador.Email,
-                        CPF = colaborador.CPF,
+                        Email = colaborador.Email.RetornaValor,
+                        CPF = colaborador.CPF.RetornaValor,
                         IdUsuario = colaborador.IdUsuario
                     },
                     tran);

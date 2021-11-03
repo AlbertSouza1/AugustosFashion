@@ -35,7 +35,7 @@ namespace AugustosFashion.Repositorios
             {
                 insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario,
                     new {Nome = cliente.NomeCompleto.Nome, SobreNome = cliente.NomeCompleto.SobreNome,
-                        Sexo = cliente.Sexo, DataNascimento = cliente.DataNascimento, Email = cliente.Email, CPF = cliente.CPF },                
+                        Sexo = cliente.Sexo, DataNascimento = cliente.DataNascimento, Email = cliente.Email.RetornaValor, CPF = cliente.CPF.RetornaValor},                
                     tran);
 
                 cliente.IdUsuario = insertedId;
@@ -154,8 +154,8 @@ namespace AugustosFashion.Repositorios
                     SobreNome = cliente.NomeCompleto.SobreNome,
                     Sexo = cliente.Sexo,
                     DataNascimento = cliente.DataNascimento,
-                    Email = cliente.Email,
-                    CPF = cliente.CPF,
+                    Email = cliente.Email.RetornaValor,
+                    CPF = cliente.CPF.RetornaValor,
                     IdUsuario = cliente.IdUsuario
                 },         
                 tran);
@@ -216,7 +216,7 @@ namespace AugustosFashion.Repositorios
             SqlConnection sqlCon = new SqlHelper().ObterConexao();
 
             string strSqlRecuperarInfoCliente = @"
-                select c.idCliente, c.idUsuario, c.ValorLimiteCompraAPrazo, c.Observacao,
+                select c.idCliente, c.idUsuario, c.ValorLimiteCompraAPrazo as LimiteCompraAPrazo, c.Observacao,
                 u.IdUsuario, u.Email, u.DataNascimento, u.CPF,
 				u.Sexo, u.idUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
 				from Clientes c

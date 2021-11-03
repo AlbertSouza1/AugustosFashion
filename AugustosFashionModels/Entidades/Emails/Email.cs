@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace AugustosFashionModels.Entidades.Usuario
+namespace AugustosFashionModels.Entidades.Emails
 {
     public class Email
     {
@@ -13,15 +13,11 @@ namespace AugustosFashionModels.Entidades.Usuario
             _mensagemErro = "";
         }
 
+        public string RetornaValor { get => _valor; }
         public string RetornarMensagemErro { get => _mensagemErro; }
 
         //public string RetornarMensagemErro() => _mensagemErro;
 
-        public void ValidarEmail()
-        {
-            if (!Regex.IsMatch(_valor, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
-                _mensagemErro = "E-mail inválido";
-        }
         public static implicit operator Email(string valor) => new Email(valor);
     }
 }

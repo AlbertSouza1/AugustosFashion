@@ -55,11 +55,12 @@
     <Compile Include="Entidades\ContaBancaria\ContaBancariaModel.cs" />
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
     <Compile Include="Entidades\Cpfs\CPFValidator.cs" />
+    <Compile Include="Entidades\Emails\EmailValidator.cs" />
     <Compile Include="Entidades\Endereco\EnderecoModel.cs" />
     <Compile Include="Entidades\Telefone\TelefoneModel.cs" />
     <Compile Include="Entidades\Telefone\TipoTelefone.cs" />
     <Compile Include="Entidades\Cpfs\CPF.cs" />
-    <Compile Include="Entidades\Usuario\Email.cs" />
+    <Compile Include="Entidades\Emails\Email.cs" />
     <Compile Include="Entidades\Usuario\NomeCompleto.cs" />
     <Compile Include="Entidades\Usuario\UsuarioModel.cs" />
     <Compile Include="Entidades\Usuario\UsuarioValidator.cs" />

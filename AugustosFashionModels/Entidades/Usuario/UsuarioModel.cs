@@ -1,6 +1,7 @@
 ﻿using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashionModels.Entidades.Cpfs;
+using AugustosFashionModels.Entidades.Emails;
 using AugustosFashionModels.Entidades.Usuario;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace AugustosFashion.Entidades
         public NomeCompleto NomeCompleto { get; set; }
         public char Sexo { get; set; }
         public DateTime DataNascimento { get; set; }
-        public string Email { get; set; }
+        public Email Email { get; set; }
         public CPF CPF { get; set; }
         public EnderecoModel Endereco { get; set; }
         public List<TelefoneModel> Telefones { get; set; }

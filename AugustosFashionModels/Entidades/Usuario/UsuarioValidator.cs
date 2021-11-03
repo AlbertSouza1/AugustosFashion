@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Entidades;
 using AugustosFashionModels.Entidades.Cpfs;
+using AugustosFashionModels.Entidades.Emails;
 using FluentValidation;
 
 namespace AugustosFashionModels.Entidades.Usuario
@@ -8,7 +9,7 @@ namespace AugustosFashionModels.Entidades.Usuario
     {
         public UsuarioValidator()
         {
-            RuleFor(x => x.Email).NotEmpty().NotNull().WithMessage("Email não pode ser vazio");
+            RuleFor(x => x.Email).SetValidator(new EmailValidator());
             RuleFor(x => x.CPF).SetValidator(new CPFValidator());
         }
     }
