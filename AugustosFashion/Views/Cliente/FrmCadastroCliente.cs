@@ -34,8 +34,18 @@ namespace AugustosFashion.Views
                 {
                     var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
 
-                    if (_cadastroClienteController.CadastrarCliente(cliente))
-                        this.Close();
+                    var retornoValidacao = cliente.ValidarCliente();
+                    if (retornoValidacao == string.Empty)
+                    {
+                        if (_cadastroClienteController.CadastrarCliente(cliente))
+                        {
+                            MessageBox.Show("Cliente cadastrado com sucesso!");
+                            this.Close();
+                        }
+                           
+                    }
+                    else
+                        MessageBox.Show(retornoValidacao);
                 }
                 catch(Exception ex)
                 {

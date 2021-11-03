@@ -3,7 +3,6 @@ using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views;
 using System;
-using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers
 {
@@ -21,14 +20,12 @@ namespace AugustosFashion.Controllers
         {
             try
             {
-                ClienteRepositorio.CadastrarCliente(cliente);
-                MessageBox.Show("Cliente cadastrado com sucesso!");
+                ClienteRepositorio.CadastrarCliente(cliente);               
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao cadastrar cliente. Erro: "+ex.Message);
-                return false;
+                throw new Exception(ex.Message);
             }
         }
 

@@ -42,7 +42,7 @@ namespace AugustosFashionModelsTest
         {
             //arrange
             ClienteModel cliente = new ClienteModel();
-            cliente.Email = "email";
+            cliente.Email = "email@email.com";
             cliente.LimiteCompraAPrazo = 11000;
 
             //act

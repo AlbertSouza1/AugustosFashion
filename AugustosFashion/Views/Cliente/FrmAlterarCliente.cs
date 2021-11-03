@@ -83,8 +83,14 @@ namespace AugustosFashion.Views
 
                 try
                 {
-                    _alteraClienteController.AlterarCliente(cliente);
-                    MessageBox.Show("Cliente alterado com sucesso!");
+                    var retornoValidacao = cliente.ValidarCliente();
+                    if (retornoValidacao == string.Empty)
+                    {
+                        _alteraClienteController.AlterarCliente(cliente);
+                        MessageBox.Show("Cliente alterado com sucesso!");
+                    }
+                    else
+                        MessageBox.Show(retornoValidacao);
                 }
                 catch (Exception ex)
                 {
