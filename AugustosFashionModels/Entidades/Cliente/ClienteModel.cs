@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
+using AugustosFashionModels.Entidades.Cliente;
 using System;
 using System.Collections.Generic;
 
@@ -33,6 +34,16 @@ namespace AugustosFashion.Entidades.Cliente
             }
 
             return mensagem;
-        }              
+        }           
+        
+        public string ValidarCliente()
+        {
+            var retorno = new ClienteValidator().Validate(this);
+
+            if (!retorno.IsValid)
+                return retorno.ToString();
+
+            return string.Empty;
+        }
     }
 }

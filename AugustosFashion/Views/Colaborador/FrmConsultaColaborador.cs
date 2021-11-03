@@ -53,7 +53,7 @@ namespace AugustosFashion.Views.Colaborador
             txtEmail.Text = colaborador.Email;
             cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(colaborador.Sexo);
             dtpDataNascimento.Value = colaborador.DataNascimento;
-            mtxtCpf.Text = colaborador.CPF;
+            mtxtCpf.Text = colaborador.CPF.ValorFormatado;
 
             txtLogradouro.Text = colaborador.Endereco.Logradouro;
             txtCidade.Text = colaborador.Endereco.Cidade;

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.10.3.4\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -45,17 +48,21 @@
     <Compile Include="Entidades\Cliente\ClienteConsulta.cs" />
     <Compile Include="Entidades\Cliente\ClienteListagem.cs" />
     <Compile Include="Entidades\Cliente\ClienteModel.cs" />
+    <Compile Include="Entidades\Cliente\ClienteValidator.cs" />
     <Compile Include="Entidades\Colaborador\ColaboradorConsulta.cs" />
     <Compile Include="Entidades\Colaborador\ColaboradorListagem.cs" />
     <Compile Include="Entidades\Colaborador\ColaboradorModel.cs" />
     <Compile Include="Entidades\ContaBancaria\ContaBancariaModel.cs" />
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
+    <Compile Include="Entidades\Cpfs\CPFValidator.cs" />
     <Compile Include="Entidades\Endereco\EnderecoModel.cs" />
     <Compile Include="Entidades\Telefone\TelefoneModel.cs" />
     <Compile Include="Entidades\Telefone\TipoTelefone.cs" />
-    <Compile Include="Entidades\Usuario\CPF.cs" />
+    <Compile Include="Entidades\Cpfs\CPF.cs" />
+    <Compile Include="Entidades\Usuario\Email.cs" />
     <Compile Include="Entidades\Usuario\NomeCompleto.cs" />
     <Compile Include="Entidades\Usuario\UsuarioModel.cs" />
+    <Compile Include="Entidades\Usuario\UsuarioValidator.cs" />
     <Compile Include="Helpers\EstadoIndexHelper.cs" />
     <Compile Include="Helpers\InstanciaModelsParaCadastro.cs" />
     <Compile Include="Helpers\RemoveMaskCpf.cs" />
@@ -64,6 +71,9 @@
     <Compile Include="Helpers\TipoContaBancariaComboBoxHelper.cs" />
     <Compile Include="Helpers\ValidadoresCadastro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

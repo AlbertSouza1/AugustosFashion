@@ -1,8 +1,10 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
+using System.Linq;
 
-namespace AugustosFashionModels.Entidades.Usuario
+namespace AugustosFashionModels.Entidades.Cpfs
 {
-    public struct CPF
+    public class CPF
     {
         private string _valor;
         private string _mensagemErro;
@@ -19,10 +21,9 @@ namespace AugustosFashionModels.Entidades.Usuario
             _valor = valor;
             _mensagemErro = string.Empty;
         }
-        public void ValidarCPF()
+        public ValidationResult ValidarCPF()
         {
-            if (_valor.Length != 11)
-                _mensagemErro = "CPF inválido";
+            return new CPFValidator().Validate(this);
         } 
         public override string ToString()
         {
