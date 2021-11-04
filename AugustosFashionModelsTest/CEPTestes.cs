@@ -12,9 +12,9 @@ namespace AugustosFashionModelsTest
             var cliente = new ClienteModel();
             cliente.Endereco.CEP = "15710000";
 
-            var retorno = cliente.Endereco.CEP.RemoverFormatacao("15710-000");
+            cliente.Endereco.CEP.RemoverFormatacao();
 
-            Assert.AreEqual("15710000", retorno);
+            Assert.AreEqual("15710000", cliente.Endereco.CEP.RetornaValor);
         }
 
         [TestMethod]

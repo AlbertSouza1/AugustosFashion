@@ -13,7 +13,7 @@ namespace AugustosFashionModels.Entidades.Endereco.CEPs
         public string RetornaValor { get => _valor; }
         public string RetornaValorFormatado
         {
-            get => Convert.ToUInt32(_valor).ToString(@"00000-000");
+            get => Convert.ToUInt64(_valor).ToString(@"00000-000");
         }
 
         public CEP(string valor)
@@ -21,16 +21,12 @@ namespace AugustosFashionModels.Entidades.Endereco.CEPs
             _valor = valor;
         }
 
-        public string RemoverFormatacao(string valor)
+        public void RemoverFormatacao()
         {
-            string cepSemFormatacao = valor;
-
-            cepSemFormatacao = new string((from c in cepSemFormatacao
-                                           where char.IsDigit(c)
+            _valor = new string((from c in _valor
+                                 where char.IsDigit(c)
                                            select c
             ).ToArray());
-
-            return cepSemFormatacao;
         }
 
         public override string ToString()
