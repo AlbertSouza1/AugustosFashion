@@ -60,7 +60,7 @@ namespace AugustosFashion.Views.Colaborador
             txtComplemento.Text = colaborador.Endereco.Complemento;
             txtBairro.Text = colaborador.Endereco.Bairro;
             txtNumero.Text = colaborador.Endereco.Numero.ToString();
-            txtCep.Text = colaborador.Endereco.CEP;
+            txtCep.Text = colaborador.Endereco.CEP.RetornaValorFormatado;
             cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(colaborador.Endereco.UF);
 
             txtBanco.Text = colaborador.ContaBancaria.Banco;

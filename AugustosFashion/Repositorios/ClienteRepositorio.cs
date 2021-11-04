@@ -43,7 +43,19 @@ namespace AugustosFashion.Repositorios
                 cliente.Telefones.ForEach(x => x.IdUsuario = insertedId);
 
                 sqlCon.Execute(strSqlCliente, cliente, tran);
-                sqlCon.Execute(strSqlEndereco, cliente.Endereco, tran);
+                sqlCon.Execute(strSqlEndereco,
+                    new
+                    {
+                        IdUsuario = cliente.Endereco.IdUsuario,
+                        CEP = cliente.Endereco.CEP.RetornaValor,
+                        Logradouro = cliente.Endereco.Logradouro,
+                        Numero = cliente.Endereco.Numero,
+                        Cidade = cliente.Endereco.Cidade,
+                        UF = cliente.Endereco.UF,
+                        Complemento = cliente.Endereco.Complemento,
+                        Bairro = cliente.Endereco.Bairro,
+                    },
+                    tran);
 
                 sqlCon.Execute(strSqlTelefones, cliente.Telefones, tran);
 
@@ -145,7 +157,19 @@ namespace AugustosFashion.Repositorios
                 cliente.Telefones.ForEach(x => x.IdUsuario = idUsuario);
 
                 sqlCon.Execute(strSqlAlterarCliente, cliente, tran);
-                sqlCon.Execute(strSqlAlterarEndereco, cliente.Endereco, tran);
+                sqlCon.Execute(strSqlAlterarEndereco,
+                    new
+                    {
+                        IdUsuario = cliente.Endereco.IdUsuario,
+                        CEP = cliente.Endereco.CEP.RetornaValor,
+                        Logradouro = cliente.Endereco.Logradouro,
+                        Numero = cliente.Endereco.Numero,
+                        Cidade = cliente.Endereco.Cidade,
+                        UF = cliente.Endereco.UF,
+                        Complemento = cliente.Endereco.Complemento,
+                        Bairro = cliente.Endereco.Bairro,
+                    },
+                    tran);
                 sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, tran);
                 sqlCon.Execute(strSqlAlterarUsuario, 
                 new

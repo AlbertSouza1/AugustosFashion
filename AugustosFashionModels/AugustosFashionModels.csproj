@@ -56,7 +56,10 @@
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
     <Compile Include="Entidades\Cpfs\CPFValidator.cs" />
     <Compile Include="Entidades\Emails\EmailValidator.cs" />
+    <Compile Include="Entidades\Endereco\CEPs\CEP.cs" />
+    <Compile Include="Entidades\Endereco\CEPs\CEPValidator.cs" />
     <Compile Include="Entidades\Endereco\EnderecoModel.cs" />
+    <Compile Include="Entidades\Endereco\EnderecoValidator.cs" />
     <Compile Include="Entidades\NomesCompletos\NomeCompletoValidator.cs" />
     <Compile Include="Entidades\Telefone\TelefoneModel.cs" />
     <Compile Include="Entidades\Telefone\TipoTelefone.cs" />
