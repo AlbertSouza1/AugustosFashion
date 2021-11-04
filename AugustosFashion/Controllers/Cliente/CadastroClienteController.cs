@@ -16,12 +16,18 @@ namespace AugustosFashion.Controllers
             frmCadastroCliente.Show();
         }
 
-        public bool CadastrarCliente(ClienteModel cliente)
+        public string CadastrarCliente(ClienteModel cliente)
         {
             try
             {
-                ClienteRepositorio.CadastrarCliente(cliente);               
-                return true;
+                var retornoValidacao = cliente.ValidarCliente();
+                if (retornoValidacao == string.Empty)
+                {
+                    ClienteRepositorio.CadastrarCliente(cliente);
+                    return string.Empty;
+                }
+                else
+                    return retornoValidacao;
             }
             catch (Exception ex)
             {

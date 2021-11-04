@@ -34,20 +34,17 @@ namespace AugustosFashion.Views
                 {
                     var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
 
-                    var retornoValidacao = cliente.ValidarCliente();
-                    if (retornoValidacao == string.Empty)
+                    var retorno = _cadastroClienteController.CadastrarCliente(cliente);
+
+                    if (string.IsNullOrEmpty(retorno))
                     {
-                        if (_cadastroClienteController.CadastrarCliente(cliente))
-                        {
-                            MessageBox.Show("Cliente cadastrado com sucesso!");
-                            this.Close();
-                        }
-                           
+                        MessageBox.Show("Cliente cadastrado com sucesso!");
+                        this.Close();
                     }
                     else
-                        MessageBox.Show(retornoValidacao);
+                        MessageBox.Show(retorno);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Não foi possível cadastrar o cliente. " + ex.Message);
                 }
@@ -72,7 +69,7 @@ namespace AugustosFashion.Views
                     );
                 return cliente;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -118,7 +115,7 @@ namespace AugustosFashion.Views
         private bool VerificarValidacoesDeCliente(string cpf)
         {
             bool validacoes = true;
-            if(!ValidadoresCadastro.ValidarSexo(cbSexo.SelectedItem))
+            if (!ValidadoresCadastro.ValidarSexo(cbSexo.SelectedItem))
             {
                 validacoes = false;
                 MessageBox.Show("Sexo inválido.");

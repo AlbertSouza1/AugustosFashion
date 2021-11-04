@@ -33,11 +33,18 @@ namespace AugustosFashion.Controllers.Cliente
             frmAlterarCliente.ObterDadosParaAlteracao(cliente);
         }
 
-        public void AlterarCliente(ClienteModel cliente)
+        public string AlterarCliente(ClienteModel cliente)
         {
             try
             {
-                ClienteRepositorio.AlterarCliente(cliente);              
+                var retornoValidacao = cliente.ValidarCliente();
+                if (retornoValidacao == string.Empty)
+                {
+                    ClienteRepositorio.AlterarCliente(cliente);
+                    return string.Empty;
+                }
+                else
+                    return retornoValidacao;
             }
             catch (Exception ex)
             {
