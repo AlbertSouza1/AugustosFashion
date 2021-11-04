@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="ClienteModelTestes.cs" />
     <Compile Include="CPFTestes.cs" />
+    <Compile Include="NomeCompletoTestes.cs" />
     <Compile Include="UsuarioModelTestes.cs" />
     <Compile Include="ValidadoresCadastroTestes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

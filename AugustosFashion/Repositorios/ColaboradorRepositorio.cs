@@ -3,7 +3,7 @@ using AugustosFashion.Entidades.ContaBancaria;
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashion.Helpers;
-using AugustosFashionModels.Entidades.Usuario;
+using AugustosFashionModels.Entidades.NomesCompletos;
 using Dapper;
 using System;
 using System.Collections.Generic;

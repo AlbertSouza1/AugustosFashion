@@ -1,5 +1,5 @@
 ﻿using AugustosFashion.Entidades.Endereco;
-using AugustosFashionModels.Entidades.Usuario;
+using AugustosFashionModels.Entidades.NomesCompletos;
 using System;
 using System.ComponentModel;
 

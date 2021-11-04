@@ -1,10 +1,5 @@
 ﻿using AugustosFashion.Entidades.Cliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashionModelsTest
 {
@@ -20,6 +15,8 @@ namespace AugustosFashionModelsTest
         {
             //arrange
             ClienteModel cliente = new ClienteModel();
+            cliente.NomeCompleto.Nome = "José";
+            cliente.NomeCompleto.SobreNome = "Aldo";
             cliente.Email = email;
 
             //act

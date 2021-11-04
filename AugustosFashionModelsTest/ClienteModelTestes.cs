@@ -43,6 +43,8 @@ namespace AugustosFashionModelsTest
             //arrange
             ClienteModel cliente = new ClienteModel();
             cliente.Email = "email@email.com";
+            cliente.NomeCompleto.Nome = "José";
+            cliente.NomeCompleto.SobreNome = "Aldo";
             cliente.LimiteCompraAPrazo = 11000;
 
             //act

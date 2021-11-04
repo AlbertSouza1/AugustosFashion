@@ -2,10 +2,9 @@
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashionModels.Entidades.Cpfs;
 using AugustosFashionModels.Entidades.Emails;
-using AugustosFashionModels.Entidades.Usuario;
+using AugustosFashionModels.Entidades.NomesCompletos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AugustosFashion.Entidades
 {
