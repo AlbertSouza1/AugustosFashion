@@ -68,11 +68,13 @@
     <Compile Include="Entidades\NomesCompletos\NomeCompleto.cs" />
     <Compile Include="Entidades\Usuario\UsuarioModel.cs" />
     <Compile Include="Entidades\Usuario\UsuarioValidator.cs" />
+    <Compile Include="Helpers\DataBases\FakeSQLHelper.cs" />
+    <Compile Include="Helpers\DataBases\IDataBase.cs" />
     <Compile Include="Helpers\EstadoIndexHelper.cs" />
     <Compile Include="Helpers\InstanciaModelsParaCadastro.cs" />
     <Compile Include="Helpers\RemoveMaskCpf.cs" />
     <Compile Include="Helpers\SexoIndexComboBoxHelper.cs" />
-    <Compile Include="Helpers\SQLHelper.cs" />
+    <Compile Include="Helpers\DataBases\SQLHelper.cs" />
     <Compile Include="Helpers\TipoContaBancariaComboBoxHelper.cs" />
     <Compile Include="Helpers\ValidadoresCadastro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
