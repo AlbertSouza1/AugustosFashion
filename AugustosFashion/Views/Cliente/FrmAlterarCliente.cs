@@ -65,7 +65,7 @@ namespace AugustosFashion.Views
             txtComplemento.Text = cliente.Endereco.Complemento;
             txtBairro.Text = cliente.Endereco.Bairro;
             txtNumero.Text = cliente.Endereco.Numero.ToString();
-            txtCep.Text = cliente.Endereco.CEP.RetornaValorFormatado;
+            txtCep.Text = cliente.Endereco.CEP.RetornaValor;
             cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(cliente.Endereco.UF);
 
             var avisoDeAniversario = cliente.VerificarSeEhAniversarioDoCliente();
@@ -83,7 +83,8 @@ namespace AugustosFashion.Views
 
                 try
                 {
-                        var retorno = _alteraClienteController.AlterarCliente(cliente);
+                    var retorno = _alteraClienteController.AlterarCliente(cliente);
+
                     if (string.IsNullOrEmpty(retorno))
                         MessageBox.Show("Cliente alterado com sucesso!");
                     else
@@ -113,7 +114,7 @@ namespace AugustosFashion.Views
                 telefones: InstanciarTelefonesParaCadastro()
             );
             cliente.IdCliente = int.Parse(txtIdCliente.Text);
-            cliente.Endereco.CEP = cliente.Endereco.CEP.RemoverFormatacao(cliente.Endereco.CEP.RetornaValor);
+            cliente.Endereco.CEP.RemoverFormatacao();
 
             return cliente;
         }
