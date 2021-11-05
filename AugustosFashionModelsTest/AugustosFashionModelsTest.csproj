@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CEPTestes.cs" />
     <Compile Include="ClienteModelTestes.cs" />
+    <Compile Include="ColaboradorModelTestes.cs" />
     <Compile Include="CPFTestes.cs" />
     <Compile Include="NomeCompletoTestes.cs" />
     <Compile Include="UsuarioModelTestes.cs" />

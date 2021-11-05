@@ -40,7 +40,8 @@ namespace AugustosFashion.Repositorios
 
                     int insertedId = sqlCon.ExecuteScalar<int>(
                         strSqlUsuario,
-                        new {
+                        new
+                        {
                             Nome = colaborador.NomeCompleto.Nome,
                             SobreNome = colaborador.NomeCompleto.SobreNome,
                             Sexo = colaborador.Sexo,
@@ -112,47 +113,60 @@ namespace AugustosFashion.Repositorios
             string strSqlAlterarUsuario = UsuarioRepositorio.ObterStringAlterarUsuario();
             string strSqlAlterarContaBancaria = ContaBancariaRepositorio.ObterStringAlterarContaBancaria();
 
-            sqlCon.Open();
-
-            SqlTransaction tran = sqlCon.BeginTransaction();
-
-            colaborador.ContaBancaria.IdColaborador = colaborador.IdColaborador;
-
             try
-            {   
-                int idUsuario = RecuperarIdUsuario(colaborador.IdColaborador);
+            {
 
-                colaborador.IdUsuario = idUsuario;
-                colaborador.Endereco.IdUsuario = idUsuario;
-                colaborador.Telefones.ForEach(x => x.IdUsuario = idUsuario);
+                using (sqlCon)
+                {
+                    sqlCon.Open();
 
-                sqlCon.Execute(strSqlAlterarColaborador, colaborador, tran);
-                sqlCon.Execute(strSqlAlterarEndereco, colaborador.Endereco, tran);
-                sqlCon.Execute(strSqlAlterarTel, colaborador.Telefones, tran);
-                sqlCon.Execute(
-                    strSqlAlterarUsuario,
-                    new {
-                        Nome = colaborador.NomeCompleto.Nome,
-                        SobreNome = colaborador.NomeCompleto.SobreNome,
-                        Sexo = colaborador.Sexo,
-                        DataNascimento = colaborador.DataNascimento,
-                        Email = colaborador.Email.RetornaValor,
-                        CPF = colaborador.CPF.RetornaValor,
-                        IdUsuario = colaborador.IdUsuario
-                    },
-                    tran);
-                sqlCon.Execute(strSqlAlterarContaBancaria, colaborador.ContaBancaria, tran);
+                    using (SqlTransaction tran = sqlCon.BeginTransaction())
+                    {
+                        colaborador.ContaBancaria.IdColaborador = colaborador.IdColaborador;
 
-                tran.Commit();            
+                        int idUsuario = RecuperarIdUsuario(colaborador.IdColaborador);
+
+                        colaborador.IdUsuario = idUsuario;
+                        colaborador.Endereco.IdUsuario = idUsuario;
+                        colaborador.Telefones.ForEach(x => x.IdUsuario = idUsuario);
+
+                        sqlCon.Execute(strSqlAlterarColaborador, colaborador, tran);
+                        sqlCon.Execute(strSqlAlterarEndereco,
+                            new
+                            {
+                                IdUsuario = colaborador.Endereco.IdUsuario,
+                                CEP = colaborador.Endereco.CEP.RetornaValor,
+                                Logradouro = colaborador.Endereco.Logradouro,
+                                Numero = colaborador.Endereco.Numero,
+                                Cidade = colaborador.Endereco.Cidade,
+                                UF = colaborador.Endereco.UF,
+                                Complemento = colaborador.Endereco.Complemento,
+                                Bairro = colaborador.Endereco.Bairro,
+                            },
+                        tran);
+                        sqlCon.Execute(strSqlAlterarTel, colaborador.Telefones, tran);
+                        sqlCon.Execute(
+                            strSqlAlterarUsuario,
+                            new
+                            {
+                                Nome = colaborador.NomeCompleto.Nome,
+                                SobreNome = colaborador.NomeCompleto.SobreNome,
+                                Sexo = colaborador.Sexo,
+                                DataNascimento = colaborador.DataNascimento,
+                                Email = colaborador.Email.RetornaValor,
+                                CPF = colaborador.CPF.RetornaValor,
+                                IdUsuario = colaborador.IdUsuario
+                            },
+                            tran);
+                        sqlCon.Execute(strSqlAlterarContaBancaria, colaborador.ContaBancaria, tran);
+
+                        tran.Commit();
+                    }
+                }
             }
             catch (Exception ex)
-            {
-                tran.Rollback();
+            {              
                 throw new Exception(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
             }
         }
 
@@ -173,9 +187,9 @@ namespace AugustosFashion.Repositorios
             try
             {
                 int idUsuario = RecuperarIdUsuario(idColaborador);
-                
+
                 sqlCon.Execute(strSqlExcluirContaBancaria, new { IdColaborador = idColaborador }, tran);
-                sqlCon.Execute(strSqlExcluirColaborador, new { IdColaborador = idColaborador }, tran);             
+                sqlCon.Execute(strSqlExcluirColaborador, new { IdColaborador = idColaborador }, tran);
                 sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, tran);
                 sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, tran);
                 sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, tran);
@@ -212,7 +226,7 @@ namespace AugustosFashion.Repositorios
 
                     return sqlCon.Query<ColaboradorListagem, NomeCompleto, EnderecoModel, ColaboradorListagem>(
                         strSql,
-                        (colaboradorModel, nomeCompleto, enderecoModel) => MapearColaborador(colaboradorModel, nomeCompleto, enderecoModel), new {nomeBuscado}, 
+                        (colaboradorModel, nomeCompleto, enderecoModel) => MapearColaborador(colaboradorModel, nomeCompleto, enderecoModel), new { nomeBuscado },
                         splitOn: "IdUsuario"
                      ).ToList();
                 }

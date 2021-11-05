@@ -49,9 +49,9 @@
     <Compile Include="Entidades\Cliente\ClienteListagem.cs" />
     <Compile Include="Entidades\Cliente\ClienteModel.cs" />
     <Compile Include="Entidades\Cliente\ClienteValidator.cs" />
-    <Compile Include="Entidades\Colaborador\ColaboradorConsulta.cs" />
     <Compile Include="Entidades\Colaborador\ColaboradorListagem.cs" />
     <Compile Include="Entidades\Colaborador\ColaboradorModel.cs" />
+    <Compile Include="Entidades\Colaborador\ColaboradorValidator.cs" />
     <Compile Include="Entidades\ContaBancaria\ContaBancariaModel.cs" />
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
     <Compile Include="Entidades\Cpfs\CPFValidator.cs" />

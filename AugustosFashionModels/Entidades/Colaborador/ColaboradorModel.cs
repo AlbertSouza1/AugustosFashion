@@ -1,6 +1,7 @@
 ﻿using AugustosFashion.Entidades.ContaBancaria;
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
+using AugustosFashionModels.Entidades.Colaborador;
 using System;
 using System.Collections.Generic;
 
@@ -30,6 +31,16 @@ namespace AugustosFashion.Entidades.Colaborador
             Endereco = endereco;
             Telefones = telefones;
             ContaBancaria = contaBancaria;
+        }
+
+        public string ValidarColaborador()
+        {
+            var retorno = new ColaboradorValidator().Validate(this);
+
+            if (retorno.IsValid)
+                return string.Empty;
+
+            return retorno.ToString();
         }
     }
 }

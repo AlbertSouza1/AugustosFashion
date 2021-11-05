@@ -60,7 +60,7 @@ namespace AugustosFashion.Views.Colaborador
             txtComplemento.Text = colaborador.Endereco.Complemento;
             txtBairro.Text = colaborador.Endereco.Bairro;
             txtNumero.Text = colaborador.Endereco.Numero.ToString();
-            txtCep.Text = colaborador.Endereco.CEP.RetornaValorFormatado;
+            txtCep.Text = colaborador.Endereco.CEP.RetornaValor;
             cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(colaborador.Endereco.UF);
 
             txtBanco.Text = colaborador.ContaBancaria.Banco;
@@ -79,10 +79,13 @@ namespace AugustosFashion.Views.Colaborador
                 try
                 {
                     var colaborador = InstanciarColaboradorParaAlteracao(cpf);
-                   
-                    _consultaColaboradorController.AlterarColaborador(colaborador);
+                 
+                    var retorno = _consultaColaboradorController.AlterarColaborador(colaborador);
 
-                    MessageBox.Show("Colaborador alterado com sucesso!");
+                    if (string.IsNullOrEmpty(retorno))
+                        MessageBox.Show("Colaborador alterado com sucesso!");
+                    else
+                        MessageBox.Show(retorno);
                 }
                 catch(Exception ex)
                 {

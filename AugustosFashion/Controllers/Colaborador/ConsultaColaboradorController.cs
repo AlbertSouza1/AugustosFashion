@@ -51,11 +51,16 @@ namespace AugustosFashion.Controllers.Colaborador
             }
         }
 
-        internal void AlterarColaborador(ColaboradorModel colaborador)
+        internal string AlterarColaborador(ColaboradorModel colaborador)
         {
             try
             {
-                ColaboradorRepositorio.AlterarColaborador(colaborador);               
+                var retorno = colaborador.ValidarColaborador();
+
+                if (string.IsNullOrEmpty(retorno))
+                    ColaboradorRepositorio.AlterarColaborador(colaborador);
+
+                return retorno;
             }
             catch (Exception ex)
             {

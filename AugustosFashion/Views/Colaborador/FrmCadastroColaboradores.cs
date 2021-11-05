@@ -40,11 +40,16 @@ namespace AugustosFashion.Views
 
                 try
                 {
-                    if (_cadastroColaboradorController.CadastrarColaborador(colaborador))
+
+                    var retorno = _cadastroColaboradorController.CadastrarColaborador(colaborador);
+
+                    if (string.IsNullOrEmpty(retorno))
                     {
                         MessageBox.Show("Colaborador cadastrado com sucesso!");
                         this.Close();
                     }
+                    else
+                        MessageBox.Show(retorno);
                 }
                 catch (Exception ex)
                 {
