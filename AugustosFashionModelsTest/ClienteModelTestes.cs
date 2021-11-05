@@ -6,20 +6,26 @@ namespace AugustosFashionModelsTest
 {
     [TestClass]
     public class ClienteModelTestes
-    {
+    {      
         [TestMethod]
-        public void Se_data_nascimento_cliente_for_igual_a_data_de_hoje_retornar_mensagem_avisando_aniversario()
+        [DataRow("2021/01/11", "")]
+        [DataRow("2021/11/05", "Carlos está fazendo aniversário hoje.")]
+        [DataRow("2022/06/11", "")]
+        [DataRow("2021/12/11", "")]
+        public void Se_data_nascimento_cliente_for_igual_a_data_de_hoje_retornar_mensagem_avisando_aniversario(string data, string esperado)
         {
+
+            var teste = Convert.ToDateTime(data);
             //arrange
             ClienteModel cliente = new ClienteModel();
             cliente.NomeCompleto.Nome = "Carlos";
-            cliente.DataNascimento = DateTime.Now;
-            
+            cliente.DataNascimento = teste;
+
             //act
             string mensagemRetorno = cliente.VerificarSeEhAniversarioDoCliente();
 
             //assert
-            Assert.AreEqual("Carlos está fazendo aniversário hoje.", mensagemRetorno);
+            Assert.AreEqual(esperado, mensagemRetorno);
         }
 
         [TestMethod]

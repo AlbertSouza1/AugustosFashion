@@ -18,17 +18,35 @@ namespace AugustosFashionModelsTest
         }
 
         [TestMethod]
-        public void Se_CEP_nao_possuir_tamanho_oito_deve_retornar_mensagem_de_erro()
+        [DataRow("15710000", "")]
+        [DataRow("157100001", "CEP inválido")]
+        [DataRow("1571000", "CEP inválido")]
+        [DataRow("-", "CEP inválido")]
+        public void Se_CEP_nao_possuir_tamanho_oito_deve_retornar_mensagem_de_erro(string cep, string retornoEsperado)
         {
             var cliente = new ClienteModel();
             cliente.NomeCompleto.Nome = "José";
             cliente.NomeCompleto.SobreNome = "Aldo";
             cliente.Email = "email@email.com";
-            cliente.Endereco.CEP = "1571000012";
+            cliente.Endereco.CEP = cep;
 
             var retorno = cliente.ValidarCliente();
 
-            Assert.AreEqual("CEP inválido", retorno);
+            Assert.AreEqual(retornoEsperado, retorno);
+        }
+
+        [TestMethod]
+        public void Retorna_valor_formatado_deve_retornar_cep_com_traco()
+        {
+            //arrange
+            var cliente = new ClienteModel();         
+            cliente.Endereco.CEP = "15710000";
+
+            //act
+            var retorno = cliente.Endereco.CEP.RetornaValorFormatado;
+
+            //assert
+            Assert.AreEqual("15710-000", retorno);
         }
     }
 }
