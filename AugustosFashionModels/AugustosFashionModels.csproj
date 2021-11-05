@@ -62,6 +62,7 @@
     <Compile Include="Entidades\Endereco\EnderecoValidator.cs" />
     <Compile Include="Entidades\NomesCompletos\NomeCompletoValidator.cs" />
     <Compile Include="Entidades\Telefone\TelefoneModel.cs" />
+    <Compile Include="Entidades\Telefone\TelefoneValidator.cs" />
     <Compile Include="Entidades\Telefone\TipoTelefone.cs" />
     <Compile Include="Entidades\Cpfs\CPF.cs" />
     <Compile Include="Entidades\Emails\Email.cs" />

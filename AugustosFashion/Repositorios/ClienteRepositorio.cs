@@ -14,10 +14,7 @@ namespace AugustosFashion.Repositorios
     public static class ClienteRepositorio
     {
         public static void CadastrarCliente(ClienteModel cliente)
-        {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-            int insertedId = 0;
-
+        {          
             var strSqlCliente = "Insert into Clientes " +
                 "values (@IdUsuario, @LimiteCompraAPrazo, @Observacao)";
 
@@ -27,55 +24,58 @@ namespace AugustosFashion.Repositorios
 
             var strSqlTelefones = TelefoneRepositorio.ObterStringInsertTelefone();
 
-            sqlCon.Open();
-
-            SqlTransaction tran = sqlCon.BeginTransaction();
-
             try
             {
-                insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario,
-                    new {Nome = cliente.NomeCompleto.Nome, SobreNome = cliente.NomeCompleto.SobreNome,
-                        Sexo = cliente.Sexo, DataNascimento = cliente.DataNascimento, Email = cliente.Email.RetornaValor, CPF = cliente.CPF.RetornaValor},                
-                    tran);
-
-                cliente.IdUsuario = insertedId;
-                cliente.Endereco.IdUsuario = insertedId;
-                cliente.Telefones.ForEach(x => x.IdUsuario = insertedId);
-
-                sqlCon.Execute(strSqlCliente, cliente, tran);
-                sqlCon.Execute(strSqlEndereco,
-                    new
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+                    using (SqlTransaction tran = sqlCon.BeginTransaction())
                     {
-                        IdUsuario = cliente.Endereco.IdUsuario,
-                        CEP = cliente.Endereco.CEP.RetornaValor,
-                        Logradouro = cliente.Endereco.Logradouro,
-                        Numero = cliente.Endereco.Numero,
-                        Cidade = cliente.Endereco.Cidade,
-                        UF = cliente.Endereco.UF,
-                        Complemento = cliente.Endereco.Complemento,
-                        Bairro = cliente.Endereco.Bairro,
-                    },
-                    tran);
+                        int insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario,
+                        new
+                        {
+                            Nome = cliente.NomeCompleto.Nome,
+                            SobreNome = cliente.NomeCompleto.SobreNome,
+                            Sexo = cliente.Sexo,
+                            DataNascimento = cliente.DataNascimento,
+                            Email = cliente.Email.RetornaValor,
+                            CPF = cliente.CPF.RetornaValor
+                        },
+                        tran);
 
-                sqlCon.Execute(strSqlTelefones, cliente.Telefones, tran);
+                        cliente.IdUsuario = insertedId;
+                        cliente.Endereco.IdUsuario = insertedId;
+                        cliente.Telefones.ForEach(x => x.IdUsuario = insertedId);
 
-                tran.Commit();
+                        sqlCon.Execute(strSqlCliente, cliente, tran);
+                        sqlCon.Execute(strSqlEndereco,
+                        new
+                        {
+                                IdUsuario = cliente.Endereco.IdUsuario,
+                                CEP = cliente.Endereco.CEP.RetornaValor,
+                                Logradouro = cliente.Endereco.Logradouro,
+                                Numero = cliente.Endereco.Numero,
+                                Cidade = cliente.Endereco.Cidade,
+                                UF = cliente.Endereco.UF,
+                                Complemento = cliente.Endereco.Complemento,
+                                Bairro = cliente.Endereco.Bairro,
+                         },
+                         tran);
+
+                        sqlCon.Execute(strSqlTelefones, cliente.Telefones, tran);
+
+                        tran.Commit();
+                    }
+                }              
             }
             catch (Exception ex)
             {
-                tran.Rollback();
                 throw new Exception(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
             }
         }
 
         public static List<ClienteListagem> BuscarClientesPorId(int idBuscado)
-        {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
+        {            
             var strSqlBusca = @"select
                 c.idCliente, u.IdUsuario, u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
                 u.DataNascimento, e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
@@ -87,7 +87,7 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                using (sqlCon)
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
                     sqlCon.Open();
 
@@ -105,9 +105,7 @@ namespace AugustosFashion.Repositorios
         }
 
         public static List<ClienteListagem> ListarClientes()
-        {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
+        {          
             var strSql = @"select
                 c.IdCliente, u.IdUsuario,  u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
                 u.DataNascimento, e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
@@ -117,7 +115,7 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                using (sqlCon)
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
                     sqlCon.Open();
 
@@ -135,7 +133,7 @@ namespace AugustosFashion.Repositorios
         }
         public static void AlterarCliente(ClienteModel cliente)
         {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
+
 
             string strSqlAlterarCliente = @"update Clientes  
                 set Observacao = @Observacao, ValorLimiteCompraAPrazo = @LimiteCompraAPrazo where IdCliente = @IdCliente";
@@ -144,100 +142,90 @@ namespace AugustosFashion.Repositorios
             string strSqlAlterarTel = TelefoneRepositorio.ObterStringAlterarTelefone();
             string strSqlAlterarUsuario = UsuarioRepositorio.ObterStringAlterarUsuario();
 
-            sqlCon.Open();
-
-            SqlTransaction tran = sqlCon.BeginTransaction();
-
             try
             {
-                int idUsuario = RecuperarIdUsuario(cliente.IdCliente);
-
-                cliente.IdUsuario = idUsuario;
-                cliente.Endereco.IdUsuario = idUsuario;
-                cliente.Telefones.ForEach(x => x.IdUsuario = idUsuario);
-
-                sqlCon.Execute(strSqlAlterarCliente, cliente, tran);
-                sqlCon.Execute(strSqlAlterarEndereco,
-                    new
-                    {
-                        IdUsuario = cliente.Endereco.IdUsuario,
-                        CEP = cliente.Endereco.CEP.RetornaValor,
-                        Logradouro = cliente.Endereco.Logradouro,
-                        Numero = cliente.Endereco.Numero,
-                        Cidade = cliente.Endereco.Cidade,
-                        UF = cliente.Endereco.UF,
-                        Complemento = cliente.Endereco.Complemento,
-                        Bairro = cliente.Endereco.Bairro,
-                    },
-                    tran);
-                sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, tran);
-                sqlCon.Execute(strSqlAlterarUsuario, 
-                new
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
-                    Nome = cliente.NomeCompleto.Nome,
-                    SobreNome = cliente.NomeCompleto.SobreNome,
-                    Sexo = cliente.Sexo,
-                    DataNascimento = cliente.DataNascimento,
-                    Email = cliente.Email.RetornaValor,
-                    CPF = cliente.CPF.RetornaValor,
-                    IdUsuario = cliente.IdUsuario
-                },         
-                tran);
+                    sqlCon.Open();
 
-                tran.Commit();
+                    using (SqlTransaction tran = sqlCon.BeginTransaction())
+                    {
+                        int idUsuario = RecuperarIdUsuario(cliente.IdCliente, sqlCon);
+
+                        cliente.IdUsuario = idUsuario;
+                        cliente.Endereco.IdUsuario = idUsuario;
+                        cliente.Telefones.ForEach(x => x.IdUsuario = idUsuario);
+
+                        sqlCon.Execute(strSqlAlterarCliente, cliente, tran);
+                        sqlCon.Execute(strSqlAlterarEndereco,
+                            new
+                            {
+                                IdUsuario = cliente.Endereco.IdUsuario,
+                                CEP = cliente.Endereco.CEP.RetornaValor,
+                                Logradouro = cliente.Endereco.Logradouro,
+                                Numero = cliente.Endereco.Numero,
+                                Cidade = cliente.Endereco.Cidade,
+                                UF = cliente.Endereco.UF,
+                                Complemento = cliente.Endereco.Complemento,
+                                Bairro = cliente.Endereco.Bairro,
+                            },
+                            tran);
+                        sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, tran);
+                        sqlCon.Execute(strSqlAlterarUsuario,
+                        new
+                        {
+                            Nome = cliente.NomeCompleto.Nome,
+                            SobreNome = cliente.NomeCompleto.SobreNome,
+                            Sexo = cliente.Sexo,
+                            DataNascimento = cliente.DataNascimento,
+                            Email = cliente.Email.RetornaValor,
+                            CPF = cliente.CPF.RetornaValor,
+                            IdUsuario = cliente.IdUsuario
+                        },
+                        tran);
+
+                        tran.Commit();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                tran.Rollback();
                 throw new Exception(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
             }
         }
         public static void ExcluirCliente(int idCliente)
         {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
             string strSqlExcluirCliente = "delete from Clientes where IdCliente = @IdCliente";
             string strSqlExcluirEndereco = EnderecoRepositorio.ObterStringExcluisaoEndereco();
             string strSqlExcluirTel = TelefoneRepositorio.ObterStringExclusaoTelefone();
             string strSqlExcluirUsuario = UsuarioRepositorio.ObterStringExclusaoUsuario();
 
-            sqlCon.Open();
-
-            SqlTransaction tran = sqlCon.BeginTransaction();
-
             try
             {
-                //using (sqlCon)
-                //{
-                int idUsuario = RecuperarIdUsuario(idCliente);
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
 
-                sqlCon.Execute(strSqlExcluirCliente, new { IdCliente = idCliente }, tran);
-                sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, tran);
-                sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, tran);
-                sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, tran);
+                    using (SqlTransaction tran = sqlCon.BeginTransaction())
+                    {
+                        int idUsuario = RecuperarIdUsuario(idCliente, sqlCon);
 
-                tran.Commit();
-                //}
+                        sqlCon.Execute(strSqlExcluirCliente, new { IdCliente = idCliente }, tran);
+                        sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, tran);
+                        sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, tran);
+                        sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, tran);
+
+                        tran.Commit();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                tran.Rollback();
                 throw new Exception(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
             }
         }
         public static ClienteModel RecuperarInfoCliente(int idCliente)
         {
-            int idUsuario = RecuperarIdUsuario(idCliente);
-
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlRecuperarInfoCliente = @"
                 select c.idCliente, c.idUsuario, c.ValorLimiteCompraAPrazo as LimiteCompraAPrazo, c.Observacao,
@@ -250,18 +238,24 @@ namespace AugustosFashion.Repositorios
 
             string strSqlRecuperarInfoTelefones = TelefoneRepositorio.ObterStringRecuperarInfoTelefones();
 
-            sqlCon.Open();
-
             try
             {
-                var cliente = sqlCon.Query<ClienteModel, NomeCompleto, EnderecoModel, ClienteModel>(
-                    strSqlRecuperarInfoCliente,
-                    (cliente, nomeCompleto, endereco) => MapearClienteParaConsulta(cliente, nomeCompleto, endereco), new { IdCliente = idCliente },
-                    splitOn: "IdUsuario").FirstOrDefault();
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
 
-                cliente.Telefones = sqlCon.Query<TelefoneModel>(strSqlRecuperarInfoTelefones, new { IdUsuario = idUsuario }).ToList();
+                    sqlCon.Open();
 
-                return cliente;
+                    int idUsuario = RecuperarIdUsuario(idCliente, sqlCon);
+
+                    var cliente = sqlCon.Query<ClienteModel, NomeCompleto, EnderecoModel, ClienteModel>(
+                        strSqlRecuperarInfoCliente,
+                        (cliente, nomeCompleto, endereco) => MapearClienteParaConsulta(cliente, nomeCompleto, endereco), new { IdCliente = idCliente },
+                        splitOn: "IdUsuario").FirstOrDefault();
+
+                    cliente.Telefones = sqlCon.Query<TelefoneModel>(strSqlRecuperarInfoTelefones, new { IdUsuario = idUsuario }).ToList();
+
+                    return cliente;
+                }
             }
             catch (Exception ex)
             {
@@ -286,7 +280,7 @@ namespace AugustosFashion.Repositorios
                 using (sqlCon)
                 {
                     sqlCon.Open();
-                
+
                     return sqlCon.Query<ClienteListagem, NomeCompleto, EnderecoModel, ClienteListagem>(
                         stringSqlBusca,
                         (clienteModel, nomeCompleto, enderecoModel) => MapearCliente(clienteModel, nomeCompleto, enderecoModel), new { nomeBuscado },
@@ -299,22 +293,14 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        public static int RecuperarIdUsuario(int idCliente)
+        public static int RecuperarIdUsuario(int idCliente, SqlConnection sqlCon)
         {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Clientes where IdCliente = @IdCliente";
             try
             {
-                using (sqlCon)
-                {
-                    sqlCon.Open();
+                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdCliente = idCliente });
 
-                    int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdCliente = idCliente });
-
-                    return idUsuario;
-                }
-
+                return idUsuario;
             }
             catch (Exception ex)
             {

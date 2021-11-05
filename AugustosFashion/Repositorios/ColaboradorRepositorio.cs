@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Transactions;
 
 namespace AugustosFashion.Repositorios
 {
@@ -115,22 +116,23 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-
+                //using (TransactionScope scope = new TransactionScope())
+                //{
                 using (sqlCon)
                 {
-                    sqlCon.Open();
-
-                    using (SqlTransaction tran = sqlCon.BeginTransaction())
+                    sqlCon.Open();int idUsuario = RecuperarIdUsuario(colaborador.IdColaborador, sqlCon);
+                    using (var transaction = sqlCon.BeginTransaction())
                     {
+
                         colaborador.ContaBancaria.IdColaborador = colaborador.IdColaborador;
 
-                        int idUsuario = RecuperarIdUsuario(colaborador.IdColaborador);
+                        
 
                         colaborador.IdUsuario = idUsuario;
                         colaborador.Endereco.IdUsuario = idUsuario;
                         colaborador.Telefones.ForEach(x => x.IdUsuario = idUsuario);
 
-                        sqlCon.Execute(strSqlAlterarColaborador, colaborador, tran);
+                        sqlCon.Execute(strSqlAlterarColaborador, colaborador, transaction);
                         sqlCon.Execute(strSqlAlterarEndereco,
                             new
                             {
@@ -142,9 +144,8 @@ namespace AugustosFashion.Repositorios
                                 UF = colaborador.Endereco.UF,
                                 Complemento = colaborador.Endereco.Complemento,
                                 Bairro = colaborador.Endereco.Bairro,
-                            },
-                        tran);
-                        sqlCon.Execute(strSqlAlterarTel, colaborador.Telefones, tran);
+                            }, transaction);
+                        sqlCon.Execute(strSqlAlterarTel, colaborador.Telefones, transaction);
                         sqlCon.Execute(
                             strSqlAlterarUsuario,
                             new
@@ -156,16 +157,16 @@ namespace AugustosFashion.Repositorios
                                 Email = colaborador.Email.RetornaValor,
                                 CPF = colaborador.CPF.RetornaValor,
                                 IdUsuario = colaborador.IdUsuario
-                            },
-                            tran);
-                        sqlCon.Execute(strSqlAlterarContaBancaria, colaborador.ContaBancaria, tran);
+                            }, transaction);
+                        sqlCon.Execute(strSqlAlterarContaBancaria, colaborador.ContaBancaria, transaction);
 
-                        tran.Commit();
+                        transaction.Commit();
                     }
+                    //    scope.Complete();
                 }
             }
             catch (Exception ex)
-            {              
+            {
                 throw new Exception(ex.Message);
             }
         }
@@ -186,7 +187,7 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                int idUsuario = RecuperarIdUsuario(idColaborador);
+                int idUsuario = RecuperarIdUsuario(idColaborador, sqlCon);
 
                 sqlCon.Execute(strSqlExcluirContaBancaria, new { IdColaborador = idColaborador }, tran);
                 sqlCon.Execute(strSqlExcluirColaborador, new { IdColaborador = idColaborador }, tran);
@@ -269,9 +270,9 @@ namespace AugustosFashion.Repositorios
 
         public static ColaboradorModel RecuperarInfoColaborador(int idColaborador)
         {
-            int idUsuario = RecuperarIdUsuario(idColaborador);
-
             SqlConnection sqlCon = SqlHelper.ObterConexao();
+
+            int idUsuario = RecuperarIdUsuario(idColaborador, sqlCon);
 
             string strSqlRecuperarInfoColaborador = @"
                 select c.IdColaborador, c.IdUsuario, c.Salario, c.PorcentagemComissao,
@@ -305,22 +306,15 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static int RecuperarIdUsuario(int idColaborador)
+        public static int RecuperarIdUsuario(int idColaborador, SqlConnection sqlCon)
         {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Colaboradores where IdColaborador = @IdColaborador";
             try
             {
-                using (sqlCon)
-                {
-                    sqlCon.Open();
+                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdColaborador = idColaborador });
 
-                    int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdColaborador = idColaborador });
-
-                    return idUsuario;
-                }
-
+                return idUsuario;
             }
             catch (Exception ex)
             {

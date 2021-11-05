@@ -16,27 +16,6 @@ namespace AugustosFashion.Repositorios
 
         public static string ObterStringExclusaoConta() => "delete from ContaBancaria where IdColaborador = @IdColaborador";
 
-        public static ContaBancariaModel RecuperarInfoContaBancaria(int idColaborador)
-        {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
-            var strSqlUsuarioConsulta = @"select IdConta, Agencia, Conta, TipoConta, Banco 
-                from ContaBancaria where IdColaborador = @IdColaborador";
-
-            sqlCon.Open();
-
-            try
-            {
-                ContaBancariaModel usuario = sqlCon.QuerySingle<ContaBancariaModel>(strSqlUsuarioConsulta, new { IdColaborador = idColaborador });
-
-                return usuario;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         public static string ObterStringAlterarContaBancaria() =>
              @"update ContaBancaria set Agencia = @Agencia, Conta = @Conta, TipoConta = @TipoConta, Banco = @Banco  
                 where IdColaborador = @IdColaborador";

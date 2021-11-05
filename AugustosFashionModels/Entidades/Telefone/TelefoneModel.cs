@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AugustosFashion.Entidades.Telefone
+﻿namespace AugustosFashion.Entidades.Telefone
 {
     public class TelefoneModel
     {
-        public TelefoneModel(string numero)
+        public TelefoneModel(string numero, TipoTelefone tipoTelefone)
         {
             Numero = numero;
+            TipoTelefone = tipoTelefone;
         }
         public TelefoneModel()
         {

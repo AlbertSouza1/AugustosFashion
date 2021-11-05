@@ -1,12 +1,8 @@
 ﻿using AugustosFashion.Entidades;
 using AugustosFashion.Entidades.Colaborador;
-using AugustosFashion.Entidades.ContaBancaria;
-using AugustosFashion.Entidades.Endereco;
-using AugustosFashion.Entidades.Telefone;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Colaborador;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers.Colaborador
