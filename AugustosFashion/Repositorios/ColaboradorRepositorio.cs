@@ -16,7 +16,7 @@ namespace AugustosFashion.Repositorios
     {
         public static void CadastrarColaborador(ColaboradorModel colaborador)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             var strSqlColaborador = "Insert into Colaboradores output inserted.IdColaborador " +
                 "values (@IdUsuario, @Salario, @PorcentagemComissao)";
@@ -75,7 +75,7 @@ namespace AugustosFashion.Repositorios
 
         public static List<ColaboradorListagem> ListarColaboradores()
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             var strSql = @"select
                 c.idColaborador, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
@@ -103,7 +103,7 @@ namespace AugustosFashion.Repositorios
         }
         public static void AlterarColaborador(ColaboradorModel colaborador)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlAlterarColaborador = @"update Colaboradores  
                 set Salario = @Salario, PorcentagemComissao = @PorcentagemComissao where IdColaborador = @IdColaborador";
@@ -172,7 +172,7 @@ namespace AugustosFashion.Repositorios
 
         public static void ExcluirColaborador(int idColaborador)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlExcluirColaborador = "delete from Colaboradores where IdColaborador = @IdColaborador";
             string strSqlExcluirEndereco = EnderecoRepositorio.ObterStringExcluisaoEndereco();
@@ -209,7 +209,7 @@ namespace AugustosFashion.Repositorios
 
         public static List<ColaboradorListagem> BuscarColaboradoresPorNome(string nomeBuscado)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             var strSql = @"select
                 c.idColaborador, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
@@ -239,7 +239,7 @@ namespace AugustosFashion.Repositorios
 
         public static List<ColaboradorListagem> BuscarColaboradoresPorId(int idBuscado)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             var strSql = @"select
                 c.idColaborador, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
@@ -271,7 +271,7 @@ namespace AugustosFashion.Repositorios
         {
             int idUsuario = RecuperarIdUsuario(idColaborador);
 
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlRecuperarInfoColaborador = @"
                 select c.IdColaborador, c.IdUsuario, c.Salario, c.PorcentagemComissao,
@@ -307,7 +307,7 @@ namespace AugustosFashion.Repositorios
 
         public static int RecuperarIdUsuario(int idColaborador)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Colaboradores where IdColaborador = @IdColaborador";
             try

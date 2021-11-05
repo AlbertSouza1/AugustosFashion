@@ -15,7 +15,7 @@ namespace AugustosFashion.Repositorios
     {
         public static void CadastrarCliente(ClienteModel cliente)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
             int insertedId = 0;
 
             var strSqlCliente = "Insert into Clientes " +
@@ -74,7 +74,7 @@ namespace AugustosFashion.Repositorios
 
         public static List<ClienteListagem> BuscarClientesPorId(int idBuscado)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             var strSqlBusca = @"select
                 c.idCliente, u.IdUsuario, u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
@@ -106,7 +106,7 @@ namespace AugustosFashion.Repositorios
 
         public static List<ClienteListagem> ListarClientes()
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             var strSql = @"select
                 c.IdCliente, u.IdUsuario,  u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
@@ -135,7 +135,7 @@ namespace AugustosFashion.Repositorios
         }
         public static void AlterarCliente(ClienteModel cliente)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlAlterarCliente = @"update Clientes  
                 set Observacao = @Observacao, ValorLimiteCompraAPrazo = @LimiteCompraAPrazo where IdCliente = @IdCliente";
@@ -198,7 +198,7 @@ namespace AugustosFashion.Repositorios
         }
         public static void ExcluirCliente(int idCliente)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlExcluirCliente = "delete from Clientes where IdCliente = @IdCliente";
             string strSqlExcluirEndereco = EnderecoRepositorio.ObterStringExcluisaoEndereco();
@@ -237,7 +237,7 @@ namespace AugustosFashion.Repositorios
         {
             int idUsuario = RecuperarIdUsuario(idCliente);
 
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlRecuperarInfoCliente = @"
                 select c.idCliente, c.idUsuario, c.ValorLimiteCompraAPrazo as LimiteCompraAPrazo, c.Observacao,
@@ -270,7 +270,7 @@ namespace AugustosFashion.Repositorios
         }
         public static List<ClienteListagem> BuscarClientesPorNome(string nomeBuscado)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             var stringSqlBusca = @"select
                 c.idCliente, u.IdUsuario, u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
@@ -301,7 +301,7 @@ namespace AugustosFashion.Repositorios
         }
         public static int RecuperarIdUsuario(int idCliente)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Clientes where IdCliente = @IdCliente";
             try

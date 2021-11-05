@@ -18,7 +18,7 @@ namespace AugustosFashion.Repositorios
 
         public static ContaBancariaModel RecuperarInfoContaBancaria(int idColaborador)
         {
-            SqlConnection sqlCon = new SqlHelper().ObterConexao();
+            SqlConnection sqlCon = SqlHelper.ObterConexao();
 
             var strSqlUsuarioConsulta = @"select IdConta, Agencia, Conta, TipoConta, Banco 
                 from ContaBancaria where IdColaborador = @IdColaborador";

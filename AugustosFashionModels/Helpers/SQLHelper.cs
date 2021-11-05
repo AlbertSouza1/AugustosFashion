@@ -3,11 +3,11 @@
 
 namespace AugustosFashion.Helpers
 {
-    public  class SqlHelper
+    public static class SqlHelper
     {
-        private  string connectionString = @"Data Source=USER-PC\SQLEXPRESS;Initial Catalog=AugustoFashion;User ID=sa;Password=123";
+        private static string connectionString = @"Data Source=USER-PC\SQLEXPRESS;Initial Catalog=AugustoFashion;User ID=sa;Password=123";
 
-        public  SqlConnection ObterConexao()
+        public static SqlConnection ObterConexao()
         {
             SqlConnection sqlCon = new SqlConnection(connectionString);
 
