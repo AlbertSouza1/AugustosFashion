@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Transactions;
 
 namespace AugustosFashion.Repositorios
 {
@@ -17,8 +16,6 @@ namespace AugustosFashion.Repositorios
     {
         public static void CadastrarColaborador(ColaboradorModel colaborador)
         {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
             var strSqlColaborador = "Insert into Colaboradores output inserted.IdColaborador " +
                 "values (@IdUsuario, @Salario, @PorcentagemComissao)";
 
@@ -29,47 +26,58 @@ namespace AugustosFashion.Repositorios
             var strSqlTelefones = TelefoneRepositorio.ObterStringInsertTelefone();
 
             var strSqlContaBancaria = ContaBancariaRepositorio.ObterStringInsertContaBancaria();
-
-            sqlCon.Open();
-
-            SqlTransaction tran = sqlCon.BeginTransaction();
-
+         
             try
             {
-                using (sqlCon)
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
+                    sqlCon.Open();
 
-                    int insertedId = sqlCon.ExecuteScalar<int>(
-                        strSqlUsuario,
-                        new
+                    using(SqlTransaction transaction = sqlCon.BeginTransaction())
+                    {
+                        int insertedId = sqlCon.ExecuteScalar<int>(
+                           strSqlUsuario,
+                           new
+                           {
+                               Nome = colaborador.NomeCompleto.Nome,
+                               SobreNome = colaborador.NomeCompleto.SobreNome,
+                               Sexo = colaborador.Sexo,
+                               DataNascimento = colaborador.DataNascimento,
+                               Email = colaborador.Email.RetornaValor,
+                               CPF = colaborador.CPF.RetornaValor
+                           },
+                           transaction);
+
+                        colaborador.IdUsuario = insertedId;
+                        colaborador.Endereco.IdUsuario = insertedId;
+                        colaborador.Telefones.ForEach(x => x.IdUsuario = insertedId);
+
+                        var idColaborador = sqlCon.ExecuteScalar<int>(strSqlColaborador, colaborador, transaction);
+
+                        colaborador.ContaBancaria.IdColaborador = idColaborador;
+
+                        sqlCon.Execute(strSqlEndereco, new
                         {
-                            Nome = colaborador.NomeCompleto.Nome,
-                            SobreNome = colaborador.NomeCompleto.SobreNome,
-                            Sexo = colaborador.Sexo,
-                            DataNascimento = colaborador.DataNascimento,
-                            Email = colaborador.Email.RetornaValor,
-                            CPF = colaborador.CPF.RetornaValor
+                            IdUsuario = colaborador.Endereco.IdUsuario,
+                            CEP = colaborador.Endereco.CEP.RetornaValor,
+                            Logradouro = colaborador.Endereco.Logradouro,
+                            Numero = colaborador.Endereco.Numero,
+                            Cidade = colaborador.Endereco.Cidade,
+                            UF = colaborador.Endereco.UF,
+                            Complemento = colaborador.Endereco.Complemento,
+                            Bairro = colaborador.Endereco.Bairro
                         },
-                        tran);
+                        transaction);
 
-                    colaborador.IdUsuario = insertedId;
-                    colaborador.Endereco.IdUsuario = insertedId;
-                    colaborador.Telefones.ForEach(x => x.IdUsuario = insertedId);
+                        sqlCon.Execute(strSqlTelefones, colaborador.Telefones, transaction);
+                        sqlCon.Execute(strSqlContaBancaria, colaborador.ContaBancaria, transaction);
 
-                    var idColaborador = sqlCon.ExecuteScalar<int>(strSqlColaborador, colaborador, tran);
-
-                    colaborador.ContaBancaria.IdColaborador = idColaborador;
-
-                    sqlCon.Execute(strSqlEndereco, colaborador.Endereco, tran);
-                    sqlCon.Execute(strSqlTelefones, colaborador.Telefones, tran);
-                    sqlCon.Execute(strSqlContaBancaria, colaborador.ContaBancaria, tran);
-
-                    tran.Commit();
+                        transaction.Commit();
+                    }                   
                 }
             }
             catch (Exception ex)
             {
-                tran.Rollback();
                 throw new Exception(ex.Message);
             }
         }
@@ -103,9 +111,7 @@ namespace AugustosFashion.Repositorios
             }
         }
         public static void AlterarColaborador(ColaboradorModel colaborador)
-        {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
+        {           
             string strSqlAlterarColaborador = @"update Colaboradores  
                 set Salario = @Salario, PorcentagemComissao = @PorcentagemComissao where IdColaborador = @IdColaborador";
 
@@ -116,13 +122,12 @@ namespace AugustosFashion.Repositorios
 
             try
             {
-                //using (TransactionScope scope = new TransactionScope())
-                //{
-                using (sqlCon)
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
-                    sqlCon.Open();int idUsuario = RecuperarIdUsuario(colaborador.IdColaborador, sqlCon);
+                    sqlCon.Open();
                     using (var transaction = sqlCon.BeginTransaction())
                     {
+                        int idUsuario = RecuperarIdUsuario(colaborador.IdColaborador, sqlCon, transaction);
 
                         colaborador.ContaBancaria.IdColaborador = colaborador.IdColaborador;
 
@@ -162,7 +167,6 @@ namespace AugustosFashion.Repositorios
 
                         transaction.Commit();
                     }
-                    //    scope.Complete();
                 }
             }
             catch (Exception ex)
@@ -172,39 +176,36 @@ namespace AugustosFashion.Repositorios
         }
 
         public static void ExcluirColaborador(int idColaborador)
-        {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
+        {         
             string strSqlExcluirColaborador = "delete from Colaboradores where IdColaborador = @IdColaborador";
             string strSqlExcluirEndereco = EnderecoRepositorio.ObterStringExcluisaoEndereco();
             string strSqlExcluirTel = TelefoneRepositorio.ObterStringExclusaoTelefone();
             string strSqlExcluirUsuario = UsuarioRepositorio.ObterStringExclusaoUsuario();
-            string strSqlExcluirContaBancaria = ContaBancariaRepositorio.ObterStringExclusaoConta();
-
-            sqlCon.Open();
-
-            SqlTransaction tran = sqlCon.BeginTransaction();
+            string strSqlExcluirContaBancaria = ContaBancariaRepositorio.ObterStringExclusaoConta();          
 
             try
             {
-                int idUsuario = RecuperarIdUsuario(idColaborador, sqlCon);
+                using(SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
 
-                sqlCon.Execute(strSqlExcluirContaBancaria, new { IdColaborador = idColaborador }, tran);
-                sqlCon.Execute(strSqlExcluirColaborador, new { IdColaborador = idColaborador }, tran);
-                sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, tran);
-                sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, tran);
-                sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, tran);
+                    using(SqlTransaction transaction = sqlCon.BeginTransaction())
+                    {
+                        int idUsuario = RecuperarIdUsuario(idColaborador, sqlCon, transaction);
 
-                tran.Commit();
+                        sqlCon.Execute(strSqlExcluirContaBancaria, new { IdColaborador = idColaborador }, transaction);
+                        sqlCon.Execute(strSqlExcluirColaborador, new { IdColaborador = idColaborador }, transaction);
+                        sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, transaction);
+                        sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, transaction);
+                        sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, transaction);
+
+                        transaction.Commit();
+                    }
+                }              
             }
             catch (Exception ex)
             {
-                tran.Rollback();
                 throw new Exception(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
             }
         }
 
@@ -270,10 +271,8 @@ namespace AugustosFashion.Repositorios
 
         public static ColaboradorModel RecuperarInfoColaborador(int idColaborador)
         {
-            SqlConnection sqlCon = SqlHelper.ObterConexao();
-
-            int idUsuario = RecuperarIdUsuario(idColaborador, sqlCon);
-
+            
+            
             string strSqlRecuperarInfoColaborador = @"
                 select c.IdColaborador, c.IdUsuario, c.Salario, c.PorcentagemComissao,
                 u.Email, u.DataNascimento, u.CPF, u.Sexo,
@@ -286,19 +285,25 @@ namespace AugustosFashion.Repositorios
 				where c.idColaborador = @IdColaborador";
             string strSqlRecuperarInfoTelefones = TelefoneRepositorio.ObterStringRecuperarInfoTelefones();
 
-            sqlCon.Open();
-
             try
             {
-                var colaborador = sqlCon.Query<ColaboradorModel, NomeCompleto, EnderecoModel, ContaBancariaModel, ColaboradorModel>(
+
+                using(SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    int idUsuario = RecuperarIdUsuario(idColaborador, sqlCon, null);
+
+                    var colaborador = sqlCon.Query<ColaboradorModel, NomeCompleto, EnderecoModel, ContaBancariaModel, ColaboradorModel>(
                     strSqlRecuperarInfoColaborador,
                     (colaborador, nomeCompleto, endereco, contaBancaria) => MapearColaboradorParaConsulta(colaborador, nomeCompleto, endereco, contaBancaria),
                     new { IdColaborador = idColaborador },
                     splitOn: "IdUsuario").FirstOrDefault();
 
-                colaborador.Telefones = sqlCon.Query<TelefoneModel>(strSqlRecuperarInfoTelefones, new { IdUsuario = idUsuario }).ToList();
+                    colaborador.Telefones = sqlCon.Query<TelefoneModel>(strSqlRecuperarInfoTelefones, new { IdUsuario = idUsuario }).ToList();
 
-                return colaborador;
+                    return colaborador;
+                }              
             }
             catch (Exception ex)
             {
@@ -306,13 +311,13 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static int RecuperarIdUsuario(int idColaborador, SqlConnection sqlCon)
+        public static int RecuperarIdUsuario(int idColaborador, SqlConnection sqlCon, SqlTransaction transaction)
         {
-
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Colaboradores where IdColaborador = @IdColaborador";
+
             try
             {
-                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdColaborador = idColaborador });
+                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdColaborador = idColaborador }, transaction);
 
                 return idUsuario;
             }

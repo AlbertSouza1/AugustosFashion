@@ -150,7 +150,7 @@ namespace AugustosFashion.Repositorios
 
                     using (SqlTransaction tran = sqlCon.BeginTransaction())
                     {
-                        int idUsuario = RecuperarIdUsuario(cliente.IdCliente, sqlCon);
+                        int idUsuario = RecuperarIdUsuario(cliente.IdCliente, sqlCon, tran);
 
                         cliente.IdUsuario = idUsuario;
                         cliente.Endereco.IdUsuario = idUsuario;
@@ -208,7 +208,7 @@ namespace AugustosFashion.Repositorios
 
                     using (SqlTransaction tran = sqlCon.BeginTransaction())
                     {
-                        int idUsuario = RecuperarIdUsuario(idCliente, sqlCon);
+                        int idUsuario = RecuperarIdUsuario(idCliente, sqlCon, tran);
 
                         sqlCon.Execute(strSqlExcluirCliente, new { IdCliente = idCliente }, tran);
                         sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, tran);
@@ -245,7 +245,7 @@ namespace AugustosFashion.Repositorios
 
                     sqlCon.Open();
 
-                    int idUsuario = RecuperarIdUsuario(idCliente, sqlCon);
+                    int idUsuario = RecuperarIdUsuario(idCliente, sqlCon, null);
 
                     var cliente = sqlCon.Query<ClienteModel, NomeCompleto, EnderecoModel, ClienteModel>(
                         strSqlRecuperarInfoCliente,
@@ -293,12 +293,12 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        public static int RecuperarIdUsuario(int idCliente, SqlConnection sqlCon)
+        public static int RecuperarIdUsuario(int idCliente, SqlConnection sqlCon, SqlTransaction tran)
         {
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Clientes where IdCliente = @IdCliente";
             try
             {
-                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdCliente = idCliente });
+                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdCliente = idCliente }, tran);
 
                 return idUsuario;
             }
