@@ -19,39 +19,46 @@ namespace AugustosFashion.Views
             this.BringToFront();
         }
 
-        private void FrmCadastroCliente_Load(object sender, EventArgs e)
+        private void CadastrarCliente(ClienteModel cliente)
         {
+            try
+            {               
+                var retorno = _cadastroClienteController.CadastrarCliente(cliente);
 
+                if (string.IsNullOrEmpty(retorno))
+                {
+                    MessageBox.Show("Cliente cadastrado com sucesso!");
+                    this.Close();
+                }
+                else
+                    MessageBox.Show(retorno);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Não foi possível cadastrar o cliente. " + ex.Message);
+            }
         }
 
         private void btnCadastrarCliente_Click(object sender, EventArgs e)
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
-            if (VerificarValidacoesDeCliente(cpfSemPontos))
+            try
             {
-                try
+                if (VerificarValidacoesDeCliente(cpfSemPontos))
                 {
                     var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
 
-                    var retorno = _cadastroClienteController.CadastrarCliente(cliente);
-
-                    if (string.IsNullOrEmpty(retorno))
-                    {
-                        MessageBox.Show("Cliente cadastrado com sucesso!");
-                        this.Close();
-                    }
-                    else
-                        MessageBox.Show(retorno);
+                    CadastrarCliente(cliente);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Não foi possível cadastrar o cliente. " + ex.Message);
-                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Falha ao instanciar cliente para cadastro. "+ex.Message);
             }
         }
 
-        public ClienteModel InstanciarClienteParaCadastro(string cpfSemPontos)
+        private ClienteModel InstanciarClienteParaCadastro(string cpfSemPontos)
         {
             try
             {
@@ -71,11 +78,11 @@ namespace AugustosFashion.Views
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(ex.Message);               
             }
         }
 
-        public EnderecoModel InstanciarEnderecoParaCadastro()
+        private EnderecoModel InstanciarEnderecoParaCadastro()
         {
             var endereco = new EnderecoModel(
                 cep: txtCep.Text,
@@ -90,7 +97,7 @@ namespace AugustosFashion.Views
             return endereco;
         }
 
-        public List<TelefoneModel> InstanciarTelefonesParaCadastro()
+        private List<TelefoneModel> InstanciarTelefonesParaCadastro()
         {
             var celular = new TelefoneModel
             {
