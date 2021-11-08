@@ -8,24 +8,18 @@ namespace AugustosFashionModelsTest
     public class ClienteModelTestes
     {      
         [TestMethod]
-        [DataRow("2021/01/11", "")]
-        [DataRow("2021/11/05", "Carlos está fazendo aniversário hoje.")]
-        [DataRow("2022/06/11", "")]
-        [DataRow("2021/12/11", "")]
-        public void Se_data_nascimento_cliente_for_igual_a_data_de_hoje_retornar_mensagem_avisando_aniversario(string data, string esperado)
-        {
-
-            var teste = Convert.ToDateTime(data);
-            //arrange
+        public void Se_data_nascimento_cliente_for_igual_a_data_de_hoje_retornar_mensagem_avisando_aniversario()
+        {   
+           //arrange
             ClienteModel cliente = new ClienteModel();
             cliente.NomeCompleto.Nome = "Carlos";
-            cliente.DataNascimento = teste;
+            cliente.DataNascimento = DateTime.Now;
 
             //act
             string mensagemRetorno = cliente.VerificarSeEhAniversarioDoCliente();
 
             //assert
-            Assert.AreEqual(esperado, mensagemRetorno);
+            Assert.AreEqual("Carlos está fazendo aniversário hoje.", mensagemRetorno);
         }
 
         [TestMethod]
@@ -34,7 +28,7 @@ namespace AugustosFashionModelsTest
             //arrange
             ClienteModel cliente = new ClienteModel();
             cliente.NomeCompleto.Nome = "Carlos";
-            cliente.DataNascimento = new DateTime(2001, 10, 09);
+            cliente.DataNascimento = DateTime.Now.AddDays(-1);
 
             //act
             string mensagemRetorno = cliente.VerificarSeEhAniversarioDoCliente();
