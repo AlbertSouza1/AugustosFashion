@@ -1,5 +1,4 @@
 ﻿using AugustosFashion.Controllers;
-using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashion.Entidades.ContaBancaria;
 using AugustosFashion.Entidades.Endereco;
@@ -7,8 +6,6 @@ using AugustosFashion.Entidades.Telefone;
 using AugustosFashion.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views
@@ -26,33 +23,42 @@ namespace AugustosFashion.Views
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
 
-            if (VerificarValidacoesDeColaborador(cpfSemPontos))
+            try
             {
-                var colaborador = InstanciarColaboradorParaCadastro(cpfSemPontos);
-                colaborador.Endereco = InstanciarEnderecoParaCadastro();
-                colaborador.Telefones = InstanciarTelefonesParaCadastro();
-                colaborador.ContaBancaria = InstanciarContaBancariaParaCadastro();
-
-                try
+                if (VerificarValidacoesDeColaborador(cpfSemPontos))
                 {
+                    var colaborador = InstanciarColaboradorParaCadastro(cpfSemPontos);
 
-                    colaborador.Endereco.CEP.RemoverMascara();
-                    var retorno = _cadastroColaboradorController.CadastrarColaborador(colaborador);
-
-                    if (string.IsNullOrEmpty(retorno))
-                    {
-                        MessageBox.Show("Colaborador cadastrado com sucesso!");
-                        this.Close();
-                    }
-                    else
-                        MessageBox.Show(retorno);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Falha ao cadastrar colaborador. Erro: " + ex.Message);
+                    CadastrarColaborador(colaborador);
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Falha ao instanciar colaborador para cadastro.");
+            }
         }
+
+        private void CadastrarColaborador(ColaboradorModel colaborador)
+        {
+            try
+            {
+                colaborador.Endereco.CEP.RemoverMascara();
+                var retorno = _cadastroColaboradorController.CadastrarColaborador(colaborador);
+
+                if (string.IsNullOrEmpty(retorno))
+                {
+                    MessageBox.Show("Colaborador cadastrado com sucesso!");
+                    this.Close();
+                }
+                else
+                    MessageBox.Show(retorno);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao cadastrar colaborador. Erro: " + ex.Message);
+            }
+        }
+
         private bool VerificarValidacoesDeColaborador(string cpf)
         {
             bool validacoes = true;
@@ -167,85 +173,113 @@ namespace AugustosFashion.Views
 
         public ColaboradorModel InstanciarColaboradorParaCadastro(string cpfSemPontos)
         {
-            ColaboradorModel colaborador = new ColaboradorModel(
-                nome: txtNome.Text,
-                sobreNome: txtSobreNome.Text,
-                sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
-                dataNascimento: dtpDataNascimento.Value,
-                email: txtEmail.Text,
-                cpf: cpfSemPontos,
-                salario: double.Parse(txtSalario.Text),
-                porcentagemComissao: int.Parse(txtComissao.Text),
-                endereco: InstanciarEnderecoParaCadastro(),
-                telefones: InstanciarTelefonesParaCadastro(),
-                contaBancaria: InstanciarContaBancariaParaCadastro()
-                );
+            try
+            {
+                ColaboradorModel colaborador = new ColaboradorModel(
+                    nome: txtNome.Text,
+                    sobreNome: txtSobreNome.Text,
+                    sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
+                    dataNascimento: dtpDataNascimento.Value,
+                    email: txtEmail.Text,
+                    cpf: cpfSemPontos,
+                    salario: double.Parse(txtSalario.Text),
+                    porcentagemComissao: int.Parse(txtComissao.Text),
+                    endereco: InstanciarEnderecoParaCadastro(),
+                    telefones: InstanciarTelefonesParaCadastro(),
+                    contaBancaria: InstanciarContaBancariaParaCadastro()
+                    );
 
-            return colaborador;
+                return colaborador;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public EnderecoModel InstanciarEnderecoParaCadastro()
         {
-            var endereco = new EnderecoModel(
-                cep: mtxtCep.Text,
-                logradouro: txtLogradouro.Text,
-                numero: int.Parse(txtNumero.Text),
-                cidade: txtCidade.Text,
-                uf: cbUf.Text,
-                complemento: txtComplemento.Text,
-                bairro: txtBairro.Text
-                );
+            try
+            {
+                var endereco = new EnderecoModel(
+                    cep: mtxtCep.Text,
+                    logradouro: txtLogradouro.Text,
+                    numero: int.Parse(txtNumero.Text),
+                    cidade: txtCidade.Text,
+                    uf: cbUf.Text,
+                    complemento: txtComplemento.Text,
+                    bairro: txtBairro.Text
+                    );
 
-            return endereco;
+                return endereco;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<TelefoneModel> InstanciarTelefonesParaCadastro()
         {
-            var celular = new TelefoneModel
+            try
             {
-                Numero = txtCelular.Text,
-                TipoTelefone = TipoTelefone.Celular
-            };
+                var celular = new TelefoneModel
+                {
+                    Numero = txtCelular.Text,
+                    TipoTelefone = TipoTelefone.Celular
+                };
 
-            var fixo = new TelefoneModel
+                var fixo = new TelefoneModel
+                {
+                    Numero = txtTelefoneFixo.Text,
+                    TipoTelefone = TipoTelefone.Fixo
+                };
+                var telefones = new List<TelefoneModel>();
+
+                telefones.Add(celular);
+                telefones.Add(fixo);
+
+                return telefones;
+            }
+            catch (Exception ex)
             {
-                Numero = txtTelefoneFixo.Text,
-                TipoTelefone = TipoTelefone.Fixo
-            };
-            var telefones = new List<TelefoneModel>();
-
-            telefones.Add(celular);
-            telefones.Add(fixo);
-
-            return telefones;
+                throw new Exception(ex.Message);
+            }
         }
 
         public ContaBancariaModel InstanciarContaBancariaParaCadastro()
         {
-            TipoConta tipoConta = 0;
+            try
+            {
+                TipoConta tipoConta = 0;
 
-            if (cbTipoConta.SelectedItem.ToString() == "Corrente")
-            {
-                tipoConta = TipoConta.ContaCorrente;
-            }
-            else if (cbTipoConta.SelectedItem.ToString() == "Poupança")
-            {
-                tipoConta = TipoConta.ContaPoupanca;
-            }
-            else
-            {
-                tipoConta = TipoConta.ContaSalario;
-            }
+                if (cbTipoConta.SelectedItem.ToString() == "Corrente")
+                {
+                    tipoConta = TipoConta.ContaCorrente;
+                }
+                else if (cbTipoConta.SelectedItem.ToString() == "Poupança")
+                {
+                    tipoConta = TipoConta.ContaPoupanca;
+                }
+                else
+                {
+                    tipoConta = TipoConta.ContaSalario;
+                }
 
-            var contaBancaria = new ContaBancariaModel
-            {
-                Banco = txtBanco.Text,
-                Agencia = int.Parse(txtAgencia.Text),
-                Conta = int.Parse(txtConta.Text),
-                TipoConta = tipoConta
-            };
+                var contaBancaria = new ContaBancariaModel
+                {
+                    Banco = txtBanco.Text,
+                    Agencia = int.Parse(txtAgencia.Text),
+                    Conta = int.Parse(txtConta.Text),
+                    TipoConta = tipoConta
+                };
 
-            return contaBancaria;
+                return contaBancaria;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

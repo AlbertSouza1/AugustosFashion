@@ -19,6 +19,27 @@ namespace AugustosFashion.Views
             this.BringToFront();
         }
 
+        
+
+        private void btnCadastrarCliente_Click(object sender, EventArgs e)
+        {
+            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
+
+            try
+            {
+                if (VerificarValidacoesDeCliente(cpfSemPontos))
+                {
+                    var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
+
+                    CadastrarCliente(cliente);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Falha ao instanciar cliente para cadastro. "+ex.Message);
+            }
+        }
+
         private void CadastrarCliente(ClienteModel cliente)
         {
             try
@@ -38,25 +59,6 @@ namespace AugustosFashion.Views
             catch (Exception ex)
             {
                 MessageBox.Show("Não foi possível cadastrar o cliente. " + ex.Message);
-            }
-        }
-
-        private void btnCadastrarCliente_Click(object sender, EventArgs e)
-        {
-            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
-
-            try
-            {
-                if (VerificarValidacoesDeCliente(cpfSemPontos))
-                {
-                    var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
-
-                    CadastrarCliente(cliente);
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Falha ao instanciar cliente para cadastro. "+ex.Message);
             }
         }
 
