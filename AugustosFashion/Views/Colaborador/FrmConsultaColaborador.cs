@@ -71,15 +71,14 @@ namespace AugustosFashion.Views.Colaborador
         }
 
         private void btnAlterarColaborador_Click(object sender, EventArgs e)
-        {
-            var cpf = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
-
-            if (VerificarValidacoesDeColaborador(cpf))
+        {          
+            if (VerificarValidacoesDeColaborador())
             {
                 try
                 {
-                    var colaborador = InstanciarColaboradorParaAlteracao(cpf);
+                    var colaborador = InstanciarColaboradorParaAlteracao();
                     colaborador.Endereco.CEP.RemoverMascara();
+                    colaborador.CPF.RemoverMascara();
                  
                     var retorno = _consultaColaboradorController.AlterarColaborador(colaborador);
 
@@ -94,7 +93,7 @@ namespace AugustosFashion.Views.Colaborador
                 }
             }
         }
-        private bool VerificarValidacoesDeColaborador(string cpf)
+        private bool VerificarValidacoesDeColaborador()
         {
             bool validacoes = true;
 
@@ -117,11 +116,6 @@ namespace AugustosFashion.Views.Colaborador
             {
                 validacoes = false;
                 MessageBox.Show("CEP inválido.");
-            }
-            else if (!ValidadoresCadastro.ValidarCPF(cpf))
-            {
-                MessageBox.Show("CPF inválido.");
-                validacoes = false;
             }
             else if (!ValidadoresCadastro.ValidarNome(txtNome.Text))
             {
@@ -207,7 +201,7 @@ namespace AugustosFashion.Views.Colaborador
             return retorno;
         }
 
-        public ColaboradorModel InstanciarColaboradorParaAlteracao(string cpf)
+        public ColaboradorModel InstanciarColaboradorParaAlteracao()
         {
             ColaboradorModel colaborador = new ColaboradorModel
             (
@@ -216,7 +210,7 @@ namespace AugustosFashion.Views.Colaborador
                 sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
                 dataNascimento: dtpDataNascimento.Value,
                 email: txtEmail.Text,
-                cpf: cpf,
+                cpf: mtxtCpf.Text,
                 salario: double.Parse(txtSalario.Text),
                 porcentagemComissao: int.Parse(txtComissao.Text),
                 endereco: InstanciarEnderecoParaAlteracao(),

@@ -21,13 +21,11 @@ namespace AugustosFashion.Views
 
         private void btnCadastrarColaborador_Click(object sender, EventArgs e)
         {
-            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
-
             try
             {
-                if (VerificarValidacoesDeColaborador(cpfSemPontos))
+                if (VerificarValidacoesDeColaborador())
                 {
-                    var colaborador = InstanciarColaboradorParaCadastro(cpfSemPontos);
+                    var colaborador = InstanciarColaboradorParaCadastro();
 
                     CadastrarColaborador(colaborador);
                 }
@@ -43,6 +41,8 @@ namespace AugustosFashion.Views
             try
             {
                 colaborador.Endereco.CEP.RemoverMascara();
+                colaborador.CPF.RemoverMascara();
+
                 var retorno = _cadastroColaboradorController.CadastrarColaborador(colaborador);
 
                 if (string.IsNullOrEmpty(retorno))
@@ -59,7 +59,7 @@ namespace AugustosFashion.Views
             }
         }
 
-        private bool VerificarValidacoesDeColaborador(string cpf)
+        private bool VerificarValidacoesDeColaborador()
         {
             bool validacoes = true;
             if (!ValidadoresCadastro.ValidarSexo(cbSexo.SelectedItem))
@@ -81,11 +81,6 @@ namespace AugustosFashion.Views
             {
                 validacoes = false;
                 MessageBox.Show("CEP inválido.");
-            }
-            else if (!ValidadoresCadastro.ValidarCPF(cpf))
-            {
-                MessageBox.Show("CPF inválido.");
-                validacoes = false;
             }
             else if (!ValidadoresCadastro.ValidarNome(txtNome.Text))
             {
@@ -171,7 +166,7 @@ namespace AugustosFashion.Views
             return retorno;
         }
 
-        public ColaboradorModel InstanciarColaboradorParaCadastro(string cpfSemPontos)
+        public ColaboradorModel InstanciarColaboradorParaCadastro()
         {
             try
             {
@@ -181,7 +176,7 @@ namespace AugustosFashion.Views
                     sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
                     dataNascimento: dtpDataNascimento.Value,
                     email: txtEmail.Text,
-                    cpf: cpfSemPontos,
+                    cpf: mtxtCpf.Text,
                     salario: double.Parse(txtSalario.Text),
                     porcentagemComissao: int.Parse(txtComissao.Text),
                     endereco: InstanciarEnderecoParaCadastro(),

@@ -29,7 +29,7 @@ namespace AugustosFashion.Repositorios
                 using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
                     sqlCon.Open();
-                    using (SqlTransaction tran = sqlCon.BeginTransaction())
+                    using (SqlTransaction transaction = sqlCon.BeginTransaction())
                     {
                         int insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario,
                         new
@@ -41,13 +41,13 @@ namespace AugustosFashion.Repositorios
                             Email = cliente.Email.RetornaValor,
                             CPF = cliente.CPF.RetornaValor
                         },
-                        tran);
+                        transaction);
 
                         cliente.IdUsuario = insertedId;
                         cliente.Endereco.IdUsuario = insertedId;
                         cliente.Telefones.ForEach(x => x.IdUsuario = insertedId);
 
-                        sqlCon.Execute(strSqlCliente, cliente, tran);
+                        sqlCon.Execute(strSqlCliente, cliente, transaction);
                         sqlCon.Execute(strSqlEndereco,
                         new
                         {
@@ -60,11 +60,11 @@ namespace AugustosFashion.Repositorios
                                 Complemento = cliente.Endereco.Complemento,
                                 Bairro = cliente.Endereco.Bairro,
                          },
-                         tran);
+                         transaction);
 
-                        sqlCon.Execute(strSqlTelefones, cliente.Telefones, tran);
+                        sqlCon.Execute(strSqlTelefones, cliente.Telefones, transaction);
 
-                        tran.Commit();
+                        transaction.Commit();
                     }
                 }              
             }
@@ -148,15 +148,15 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    using (SqlTransaction tran = sqlCon.BeginTransaction())
+                    using (SqlTransaction transaction = sqlCon.BeginTransaction())
                     {
-                        int idUsuario = RecuperarIdUsuario(cliente.IdCliente, sqlCon, tran);
+                        int idUsuario = RecuperarIdUsuario(cliente.IdCliente, sqlCon, transaction);
 
                         cliente.IdUsuario = idUsuario;
                         cliente.Endereco.IdUsuario = idUsuario;
                         cliente.Telefones.ForEach(x => x.IdUsuario = idUsuario);
 
-                        sqlCon.Execute(strSqlAlterarCliente, cliente, tran);
+                        sqlCon.Execute(strSqlAlterarCliente, cliente, transaction);
                         sqlCon.Execute(strSqlAlterarEndereco,
                             new
                             {
@@ -169,8 +169,8 @@ namespace AugustosFashion.Repositorios
                                 Complemento = cliente.Endereco.Complemento,
                                 Bairro = cliente.Endereco.Bairro,
                             },
-                            tran);
-                        sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, tran);
+                            transaction);
+                        sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, transaction);
                         sqlCon.Execute(strSqlAlterarUsuario,
                         new
                         {
@@ -182,9 +182,9 @@ namespace AugustosFashion.Repositorios
                             CPF = cliente.CPF.RetornaValor,
                             IdUsuario = cliente.IdUsuario
                         },
-                        tran);
+                        transaction);
 
-                        tran.Commit();
+                        transaction.Commit();
                     }
                 }
             }
@@ -206,16 +206,16 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    using (SqlTransaction tran = sqlCon.BeginTransaction())
+                    using (SqlTransaction transaction = sqlCon.BeginTransaction())
                     {
-                        int idUsuario = RecuperarIdUsuario(idCliente, sqlCon, tran);
+                        int idUsuario = RecuperarIdUsuario(idCliente, sqlCon, transaction);
 
-                        sqlCon.Execute(strSqlExcluirCliente, new { IdCliente = idCliente }, tran);
-                        sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, tran);
-                        sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, tran);
-                        sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, tran);
+                        sqlCon.Execute(strSqlExcluirCliente, new { IdCliente = idCliente }, transaction);
+                        sqlCon.Execute(strSqlExcluirEndereco, new { IdUsuario = idUsuario }, transaction);
+                        sqlCon.Execute(strSqlExcluirTel, new { IdUsuario = idUsuario }, transaction);
+                        sqlCon.Execute(strSqlExcluirUsuario, new { IdUsuario = idUsuario }, transaction);
 
-                        tran.Commit();
+                        transaction.Commit();
                     }
                 }
             }
@@ -293,12 +293,12 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-        public static int RecuperarIdUsuario(int idCliente, SqlConnection sqlCon, SqlTransaction tran)
+        public static int RecuperarIdUsuario(int idCliente, SqlConnection sqlCon, SqlTransaction transaction)
         {
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Clientes where IdCliente = @IdCliente";
             try
             {
-                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdCliente = idCliente }, tran);
+                int idUsuario = sqlCon.ExecuteScalar<int>(strSqlRecuperaIdUsuario, new { IdCliente = idCliente }, transaction);
 
                 return idUsuario;
             }

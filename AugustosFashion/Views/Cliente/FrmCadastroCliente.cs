@@ -18,18 +18,14 @@ namespace AugustosFashion.Views
             _cadastroClienteController = cadastroClienteController;
             this.BringToFront();
         }
-
-        
-
+    
         private void btnCadastrarCliente_Click(object sender, EventArgs e)
-        {
-            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
-
+        {          
             try
             {
-                if (VerificarValidacoesDeCliente(cpfSemPontos))
+                if (VerificarValidacoesDeCliente())
                 {
-                    var cliente = InstanciarClienteParaCadastro(cpfSemPontos);
+                    var cliente = InstanciarClienteParaCadastro();
 
                     CadastrarCliente(cliente);
                 }
@@ -45,6 +41,7 @@ namespace AugustosFashion.Views
             try
             {
                 cliente.Endereco.CEP.RemoverMascara();
+                cliente.CPF.RemoverMascara();
 
                 var retorno = _cadastroClienteController.CadastrarCliente(cliente);
 
@@ -62,7 +59,7 @@ namespace AugustosFashion.Views
             }
         }
 
-        private ClienteModel InstanciarClienteParaCadastro(string cpfSemPontos)
+        private ClienteModel InstanciarClienteParaCadastro()
         {
             try
             {
@@ -72,7 +69,7 @@ namespace AugustosFashion.Views
                     sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
                     dataNascimento: dtpDataNascimento.Value,
                     email: txtEmail.Text,
-                    cpf: cpfSemPontos,
+                    cpf: mtxtCpf.Text,
                     limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
                     observacao: txtObservacoes.Text,
                     endereco: InstanciarEnderecoParaCadastro(),
@@ -123,7 +120,7 @@ namespace AugustosFashion.Views
             return telefones;
         }
 
-        private bool VerificarValidacoesDeCliente(string cpf)
+        private bool VerificarValidacoesDeCliente()
         {
             bool validacoes = true;
             if (!ValidadoresCadastro.ValidarSexo(cbSexo.SelectedItem))
@@ -145,12 +142,7 @@ namespace AugustosFashion.Views
             {
                 validacoes = false;
                 MessageBox.Show("CEP inválido.");
-            }
-            else if (!ValidadoresCadastro.ValidarCPF(cpf))
-            {
-                MessageBox.Show("CPF inválido.");
-                validacoes = false;
-            }
+            }         
             else if (!ValidadoresCadastro.ValidarNome(txtNome.Text))
             {
                 MessageBox.Show("Nome inválido.");

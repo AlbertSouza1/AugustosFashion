@@ -19,6 +19,15 @@ namespace AugustosFashionModels.Entidades.Cpfs
         {
             _valor = valor;      
         }
+
+        public void RemoverMascara()
+        {            
+            _valor = new string((from c in _valor
+                                 where char.IsDigit(c)
+                                       select c
+            ).ToArray());
+        }
+
         public ValidationResult ValidarCPF()
         {
             return new CPFValidator().Validate(this);

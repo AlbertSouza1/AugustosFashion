@@ -44,7 +44,7 @@ namespace AugustosFashion.Helpers
 
         public static bool ValidarNumeroResidencial(string txtNumero) => (!ValidarSeEhNuloOuVazio(txtNumero)) && ValidarSePossuiApenasNumeros(txtNumero);
 
-        public static bool ValidarCPF(string cpf) => (!ValidarSeEhNuloOuVazio(cpf)) && ValidarSePossuiApenasNumeros(cpf) && cpf.Length == 11;
+        //public static bool ValidarCPF(string cpf) => (!ValidarSeEhNuloOuVazio(cpf)) && ValidarSePossuiApenasNumeros(cpf) && cpf.Length == 11;
 
         public static bool ValidarCEP(string txtCep) => !ValidarSeEhNuloOuVazio(txtCep);
 

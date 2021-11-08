@@ -70,12 +70,11 @@ namespace AugustosFashion.Views
 
         private void btnAlterarCliente_Click(object sender, EventArgs e)
         {
-            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
-
-            if (VerificarValidacoesDeCliente(cpfSemPontos))
+            if (VerificarValidacoesDeCliente())
             {
                 var cliente = InstanciarClienteParaCadastro();
                 cliente.Endereco.CEP.RemoverMascara();
+                cliente.CPF.RemoverMascara();
 
                 try
                 {
@@ -94,8 +93,6 @@ namespace AugustosFashion.Views
         }
         public ClienteModel InstanciarClienteParaCadastro()
         {
-            var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
-
             ClienteModel cliente = new ClienteModel
             (
                 nome: txtNome.Text,
@@ -103,7 +100,7 @@ namespace AugustosFashion.Views
                 sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
                 dataNascimento : dtpDataNascimento.Value,
                 email: txtEmail.Text,
-                cpf: cpfSemPontos,
+                cpf: mtxtCpf.Text,
                 limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
                 observacao: txtObservacoes.Text,
                 endereco: InstanciarEnderecoParaCadastro(),
@@ -151,7 +148,7 @@ namespace AugustosFashion.Views
             return telefones;
         }
 
-        private bool VerificarValidacoesDeCliente(string cpf)
+        private bool VerificarValidacoesDeCliente()
         {
             bool validacoes = true;
             if (!ValidadoresCadastro.ValidarSexo(cbSexo.SelectedItem))
@@ -173,11 +170,6 @@ namespace AugustosFashion.Views
             {
                 validacoes = false;
                 MessageBox.Show("CEP inválido.");
-            }
-            else if (!ValidadoresCadastro.ValidarCPF(cpf))
-            {
-                MessageBox.Show("CPF inválido.");
-                validacoes = false;
             }
             else if (!ValidadoresCadastro.ValidarNome(txtNome.Text))
             {
