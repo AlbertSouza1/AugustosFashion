@@ -181,20 +181,7 @@ namespace AugustosFashionTestes
             //assert
             Assert.IsFalse(retorno);
         }
-
-        [TestMethod]
-        public void Validar_se_CPF_ter_letras_ou_nao_ter_11_numeros_deve_retornar_false()
-        {
-            //arrange
-            string text = "999999";
-
-            //act
-            var retorno = ValidadoresCadastro.ValidarCPF(text);
-
-            //assert
-            Assert.IsFalse(retorno);
-        }
-
+       
         [TestMethod]
         public void Validar_se_CEP_for_vazio_ou_ter_letras_deve_retornar_false()
         {

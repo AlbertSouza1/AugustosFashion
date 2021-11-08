@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AugustosFashion.Repositorios
 {
-    public static class ContaBancariaRepositorio
+    public static class ContaBancariaSql
     {
         public static string ObterStringInsertContaBancaria() => "insert into ContaBancaria values(@IdColaborador, @Agencia, @Conta, @TipoConta, @Banco)";
 

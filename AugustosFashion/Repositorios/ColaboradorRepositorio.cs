@@ -19,13 +19,13 @@ namespace AugustosFashion.Repositorios
             var strSqlColaborador = "Insert into Colaboradores output inserted.IdColaborador " +
                 "values (@IdUsuario, @Salario, @PorcentagemComissao)";
 
-            var strSqlUsuario = UsuarioRepositorio.ObterStringInsertUsuario();
+            var strSqlUsuario = UsuarioSql.ObterStringInsertUsuario();
 
-            var strSqlEndereco = EnderecoRepositorio.ObterStringInsertEndereco();
+            var strSqlEndereco = EnderecoSql.ObterStringInsertEndereco();
 
-            var strSqlTelefones = TelefoneRepositorio.ObterStringInsertTelefone();
+            var strSqlTelefones = TelefoneSql.ObterStringInsertTelefone();
 
-            var strSqlContaBancaria = ContaBancariaRepositorio.ObterStringInsertContaBancaria();
+            var strSqlContaBancaria = ContaBancariaSql.ObterStringInsertContaBancaria();
          
             try
             {
@@ -36,17 +36,7 @@ namespace AugustosFashion.Repositorios
                     using(SqlTransaction transaction = sqlCon.BeginTransaction())
                     {
                         int insertedId = sqlCon.ExecuteScalar<int>(
-                           strSqlUsuario,
-                           new
-                           {
-                               Nome = colaborador.NomeCompleto.Nome,
-                               SobreNome = colaborador.NomeCompleto.SobreNome,
-                               Sexo = colaborador.Sexo,
-                               DataNascimento = colaborador.DataNascimento,
-                               Email = colaborador.Email.RetornaValor,
-                               CPF = colaborador.CPF.RetornaValor
-                           },
-                           transaction);
+                           strSqlUsuario, UsuarioSql.MapearPropriedadesDeUsuario(colaborador), transaction);
 
                         colaborador.IdUsuario = insertedId;
                         colaborador.Endereco.IdUsuario = insertedId;
@@ -56,18 +46,7 @@ namespace AugustosFashion.Repositorios
 
                         colaborador.ContaBancaria.IdColaborador = idColaborador;
 
-                        sqlCon.Execute(strSqlEndereco, new
-                        {
-                            IdUsuario = colaborador.Endereco.IdUsuario,
-                            CEP = colaborador.Endereco.CEP.RetornaValor,
-                            Logradouro = colaborador.Endereco.Logradouro,
-                            Numero = colaborador.Endereco.Numero,
-                            Cidade = colaborador.Endereco.Cidade,
-                            UF = colaborador.Endereco.UF,
-                            Complemento = colaborador.Endereco.Complemento,
-                            Bairro = colaborador.Endereco.Bairro
-                        },
-                        transaction);
+                        sqlCon.Execute(strSqlEndereco, EnderecoSql.MapearPropriedadesDeEndereco(colaborador.Endereco), transaction);
 
                         sqlCon.Execute(strSqlTelefones, colaborador.Telefones, transaction);
                         sqlCon.Execute(strSqlContaBancaria, colaborador.ContaBancaria, transaction);
@@ -115,10 +94,10 @@ namespace AugustosFashion.Repositorios
             string strSqlAlterarColaborador = @"update Colaboradores  
                 set Salario = @Salario, PorcentagemComissao = @PorcentagemComissao where IdColaborador = @IdColaborador";
 
-            string strSqlAlterarEndereco = EnderecoRepositorio.ObterStringAlterarEndereco();
-            string strSqlAlterarTel = TelefoneRepositorio.ObterStringAlterarTelefone();
-            string strSqlAlterarUsuario = UsuarioRepositorio.ObterStringAlterarUsuario();
-            string strSqlAlterarContaBancaria = ContaBancariaRepositorio.ObterStringAlterarContaBancaria();
+            string strSqlAlterarEndereco = EnderecoSql.ObterStringAlterarEndereco();
+            string strSqlAlterarTel = TelefoneSql.ObterStringAlterarTelefone();
+            string strSqlAlterarUsuario = UsuarioSql.ObterStringAlterarUsuario();
+            string strSqlAlterarContaBancaria = ContaBancariaSql.ObterStringAlterarContaBancaria();
 
             try
             {
@@ -130,39 +109,16 @@ namespace AugustosFashion.Repositorios
                         int idUsuario = RecuperarIdUsuario(colaborador.IdColaborador, sqlCon, transaction);
 
                         colaborador.ContaBancaria.IdColaborador = colaborador.IdColaborador;
-
                         
-
                         colaborador.IdUsuario = idUsuario;
                         colaborador.Endereco.IdUsuario = idUsuario;
                         colaborador.Telefones.ForEach(x => x.IdUsuario = idUsuario);
 
                         sqlCon.Execute(strSqlAlterarColaborador, colaborador, transaction);
-                        sqlCon.Execute(strSqlAlterarEndereco,
-                            new
-                            {
-                                IdUsuario = colaborador.Endereco.IdUsuario,
-                                CEP = colaborador.Endereco.CEP.RetornaValor,
-                                Logradouro = colaborador.Endereco.Logradouro,
-                                Numero = colaborador.Endereco.Numero,
-                                Cidade = colaborador.Endereco.Cidade,
-                                UF = colaborador.Endereco.UF,
-                                Complemento = colaborador.Endereco.Complemento,
-                                Bairro = colaborador.Endereco.Bairro,
-                            }, transaction);
+                        sqlCon.Execute(strSqlAlterarEndereco, EnderecoSql.MapearPropriedadesDeEndereco(colaborador.Endereco), transaction);
                         sqlCon.Execute(strSqlAlterarTel, colaborador.Telefones, transaction);
                         sqlCon.Execute(
-                            strSqlAlterarUsuario,
-                            new
-                            {
-                                Nome = colaborador.NomeCompleto.Nome,
-                                SobreNome = colaborador.NomeCompleto.SobreNome,
-                                Sexo = colaborador.Sexo,
-                                DataNascimento = colaborador.DataNascimento,
-                                Email = colaborador.Email.RetornaValor,
-                                CPF = colaborador.CPF.RetornaValor,
-                                IdUsuario = colaborador.IdUsuario
-                            }, transaction);
+                            strSqlAlterarUsuario, UsuarioSql.MapearPropriedadesDeUsuario(colaborador), transaction);
                         sqlCon.Execute(strSqlAlterarContaBancaria, colaborador.ContaBancaria, transaction);
 
                         transaction.Commit();
@@ -178,10 +134,10 @@ namespace AugustosFashion.Repositorios
         public static void ExcluirColaborador(int idColaborador)
         {         
             string strSqlExcluirColaborador = "delete from Colaboradores where IdColaborador = @IdColaborador";
-            string strSqlExcluirEndereco = EnderecoRepositorio.ObterStringExcluisaoEndereco();
-            string strSqlExcluirTel = TelefoneRepositorio.ObterStringExclusaoTelefone();
-            string strSqlExcluirUsuario = UsuarioRepositorio.ObterStringExclusaoUsuario();
-            string strSqlExcluirContaBancaria = ContaBancariaRepositorio.ObterStringExclusaoConta();          
+            string strSqlExcluirEndereco = EnderecoSql.ObterStringExcluisaoEndereco();
+            string strSqlExcluirTel = TelefoneSql.ObterStringExclusaoTelefone();
+            string strSqlExcluirUsuario = UsuarioSql.ObterStringExclusaoUsuario();
+            string strSqlExcluirContaBancaria = ContaBancariaSql.ObterStringExclusaoConta();          
 
             try
             {
@@ -283,7 +239,7 @@ namespace AugustosFashion.Repositorios
 				inner join Enderecos e on c.IdUsuario = e.IdUsuario		
 				inner join ContaBancaria cb on c.IdColaborador = cb.IdColaborador
 				where c.idColaborador = @IdColaborador";
-            string strSqlRecuperarInfoTelefones = TelefoneRepositorio.ObterStringRecuperarInfoTelefones();
+            string strSqlRecuperarInfoTelefones = TelefoneSql.ObterStringRecuperarInfoTelefones();
 
             try
             {

@@ -18,11 +18,11 @@ namespace AugustosFashion.Repositorios
             var strSqlCliente = "Insert into Clientes " +
                 "values (@IdUsuario, @LimiteCompraAPrazo, @Observacao)";
 
-            var strSqlUsuario = UsuarioRepositorio.ObterStringInsertUsuario();
+            var strSqlUsuario = UsuarioSql.ObterStringInsertUsuario();
 
-            var strSqlEndereco = EnderecoRepositorio.ObterStringInsertEndereco();
+            var strSqlEndereco = EnderecoSql.ObterStringInsertEndereco();
 
-            var strSqlTelefones = TelefoneRepositorio.ObterStringInsertTelefone();
+            var strSqlTelefones = TelefoneSql.ObterStringInsertTelefone();
 
             try
             {
@@ -31,36 +31,14 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
                     using (SqlTransaction transaction = sqlCon.BeginTransaction())
                     {
-                        int insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario,
-                        new
-                        {
-                            Nome = cliente.NomeCompleto.Nome,
-                            SobreNome = cliente.NomeCompleto.SobreNome,
-                            Sexo = cliente.Sexo,
-                            DataNascimento = cliente.DataNascimento,
-                            Email = cliente.Email.RetornaValor,
-                            CPF = cliente.CPF.RetornaValor
-                        },
-                        transaction);
+                        int insertedId = sqlCon.ExecuteScalar<int>(strSqlUsuario, UsuarioSql.MapearPropriedadesDeUsuario(cliente), transaction);
 
                         cliente.IdUsuario = insertedId;
                         cliente.Endereco.IdUsuario = insertedId;
                         cliente.Telefones.ForEach(x => x.IdUsuario = insertedId);
 
                         sqlCon.Execute(strSqlCliente, cliente, transaction);
-                        sqlCon.Execute(strSqlEndereco,
-                        new
-                        {
-                                IdUsuario = cliente.Endereco.IdUsuario,
-                                CEP = cliente.Endereco.CEP.RetornaValor,
-                                Logradouro = cliente.Endereco.Logradouro,
-                                Numero = cliente.Endereco.Numero,
-                                Cidade = cliente.Endereco.Cidade,
-                                UF = cliente.Endereco.UF,
-                                Complemento = cliente.Endereco.Complemento,
-                                Bairro = cliente.Endereco.Bairro,
-                         },
-                         transaction);
+                        sqlCon.Execute(strSqlEndereco, EnderecoSql.MapearPropriedadesDeEndereco(cliente.Endereco) ,transaction);
 
                         sqlCon.Execute(strSqlTelefones, cliente.Telefones, transaction);
 
@@ -131,16 +109,16 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
         public static void AlterarCliente(ClienteModel cliente)
         {
-
 
             string strSqlAlterarCliente = @"update Clientes  
                 set Observacao = @Observacao, ValorLimiteCompraAPrazo = @LimiteCompraAPrazo where IdCliente = @IdCliente";
 
-            string strSqlAlterarEndereco = EnderecoRepositorio.ObterStringAlterarEndereco();
-            string strSqlAlterarTel = TelefoneRepositorio.ObterStringAlterarTelefone();
-            string strSqlAlterarUsuario = UsuarioRepositorio.ObterStringAlterarUsuario();
+            string strSqlAlterarEndereco = EnderecoSql.ObterStringAlterarEndereco();
+            string strSqlAlterarTel = TelefoneSql.ObterStringAlterarTelefone();
+            string strSqlAlterarUsuario = UsuarioSql.ObterStringAlterarUsuario();
 
             try
             {
@@ -157,32 +135,9 @@ namespace AugustosFashion.Repositorios
                         cliente.Telefones.ForEach(x => x.IdUsuario = idUsuario);
 
                         sqlCon.Execute(strSqlAlterarCliente, cliente, transaction);
-                        sqlCon.Execute(strSqlAlterarEndereco,
-                            new
-                            {
-                                IdUsuario = cliente.Endereco.IdUsuario,
-                                CEP = cliente.Endereco.CEP.RetornaValor,
-                                Logradouro = cliente.Endereco.Logradouro,
-                                Numero = cliente.Endereco.Numero,
-                                Cidade = cliente.Endereco.Cidade,
-                                UF = cliente.Endereco.UF,
-                                Complemento = cliente.Endereco.Complemento,
-                                Bairro = cliente.Endereco.Bairro,
-                            },
-                            transaction);
+                        sqlCon.Execute(strSqlAlterarEndereco, EnderecoSql.MapearPropriedadesDeEndereco(cliente.Endereco), transaction);
                         sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, transaction);
-                        sqlCon.Execute(strSqlAlterarUsuario,
-                        new
-                        {
-                            Nome = cliente.NomeCompleto.Nome,
-                            SobreNome = cliente.NomeCompleto.SobreNome,
-                            Sexo = cliente.Sexo,
-                            DataNascimento = cliente.DataNascimento,
-                            Email = cliente.Email.RetornaValor,
-                            CPF = cliente.CPF.RetornaValor,
-                            IdUsuario = cliente.IdUsuario
-                        },
-                        transaction);
+                        sqlCon.Execute(strSqlAlterarUsuario, UsuarioSql.MapearPropriedadesDeUsuario(cliente), transaction);
 
                         transaction.Commit();
                     }
@@ -193,12 +148,13 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
         public static void ExcluirCliente(int idCliente)
         {
             string strSqlExcluirCliente = "delete from Clientes where IdCliente = @IdCliente";
-            string strSqlExcluirEndereco = EnderecoRepositorio.ObterStringExcluisaoEndereco();
-            string strSqlExcluirTel = TelefoneRepositorio.ObterStringExclusaoTelefone();
-            string strSqlExcluirUsuario = UsuarioRepositorio.ObterStringExclusaoUsuario();
+            string strSqlExcluirEndereco = EnderecoSql.ObterStringExcluisaoEndereco();
+            string strSqlExcluirTel = TelefoneSql.ObterStringExclusaoTelefone();
+            string strSqlExcluirUsuario = UsuarioSql.ObterStringExclusaoUsuario();
 
             try
             {
@@ -224,6 +180,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
         public static ClienteModel RecuperarInfoCliente(int idCliente)
         {
 
@@ -236,7 +193,7 @@ namespace AugustosFashion.Repositorios
 				inner join Enderecos e on c.IdUsuario = e.IdUsuario					
 				where IdCliente = @IdCliente";
 
-            string strSqlRecuperarInfoTelefones = TelefoneRepositorio.ObterStringRecuperarInfoTelefones();
+            string strSqlRecuperarInfoTelefones = TelefoneSql.ObterStringRecuperarInfoTelefones();
 
             try
             {
@@ -262,6 +219,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
         public static List<ClienteListagem> BuscarClientesPorNome(string nomeBuscado)
         {
             SqlConnection sqlCon = SqlHelper.ObterConexao();
@@ -293,6 +251,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
         public static int RecuperarIdUsuario(int idCliente, SqlConnection sqlCon, SqlTransaction transaction)
         {
             string strSqlRecuperaIdUsuario = @"select IdUsuario from Clientes where IdCliente = @IdCliente";
@@ -307,6 +266,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
         private static ClienteListagem MapearCliente(ClienteListagem clienteModel, NomeCompleto nomeCompleto, EnderecoModel enderecoModel)
         {
             clienteModel.Endereco = enderecoModel;

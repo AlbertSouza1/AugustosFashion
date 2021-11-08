@@ -1,6 +1,6 @@
 ﻿namespace AugustosFashion.Repositorios
 {
-    public static class TelefoneRepositorio
+    public static class TelefoneSql
     {
         public static string ObterStringInsertTelefone() => "Insert into Telefones " +
                 "values(@IdUsuario, @Numero, @TipoTelefone)";
