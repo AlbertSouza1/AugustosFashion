@@ -21,11 +21,6 @@ namespace AugustosFashion.Views
             _alteraClienteController = alteraClienteController;
         }
 
-        private void FrmAlterarCliente_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public void ObterDadosParaAlteracao(ClienteModel cliente)
         {
             foreach (var tel in cliente.Telefones)
@@ -65,7 +60,7 @@ namespace AugustosFashion.Views
             txtComplemento.Text = cliente.Endereco.Complemento;
             txtBairro.Text = cliente.Endereco.Bairro;
             txtNumero.Text = cliente.Endereco.Numero.ToString();
-            txtCep.Text = cliente.Endereco.CEP.RetornaValor;
+            mtxtCep.Text = cliente.Endereco.CEP.RetornaValor;
             cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(cliente.Endereco.UF);
 
             var avisoDeAniversario = cliente.VerificarSeEhAniversarioDoCliente();
@@ -80,6 +75,7 @@ namespace AugustosFashion.Views
             if (VerificarValidacoesDeCliente(cpfSemPontos))
             {
                 var cliente = InstanciarClienteParaCadastro();
+                cliente.Endereco.CEP.RemoverMascara();
 
                 try
                 {
@@ -114,7 +110,7 @@ namespace AugustosFashion.Views
                 telefones: InstanciarTelefonesParaCadastro()
             );
             cliente.IdCliente = int.Parse(txtIdCliente.Text);
-            cliente.Endereco.CEP.RemoverFormatacao();
+            cliente.Endereco.CEP.RemoverMascara();
 
             return cliente;
         }
@@ -122,7 +118,7 @@ namespace AugustosFashion.Views
         public EnderecoModel InstanciarEnderecoParaCadastro()
         {
             var endereco = new EnderecoModel(
-                cep: txtCep.Text,
+                cep: mtxtCep.Text,
                 logradouro: txtLogradouro.Text,
                 numero: int.Parse(txtNumero.Text),
                 cidade: txtCidade.Text,
@@ -173,7 +169,7 @@ namespace AugustosFashion.Views
                 validacoes = false;
                 MessageBox.Show("Número residencial inválido.");
             }
-            else if (!ValidadoresCadastro.ValidarCEP(txtCep.Text))
+            else if (!ValidadoresCadastro.ValidarCEP(mtxtCep.Text))
             {
                 validacoes = false;
                 MessageBox.Show("CEP inválido.");

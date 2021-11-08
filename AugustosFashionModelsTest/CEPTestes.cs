@@ -12,7 +12,7 @@ namespace AugustosFashionModelsTest
             var cliente = new ClienteModel();
             cliente.Endereco.CEP = "15710000";
 
-            cliente.Endereco.CEP.RemoverFormatacao();
+            cliente.Endereco.CEP.RemoverMascara();
 
             Assert.AreEqual("15710000", cliente.Endereco.CEP.RetornaValor);
         }

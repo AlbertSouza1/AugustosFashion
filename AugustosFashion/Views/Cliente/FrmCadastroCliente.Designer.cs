@@ -50,7 +50,6 @@ namespace AugustosFashion.Views
             this.dtpDataNascimento = new System.Windows.Forms.DateTimePicker();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.mtxtCpf = new System.Windows.Forms.MaskedTextBox();
-            this.txtCep = new System.Windows.Forms.TextBox();
             this.txtLogradouro = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtBairro = new System.Windows.Forms.TextBox();
@@ -66,6 +65,7 @@ namespace AugustosFashion.Views
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.btnCadastrarCliente = new System.Windows.Forms.Button();
+            this.mtxtCep = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -257,13 +257,6 @@ namespace AugustosFashion.Views
             this.mtxtCpf.Size = new System.Drawing.Size(100, 23);
             this.mtxtCpf.TabIndex = 19;
             // 
-            // txtCep
-            // 
-            this.txtCep.Location = new System.Drawing.Point(555, 71);
-            this.txtCep.Name = "txtCep";
-            this.txtCep.Size = new System.Drawing.Size(255, 23);
-            this.txtCep.TabIndex = 20;
-            // 
             // txtLogradouro
             // 
             this.txtLogradouro.Location = new System.Drawing.Point(512, 139);
@@ -422,11 +415,20 @@ namespace AugustosFashion.Views
             this.btnCadastrarCliente.UseVisualStyleBackColor = false;
             this.btnCadastrarCliente.Click += new System.EventHandler(this.btnCadastrarCliente_Click);
             // 
+            // mtxtCep
+            // 
+            this.mtxtCep.Location = new System.Drawing.Point(555, 73);
+            this.mtxtCep.Mask = "00000-000";
+            this.mtxtCep.Name = "mtxtCep";
+            this.mtxtCep.Size = new System.Drawing.Size(255, 23);
+            this.mtxtCep.TabIndex = 36;
+            // 
             // FrmCadastroCliente
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(910, 642);
+            this.Controls.Add(this.mtxtCep);
             this.Controls.Add(this.btnCadastrarCliente);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
@@ -442,7 +444,6 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.txtBairro);
             this.Controls.Add(this.txtNumero);
             this.Controls.Add(this.txtLogradouro);
-            this.Controls.Add(this.txtCep);
             this.Controls.Add(this.mtxtCpf);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.dtpDataNascimento);
@@ -511,6 +512,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnCadastrarCliente;
         internal System.Windows.Forms.TextBox txtNome;
-        public System.Windows.Forms.TextBox txtCep;
+        private System.Windows.Forms.MaskedTextBox mtxtCep;
     }
 }

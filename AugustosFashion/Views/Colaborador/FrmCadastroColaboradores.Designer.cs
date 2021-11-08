@@ -43,7 +43,6 @@ namespace AugustosFashion.Views
             this.txtBairro = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtLogradouro = new System.Windows.Forms.TextBox();
-            this.txtCep = new System.Windows.Forms.TextBox();
             this.mtxtCpf = new System.Windows.Forms.MaskedTextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.dtpDataNascimento = new System.Windows.Forms.DateTimePicker();
@@ -74,6 +73,7 @@ namespace AugustosFashion.Views
             this.cbTipoConta = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtComissao = new System.Windows.Forms.TextBox();
+            this.mtxtCep = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -224,13 +224,6 @@ namespace AugustosFashion.Views
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(335, 23);
             this.txtLogradouro.TabIndex = 56;
-            // 
-            // txtCep
-            // 
-            this.txtCep.Location = new System.Drawing.Point(594, 73);
-            this.txtCep.Name = "txtCep";
-            this.txtCep.Size = new System.Drawing.Size(255, 23);
-            this.txtCep.TabIndex = 55;
             // 
             // mtxtCpf
             // 
@@ -513,12 +506,21 @@ namespace AugustosFashion.Views
             this.txtComissao.Size = new System.Drawing.Size(111, 23);
             this.txtComissao.TabIndex = 81;
             // 
+            // mtxtCep
+            // 
+            this.mtxtCep.Location = new System.Drawing.Point(556, 75);
+            this.mtxtCep.Mask = "00000-000";
+            this.mtxtCep.Name = "mtxtCep";
+            this.mtxtCep.Size = new System.Drawing.Size(292, 23);
+            this.mtxtCep.TabIndex = 82;
+            // 
             // FrmCadastroColaboradores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(910, 642);
+            this.Controls.Add(this.mtxtCep);
             this.Controls.Add(this.txtComissao);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.cbTipoConta);
@@ -543,7 +545,6 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.txtBairro);
             this.Controls.Add(this.txtNumero);
             this.Controls.Add(this.txtLogradouro);
-            this.Controls.Add(this.txtCep);
             this.Controls.Add(this.mtxtCpf);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.dtpDataNascimento);
@@ -568,7 +569,6 @@ namespace AugustosFashion.Views
             this.Name = "FrmCadastroColaboradores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCadastroColaboradores";
-            this.Load += new System.EventHandler(this.FrmCadastroColaboradores_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -590,7 +590,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.TextBox txtBairro;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtLogradouro;
-        public System.Windows.Forms.TextBox txtCep;
         private System.Windows.Forms.MaskedTextBox mtxtCpf;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.DateTimePicker dtpDataNascimento;
@@ -621,5 +620,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.ComboBox cbTipoConta;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtComissao;
+        private System.Windows.Forms.MaskedTextBox mtxtCep;
     }
 }

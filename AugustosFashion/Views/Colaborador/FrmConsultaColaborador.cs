@@ -60,7 +60,7 @@ namespace AugustosFashion.Views.Colaborador
             txtComplemento.Text = colaborador.Endereco.Complemento;
             txtBairro.Text = colaborador.Endereco.Bairro;
             txtNumero.Text = colaborador.Endereco.Numero.ToString();
-            txtCep.Text = colaborador.Endereco.CEP.RetornaValor;
+            mtxtCep.Text = colaborador.Endereco.CEP.RetornaValor;
             cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(colaborador.Endereco.UF);
 
             txtBanco.Text = colaborador.ContaBancaria.Banco;
@@ -79,6 +79,7 @@ namespace AugustosFashion.Views.Colaborador
                 try
                 {
                     var colaborador = InstanciarColaboradorParaAlteracao(cpf);
+                    colaborador.Endereco.CEP.RemoverMascara();
                  
                     var retorno = _consultaColaboradorController.AlterarColaborador(colaborador);
 
@@ -112,7 +113,7 @@ namespace AugustosFashion.Views.Colaborador
                 validacoes = false;
                 MessageBox.Show("Número residencial inválido.");
             }
-            else if (!ValidadoresCadastro.ValidarCEP(txtCep.Text))
+            else if (!ValidadoresCadastro.ValidarCEP(mtxtCep.Text))
             {
                 validacoes = false;
                 MessageBox.Show("CEP inválido.");
@@ -229,7 +230,7 @@ namespace AugustosFashion.Views.Colaborador
         public EnderecoModel InstanciarEnderecoParaAlteracao()
         {
             var endereco = new EnderecoModel(
-                cep: txtCep.Text,
+                cep: mtxtCep.Text,
                 logradouro: txtLogradouro.Text,
                 numero: int.Parse(txtNumero.Text),
                 cidade: txtCidade.Text,

@@ -22,11 +22,6 @@ namespace AugustosFashion.Views
             _cadastroColaboradorController = cadastroColaboradorController;
         }
 
-        private void FrmCadastroColaboradores_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCadastrarColaborador_Click(object sender, EventArgs e)
         {
             var cpfSemPontos = RemoveMaskCpf.RemoverMaskCpf(mtxtCpf.Text);
@@ -41,6 +36,7 @@ namespace AugustosFashion.Views
                 try
                 {
 
+                    colaborador.Endereco.CEP.RemoverMascara();
                     var retorno = _cadastroColaboradorController.CadastrarColaborador(colaborador);
 
                     if (string.IsNullOrEmpty(retorno))
@@ -75,7 +71,7 @@ namespace AugustosFashion.Views
                 validacoes = false;
                 MessageBox.Show("Número residencial inválido.");
             }
-            else if (!ValidadoresCadastro.ValidarCEP(txtCep.Text))
+            else if (!ValidadoresCadastro.ValidarCEP(mtxtCep.Text))
             {
                 validacoes = false;
                 MessageBox.Show("CEP inválido.");
@@ -191,7 +187,7 @@ namespace AugustosFashion.Views
         public EnderecoModel InstanciarEnderecoParaCadastro()
         {
             var endereco = new EnderecoModel(
-                cep: txtCep.Text,
+                cep: mtxtCep.Text,
                 logradouro: txtLogradouro.Text,
                 numero: int.Parse(txtNumero.Text),
                 cidade: txtCidade.Text,

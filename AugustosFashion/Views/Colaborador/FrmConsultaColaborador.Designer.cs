@@ -52,7 +52,6 @@ namespace AugustosFashion.Views.Colaborador
             this.txtBairro = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtLogradouro = new System.Windows.Forms.TextBox();
-            this.txtCep = new System.Windows.Forms.TextBox();
             this.mtxtCpf = new System.Windows.Forms.MaskedTextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.dtpDataNascimento = new System.Windows.Forms.DateTimePicker();
@@ -77,6 +76,7 @@ namespace AugustosFashion.Views.Colaborador
             this.label24 = new System.Windows.Forms.Label();
             this.btnAlterarColaborador = new System.Windows.Forms.Button();
             this.btnExcluirColaborador = new System.Windows.Forms.Button();
+            this.mtxtCep = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // txtComissao
@@ -304,13 +304,6 @@ namespace AugustosFashion.Views.Colaborador
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(335, 23);
             this.txtLogradouro.TabIndex = 102;
-            // 
-            // txtCep
-            // 
-            this.txtCep.Location = new System.Drawing.Point(630, 95);
-            this.txtCep.Name = "txtCep";
-            this.txtCep.Size = new System.Drawing.Size(255, 23);
-            this.txtCep.TabIndex = 101;
             // 
             // mtxtCpf
             // 
@@ -547,11 +540,20 @@ namespace AugustosFashion.Views.Colaborador
             this.btnExcluirColaborador.UseVisualStyleBackColor = false;
             this.btnExcluirColaborador.Click += new System.EventHandler(this.btnExcluirColaborador_Click);
             // 
+            // mtxtCep
+            // 
+            this.mtxtCep.Location = new System.Drawing.Point(592, 99);
+            this.mtxtCep.Mask = "00000-000";
+            this.mtxtCep.Name = "mtxtCep";
+            this.mtxtCep.Size = new System.Drawing.Size(293, 23);
+            this.mtxtCep.TabIndex = 130;
+            // 
             // FrmConsultaColaborador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 654);
+            this.Controls.Add(this.mtxtCep);
             this.Controls.Add(this.btnExcluirColaborador);
             this.Controls.Add(this.btnAlterarColaborador);
             this.Controls.Add(this.label24);
@@ -580,7 +582,6 @@ namespace AugustosFashion.Views.Colaborador
             this.Controls.Add(this.txtBairro);
             this.Controls.Add(this.txtNumero);
             this.Controls.Add(this.txtLogradouro);
-            this.Controls.Add(this.txtCep);
             this.Controls.Add(this.mtxtCpf);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.dtpDataNascimento);
@@ -633,7 +634,6 @@ namespace AugustosFashion.Views.Colaborador
         private System.Windows.Forms.TextBox txtBairro;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtLogradouro;
-        public System.Windows.Forms.TextBox txtCep;
         private System.Windows.Forms.MaskedTextBox mtxtCpf;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.DateTimePicker dtpDataNascimento;
@@ -658,5 +658,6 @@ namespace AugustosFashion.Views.Colaborador
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btnAlterarColaborador;
         private System.Windows.Forms.Button btnExcluirColaborador;
+        private System.Windows.Forms.MaskedTextBox mtxtCep;
     }
 }

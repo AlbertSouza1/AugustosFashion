@@ -18,7 +18,7 @@ namespace AugustosFashionModels.Entidades.Endereco.CEPs
             _valor = valor;
         }
 
-        public void RemoverFormatacao()
+        public void RemoverMascara()
         {
             _valor = new string((from c in _valor
                                  where char.IsDigit(c)

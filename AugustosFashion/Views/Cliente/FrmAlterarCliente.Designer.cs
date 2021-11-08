@@ -43,7 +43,6 @@ namespace AugustosFashion.Views
             this.txtBairro = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtLogradouro = new System.Windows.Forms.TextBox();
-            this.txtCep = new System.Windows.Forms.TextBox();
             this.mtxtCpf = new System.Windows.Forms.MaskedTextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.dtpDataNascimento = new System.Windows.Forms.DateTimePicker();
@@ -68,6 +67,7 @@ namespace AugustosFashion.Views
             this.label19 = new System.Windows.Forms.Label();
             this.btnExcluirCliente = new System.Windows.Forms.Button();
             this.txtLimiteCompraPrazo = new System.Windows.Forms.TextBox();
+            this.mtxtCep = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // btnAlterarCliente
@@ -219,13 +219,6 @@ namespace AugustosFashion.Views
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(298, 23);
             this.txtLogradouro.TabIndex = 57;
-            // 
-            // txtCep
-            // 
-            this.txtCep.Location = new System.Drawing.Point(588, 99);
-            this.txtCep.Name = "txtCep";
-            this.txtCep.Size = new System.Drawing.Size(255, 23);
-            this.txtCep.TabIndex = 56;
             // 
             // mtxtCpf
             // 
@@ -456,11 +449,20 @@ namespace AugustosFashion.Views
             this.txtLimiteCompraPrazo.Size = new System.Drawing.Size(164, 23);
             this.txtLimiteCompraPrazo.TabIndex = 76;
             // 
+            // mtxtCep
+            // 
+            this.mtxtCep.Location = new System.Drawing.Point(588, 101);
+            this.mtxtCep.Mask = "00000-000";
+            this.mtxtCep.Name = "mtxtCep";
+            this.mtxtCep.Size = new System.Drawing.Size(255, 23);
+            this.mtxtCep.TabIndex = 77;
+            // 
             // FrmAlterarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 654);
+            this.Controls.Add(this.mtxtCep);
             this.Controls.Add(this.txtLimiteCompraPrazo);
             this.Controls.Add(this.btnExcluirCliente);
             this.Controls.Add(this.label19);
@@ -479,7 +481,6 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.txtBairro);
             this.Controls.Add(this.txtNumero);
             this.Controls.Add(this.txtLogradouro);
-            this.Controls.Add(this.txtCep);
             this.Controls.Add(this.mtxtCpf);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.dtpDataNascimento);
@@ -504,7 +505,6 @@ namespace AugustosFashion.Views
             this.Name = "FrmAlterarCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAlterarCliente";
-            this.Load += new System.EventHandler(this.FrmAlterarCliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -526,7 +526,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.TextBox txtBairro;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtLogradouro;
-        public System.Windows.Forms.TextBox txtCep;
         private System.Windows.Forms.MaskedTextBox mtxtCpf;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.DateTimePicker dtpDataNascimento;
@@ -551,5 +550,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnExcluirCliente;
         private System.Windows.Forms.TextBox txtLimiteCompraPrazo;
+        private System.Windows.Forms.MaskedTextBox mtxtCep;
     }
 }

@@ -22,7 +22,9 @@ namespace AugustosFashion.Views
         private void CadastrarCliente(ClienteModel cliente)
         {
             try
-            {               
+            {
+                cliente.Endereco.CEP.RemoverMascara();
+
                 var retorno = _cadastroClienteController.CadastrarCliente(cliente);
 
                 if (string.IsNullOrEmpty(retorno))
@@ -85,7 +87,7 @@ namespace AugustosFashion.Views
         private EnderecoModel InstanciarEnderecoParaCadastro()
         {
             var endereco = new EnderecoModel(
-                cep: txtCep.Text,
+                cep: mtxtCep.Text,
                 logradouro: txtLogradouro.Text,
                 numero: int.Parse(txtNumero.Text),
                 cidade: txtCidade.Text,
@@ -137,7 +139,7 @@ namespace AugustosFashion.Views
                 validacoes = false;
                 MessageBox.Show("Número residencial inválido.");
             }
-            else if (!ValidadoresCadastro.ValidarCEP(txtCep.Text))
+            else if (!ValidadoresCadastro.ValidarCEP(mtxtCep.Text))
             {
                 validacoes = false;
                 MessageBox.Show("CEP inválido.");
