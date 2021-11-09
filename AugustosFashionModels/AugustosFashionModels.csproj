@@ -67,6 +67,7 @@
     <Compile Include="Entidades\Cpfs\CPF.cs" />
     <Compile Include="Entidades\Emails\Email.cs" />
     <Compile Include="Entidades\NomesCompletos\NomeCompleto.cs" />
+    <Compile Include="Entidades\UsuariosSistema\UsuarioSistemaModel.cs" />
     <Compile Include="Entidades\Usuario\UsuarioModel.cs" />
     <Compile Include="Entidades\Usuario\UsuarioValidator.cs" />
     <Compile Include="Helpers\EstadoIndexHelper.cs" />

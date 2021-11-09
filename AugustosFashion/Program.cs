@@ -1,4 +1,6 @@
+using AugustosFashion.Controllers.Logins;
 using AugustosFashion.Entidades;
+using AugustosFashion.Views.Logins;
 using System;
 using System.Windows.Forms;
 
@@ -15,7 +17,8 @@ namespace AugustosFashion
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(MDIParentSingleton.InstanciarFrmMdiParent());
+            //Application.Run(MDIParentSingleton.InstanciarFrmMdiParent());
+            Application.Run(new LoginController().AbrirFormLogin());
         }
     }
 }
