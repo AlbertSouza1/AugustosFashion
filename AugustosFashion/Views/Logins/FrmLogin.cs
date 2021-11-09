@@ -24,18 +24,7 @@ namespace AugustosFashion.Views.Logins
         {
             var usuarioSistemaModel = InstanciarUsuarioParaLogar();
 
-            if (_loginController.LogarUsuario(usuarioSistemaModel))
-                AbrirSistema();
-            else
-                MessageBox.Show("Nome de usuário ou senha inválidos.");
-        }
-
-        private void AbrirSistema()
-        {
-            var MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
-            MdiParent.ShowDialog();
-
-            this.Close();
+            _loginController.LogarUsuario(usuarioSistemaModel);             
         }
 
         private UsuarioSistemaModel InstanciarUsuarioParaLogar()

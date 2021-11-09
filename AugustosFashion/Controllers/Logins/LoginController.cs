@@ -1,16 +1,30 @@
 ﻿using AugustosFashion.Views.Logins;
 using AugustosFashionModels.Entidades.UsuariosSistema;
 using System;
+using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers.Logins
 {
     public class LoginController
     {
-        public FrmLogin AbrirFormLogin()
+        private readonly Form _frmLogin;
+        //private readonly UsuarioSistemaRepositorio _loginRepositorio;
+
+        public LoginController()
         {
-            return new FrmLogin(this);
+            _frmLogin = new FrmLogin(this);
         }
-        public bool LogarUsuario(UsuarioSistemaModel usuarioSistema)
+        //public DialogResult AbrirFormLogin()
+        //{
+        //    var frm = new FrmLogin(this);
+
+        //    frm.ShowDialog();
+
+        //    return DialogResult.None;
+        //}
+
+        public Form RetornarFormLogin() => _frmLogin;
+        public void LogarUsuario(UsuarioSistemaModel usuarioSistema)
         {
             try
             {
@@ -21,8 +35,12 @@ namespace AugustosFashion.Controllers.Logins
                 //return new UsuarioSistemaModel();
 
                 if (string.IsNullOrWhiteSpace(usuarioSistema.NomeUsuario) || string.IsNullOrWhiteSpace(usuarioSistema.Senha))
-                    return false;
-                return true;
+                    MessageBox.Show("Login invalido");
+                else
+                {
+                    _frmLogin.DialogResult = DialogResult.OK;
+                }
+
             }
             catch (Exception ex)
             {
