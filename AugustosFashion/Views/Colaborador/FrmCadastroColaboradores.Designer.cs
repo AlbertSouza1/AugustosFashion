@@ -569,6 +569,7 @@ namespace AugustosFashion.Views
             this.Name = "FrmCadastroColaboradores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmCadastroColaboradores";
+            this.Load += new System.EventHandler(this.FrmCadastroColaboradores_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

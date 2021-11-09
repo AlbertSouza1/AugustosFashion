@@ -93,6 +93,7 @@ namespace AugustosFashion.Views.Colaborador
                 }
             }
         }
+
         private bool VerificarValidacoesDeColaborador()
         {
             bool validacoes = true;

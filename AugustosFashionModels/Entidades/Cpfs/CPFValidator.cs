@@ -7,11 +7,11 @@ namespace AugustosFashionModels.Entidades.Cpfs
     {
         public CPFValidator()
         {
-            RuleFor(x => x.ToString()).NotNull().NotEmpty().Length(11).WithMessage("CPF deve ter 11 números");
+            RuleFor(x => x.ToString()).Length(11).WithMessage("CPF deve ter 11 números");
             RuleFor(x => x.ToString()).Must(NumerosNaoRepetidos).WithMessage("CPF inválido");
         }
 
-        private bool NumerosNaoRepetidos(string value) =>
-            !value.All(x => x.Equals(value.First()));
+        private bool NumerosNaoRepetidos(string value)
+            => string.IsNullOrEmpty(value) ? true : !value.All(x => x.Equals(value.First()));
     }
 }

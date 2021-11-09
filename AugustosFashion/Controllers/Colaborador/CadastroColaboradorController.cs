@@ -12,7 +12,6 @@ namespace AugustosFashion.Controllers
         {
             var frmCadastroColaborador = new FrmCadastroColaboradores(this);
             frmCadastroColaborador.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
-
             frmCadastroColaborador.Show();
         }
         public string CadastrarColaborador(ColaboradorModel colaborador)

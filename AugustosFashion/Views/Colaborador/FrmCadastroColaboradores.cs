@@ -276,5 +276,10 @@ namespace AugustosFashion.Views
                 throw new Exception(ex.Message);
             }
         }
+
+        private void FrmCadastroColaboradores_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

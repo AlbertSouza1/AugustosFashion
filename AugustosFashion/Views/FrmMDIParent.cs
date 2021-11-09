@@ -18,14 +18,14 @@ namespace AugustosFashion
 
         public FrmMDIParent()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
         private void ShowNewForm(object sender, EventArgs e)
         {
             Form childForm = new Form();
             childForm.MdiParent = this;
-            childForm.Text = "Janela " + childFormNumber++;
+            childForm.Text = "Janela " + childFormNumber++;         
             childForm.Show();
         }
 
@@ -85,7 +85,7 @@ namespace AugustosFashion
 
         private void FrmMDIParent_Load(object sender, EventArgs e)
         {
-            
+            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.WhiteSmoke;
         }
 
         private void tsNovoCliente_Click(object sender, EventArgs e)

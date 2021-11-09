@@ -71,7 +71,6 @@
     <Compile Include="Entidades\Usuario\UsuarioValidator.cs" />
     <Compile Include="Helpers\EstadoIndexHelper.cs" />
     <Compile Include="Helpers\InstanciaModelsParaCadastro.cs" />
-    <Compile Include="Helpers\RemoveMaskCpf.cs" />
     <Compile Include="Helpers\SexoIndexComboBoxHelper.cs" />
     <Compile Include="Helpers\SQLHelper.cs" />
     <Compile Include="Helpers\TipoContaBancariaComboBoxHelper.cs" />

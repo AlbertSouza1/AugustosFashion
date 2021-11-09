@@ -113,7 +113,7 @@ namespace AugustosFashion
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(191)))), ((int)(((byte)(237)))));
             this.panel1.Location = new System.Drawing.Point(0, 566);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(947, 85);
+            this.panel1.Size = new System.Drawing.Size(987, 173);
             this.panel1.TabIndex = 2;
             // 
             // panelCentral
@@ -123,7 +123,7 @@ namespace AugustosFashion
             this.panelCentral.Controls.Add(this.panel1);
             this.panelCentral.Location = new System.Drawing.Point(0, 27);
             this.panelCentral.Name = "panelCentral";
-            this.panelCentral.Size = new System.Drawing.Size(947, 653);
+            this.panelCentral.Size = new System.Drawing.Size(987, 739);
             this.panelCentral.TabIndex = 3;
             this.panelCentral.Visible = false;
             // 
@@ -132,7 +132,7 @@ namespace AugustosFashion
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(191)))), ((int)(((byte)(237)))));
-            this.label1.Location = new System.Drawing.Point(255, 43);
+            this.label1.Location = new System.Drawing.Point(313, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(375, 44);
             this.label1.TabIndex = 1;
@@ -141,7 +141,7 @@ namespace AugustosFashion
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(312, 164);
+            this.pictureBox1.Location = new System.Drawing.Point(351, 227);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(269, 180);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -184,9 +184,9 @@ namespace AugustosFashion
         private System.Windows.Forms.ToolStripMenuItem novoColaboradorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarColaboradoresToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panelCentral;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.Panel panelCentral;
     }
 }
 
