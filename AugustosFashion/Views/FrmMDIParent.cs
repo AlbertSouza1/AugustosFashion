@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Controllers;
 using AugustosFashion.Controllers.Colaborador;
+using AugustosFashion.Controllers.Produtos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -111,6 +112,11 @@ namespace AugustosFashion
         private void visualizarColaboradoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ListaColaboradorController().AbrirFormularioLista();
+        }
+
+        private void novoProdutoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CadastroProdutoController().AbrirFormCadastroProduto();
         }
     }
 }
