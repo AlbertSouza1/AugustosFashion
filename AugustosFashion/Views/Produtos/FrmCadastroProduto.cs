@@ -39,16 +39,19 @@ namespace AugustosFashion.Views.Produtos
 
         private void btnCadastrarProduto_Click(object sender, EventArgs e)
         {
-            var produto = InstanciarProdutoParaCadastro();
-            try
+            if (ValidarCamposDeProduto())
             {
-                _cadastroProdutoController.CadastrarProduto(produto);
+                var produto = InstanciarProdutoParaCadastro();
+                try
+                {
+                    _cadastroProdutoController.CadastrarProduto(produto);
 
-                MessageBox.Show("Produto cadastrado com sucesso");
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Falha ao cadastrar produto. Erro: "+ex.Message);
+                    MessageBox.Show("Produto cadastrado com sucesso");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falha ao cadastrar produto. Erro: " + ex.Message);
+                }
             }
         }
 
@@ -63,6 +66,44 @@ namespace AugustosFashion.Views.Produtos
                 PrecoVenda = double.Parse(numPrecoVenda.Text),
                 Estoque = numEstoque.Text
             };
+        }
+
+        private bool ValidarCamposDeProduto()
+        {
+            bool validacoes = true;
+
+            if (string.IsNullOrEmpty(txtNome.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Nome não pode ser vazio.");
+            }                      
+            else if (string.IsNullOrEmpty(mtxtCodigoBarras.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Código de barras não pode ser vazio.");
+            }
+            else if (string.IsNullOrEmpty(txtFabricante.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Fabricante não pode ser vazio.");
+            }
+            else if (string.IsNullOrEmpty(numEstoque.Text))
+            {
+                validacoes = false;
+                MessageBox.Show("Estoque inválido.");
+            }
+            else if (string.IsNullOrEmpty(numPrecoCusto.Text) || double.Parse(numPrecoCusto.Text) == 0)
+            {
+                validacoes = false;
+                MessageBox.Show("Preço de custo não pode ser vazio.");
+            }
+            else if (string.IsNullOrEmpty(numPrecoVenda.Text) || double.Parse(numPrecoVenda.Text) == 0)
+            {
+                validacoes = false;
+                MessageBox.Show("Preço de venda não pode ser vazio.");
+            }
+
+            return validacoes;
         }
     }
 }
