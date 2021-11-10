@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Controllers.Produtos;
+using AugustosFashionModels.Entidades.Produtos;
 using AugustosFashionModels.Helpers;
 using System;
 using System.Windows.Forms;
@@ -34,6 +35,34 @@ namespace AugustosFashion.Views.Produtos
         {
             double precoCusto = double.Parse(numPrecoCusto.Text);
             numPrecoVenda.Text = (precoCusto + (precoCusto * porcentagemLucro / 100)).ToString();
+        }
+
+        private void btnCadastrarProduto_Click(object sender, EventArgs e)
+        {
+            var produto = InstanciarProdutoParaCadastro();
+            try
+            {
+                _cadastroProdutoController.CadastrarProduto(produto);
+
+                MessageBox.Show("Produto cadastrado com sucesso");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Falha ao cadastrar produto. Erro: "+ex.Message);
+            }
+        }
+
+        private ProdutoModel InstanciarProdutoParaCadastro()
+        {
+            return new ProdutoModel
+            {
+                Nome = txtNome.Text,
+                CodigoBarras = RemoveNaoNumericos.RetornarApenasNumeros(mtxtCodigoBarras.Text),
+                Fabricante = txtFabricante.Text,
+                PrecoCusto = double.Parse(numPrecoCusto.Text),
+                PrecoVenda = double.Parse(numPrecoVenda.Text),
+                Estoque = numEstoque.Text
+            };
         }
     }
 }

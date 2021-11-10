@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace AugustosFashion.Repositorios
 {
-    public class ProdutoRepositorio
+    public static class ProdutoRepositorio
     {
         public static void CadastrarProduto(ProdutoModel produto)
         {

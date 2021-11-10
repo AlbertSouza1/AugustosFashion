@@ -77,6 +77,7 @@ namespace AugustosFashion.Views.Produtos
             this.btnCadastrarProduto.TabIndex = 112;
             this.btnCadastrarProduto.Text = "Cadastrar";
             this.btnCadastrarProduto.UseVisualStyleBackColor = false;
+            this.btnCadastrarProduto.Click += new System.EventHandler(this.btnCadastrarProduto_Click);
             // 
             // txtFabricante
             // 
