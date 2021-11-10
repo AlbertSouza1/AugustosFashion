@@ -18,7 +18,6 @@ namespace AugustosFashion.Entidades
         public CPF CPF { get; set; }
         public EnderecoModel Endereco { get; set; }
         public List<TelefoneModel> Telefones { get; set; }
-
         public UsuarioModel(string nome, string sobreNome)
         {
             Endereco = new EnderecoModel();

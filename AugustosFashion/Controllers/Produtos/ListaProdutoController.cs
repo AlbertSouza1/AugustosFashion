@@ -16,7 +16,7 @@ namespace AugustosFashion.Controllers.Produtos
             frmListaProduto.Show();
         }
 
-        internal List<ProdutoModel> ListarProdutos()
+        internal List<ProdutoListagem> ListarProdutos()
         {
             try
             {

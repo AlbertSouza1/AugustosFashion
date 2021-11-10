@@ -30,7 +30,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static List<ProdutoModel> ListarTodosOsProdutos()
+        public static List<ProdutoListagem> ListarTodosOsProdutos()
         {
             var strSqlProduto = @"select IdProduto, Nome, CodigoBarras, Fabricante, PrecoCusto, PrecoVenda, Estoque, Status 
                 from Produtos where status = 1
@@ -42,7 +42,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<ProdutoModel>(strSqlProduto).ToList();
+                    return sqlCon.Query<ProdutoListagem>(strSqlProduto).ToList();
                 }
             }
             catch (Exception ex)

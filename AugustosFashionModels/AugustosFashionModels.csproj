@@ -61,6 +61,7 @@
     <Compile Include="Entidades\Endereco\EnderecoModel.cs" />
     <Compile Include="Entidades\Endereco\EnderecoValidator.cs" />
     <Compile Include="Entidades\NomesCompletos\NomeCompletoValidator.cs" />
+    <Compile Include="Entidades\Produtos\ProdutoListagem.cs" />
     <Compile Include="Entidades\Produtos\ProdutoModel.cs" />
     <Compile Include="Entidades\Produtos\StatusProduto.cs" />
     <Compile Include="Entidades\Telefone\TelefoneModel.cs" />

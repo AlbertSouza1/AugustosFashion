@@ -18,18 +18,21 @@ namespace AugustosFashion.Views.Produtos
 
         private void btnBuscarProdutos_Click(object sender, System.EventArgs e)
         {
-            if (txtBuscaProdutos.Text == "%")
+            if (string.IsNullOrWhiteSpace(txtBuscaProdutos.Text))
+            {
+                MessageBox.Show("Digite algo para buscar");
+            }
+            else if (txtBuscaProdutos.Text == "%")
             {
                 RecuperarTodosOsProdutosParaListar();
             }
-
         }
 
         private void RecuperarTodosOsProdutosParaListar()
         {
             try
             {
-                List<ProdutoModel> listaColaboradores = _listaProdutoController.ListarProdutos();
+                List<ProdutoListagem> listaColaboradores = _listaProdutoController.ListarProdutos();
 
                 ListarProdutos(listaColaboradores);
             }
@@ -39,7 +42,7 @@ namespace AugustosFashion.Views.Produtos
             }
         }
 
-        private void ListarProdutos(List<ProdutoModel> produtos)
+        private void ListarProdutos(List<ProdutoListagem> produtos)
         {
             dgvProdutos.DataSource = produtos;
         }
