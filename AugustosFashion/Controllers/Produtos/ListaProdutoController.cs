@@ -1,5 +1,9 @@
 ﻿using AugustosFashion.Entidades;
+using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Produtos;
+using AugustosFashionModels.Entidades.Produtos;
+using System;
+using System.Collections.Generic;
 
 namespace AugustosFashion.Controllers.Produtos
 {
@@ -10,6 +14,18 @@ namespace AugustosFashion.Controllers.Produtos
             var frmListaProduto = new FrmListaProduto(this);
             frmListaProduto.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             frmListaProduto.Show();
+        }
+
+        internal List<ProdutoModel> ListarProdutos()
+        {
+            try
+            {
+                return ProdutoRepositorio.ListarTodosOsProdutos();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

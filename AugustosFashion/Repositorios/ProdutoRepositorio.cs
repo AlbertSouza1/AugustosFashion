@@ -2,7 +2,9 @@
 using AugustosFashionModels.Entidades.Produtos;
 using Dapper;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace AugustosFashion.Repositorios
 {
@@ -20,6 +22,27 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
                    
                     sqlCon.Execute(strSqlProduto, produto);                      
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static List<ProdutoModel> ListarTodosOsProdutos()
+        {
+            var strSqlProduto = @"select IdProduto, Nome, CodigoBarras, Fabricante, PrecoCusto, PrecoVenda, Estoque, Status 
+                from Produtos where status = 1
+                ";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ProdutoModel>(strSqlProduto).ToList();
                 }
             }
             catch (Exception ex)
