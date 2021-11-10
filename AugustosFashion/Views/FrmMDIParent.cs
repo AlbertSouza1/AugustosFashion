@@ -118,5 +118,10 @@ namespace AugustosFashion
         {
             new CadastroProdutoController().AbrirFormCadastroProduto();
         }
+
+        private void visualizarProdutosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ListaProdutoController().AbrirFormListaProduto();
+        }
     }
 }

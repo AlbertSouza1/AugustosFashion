@@ -37,13 +37,13 @@ namespace AugustosFashion
             this.colaboradoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novoColaboradorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarColaboradoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.novoProdutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualizarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelCentral = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.novoProdutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.visualizarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.panelCentral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -112,6 +112,29 @@ namespace AugustosFashion
             this.visualizarColaboradoresToolStripMenuItem.Text = "Visualizar Colaboradores";
             this.visualizarColaboradoresToolStripMenuItem.Click += new System.EventHandler(this.visualizarColaboradoresToolStripMenuItem_Click);
             // 
+            // produtosToolStripMenuItem
+            // 
+            this.produtosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.novoProdutoToolStripMenuItem,
+            this.visualizarProdutosToolStripMenuItem});
+            this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
+            this.produtosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.produtosToolStripMenuItem.Text = "Produtos";
+            // 
+            // novoProdutoToolStripMenuItem
+            // 
+            this.novoProdutoToolStripMenuItem.Name = "novoProdutoToolStripMenuItem";
+            this.novoProdutoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novoProdutoToolStripMenuItem.Text = "Novo Produto";
+            this.novoProdutoToolStripMenuItem.Click += new System.EventHandler(this.novoProdutoToolStripMenuItem_Click);
+            // 
+            // visualizarProdutosToolStripMenuItem
+            // 
+            this.visualizarProdutosToolStripMenuItem.Name = "visualizarProdutosToolStripMenuItem";
+            this.visualizarProdutosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visualizarProdutosToolStripMenuItem.Text = "Visualizar Produtos";
+            this.visualizarProdutosToolStripMenuItem.Click += new System.EventHandler(this.visualizarProdutosToolStripMenuItem_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(191)))), ((int)(((byte)(237)))));
@@ -151,28 +174,6 @@ namespace AugustosFashion
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // produtosToolStripMenuItem
-            // 
-            this.produtosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.novoProdutoToolStripMenuItem,
-            this.visualizarProdutosToolStripMenuItem});
-            this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
-            this.produtosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.produtosToolStripMenuItem.Text = "Produtos";
-            // 
-            // novoProdutoToolStripMenuItem
-            // 
-            this.novoProdutoToolStripMenuItem.Name = "novoProdutoToolStripMenuItem";
-            this.novoProdutoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.novoProdutoToolStripMenuItem.Text = "Novo Produto";
-            this.novoProdutoToolStripMenuItem.Click += new System.EventHandler(this.novoProdutoToolStripMenuItem_Click);
-            // 
-            // visualizarProdutosToolStripMenuItem
-            // 
-            this.visualizarProdutosToolStripMenuItem.Name = "visualizarProdutosToolStripMenuItem";
-            this.visualizarProdutosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.visualizarProdutosToolStripMenuItem.Text = "Visualizar Produtos";
             // 
             // FrmMDIParent
             // 
