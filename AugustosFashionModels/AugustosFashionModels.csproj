@@ -61,6 +61,8 @@
     <Compile Include="Entidades\Endereco\EnderecoModel.cs" />
     <Compile Include="Entidades\Endereco\EnderecoValidator.cs" />
     <Compile Include="Entidades\NomesCompletos\NomeCompletoValidator.cs" />
+    <Compile Include="Entidades\Produtos\ProdutoModel.cs" />
+    <Compile Include="Entidades\Produtos\StatusProduto.cs" />
     <Compile Include="Entidades\Telefone\TelefoneModel.cs" />
     <Compile Include="Entidades\Telefone\TelefoneValidator.cs" />
     <Compile Include="Entidades\Telefone\TipoTelefone.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Entidades\Usuario\UsuarioValidator.cs" />
     <Compile Include="Helpers\EstadoIndexHelper.cs" />
     <Compile Include="Helpers\InstanciaModelsParaCadastro.cs" />
+    <Compile Include="Helpers\RemoveNaoNumericos.cs" />
     <Compile Include="Helpers\SexoIndexComboBoxHelper.cs" />
     <Compile Include="Helpers\SQLHelper.cs" />
     <Compile Include="Helpers\TipoContaBancariaComboBoxHelper.cs" />
@@ -80,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\Produtos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
