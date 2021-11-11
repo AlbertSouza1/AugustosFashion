@@ -103,6 +103,7 @@
             this.btnCalcularPreco.TabIndex = 145;
             this.btnCalcularPreco.Text = "Calcular\r\n";
             this.btnCalcularPreco.UseVisualStyleBackColor = false;
+            this.btnCalcularPreco.Click += new System.EventHandler(this.btnCalcularPreco_Click);
             // 
             // label5
             // 
@@ -138,6 +139,7 @@
             this.BtnAlterar.TabIndex = 142;
             this.BtnAlterar.Text = "Salvar Alterações";
             this.BtnAlterar.UseVisualStyleBackColor = false;
+            this.BtnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // txtFabricante
             // 

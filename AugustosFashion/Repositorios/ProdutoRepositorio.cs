@@ -30,6 +30,27 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        internal static void AlterarProduto(ProdutoModel produto)
+        {
+            var strSqlProduto = @"Update Produtos SET Nome = @Nome, CodigoBarras = @CodigoBarras,
+                Fabricante = @Fabricante, PrecoCusto = @PrecoCusto, PrecoVenda = @PrecoVenda, Estoque = @Estoque 
+                where IdProduto = @IdProduto";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    sqlCon.Execute(strSqlProduto, produto);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static List<ProdutoListagem> ListarTodosOsProdutos()
         {
             var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda

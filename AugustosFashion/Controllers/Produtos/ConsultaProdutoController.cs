@@ -25,5 +25,10 @@ namespace AugustosFashion.Controllers.Produtos
                 throw new Exception(ex.Message);
             }
         }
+
+        internal void AlterarProduto(ProdutoModel produto)
+        {
+            ProdutoRepositorio.AlterarProduto(produto);
+        }
     }
 }

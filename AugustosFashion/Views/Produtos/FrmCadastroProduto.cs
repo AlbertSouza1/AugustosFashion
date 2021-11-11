@@ -47,6 +47,7 @@ namespace AugustosFashion.Views.Produtos
                     _cadastroProdutoController.CadastrarProduto(produto);
 
                     MessageBox.Show("Produto cadastrado com sucesso");
+                    Close();
                 }
                 catch (Exception ex)
                 {
