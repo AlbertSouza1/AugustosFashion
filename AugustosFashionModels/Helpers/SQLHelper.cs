@@ -5,7 +5,7 @@ namespace AugustosFashion.Helpers
 {
     public static class SqlHelper
     {
-        private static string connectionString = @"Data Source=USER-PC\SQLEXPRESS;Initial Catalog=AugustoFashion;User ID=sa;Password=123";
+        private static string connectionString = @"Data Source=DESKTOP-91Q14BK;Initial Catalog=AugustoFashion;Integrated Security=True";
 
         public static SqlConnection ObterConexao()
         {
