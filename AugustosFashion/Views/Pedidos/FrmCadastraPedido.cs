@@ -21,6 +21,14 @@ namespace AugustosFashion.Views.Pedidos
             _cadastroPedidoController = cadastroPedidoController;
         }
 
-        
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmCadastraPedido_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
