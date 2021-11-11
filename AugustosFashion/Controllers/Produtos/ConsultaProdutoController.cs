@@ -20,7 +20,7 @@ namespace AugustosFashion.Controllers.Produtos
             {
                 return ProdutoRepositorio.ConsultarProduto(idProduto);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -28,7 +28,37 @@ namespace AugustosFashion.Controllers.Produtos
 
         internal void AlterarProduto(ProdutoModel produto)
         {
-            ProdutoRepositorio.AlterarProduto(produto);
+            try
+            {
+                ProdutoRepositorio.AlterarProduto(produto);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        //internal void ExcluirProduto(int idProduto)
+        //{
+        //    try
+        //    {
+        //        ProdutoRepositorio.ExcluirProduto(idProduto);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
+        internal void InativarProduto(int idProduto)
+        {
+            try
+            {
+               ProdutoRepositorio.InativarProduto(idProduto);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

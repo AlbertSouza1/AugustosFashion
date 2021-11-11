@@ -46,11 +46,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.txtIdProduto = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numAddEstoque = new System.Windows.Forms.NumericUpDown();
+            this.btnAdicionarEstoque = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoVenda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoCusto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numEstoque)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAddEstoque)).BeginInit();
             this.SuspendLayout();
             // 
             // numPrecoVenda
@@ -69,9 +73,9 @@
             // 
             // numEstoque
             // 
-            this.numEstoque.Location = new System.Drawing.Point(211, 279);
+            this.numEstoque.Location = new System.Drawing.Point(211, 275);
             this.numEstoque.Name = "numEstoque";
-            this.numEstoque.Size = new System.Drawing.Size(462, 23);
+            this.numEstoque.Size = new System.Drawing.Size(176, 23);
             this.numEstoque.TabIndex = 148;
             // 
             // mtxtPorcentagemLucro
@@ -159,7 +163,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(211, 244);
+            this.label14.Location = new System.Drawing.Point(211, 251);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(176, 21);
             this.label14.TabIndex = 139;
@@ -225,18 +229,19 @@
             this.label1.TabIndex = 133;
             this.label1.Text = "Consultar Produto";
             // 
-            // button1
+            // btnExcluir
             // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(500, 593);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 37);
-            this.button1.TabIndex = 151;
-            this.button1.Text = "Excluir";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnExcluir.BackColor = System.Drawing.Color.Red;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExcluir.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnExcluir.ForeColor = System.Drawing.Color.White;
+            this.btnExcluir.Location = new System.Drawing.Point(500, 593);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(150, 37);
+            this.btnExcluir.TabIndex = 151;
+            this.btnExcluir.Text = "Inativar Produto";
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // txtIdProduto
             // 
@@ -246,13 +251,47 @@
             this.txtIdProduto.TabIndex = 152;
             this.txtIdProduto.Visible = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(453, 251);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(156, 21);
+            this.label6.TabIndex = 153;
+            this.label6.Text = "Adicionar ao estoque";
+            // 
+            // numAddEstoque
+            // 
+            this.numAddEstoque.Location = new System.Drawing.Point(453, 275);
+            this.numAddEstoque.Name = "numAddEstoque";
+            this.numAddEstoque.Size = new System.Drawing.Size(156, 23);
+            this.numAddEstoque.TabIndex = 154;
+            // 
+            // btnAdicionarEstoque
+            // 
+            this.btnAdicionarEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAdicionarEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdicionarEstoque.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAdicionarEstoque.Location = new System.Drawing.Point(615, 275);
+            this.btnAdicionarEstoque.Name = "btnAdicionarEstoque";
+            this.btnAdicionarEstoque.Size = new System.Drawing.Size(45, 23);
+            this.btnAdicionarEstoque.TabIndex = 155;
+            this.btnAdicionarEstoque.Text = "Add";
+            this.btnAdicionarEstoque.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAdicionarEstoque.UseVisualStyleBackColor = false;
+            this.btnAdicionarEstoque.Click += new System.EventHandler(this.btnAdicionarEstoque_Click);
+            // 
             // FrmConsultaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 642);
+            this.Controls.Add(this.btnAdicionarEstoque);
+            this.Controls.Add(this.numAddEstoque);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtIdProduto);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.numPrecoVenda);
             this.Controls.Add(this.numPrecoCusto);
             this.Controls.Add(this.numEstoque);
@@ -276,6 +315,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoVenda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoCusto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numEstoque)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAddEstoque)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,7 +341,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.TextBox txtIdProduto;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numAddEstoque;
+        private System.Windows.Forms.Button btnAdicionarEstoque;
     }
 }
