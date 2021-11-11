@@ -6,15 +6,15 @@ using System.Data.SqlClient;
 
 namespace AugustosFashion.Repositorios
 {
-    internal class PedidoRepositorio
+    internal static class PedidoRepositorio
     {
         public static void CadastrarPedido(PedidoModel pedido)
         {
             var strSqlPedido = "Insert into Pedidos (IdCliente, IdColaborador, FormaPagamento, DataEmissao, TotalBruto, TotalDesconto, TotalLiquido) " +
                 "values (@IdCliente, @IdColaborador, @FormaPagamento, @DataEmissao, @TotalBruto, @TotalDesconto, @TotalLiquido)";
 
-            var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, Quantidade, Desconto, PrecoLiquido, Total)
-                values (@IdPedido, @IdProduto, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";
+            var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, PrecoVenda, Quantidade, Desconto, PrecoLiquido, Total)
+                values (@IdPedido, @IdProduto, @PrecoVenda, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";
 
             try
             {
