@@ -27,5 +27,17 @@ namespace AugustosFashion.Controllers.Produtos
                 throw new Exception(ex.Message);
             }
         }
+
+        internal List<ProdutoListagem> BuscarProdutosPorNome(string busca)
+        {
+            try
+            {
+                return ProdutoRepositorio.BuscarProdutosPorNome(busca);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

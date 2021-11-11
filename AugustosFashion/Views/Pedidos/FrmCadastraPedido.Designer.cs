@@ -35,9 +35,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dgvBuscaCliente = new System.Windows.Forms.DataGridView();
+            this.dgvBuscaColaborador = new System.Windows.Forms.DataGridView();
+            this.dgvBuscaProdutos = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -46,19 +46,19 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dgvCarrinho = new System.Windows.Forms.DataGridView();
             this.label16 = new System.Windows.Forms.Label();
             this.txtBuscarProdutos = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.txtPreco = new System.Windows.Forms.TextBox();
+            this.txtDesconto = new System.Windows.Forms.TextBox();
+            this.numQuantidade = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
+            this.txtColaborador = new System.Windows.Forms.TextBox();
+            this.txtTotalBruto = new System.Windows.Forms.TextBox();
+            this.txtTotalDesconto = new System.Windows.Forms.TextBox();
+            this.txtTotalLiquido = new System.Windows.Forms.TextBox();
             this.BtnBuscarProdutos = new System.Windows.Forms.Button();
             this.BtnAdicionarAoCarrinho = new System.Windows.Forms.Button();
             this.BtnFinalizarVenda = new System.Windows.Forms.Button();
@@ -68,11 +68,11 @@
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
             this.BtnCalcularTotais = new System.Windows.Forms.Button();
             this.BtnRemoverProdutoCarrinho = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaColaborador)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaProdutos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +99,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(34, 413);
+            this.label3.Location = new System.Drawing.Point(519, 408);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(150, 19);
             this.label3.TabIndex = 2;
@@ -109,7 +109,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(519, 413);
+            this.label4.Location = new System.Drawing.Point(34, 408);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 19);
             this.label4.TabIndex = 3;
@@ -144,34 +144,40 @@
             this.label7.Size = new System.Drawing.Size(87, 19);
             this.label7.TabIndex = 6;
             this.label7.Text = "Total Líquido";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // dataGridView1
+            // dgvBuscaCliente
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(519, 437);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(419, 55);
-            this.dataGridView1.TabIndex = 7;
+            this.dgvBuscaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBuscaCliente.Location = new System.Drawing.Point(34, 432);
+            this.dgvBuscaCliente.Name = "dgvBuscaCliente";
+            this.dgvBuscaCliente.ReadOnly = true;
+            this.dgvBuscaCliente.RowTemplate.Height = 25;
+            this.dgvBuscaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBuscaCliente.Size = new System.Drawing.Size(413, 55);
+            this.dgvBuscaCliente.TabIndex = 7;
             // 
-            // dataGridView2
+            // dgvBuscaColaborador
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(34, 437);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(413, 55);
-            this.dataGridView2.TabIndex = 8;
+            this.dgvBuscaColaborador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBuscaColaborador.Location = new System.Drawing.Point(519, 430);
+            this.dgvBuscaColaborador.Name = "dgvBuscaColaborador";
+            this.dgvBuscaColaborador.ReadOnly = true;
+            this.dgvBuscaColaborador.RowTemplate.Height = 25;
+            this.dgvBuscaColaborador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBuscaColaborador.Size = new System.Drawing.Size(419, 55);
+            this.dgvBuscaColaborador.TabIndex = 8;
             // 
-            // dataGridView3
+            // dgvBuscaProdutos
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(34, 103);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 25;
-            this.dataGridView3.Size = new System.Drawing.Size(413, 70);
-            this.dataGridView3.TabIndex = 9;
+            this.dgvBuscaProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvBuscaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBuscaProdutos.Location = new System.Drawing.Point(34, 103);
+            this.dgvBuscaProdutos.Name = "dgvBuscaProdutos";
+            this.dgvBuscaProdutos.ReadOnly = true;
+            this.dgvBuscaProdutos.RowTemplate.Height = 25;
+            this.dgvBuscaProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBuscaProdutos.Size = new System.Drawing.Size(413, 70);
+            this.dgvBuscaProdutos.TabIndex = 9;
             // 
             // label8
             // 
@@ -251,15 +257,16 @@
             this.label15.Size = new System.Drawing.Size(0, 15);
             this.label15.TabIndex = 17;
             // 
-            // dataGridView4
+            // dgvCarrinho
             // 
-            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(519, 103);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(419, 225);
-            this.dataGridView4.TabIndex = 18;
+            this.dgvCarrinho.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvCarrinho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCarrinho.Location = new System.Drawing.Point(519, 103);
+            this.dgvCarrinho.Name = "dgvCarrinho";
+            this.dgvCarrinho.ReadOnly = true;
+            this.dgvCarrinho.RowTemplate.Height = 25;
+            this.dgvCarrinho.Size = new System.Drawing.Size(419, 225);
+            this.dgvCarrinho.TabIndex = 18;
             // 
             // label16
             // 
@@ -278,35 +285,35 @@
             this.txtBuscarProdutos.Size = new System.Drawing.Size(127, 23);
             this.txtBuscarProdutos.TabIndex = 20;
             // 
-            // textBox2
+            // txtNome
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(45, 252);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(182, 23);
-            this.textBox2.TabIndex = 21;
+            this.txtNome.Enabled = false;
+            this.txtNome.Location = new System.Drawing.Point(45, 252);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(182, 23);
+            this.txtNome.TabIndex = 21;
             // 
-            // textBox3
+            // txtPreco
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(279, 252);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(168, 23);
-            this.textBox3.TabIndex = 22;
+            this.txtPreco.Enabled = false;
+            this.txtPreco.Location = new System.Drawing.Point(279, 252);
+            this.txtPreco.Name = "txtPreco";
+            this.txtPreco.Size = new System.Drawing.Size(168, 23);
+            this.txtPreco.TabIndex = 22;
             // 
-            // textBox4
+            // txtDesconto
             // 
-            this.textBox4.Location = new System.Drawing.Point(45, 310);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(182, 23);
-            this.textBox4.TabIndex = 23;
+            this.txtDesconto.Location = new System.Drawing.Point(45, 310);
+            this.txtDesconto.Name = "txtDesconto";
+            this.txtDesconto.Size = new System.Drawing.Size(182, 23);
+            this.txtDesconto.TabIndex = 23;
             // 
-            // numericUpDown1
+            // numQuantidade
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(279, 311);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(168, 23);
-            this.numericUpDown1.TabIndex = 24;
+            this.numQuantidade.Location = new System.Drawing.Point(279, 310);
+            this.numQuantidade.Name = "numQuantidade";
+            this.numQuantidade.Size = new System.Drawing.Size(168, 23);
+            this.numQuantidade.TabIndex = 24;
             // 
             // label17
             // 
@@ -318,45 +325,45 @@
             this.label17.TabIndex = 25;
             this.label17.Text = "Editar valores para venda";
             // 
-            // textBox5
+            // txtCliente
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(34, 528);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(288, 23);
-            this.textBox5.TabIndex = 26;
+            this.txtCliente.Enabled = false;
+            this.txtCliente.Location = new System.Drawing.Point(34, 528);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(288, 23);
+            this.txtCliente.TabIndex = 26;
             // 
-            // textBox6
+            // txtColaborador
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(519, 528);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(288, 23);
-            this.textBox6.TabIndex = 27;
+            this.txtColaborador.Enabled = false;
+            this.txtColaborador.Location = new System.Drawing.Point(519, 528);
+            this.txtColaborador.Name = "txtColaborador";
+            this.txtColaborador.Size = new System.Drawing.Size(288, 23);
+            this.txtColaborador.TabIndex = 27;
             // 
-            // textBox7
+            // txtTotalBruto
             // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(134, 621);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 23);
-            this.textBox7.TabIndex = 28;
+            this.txtTotalBruto.Enabled = false;
+            this.txtTotalBruto.Location = new System.Drawing.Point(134, 621);
+            this.txtTotalBruto.Name = "txtTotalBruto";
+            this.txtTotalBruto.Size = new System.Drawing.Size(100, 23);
+            this.txtTotalBruto.TabIndex = 28;
             // 
-            // textBox8
+            // txtTotalDesconto
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(244, 621);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(101, 23);
-            this.textBox8.TabIndex = 29;
+            this.txtTotalDesconto.Enabled = false;
+            this.txtTotalDesconto.Location = new System.Drawing.Point(244, 621);
+            this.txtTotalDesconto.Name = "txtTotalDesconto";
+            this.txtTotalDesconto.Size = new System.Drawing.Size(101, 23);
+            this.txtTotalDesconto.TabIndex = 29;
             // 
-            // textBox9
+            // txtTotalLiquido
             // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Location = new System.Drawing.Point(360, 621);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 23);
-            this.textBox9.TabIndex = 30;
+            this.txtTotalLiquido.Enabled = false;
+            this.txtTotalLiquido.Location = new System.Drawing.Point(360, 621);
+            this.txtTotalLiquido.Name = "txtTotalLiquido";
+            this.txtTotalLiquido.Size = new System.Drawing.Size(100, 23);
+            this.txtTotalLiquido.TabIndex = 30;
             // 
             // BtnBuscarProdutos
             // 
@@ -367,6 +374,7 @@
             this.BtnBuscarProdutos.TabIndex = 31;
             this.BtnBuscarProdutos.Text = "🔍";
             this.BtnBuscarProdutos.UseVisualStyleBackColor = true;
+            this.BtnBuscarProdutos.Click += new System.EventHandler(this.BtnBuscarProdutos_Click);
             // 
             // BtnAdicionarAoCarrinho
             // 
@@ -389,14 +397,14 @@
             // 
             // txtBuscarColaborador
             // 
-            this.txtBuscarColaborador.Location = new System.Drawing.Point(289, 413);
+            this.txtBuscarColaborador.Location = new System.Drawing.Point(774, 408);
             this.txtBuscarColaborador.Name = "txtBuscarColaborador";
             this.txtBuscarColaborador.Size = new System.Drawing.Size(117, 23);
             this.txtBuscarColaborador.TabIndex = 34;
             // 
             // txtBuscarCliente
             // 
-            this.txtBuscarCliente.Location = new System.Drawing.Point(788, 413);
+            this.txtBuscarCliente.Location = new System.Drawing.Point(297, 408);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
             this.txtBuscarCliente.Size = new System.Drawing.Size(113, 23);
             this.txtBuscarCliente.TabIndex = 35;
@@ -404,7 +412,7 @@
             // BtnBuscarColaborador
             // 
             this.BtnBuscarColaborador.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarColaborador.Location = new System.Drawing.Point(402, 413);
+            this.BtnBuscarColaborador.Location = new System.Drawing.Point(893, 406);
             this.BtnBuscarColaborador.Name = "BtnBuscarColaborador";
             this.BtnBuscarColaborador.Size = new System.Drawing.Size(45, 23);
             this.BtnBuscarColaborador.TabIndex = 36;
@@ -414,7 +422,7 @@
             // BtnBuscarCliente
             // 
             this.BtnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarCliente.Location = new System.Drawing.Point(898, 413);
+            this.BtnBuscarCliente.Location = new System.Drawing.Point(407, 408);
             this.BtnBuscarCliente.Name = "BtnBuscarCliente";
             this.BtnBuscarCliente.Size = new System.Drawing.Size(40, 23);
             this.BtnBuscarCliente.TabIndex = 37;
@@ -432,7 +440,7 @@
             // 
             // BtnRemoverProdutoCarrinho
             // 
-            this.BtnRemoverProdutoCarrinho.Location = new System.Drawing.Point(517, 333);
+            this.BtnRemoverProdutoCarrinho.Location = new System.Drawing.Point(519, 334);
             this.BtnRemoverProdutoCarrinho.Name = "BtnRemoverProdutoCarrinho";
             this.BtnRemoverProdutoCarrinho.Size = new System.Drawing.Size(181, 23);
             this.BtnRemoverProdutoCarrinho.TabIndex = 39;
@@ -453,19 +461,19 @@
             this.Controls.Add(this.BtnFinalizarVenda);
             this.Controls.Add(this.BtnAdicionarAoCarrinho);
             this.Controls.Add(this.BtnBuscarProdutos);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtTotalLiquido);
+            this.Controls.Add(this.txtTotalDesconto);
+            this.Controls.Add(this.txtTotalBruto);
+            this.Controls.Add(this.txtColaborador);
+            this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.numQuantidade);
+            this.Controls.Add(this.txtDesconto);
+            this.Controls.Add(this.txtPreco);
+            this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtBuscarProdutos);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.dataGridView4);
+            this.Controls.Add(this.dgvCarrinho);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
@@ -474,9 +482,9 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvBuscaProdutos);
+            this.Controls.Add(this.dgvBuscaColaborador);
+            this.Controls.Add(this.dgvBuscaCliente);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -487,11 +495,11 @@
             this.Name = "FrmCadastraPedido";
             this.Text = "FrmCadastraPedido";
             this.Load += new System.EventHandler(this.FrmCadastraPedido_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaColaborador)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaProdutos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,9 +514,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dgvBuscaCliente;
+        private System.Windows.Forms.DataGridView dgvBuscaColaborador;
+        private System.Windows.Forms.DataGridView dgvBuscaProdutos;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -517,19 +525,19 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dgvCarrinho;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtBuscarProdutos;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.TextBox txtPreco;
+        private System.Windows.Forms.TextBox txtDesconto;
+        private System.Windows.Forms.NumericUpDown numQuantidade;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtCliente;
+        private System.Windows.Forms.TextBox txtColaborador;
+        private System.Windows.Forms.TextBox txtTotalBruto;
+        private System.Windows.Forms.TextBox txtTotalDesconto;
+        private System.Windows.Forms.TextBox txtTotalLiquido;
         private System.Windows.Forms.Button BtnBuscarProdutos;
         private System.Windows.Forms.Button BtnAdicionarAoCarrinho;
         private System.Windows.Forms.Button BtnFinalizarVenda;
