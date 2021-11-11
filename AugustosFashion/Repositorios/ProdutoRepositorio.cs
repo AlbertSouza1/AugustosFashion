@@ -32,7 +32,7 @@ namespace AugustosFashion.Repositorios
 
         public static List<ProdutoListagem> ListarTodosOsProdutos()
         {
-            var strSqlProduto = @"select IdProduto, Nome, CodigoBarras, Fabricante, PrecoCusto, PrecoVenda, Estoque, Status 
+            var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda
                 from Produtos where status = 1
                 ";
 
@@ -43,6 +43,46 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     return sqlCon.Query<ProdutoListagem>(strSqlProduto).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static ProdutoModel ConsultarProduto(int idProduto)
+        {
+            var strSqlProduto = @"select IdProduto, Nome, CodigoBarras, Fabricante, PrecoCusto, PrecoVenda, Estoque, Status 
+                from Produtos where IdProduto = @idProduto
+                ";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ProdutoModel>(strSqlProduto, new {idProduto}).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static void InativarProduto(int idProduto)
+        {
+            var strSql = @"update Produtos set Status = 0 where IdProduto = @idProduto";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    sqlCon.Execute(strSql, new { idProduto });
                 }
             }
             catch (Exception ex)

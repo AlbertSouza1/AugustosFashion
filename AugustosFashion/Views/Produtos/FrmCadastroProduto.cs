@@ -64,7 +64,7 @@ namespace AugustosFashion.Views.Produtos
                 Fabricante = txtFabricante.Text,
                 PrecoCusto = double.Parse(numPrecoCusto.Text),
                 PrecoVenda = double.Parse(numPrecoVenda.Text),
-                Estoque = numEstoque.Text
+                Estoque = int.Parse(numEstoque.Text)
             };
         }
 

@@ -9,6 +9,7 @@ namespace AugustosFashion.Views.Produtos
     public partial class FrmListaProduto : Form
     {
         private readonly ListaProdutoController _listaProdutoController;
+        private readonly  ConsultaProdutoController _consultaProdutoController = new ConsultaProdutoController();
 
         public FrmListaProduto(ListaProdutoController listaProdutoController)
         {
@@ -46,5 +47,22 @@ namespace AugustosFashion.Views.Produtos
         {
             dgvProdutos.DataSource = produtos;
         }
+
+        private void btnVisualizarProduto_Click(object sender, EventArgs e)
+        {
+            if (VerificarSeExisteProdutoSelecionado())
+            {
+                int id = RecuperarIdDoProdutoSelecionado();
+
+                var produto = _consultaProdutoController.ConsultarProduto(id);
+
+                _consultaProdutoController.AbrirFormConsulta(produto);
+                Close();
+            }
+        }
+
+        private bool VerificarSeExisteProdutoSelecionado() => dgvProdutos.SelectedRows.Count == 1;
+
+        private int RecuperarIdDoProdutoSelecionado() => Convert.ToInt32(dgvProdutos.SelectedRows[0].Cells[0].Value);           
     }
 }

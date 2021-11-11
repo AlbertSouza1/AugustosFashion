@@ -55,10 +55,10 @@ namespace AugustosFashion.Views.Produtos
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(226, 474);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(525, 18);
+            this.label2.Size = new System.Drawing.Size(526, 18);
             this.label2.TabIndex = 89;
             this.label2.Text = "Selecione um produto na tabela para interagir com as opções abaixo";
             // 
@@ -66,7 +66,7 @@ namespace AugustosFashion.Views.Produtos
             // 
             this.btnVisualizarProduto.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnVisualizarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnVisualizarProduto.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnVisualizarProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnVisualizarProduto.ForeColor = System.Drawing.Color.White;
             this.btnVisualizarProduto.Location = new System.Drawing.Point(393, 512);
             this.btnVisualizarProduto.Name = "btnVisualizarProduto";
@@ -74,6 +74,7 @@ namespace AugustosFashion.Views.Produtos
             this.btnVisualizarProduto.TabIndex = 88;
             this.btnVisualizarProduto.Text = "Consultar Produto";
             this.btnVisualizarProduto.UseVisualStyleBackColor = false;
+            this.btnVisualizarProduto.Click += new System.EventHandler(this.btnVisualizarProduto_Click);
             // 
             // dgvProdutos
             // 

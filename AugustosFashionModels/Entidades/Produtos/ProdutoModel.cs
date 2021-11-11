@@ -8,7 +8,7 @@
         public string Fabricante { get; set; }
         public double PrecoCusto { get; set; }
         public double PrecoVenda { get; set; }
-        public string Estoque { get; set; }
+        public int Estoque { get; set; }
         public StatusProduto Status { get; set; }      
     }
 }
