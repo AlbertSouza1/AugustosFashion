@@ -44,6 +44,9 @@ namespace AugustosFashion
             this.panelCentral = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.vendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.novaVendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualizarVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.panelCentral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,7 +57,8 @@ namespace AugustosFashion
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientesToolStripMenuItem,
             this.colaboradoresToolStripMenuItem,
-            this.produtosToolStripMenuItem});
+            this.produtosToolStripMenuItem,
+            this.vendasToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -157,11 +161,11 @@ namespace AugustosFashion
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(191)))), ((int)(((byte)(237)))));
             this.label1.Location = new System.Drawing.Point(313, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(375, 44);
+            this.label1.Size = new System.Drawing.Size(419, 42);
             this.label1.TabIndex = 1;
             this.label1.Text = "AUGUSTU\'s FASHION";
             // 
@@ -174,6 +178,29 @@ namespace AugustosFashion
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // vendasToolStripMenuItem
+            // 
+            this.vendasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.novaVendaToolStripMenuItem,
+            this.visualizarVendasToolStripMenuItem});
+            this.vendasToolStripMenuItem.Name = "vendasToolStripMenuItem";
+            this.vendasToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.vendasToolStripMenuItem.Text = "Vendas";
+            // 
+            // novaVendaToolStripMenuItem
+            // 
+            this.novaVendaToolStripMenuItem.Name = "novaVendaToolStripMenuItem";
+            this.novaVendaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novaVendaToolStripMenuItem.Text = "Nova Venda";
+            this.novaVendaToolStripMenuItem.Click += new System.EventHandler(this.novaVendaToolStripMenuItem_Click);
+            // 
+            // visualizarVendasToolStripMenuItem
+            // 
+            this.visualizarVendasToolStripMenuItem.Name = "visualizarVendasToolStripMenuItem";
+            this.visualizarVendasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visualizarVendasToolStripMenuItem.Text = "Visualizar Vendas";
+            this.visualizarVendasToolStripMenuItem.Click += new System.EventHandler(this.visualizarVendasToolStripMenuItem_Click);
             // 
             // FrmMDIParent
             // 
@@ -217,6 +244,9 @@ namespace AugustosFashion
         private System.Windows.Forms.ToolStripMenuItem produtosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem novoProdutoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarProdutosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vendasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem novaVendaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visualizarVendasToolStripMenuItem;
     }
 }
 
