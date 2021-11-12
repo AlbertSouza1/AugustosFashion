@@ -144,5 +144,30 @@ namespace AugustosFashion.Views.Produtos
             _produto.Estoque += int.Parse(numAddEstoque.Text);
             PreencherCampos();
         }
+
+        private void btnAtivarProduto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _consultaProdutoController.AtivarProduto(_produto.IdProduto);
+                MessageBox.Show("Produto ativado com sucesso.");
+
+                Close();
+                new ListaProdutoController().AbrirFormListaProduto();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao ativar produto. Erro: " + ex.Message);
+            }
+        }
+
+        private void FrmConsultaProduto_Load(object sender, EventArgs e)
+        {
+            if(_produto.Status == StatusProduto.Inativo)
+            {   
+                btnExcluir.Visible = false;
+                btnAtivarProduto.Visible = true;
+            }
+        }
     }
 }

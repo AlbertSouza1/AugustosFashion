@@ -51,6 +51,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.numAddEstoque = new System.Windows.Forms.NumericUpDown();
             this.btnAdicionarEstoque = new System.Windows.Forms.Button();
+            this.btnAtivarProduto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoVenda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoCusto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numEstoque)).BeginInit();
@@ -282,11 +283,26 @@
             this.btnAdicionarEstoque.UseVisualStyleBackColor = false;
             this.btnAdicionarEstoque.Click += new System.EventHandler(this.btnAdicionarEstoque_Click);
             // 
+            // btnAtivarProduto
+            // 
+            this.btnAtivarProduto.BackColor = System.Drawing.Color.Lime;
+            this.btnAtivarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAtivarProduto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAtivarProduto.Location = new System.Drawing.Point(500, 593);
+            this.btnAtivarProduto.Name = "btnAtivarProduto";
+            this.btnAtivarProduto.Size = new System.Drawing.Size(150, 37);
+            this.btnAtivarProduto.TabIndex = 156;
+            this.btnAtivarProduto.Text = "Ativar Produto";
+            this.btnAtivarProduto.UseVisualStyleBackColor = false;
+            this.btnAtivarProduto.Visible = false;
+            this.btnAtivarProduto.Click += new System.EventHandler(this.btnAtivarProduto_Click);
+            // 
             // FrmConsultaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 642);
+            this.Controls.Add(this.btnAtivarProduto);
             this.Controls.Add(this.btnAdicionarEstoque);
             this.Controls.Add(this.numAddEstoque);
             this.Controls.Add(this.label6);
@@ -312,6 +328,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmConsultaProduto";
             this.Text = "FrmConsultaProduto";
+            this.Load += new System.EventHandler(this.FrmConsultaProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoVenda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoCusto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numEstoque)).EndInit();
@@ -346,5 +363,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numAddEstoque;
         private System.Windows.Forms.Button btnAdicionarEstoque;
+        private System.Windows.Forms.Button btnAtivarProduto;
     }
 }

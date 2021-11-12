@@ -60,5 +60,17 @@ namespace AugustosFashion.Controllers.Produtos
                 throw new Exception(ex.Message);
             }
         }
+
+        internal void AtivarProduto(int idProduto)
+        {
+            try
+            {
+                ProdutoRepositorio.AtivarProduto(idProduto);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

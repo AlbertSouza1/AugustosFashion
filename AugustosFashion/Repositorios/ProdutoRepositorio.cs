@@ -51,6 +51,25 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        internal static void AtivarProduto(int idProduto)
+        {
+            var strSql = @"update Produtos set Status = 1 where IdProduto = @idProduto";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    sqlCon.Execute(strSql, new { idProduto });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         //internal static void ExcluirProduto(int idProduto)
         //{
         //    var strSql = @"delete from Produtos where IdProduto = @idProduto";
