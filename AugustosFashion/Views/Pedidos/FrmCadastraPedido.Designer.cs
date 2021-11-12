@@ -37,7 +37,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dgvBuscaCliente = new System.Windows.Forms.DataGridView();
             this.dgvBuscaColaborador = new System.Windows.Forms.DataGridView();
-            this.dgvBuscaProdutos = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -47,7 +46,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.dgvCarrinho = new System.Windows.Forms.DataGridView();
-            this.label16 = new System.Windows.Forms.Label();
             this.txtBuscarProdutos = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtPreco = new System.Windows.Forms.TextBox();
@@ -70,7 +68,6 @@
             this.BtnRemoverProdutoCarrinho = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaColaborador)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.SuspendLayout();
@@ -89,11 +86,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(34, 80);
+            this.label2.Location = new System.Drawing.Point(109, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 19);
+            this.label2.Size = new System.Drawing.Size(103, 19);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Produtos";
+            this.label2.Text = "Buscar Produto";
             // 
             // label3
             // 
@@ -167,18 +164,6 @@
             this.dgvBuscaColaborador.Size = new System.Drawing.Size(419, 55);
             this.dgvBuscaColaborador.TabIndex = 8;
             // 
-            // dgvBuscaProdutos
-            // 
-            this.dgvBuscaProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvBuscaProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBuscaProdutos.Location = new System.Drawing.Point(34, 103);
-            this.dgvBuscaProdutos.Name = "dgvBuscaProdutos";
-            this.dgvBuscaProdutos.ReadOnly = true;
-            this.dgvBuscaProdutos.RowTemplate.Height = 25;
-            this.dgvBuscaProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBuscaProdutos.Size = new System.Drawing.Size(413, 70);
-            this.dgvBuscaProdutos.TabIndex = 9;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -213,7 +198,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(45, 230);
+            this.label11.Location = new System.Drawing.Point(45, 185);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 19);
             this.label11.TabIndex = 13;
@@ -223,7 +208,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(279, 230);
+            this.label12.Location = new System.Drawing.Point(279, 185);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(43, 19);
             this.label12.TabIndex = 14;
@@ -233,7 +218,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(279, 288);
+            this.label13.Location = new System.Drawing.Point(279, 243);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(81, 19);
             this.label13.TabIndex = 15;
@@ -243,7 +228,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(45, 288);
+            this.label14.Location = new System.Drawing.Point(45, 243);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(153, 19);
             this.label14.TabIndex = 16;
@@ -268,49 +253,39 @@
             this.dgvCarrinho.Size = new System.Drawing.Size(419, 225);
             this.dgvCarrinho.TabIndex = 18;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(221, 83);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(52, 19);
-            this.label16.TabIndex = 19;
-            this.label16.Text = "Buscar:";
-            // 
             // txtBuscarProdutos
             // 
-            this.txtBuscarProdutos.Location = new System.Drawing.Point(279, 79);
+            this.txtBuscarProdutos.Location = new System.Drawing.Point(218, 103);
             this.txtBuscarProdutos.Name = "txtBuscarProdutos";
             this.txtBuscarProdutos.Size = new System.Drawing.Size(127, 23);
             this.txtBuscarProdutos.TabIndex = 20;
             // 
             // txtNome
             // 
-            this.txtNome.Enabled = false;
-            this.txtNome.Location = new System.Drawing.Point(45, 252);
+            this.txtNome.Location = new System.Drawing.Point(45, 207);
             this.txtNome.Name = "txtNome";
+            this.txtNome.ReadOnly = true;
             this.txtNome.Size = new System.Drawing.Size(182, 23);
             this.txtNome.TabIndex = 21;
             // 
             // txtPreco
             // 
-            this.txtPreco.Enabled = false;
-            this.txtPreco.Location = new System.Drawing.Point(279, 252);
+            this.txtPreco.Location = new System.Drawing.Point(279, 207);
             this.txtPreco.Name = "txtPreco";
+            this.txtPreco.ReadOnly = true;
             this.txtPreco.Size = new System.Drawing.Size(168, 23);
             this.txtPreco.TabIndex = 22;
             // 
             // txtDesconto
             // 
-            this.txtDesconto.Location = new System.Drawing.Point(45, 310);
+            this.txtDesconto.Location = new System.Drawing.Point(45, 265);
             this.txtDesconto.Name = "txtDesconto";
             this.txtDesconto.Size = new System.Drawing.Size(182, 23);
             this.txtDesconto.TabIndex = 23;
             // 
             // numQuantidade
             // 
-            this.numQuantidade.Location = new System.Drawing.Point(279, 310);
+            this.numQuantidade.Location = new System.Drawing.Point(279, 265);
             this.numQuantidade.Name = "numQuantidade";
             this.numQuantidade.Size = new System.Drawing.Size(168, 23);
             this.numQuantidade.TabIndex = 24;
@@ -319,7 +294,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(151, 199);
+            this.label17.Location = new System.Drawing.Point(151, 154);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(185, 20);
             this.label17.TabIndex = 25;
@@ -368,18 +343,18 @@
             // BtnBuscarProdutos
             // 
             this.BtnBuscarProdutos.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarProdutos.Location = new System.Drawing.Point(402, 79);
+            this.BtnBuscarProdutos.Location = new System.Drawing.Point(351, 103);
             this.BtnBuscarProdutos.Name = "BtnBuscarProdutos";
             this.BtnBuscarProdutos.Size = new System.Drawing.Size(45, 24);
             this.BtnBuscarProdutos.TabIndex = 31;
             this.BtnBuscarProdutos.Text = "🔍";
             this.BtnBuscarProdutos.UseVisualStyleBackColor = true;
-            //this.BtnBuscarProdutos.Click += new System.EventHandler(this.BtnBuscarProdutos_Click);
+            this.BtnBuscarProdutos.Click += new System.EventHandler(this.BtnBuscarProdutos_Click_1);
             // 
             // BtnAdicionarAoCarrinho
             // 
             this.BtnAdicionarAoCarrinho.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnAdicionarAoCarrinho.Location = new System.Drawing.Point(142, 344);
+            this.BtnAdicionarAoCarrinho.Location = new System.Drawing.Point(142, 299);
             this.BtnAdicionarAoCarrinho.Name = "BtnAdicionarAoCarrinho";
             this.BtnAdicionarAoCarrinho.Size = new System.Drawing.Size(203, 29);
             this.BtnAdicionarAoCarrinho.TabIndex = 32;
@@ -472,7 +447,6 @@
             this.Controls.Add(this.txtPreco);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtBuscarProdutos);
-            this.Controls.Add(this.label16);
             this.Controls.Add(this.dgvCarrinho);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -482,7 +456,6 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.dgvBuscaProdutos);
             this.Controls.Add(this.dgvBuscaColaborador);
             this.Controls.Add(this.dgvBuscaCliente);
             this.Controls.Add(this.label7);
@@ -497,7 +470,6 @@
             this.Load += new System.EventHandler(this.FrmCadastraPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaColaborador)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaProdutos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).EndInit();
             this.ResumeLayout(false);
@@ -516,7 +488,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dgvBuscaCliente;
         private System.Windows.Forms.DataGridView dgvBuscaColaborador;
-        private System.Windows.Forms.DataGridView dgvBuscaProdutos;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -526,7 +497,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dgvCarrinho;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtBuscarProdutos;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtPreco;
