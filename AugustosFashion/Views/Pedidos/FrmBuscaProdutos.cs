@@ -43,9 +43,9 @@ namespace AugustosFashion.Views.Pedidos
                 MessageBox.Show("Selecione um produto na lista antes de confirmar.");           
         }
 
-        private ProdutoListagem InstanciarProdutoSelecionado()
+        private ProdutoCarrinho InstanciarProdutoSelecionado()
         {
-            return new ProdutoListagem() {
+            return new ProdutoCarrinho() {
                 IdProduto = Convert.ToInt32(dgvProdutos.SelectedRows[0].Cells[0].Value),
                 Nome = dgvProdutos.SelectedRows[0].Cells[1].Value.ToString(),
                 Fabricante = dgvProdutos.SelectedRows[0].Cells[2].Value.ToString(),

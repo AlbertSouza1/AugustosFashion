@@ -32,7 +32,7 @@ namespace AugustosFashion.Controllers.Pedidos
             frmBuscaProdutos.BringToFront();
         }
 
-        internal void RecuperarProdutoSelecionado(ProdutoListagem produto)
+        internal void RecuperarProdutoSelecionado(ProdutoCarrinho produto)
         {
             _frmCadastroPedido.CarregarDadosDeProdutoSelecionado(produto);
         }
