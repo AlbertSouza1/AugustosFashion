@@ -63,6 +63,8 @@
             this.BtnBuscarColaborador = new System.Windows.Forms.Button();
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
             this.BtnRemoverProdutoCarrinho = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.SuspendLayout();
@@ -70,10 +72,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(402, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 25);
+            this.label1.Size = new System.Drawing.Size(144, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Efetuar pedido";
             // 
@@ -81,7 +83,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(109, 104);
+            this.label2.Location = new System.Drawing.Point(81, 104);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 19);
             this.label2.TabIndex = 1;
@@ -101,7 +103,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(43, 412);
+            this.label4.Location = new System.Drawing.Point(25, 413);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 19);
             this.label4.TabIndex = 3;
@@ -111,7 +113,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(143, 593);
+            this.label5.Location = new System.Drawing.Point(270, 582);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 19);
             this.label5.TabIndex = 4;
@@ -121,7 +123,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(241, 593);
+            this.label6.Location = new System.Drawing.Point(368, 582);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(119, 19);
             this.label6.TabIndex = 5;
@@ -131,7 +133,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(369, 593);
+            this.label7.Location = new System.Drawing.Point(496, 582);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 19);
             this.label7.TabIndex = 6;
@@ -141,7 +143,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(48, 469);
+            this.label8.Location = new System.Drawing.Point(25, 469);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(129, 19);
             this.label8.TabIndex = 10;
@@ -161,7 +163,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(519, 83);
+            this.label10.Location = new System.Drawing.Point(519, 81);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 19);
             this.label10.TabIndex = 12;
@@ -171,7 +173,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(45, 185);
+            this.label11.Location = new System.Drawing.Point(25, 185);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(46, 19);
             this.label11.TabIndex = 13;
@@ -181,7 +183,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(279, 185);
+            this.label12.Location = new System.Drawing.Point(259, 185);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(43, 19);
             this.label12.TabIndex = 14;
@@ -191,7 +193,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(279, 243);
+            this.label13.Location = new System.Drawing.Point(259, 243);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(81, 19);
             this.label13.TabIndex = 15;
@@ -201,7 +203,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(45, 243);
+            this.label14.Location = new System.Drawing.Point(25, 243);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(153, 19);
             this.label14.TabIndex = 16;
@@ -219,23 +221,23 @@
             // 
             this.dgvCarrinho.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCarrinho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCarrinho.Location = new System.Drawing.Point(519, 103);
+            this.dgvCarrinho.Location = new System.Drawing.Point(496, 103);
             this.dgvCarrinho.Name = "dgvCarrinho";
             this.dgvCarrinho.ReadOnly = true;
             this.dgvCarrinho.RowTemplate.Height = 25;
-            this.dgvCarrinho.Size = new System.Drawing.Size(419, 225);
+            this.dgvCarrinho.Size = new System.Drawing.Size(442, 225);
             this.dgvCarrinho.TabIndex = 18;
             // 
             // txtBuscarProdutos
             // 
-            this.txtBuscarProdutos.Location = new System.Drawing.Point(218, 103);
+            this.txtBuscarProdutos.Location = new System.Drawing.Point(190, 103);
             this.txtBuscarProdutos.Name = "txtBuscarProdutos";
             this.txtBuscarProdutos.Size = new System.Drawing.Size(127, 23);
             this.txtBuscarProdutos.TabIndex = 20;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(45, 207);
+            this.txtNome.Location = new System.Drawing.Point(25, 207);
             this.txtNome.Name = "txtNome";
             this.txtNome.ReadOnly = true;
             this.txtNome.Size = new System.Drawing.Size(182, 23);
@@ -243,7 +245,7 @@
             // 
             // txtPreco
             // 
-            this.txtPreco.Location = new System.Drawing.Point(279, 207);
+            this.txtPreco.Location = new System.Drawing.Point(259, 207);
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.ReadOnly = true;
             this.txtPreco.Size = new System.Drawing.Size(168, 23);
@@ -251,14 +253,14 @@
             // 
             // txtDesconto
             // 
-            this.txtDesconto.Location = new System.Drawing.Point(45, 265);
+            this.txtDesconto.Location = new System.Drawing.Point(25, 265);
             this.txtDesconto.Name = "txtDesconto";
             this.txtDesconto.Size = new System.Drawing.Size(182, 23);
             this.txtDesconto.TabIndex = 23;
             // 
             // numQuantidade
             // 
-            this.numQuantidade.Location = new System.Drawing.Point(279, 265);
+            this.numQuantidade.Location = new System.Drawing.Point(259, 265);
             this.numQuantidade.Name = "numQuantidade";
             this.numQuantidade.Size = new System.Drawing.Size(168, 23);
             this.numQuantidade.TabIndex = 24;
@@ -267,7 +269,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(151, 154);
+            this.label17.Location = new System.Drawing.Point(131, 154);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(185, 20);
             this.label17.TabIndex = 25;
@@ -275,11 +277,12 @@
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(48, 491);
+            this.txtCliente.Location = new System.Drawing.Point(25, 491);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.ReadOnly = true;
             this.txtCliente.Size = new System.Drawing.Size(288, 23);
             this.txtCliente.TabIndex = 26;
+            this.txtCliente.TextChanged += new System.EventHandler(this.txtCliente_TextChanged);
             // 
             // txtColaborador
             // 
@@ -292,7 +295,7 @@
             // txtTotalBruto
             // 
             this.txtTotalBruto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalBruto.Location = new System.Drawing.Point(143, 619);
+            this.txtTotalBruto.Location = new System.Drawing.Point(270, 608);
             this.txtTotalBruto.Name = "txtTotalBruto";
             this.txtTotalBruto.ReadOnly = true;
             this.txtTotalBruto.Size = new System.Drawing.Size(100, 23);
@@ -301,7 +304,7 @@
             // txtTotalDesconto
             // 
             this.txtTotalDesconto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalDesconto.Location = new System.Drawing.Point(253, 619);
+            this.txtTotalDesconto.Location = new System.Drawing.Point(380, 608);
             this.txtTotalDesconto.Name = "txtTotalDesconto";
             this.txtTotalDesconto.ReadOnly = true;
             this.txtTotalDesconto.Size = new System.Drawing.Size(101, 23);
@@ -310,7 +313,7 @@
             // txtTotalLiquido
             // 
             this.txtTotalLiquido.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtTotalLiquido.Location = new System.Drawing.Point(369, 619);
+            this.txtTotalLiquido.Location = new System.Drawing.Point(496, 608);
             this.txtTotalLiquido.Name = "txtTotalLiquido";
             this.txtTotalLiquido.ReadOnly = true;
             this.txtTotalLiquido.Size = new System.Drawing.Size(100, 23);
@@ -319,7 +322,7 @@
             // BtnBuscarProdutos
             // 
             this.BtnBuscarProdutos.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarProdutos.Location = new System.Drawing.Point(341, 103);
+            this.BtnBuscarProdutos.Location = new System.Drawing.Point(313, 103);
             this.BtnBuscarProdutos.Name = "BtnBuscarProdutos";
             this.BtnBuscarProdutos.Size = new System.Drawing.Size(45, 24);
             this.BtnBuscarProdutos.TabIndex = 31;
@@ -329,22 +332,28 @@
             // 
             // BtnAdicionarAoCarrinho
             // 
+            this.BtnAdicionarAoCarrinho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.BtnAdicionarAoCarrinho.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnAdicionarAoCarrinho.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnAdicionarAoCarrinho.Location = new System.Drawing.Point(142, 299);
+            this.BtnAdicionarAoCarrinho.Location = new System.Drawing.Point(137, 299);
             this.BtnAdicionarAoCarrinho.Name = "BtnAdicionarAoCarrinho";
             this.BtnAdicionarAoCarrinho.Size = new System.Drawing.Size(203, 29);
             this.BtnAdicionarAoCarrinho.TabIndex = 32;
             this.BtnAdicionarAoCarrinho.Text = "Adicionar ao carrinho 🛒";
-            this.BtnAdicionarAoCarrinho.UseVisualStyleBackColor = true;
+            this.BtnAdicionarAoCarrinho.UseVisualStyleBackColor = false;
             // 
             // BtnFinalizarVenda
             // 
-            this.BtnFinalizarVenda.Location = new System.Drawing.Point(631, 615);
+            this.BtnFinalizarVenda.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BtnFinalizarVenda.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnFinalizarVenda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BtnFinalizarVenda.ForeColor = System.Drawing.Color.White;
+            this.BtnFinalizarVenda.Location = new System.Drawing.Point(674, 597);
             this.BtnFinalizarVenda.Name = "BtnFinalizarVenda";
-            this.BtnFinalizarVenda.Size = new System.Drawing.Size(223, 29);
+            this.BtnFinalizarVenda.Size = new System.Drawing.Size(183, 34);
             this.BtnFinalizarVenda.TabIndex = 33;
             this.BtnFinalizarVenda.Text = "Finalizar Venda";
-            this.BtnFinalizarVenda.UseVisualStyleBackColor = true;
+            this.BtnFinalizarVenda.UseVisualStyleBackColor = false;
             // 
             // txtBuscarColaborador
             // 
@@ -355,7 +364,7 @@
             // 
             // txtBuscaCliente
             // 
-            this.txtBuscaCliente.Location = new System.Drawing.Point(160, 412);
+            this.txtBuscaCliente.Location = new System.Drawing.Point(140, 412);
             this.txtBuscaCliente.Name = "txtBuscaCliente";
             this.txtBuscaCliente.Size = new System.Drawing.Size(113, 23);
             this.txtBuscaCliente.TabIndex = 35;
@@ -385,18 +394,47 @@
             // 
             // BtnRemoverProdutoCarrinho
             // 
+            this.BtnRemoverProdutoCarrinho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.BtnRemoverProdutoCarrinho.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnRemoverProdutoCarrinho.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnRemoverProdutoCarrinho.Location = new System.Drawing.Point(519, 334);
             this.BtnRemoverProdutoCarrinho.Name = "BtnRemoverProdutoCarrinho";
-            this.BtnRemoverProdutoCarrinho.Size = new System.Drawing.Size(181, 23);
+            this.BtnRemoverProdutoCarrinho.Size = new System.Drawing.Size(199, 23);
             this.BtnRemoverProdutoCarrinho.TabIndex = 39;
             this.BtnRemoverProdutoCarrinho.Text = "Remover Produto Selecionado";
-            this.BtnRemoverProdutoCarrinho.UseVisualStyleBackColor = true;
+            this.BtnRemoverProdutoCarrinho.UseVisualStyleBackColor = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label16.Location = new System.Drawing.Point(25, 582);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(141, 19);
+            this.label16.TabIndex = 40;
+            this.label16.Text = "Forma de Pagamento";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "À vista no dinheiro",
+            "Á prazo",
+            "Crédito",
+            "Débito",
+            "Pix"});
+            this.comboBox1.Location = new System.Drawing.Point(25, 608);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(141, 23);
+            this.comboBox1.TabIndex = 41;
             // 
             // FrmCadastraPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 682);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.BtnRemoverProdutoCarrinho);
             this.Controls.Add(this.BtnBuscarCliente);
             this.Controls.Add(this.BtnBuscarColaborador);
@@ -479,5 +517,7 @@
         private System.Windows.Forms.Button BtnBuscarColaborador;
         private System.Windows.Forms.Button BtnBuscarCliente;
         private System.Windows.Forms.Button BtnRemoverProdutoCarrinho;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

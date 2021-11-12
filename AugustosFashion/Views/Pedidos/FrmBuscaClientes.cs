@@ -57,5 +57,11 @@ namespace AugustosFashion.Views.Pedidos
             else
                 MessageBox.Show("Selecione um produto na lista antes de confirmar.");
         }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            var clientes = BuscarClientes();
+            ListarProdutosBuscados(clientes);
+        }
     }
 }

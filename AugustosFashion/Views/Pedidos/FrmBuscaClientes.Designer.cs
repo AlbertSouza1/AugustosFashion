@@ -56,6 +56,7 @@
             this.BtnBuscar.TabIndex = 8;
             this.BtnBuscar.Text = "🔍";
             this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // txtBuscar
             // 

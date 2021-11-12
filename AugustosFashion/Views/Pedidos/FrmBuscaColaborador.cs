@@ -82,7 +82,8 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            
+            var colaboradores = BuscarColaboradores();
+            ListarProdutosBuscados(colaboradores);
         }
     }
 }
