@@ -28,11 +28,11 @@ namespace AugustosFashion.Views.Pedidos
 
         }
 
-        private void BtnBuscarProdutos_Click(object sender, EventArgs e)
-        {
-            var produtos = _listaProdutoController.BuscarProdutosPorNome(txtBuscarProdutos.Text);
+        //private void BtnBuscarProdutos_Click(object sender, EventArgs e)
+        //{
+        //    var produtos = _listaProdutoController.BuscarProdutosPorNome(txtBuscarProdutos.Text);
 
-           dgvBuscaProdutos.DataSource = produtos;
-        }
+        //   dgvBuscaProdutos.DataSource = produtos;
+        //}
     }
 }

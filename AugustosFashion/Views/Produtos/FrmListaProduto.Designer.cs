@@ -39,6 +39,7 @@ namespace AugustosFashion.Views.Produtos
             this.dgvProdutos = new System.Windows.Forms.DataGridView();
             this.btnBuscarProdutos = new System.Windows.Forms.Button();
             this.txtBuscaProdutos = new System.Windows.Forms.TextBox();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +57,7 @@ namespace AugustosFashion.Views.Produtos
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(226, 474);
+            this.label2.Location = new System.Drawing.Point(215, 474);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(526, 18);
             this.label2.TabIndex = 89;
@@ -68,7 +69,7 @@ namespace AugustosFashion.Views.Produtos
             this.btnVisualizarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVisualizarProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnVisualizarProduto.ForeColor = System.Drawing.Color.White;
-            this.btnVisualizarProduto.Location = new System.Drawing.Point(393, 512);
+            this.btnVisualizarProduto.Location = new System.Drawing.Point(375, 513);
             this.btnVisualizarProduto.Name = "btnVisualizarProduto";
             this.btnVisualizarProduto.Size = new System.Drawing.Size(161, 49);
             this.btnVisualizarProduto.TabIndex = 88;
@@ -134,11 +135,24 @@ namespace AugustosFashion.Views.Produtos
             this.txtBuscaProdutos.Size = new System.Drawing.Size(204, 27);
             this.txtBuscaProdutos.TabIndex = 85;
             // 
+            // cbStatus
+            // 
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "Ativos",
+            "Inativos"});
+            this.cbStatus.Location = new System.Drawing.Point(84, 90);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(83, 23);
+            this.cbStatus.TabIndex = 90;
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
+            // 
             // FrmListaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 642);
+            this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnVisualizarProduto);
             this.Controls.Add(this.dgvProdutos);
@@ -161,5 +175,6 @@ namespace AugustosFashion.Views.Produtos
         private System.Windows.Forms.DataGridView dgvProdutos;
         private System.Windows.Forms.Button btnBuscarProdutos;
         private System.Windows.Forms.TextBox txtBuscaProdutos;
+        private System.Windows.Forms.ComboBox cbStatus;
     }
 }

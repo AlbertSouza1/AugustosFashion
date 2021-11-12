@@ -374,7 +374,7 @@
             this.BtnBuscarProdutos.TabIndex = 31;
             this.BtnBuscarProdutos.Text = "🔍";
             this.BtnBuscarProdutos.UseVisualStyleBackColor = true;
-            this.BtnBuscarProdutos.Click += new System.EventHandler(this.BtnBuscarProdutos_Click);
+            //this.BtnBuscarProdutos.Click += new System.EventHandler(this.BtnBuscarProdutos_Click);
             // 
             // BtnAdicionarAoCarrinho
             // 

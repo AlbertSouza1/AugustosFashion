@@ -16,11 +16,11 @@ namespace AugustosFashion.Controllers.Produtos
             frmListaProduto.Show();
         }
 
-        internal List<ProdutoListagem> ListarProdutos()
+        internal List<ProdutoListagem> ListarProdutos(StatusProduto status)
         {
             try
             {
-                return ProdutoRepositorio.ListarTodosOsProdutos();
+                return ProdutoRepositorio.ListarTodosOsProdutos(status);
             }
             catch (Exception ex)
             {
@@ -28,11 +28,11 @@ namespace AugustosFashion.Controllers.Produtos
             }
         }
 
-        internal List<ProdutoListagem> BuscarProdutosPorNome(string busca)
+        internal List<ProdutoListagem> BuscarProdutosPorNome(string busca, StatusProduto status)
         {
             try
             {
-                return ProdutoRepositorio.BuscarProdutosPorNome(busca);
+                return ProdutoRepositorio.BuscarProdutosPorNome(busca, status);
             }
             catch (Exception ex)
             {

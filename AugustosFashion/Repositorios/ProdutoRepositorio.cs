@@ -70,10 +70,10 @@ namespace AugustosFashion.Repositorios
         //    }
         //}
 
-        public static List<ProdutoListagem> ListarTodosOsProdutos()
+        public static List<ProdutoListagem> ListarTodosOsProdutos(StatusProduto status)
         {
             var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda
-                from Produtos where status = 1
+                from Produtos where status = @status
                 ";
 
             try
@@ -82,7 +82,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<ProdutoListagem>(strSqlProduto).ToList();
+                    return sqlCon.Query<ProdutoListagem>(strSqlProduto, new { status }).ToList();
                 }
             }
             catch (Exception ex)
@@ -90,6 +90,7 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
 
         public static ProdutoModel ConsultarProduto(int idProduto)
         {
@@ -131,10 +132,10 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        internal static List<ProdutoListagem> BuscarProdutosPorNome(string busca)
+        internal static List<ProdutoListagem> BuscarProdutosPorNome(string busca, StatusProduto status)
         {
-            var strSqlProduto = @"select IdProduto, Nome, CodigoBarras, Fabricante, PrecoCusto, PrecoVenda, Estoque, Status 
-                from Produtos where status = 1 and Nome like @busca + '%'
+            var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda
+                from Produtos where status = @status and Nome like @busca + '%'
                 ";
 
             try
@@ -143,7 +144,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<ProdutoListagem>(strSqlProduto, new {busca}).ToList();
+                    return sqlCon.Query<ProdutoListagem>(strSqlProduto, new {status, busca }).ToList();
                 }
             }
             catch (Exception ex)
