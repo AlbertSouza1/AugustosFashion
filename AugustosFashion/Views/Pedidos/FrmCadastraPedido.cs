@@ -1,6 +1,7 @@
 ﻿using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Controllers.Produtos;
 using AugustosFashion.Entidades.Cliente;
+using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Produtos;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,16 @@ namespace AugustosFashion.Views.Pedidos
         public void CarregarDadosDeClienteSelecionado(ClienteListagem cliente)
         {
             txtCliente.Text = cliente.NomeCompleto.Nome;
+        }
+
+        public void CarregarDadosDeColaboradorSelecionado(ColaboradorListagem colaborador)
+        {
+            txtColaborador.Text = colaborador.NomeCompleto.Nome;
+        }
+
+        private void BtnBuscarColaborador_Click(object sender, EventArgs e)
+        {
+            _cadastroPedidoController.AbrirFormBuscaColaborador(txtBuscarColaborador.Text);
         }
     }
 }

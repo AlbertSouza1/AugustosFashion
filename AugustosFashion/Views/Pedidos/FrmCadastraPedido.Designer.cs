@@ -35,7 +35,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dgvBuscaColaborador = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -63,9 +62,7 @@
             this.txtBuscaCliente = new System.Windows.Forms.TextBox();
             this.BtnBuscarColaborador = new System.Windows.Forms.Button();
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
-            this.BtnCalcularTotais = new System.Windows.Forms.Button();
             this.BtnRemoverProdutoCarrinho = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaColaborador)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.SuspendLayout();
@@ -94,7 +91,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(519, 408);
+            this.label3.Location = new System.Drawing.Point(519, 414);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(150, 19);
             this.label3.TabIndex = 2;
@@ -140,17 +137,6 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Total Líquido";
             // 
-            // dgvBuscaColaborador
-            // 
-            this.dgvBuscaColaborador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBuscaColaborador.Location = new System.Drawing.Point(519, 430);
-            this.dgvBuscaColaborador.Name = "dgvBuscaColaborador";
-            this.dgvBuscaColaborador.ReadOnly = true;
-            this.dgvBuscaColaborador.RowTemplate.Height = 25;
-            this.dgvBuscaColaborador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBuscaColaborador.Size = new System.Drawing.Size(419, 55);
-            this.dgvBuscaColaborador.TabIndex = 8;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -165,7 +151,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(519, 506);
+            this.label9.Location = new System.Drawing.Point(519, 469);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(163, 19);
             this.label9.TabIndex = 11;
@@ -289,41 +275,44 @@
             // 
             // txtCliente
             // 
-            this.txtCliente.Enabled = false;
             this.txtCliente.Location = new System.Drawing.Point(48, 491);
             this.txtCliente.Name = "txtCliente";
+            this.txtCliente.ReadOnly = true;
             this.txtCliente.Size = new System.Drawing.Size(288, 23);
             this.txtCliente.TabIndex = 26;
             // 
             // txtColaborador
             // 
-            this.txtColaborador.Enabled = false;
-            this.txtColaborador.Location = new System.Drawing.Point(519, 528);
+            this.txtColaborador.Location = new System.Drawing.Point(519, 491);
             this.txtColaborador.Name = "txtColaborador";
+            this.txtColaborador.ReadOnly = true;
             this.txtColaborador.Size = new System.Drawing.Size(288, 23);
             this.txtColaborador.TabIndex = 27;
             // 
             // txtTotalBruto
             // 
-            this.txtTotalBruto.Enabled = false;
+            this.txtTotalBruto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtTotalBruto.Location = new System.Drawing.Point(143, 619);
             this.txtTotalBruto.Name = "txtTotalBruto";
+            this.txtTotalBruto.ReadOnly = true;
             this.txtTotalBruto.Size = new System.Drawing.Size(100, 23);
             this.txtTotalBruto.TabIndex = 28;
             // 
             // txtTotalDesconto
             // 
-            this.txtTotalDesconto.Enabled = false;
+            this.txtTotalDesconto.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtTotalDesconto.Location = new System.Drawing.Point(253, 619);
             this.txtTotalDesconto.Name = "txtTotalDesconto";
+            this.txtTotalDesconto.ReadOnly = true;
             this.txtTotalDesconto.Size = new System.Drawing.Size(101, 23);
             this.txtTotalDesconto.TabIndex = 29;
             // 
             // txtTotalLiquido
             // 
-            this.txtTotalLiquido.Enabled = false;
+            this.txtTotalLiquido.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtTotalLiquido.Location = new System.Drawing.Point(369, 619);
             this.txtTotalLiquido.Name = "txtTotalLiquido";
+            this.txtTotalLiquido.ReadOnly = true;
             this.txtTotalLiquido.Size = new System.Drawing.Size(100, 23);
             this.txtTotalLiquido.TabIndex = 30;
             // 
@@ -359,7 +348,7 @@
             // 
             // txtBuscarColaborador
             // 
-            this.txtBuscarColaborador.Location = new System.Drawing.Point(774, 408);
+            this.txtBuscarColaborador.Location = new System.Drawing.Point(674, 412);
             this.txtBuscarColaborador.Name = "txtBuscarColaborador";
             this.txtBuscarColaborador.Size = new System.Drawing.Size(117, 23);
             this.txtBuscarColaborador.TabIndex = 34;
@@ -373,13 +362,15 @@
             // 
             // BtnBuscarColaborador
             // 
+            this.BtnBuscarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnBuscarColaborador.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarColaborador.Location = new System.Drawing.Point(893, 406);
+            this.BtnBuscarColaborador.Location = new System.Drawing.Point(787, 412);
             this.BtnBuscarColaborador.Name = "BtnBuscarColaborador";
-            this.BtnBuscarColaborador.Size = new System.Drawing.Size(45, 23);
+            this.BtnBuscarColaborador.Size = new System.Drawing.Size(40, 23);
             this.BtnBuscarColaborador.TabIndex = 36;
             this.BtnBuscarColaborador.Text = "🔍";
             this.BtnBuscarColaborador.UseVisualStyleBackColor = true;
+            this.BtnBuscarColaborador.Click += new System.EventHandler(this.BtnBuscarColaborador_Click);
             // 
             // BtnBuscarCliente
             // 
@@ -391,15 +382,6 @@
             this.BtnBuscarCliente.Text = "🔍";
             this.BtnBuscarCliente.UseVisualStyleBackColor = true;
             this.BtnBuscarCliente.Click += new System.EventHandler(this.BtnBuscarCliente_Click);
-            // 
-            // BtnCalcularTotais
-            // 
-            this.BtnCalcularTotais.Location = new System.Drawing.Point(43, 594);
-            this.BtnCalcularTotais.Name = "BtnCalcularTotais";
-            this.BtnCalcularTotais.Size = new System.Drawing.Size(75, 48);
-            this.BtnCalcularTotais.TabIndex = 38;
-            this.BtnCalcularTotais.Text = "Calcular Totais";
-            this.BtnCalcularTotais.UseVisualStyleBackColor = true;
             // 
             // BtnRemoverProdutoCarrinho
             // 
@@ -416,7 +398,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 682);
             this.Controls.Add(this.BtnRemoverProdutoCarrinho);
-            this.Controls.Add(this.BtnCalcularTotais);
             this.Controls.Add(this.BtnBuscarCliente);
             this.Controls.Add(this.BtnBuscarColaborador);
             this.Controls.Add(this.txtBuscaCliente);
@@ -444,7 +425,6 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.dgvBuscaColaborador);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -455,7 +435,6 @@
             this.Name = "FrmCadastraPedido";
             this.Text = "FrmCadastraPedido";
             this.Load += new System.EventHandler(this.FrmCadastraPedido_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaColaborador)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).EndInit();
             this.ResumeLayout(false);
@@ -472,7 +451,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dgvBuscaColaborador;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -500,7 +478,6 @@
         private System.Windows.Forms.TextBox txtBuscaCliente;
         private System.Windows.Forms.Button BtnBuscarColaborador;
         private System.Windows.Forms.Button BtnBuscarCliente;
-        private System.Windows.Forms.Button BtnCalcularTotais;
         private System.Windows.Forms.Button BtnRemoverProdutoCarrinho;
     }
 }

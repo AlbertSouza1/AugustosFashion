@@ -11,6 +11,11 @@ namespace AugustosFashion.Entidades.Colaborador
         [DisplayName("Nome")]
         public NomeCompleto NomeCompleto { get; set; }
         public int Idade { get; set; }
-        public EnderecoModel Endereco { get; set; }   
+        public EnderecoModel Endereco { get; set; }
+
+        public ColaboradorListagem()
+        {
+            NomeCompleto = new NomeCompleto();
+        }
     }
 }

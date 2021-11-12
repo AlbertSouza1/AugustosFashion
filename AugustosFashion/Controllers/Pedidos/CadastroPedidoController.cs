@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Entidades;
 using AugustosFashion.Entidades.Cliente;
+using AugustosFashion.Entidades.Colaborador;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos;
@@ -46,6 +47,18 @@ namespace AugustosFashion.Controllers.Pedidos
         internal void RecuperarClienteSelecionado(ClienteListagem cliente)
         {
             _frmCadastroPedido.CarregarDadosDeClienteSelecionado(cliente);
+        }
+
+        internal void AbrirFormBuscaColaborador(string busca)
+        {
+            var frmBuscaColaborador = new FrmBuscaColaborador(this, busca);
+            frmBuscaColaborador.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
+            frmBuscaColaborador.Show();
+            frmBuscaColaborador.BringToFront();
+        }
+        internal void RecuperarColaboradorSelecionado(ColaboradorListagem colaborador)
+        {
+            _frmCadastroPedido.CarregarDadosDeColaboradorSelecionado(colaborador);
         }
     }
 }

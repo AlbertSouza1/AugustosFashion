@@ -3,12 +3,6 @@ using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Entidades.Cliente;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos
@@ -49,12 +43,12 @@ namespace AugustosFashion.Views.Pedidos
            
         }
 
-        private bool VerificarSeHaProdutoSelecionado() =>
+        private bool VerificarSeHaClienteSelecionado() =>
             dgvClientes.SelectedRows.Count > 0;
 
         private void btnSelecionarCliente_Click(object sender, EventArgs e)
         {
-            if (VerificarSeHaProdutoSelecionado())
+            if (VerificarSeHaClienteSelecionado())
             {
                 var cliente = InstanciarClienteSelecionado();
                 _cadastroPedidoController.RecuperarClienteSelecionado(cliente);
