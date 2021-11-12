@@ -20,9 +20,11 @@ namespace AugustosFashion.Views.Pedidos
 
         private void FrmBuscaProdutos_Load(object sender, System.EventArgs e)
         {
-            var produtos = new ListaProdutoController().BuscarProdutosPorNome(txtBuscarProdutos.Text, StatusProduto.Ativo);
+            var produtos = BuscarProdutos();
             ListarProdutosBuscados(produtos);
         }
+
+        private List<ProdutoListagem> BuscarProdutos() => new ListaProdutoController().BuscarProdutosPorNome(txtBuscarProdutos.Text, StatusProduto.Ativo);
 
         private void ListarProdutosBuscados(List<ProdutoListagem> produtos)
         {
@@ -56,7 +58,8 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnBuscarProdutos_Click(object sender, EventArgs e)
         {
-
+            var produtos = BuscarProdutos();
+            ListarProdutosBuscados(produtos);
         }
     }
 }

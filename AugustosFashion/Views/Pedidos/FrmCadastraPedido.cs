@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Controllers.Produtos;
+using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Produtos;
 using System;
 using System.Collections.Generic;
@@ -30,13 +31,23 @@ namespace AugustosFashion.Views.Pedidos
         }
         private void BtnBuscarProdutos_Click_1(object sender, EventArgs e)
         {
-            _cadastroPedidoController.AbrirFormBuscaProdutos(txtBuscarProdutos.Text, this);
+            _cadastroPedidoController.AbrirFormBuscaProdutos(txtBuscarProdutos.Text);
         }
 
         public void CarregarDadosDeProdutoSelecionado(ProdutoListagem produto)
         {
             txtNome.Text = produto.Nome;
             txtPreco.Text = produto.PrecoVenda.ToString();
-        }    
+        }
+
+        private void BtnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            _cadastroPedidoController.AbrirFormBuscaCliente(txtBuscaCliente.Text);
+        }
+
+        public void CarregarDadosDeClienteSelecionado(ClienteListagem cliente)
+        {
+            txtCliente.Text = cliente.NomeCompleto.Nome;
+        }
     }
 }

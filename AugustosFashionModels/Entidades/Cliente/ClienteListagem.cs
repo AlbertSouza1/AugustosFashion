@@ -7,7 +7,6 @@ namespace AugustosFashion.Entidades.Cliente
 {
     public class ClienteListagem
     {
-        public ClienteListagem(){}
         public int IdCliente { get; set; }
 
         [DisplayName("Nome")]
@@ -18,6 +17,10 @@ namespace AugustosFashion.Entidades.Cliente
         [DisplayName("Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
         public EnderecoModel Endereco { get; set; }
-        
+
+        public ClienteListagem()
+        {
+            NomeCompleto = new NomeCompleto();
+        }
     }
 }
