@@ -60,7 +60,6 @@ namespace AugustosFashion.Views.Pedidos
 
             colaborador.IdColaborador = Convert.ToInt32(dgvColaboradores.SelectedRows[0].Cells[0].Value);
             colaborador.NomeCompleto.Nome = dgvColaboradores.SelectedRows[0].Cells[1].Value.ToString();
-            colaborador.NomeCompleto.SobreNome = dgvColaboradores.SelectedRows[0].Cells[2].Value.ToString();
 
             return colaborador;
 

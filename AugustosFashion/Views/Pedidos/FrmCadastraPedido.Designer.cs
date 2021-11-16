@@ -222,9 +222,11 @@
             this.dgvCarrinho.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCarrinho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarrinho.Location = new System.Drawing.Point(28, 323);
+            this.dgvCarrinho.MultiSelect = false;
             this.dgvCarrinho.Name = "dgvCarrinho";
             this.dgvCarrinho.ReadOnly = true;
             this.dgvCarrinho.RowTemplate.Height = 25;
+            this.dgvCarrinho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarrinho.Size = new System.Drawing.Size(900, 196);
             this.dgvCarrinho.TabIndex = 18;
             // 
@@ -404,6 +406,7 @@
             this.BtnRemoverProdutoCarrinho.TabIndex = 39;
             this.BtnRemoverProdutoCarrinho.Text = "Remover Produto Selecionado";
             this.BtnRemoverProdutoCarrinho.UseVisualStyleBackColor = false;
+            this.BtnRemoverProdutoCarrinho.Click += new System.EventHandler(this.BtnRemoverProdutoCarrinho_Click);
             // 
             // label16
             // 

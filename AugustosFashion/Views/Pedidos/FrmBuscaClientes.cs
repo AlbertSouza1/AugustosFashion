@@ -21,12 +21,12 @@ namespace AugustosFashion.Views.Pedidos
         private void FrmBuscaClientes_Load(object sender, EventArgs e)
         {
                 var clientes = BuscarClientes();
-                ListarProdutosBuscados(clientes);
+                ListarClientesBuscados(clientes);
         }
 
         private List<ClienteListagem> BuscarClientes() => new ListaClienteController().BuscarClientesPorNome(txtBuscar.Text);
 
-        private void ListarProdutosBuscados(List<ClienteListagem> clientes)
+        private void ListarClientesBuscados(List<ClienteListagem> clientes)
         {
             dgvClientes.DataSource = clientes;
         }
@@ -37,8 +37,6 @@ namespace AugustosFashion.Views.Pedidos
 
             cliente.IdCliente = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value);
             cliente.NomeCompleto.Nome = dgvClientes.SelectedRows[0].Cells[1].Value.ToString();
-            cliente.NomeCompleto.SobreNome = dgvClientes.SelectedRows[0].Cells[2].Value.ToString();
-
             return cliente;
            
         }
@@ -61,7 +59,7 @@ namespace AugustosFashion.Views.Pedidos
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             var clientes = BuscarClientes();
-            ListarProdutosBuscados(clientes);
+            ListarClientesBuscados(clientes);
         }
     }
 }

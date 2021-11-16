@@ -5,6 +5,7 @@ using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Produtos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos
@@ -25,7 +26,6 @@ namespace AugustosFashion.Views.Pedidos
 
         private void FrmCadastraPedido_Load(object sender, EventArgs e)
         {
-
         }
         private void BtnBuscarProdutos_Click_1(object sender, EventArgs e)
         {
@@ -88,7 +88,20 @@ namespace AugustosFashion.Views.Pedidos
         private void AtualizarCarrinho()
         {
             dgvCarrinho.DataSource = null;
-            dgvCarrinho.DataSource = _produtosNoCarrinho;
+            dgvCarrinho.DataSource = _produtosNoCarrinho;           
+        }
+
+        private void BtnRemoverProdutoCarrinho_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
+
+            _produtosNoCarrinho.Remove((
+                from x in _produtosNoCarrinho
+                where x.IdProduto == id
+                select x).FirstOrDefault()
+                    );
+
+            AtualizarCarrinho();
         }
     }
 }
