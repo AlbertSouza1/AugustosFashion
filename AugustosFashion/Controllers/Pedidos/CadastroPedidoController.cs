@@ -5,6 +5,7 @@ using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Produtos;
+using System;
 
 namespace AugustosFashion.Controllers.Pedidos
 {
@@ -21,7 +22,14 @@ namespace AugustosFashion.Controllers.Pedidos
 
         internal void CadastrarPedido(PedidoModel pedido)
         {
-            PedidoRepositorio.CadastrarPedido(pedido);
+            try
+            {
+                PedidoRepositorio.CadastrarPedido(pedido);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         internal void AbrirFormBuscaProdutos(string busca)

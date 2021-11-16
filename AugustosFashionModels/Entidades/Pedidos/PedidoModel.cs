@@ -5,7 +5,7 @@ using System.Linq;
 namespace AugustosFashionModels.Entidades.Pedidos
 {
     public class PedidoModel
-    {
+    {      
         public int IdPedido { get; set; }
         public int IdCliente { get; set; }
         public int IdColaborador { get; set; }
@@ -13,16 +13,21 @@ namespace AugustosFashionModels.Entidades.Pedidos
         public DateTime DataEmissao { get; set; }
         public double TotalBruto 
         {
-            get => Produtos.Sum(p => (p.PrecoVenda*p.Quantidade));
+            get => Produtos.Sum(p => (p.PrecoVenda * p.Quantidade));
         }
         public double TotalDesconto
         {
-            get => Produtos.Sum(p => p.Desconto);
+            get => Produtos.Sum(p => (p.Desconto * p.Quantidade));
         }
         public double TotalLiquido
         {
             get => Produtos.Sum(p => p.Total);
         }
         public List<PedidoProdutoModel> Produtos { get; set; }
+
+        public PedidoModel()
+        {
+            Produtos = new List<PedidoProdutoModel>();
+        }
     }
 }

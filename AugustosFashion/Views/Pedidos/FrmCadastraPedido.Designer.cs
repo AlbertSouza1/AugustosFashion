@@ -64,7 +64,7 @@
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
             this.BtnRemoverProdutoCarrinho = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbFormaPagamento = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +93,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(605, 189);
+            this.label3.Location = new System.Drawing.Point(605, 203);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(150, 19);
             this.label3.TabIndex = 2;
@@ -103,7 +103,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(604, 83);
+            this.label4.Location = new System.Drawing.Point(611, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 19);
             this.label4.TabIndex = 3;
@@ -259,6 +259,7 @@
             this.txtDesconto.Name = "txtDesconto";
             this.txtDesconto.Size = new System.Drawing.Size(104, 23);
             this.txtDesconto.TabIndex = 23;
+            this.txtDesconto.Text = "0";
             // 
             // numQuantidade
             // 
@@ -356,17 +357,18 @@
             this.BtnFinalizarVenda.TabIndex = 33;
             this.BtnFinalizarVenda.Text = "Finalizar Venda";
             this.BtnFinalizarVenda.UseVisualStyleBackColor = false;
+            this.BtnFinalizarVenda.Click += new System.EventHandler(this.BtnFinalizarVenda_Click);
             // 
             // txtBuscarColaborador
             // 
-            this.txtBuscarColaborador.Location = new System.Drawing.Point(755, 188);
+            this.txtBuscarColaborador.Location = new System.Drawing.Point(754, 202);
             this.txtBuscarColaborador.Name = "txtBuscarColaborador";
             this.txtBuscarColaborador.Size = new System.Drawing.Size(117, 23);
             this.txtBuscarColaborador.TabIndex = 34;
             // 
             // txtBuscaCliente
             // 
-            this.txtBuscaCliente.Location = new System.Drawing.Point(719, 82);
+            this.txtBuscaCliente.Location = new System.Drawing.Point(754, 80);
             this.txtBuscaCliente.Name = "txtBuscaCliente";
             this.txtBuscaCliente.Size = new System.Drawing.Size(113, 23);
             this.txtBuscaCliente.TabIndex = 35;
@@ -375,7 +377,7 @@
             // 
             this.BtnBuscarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnBuscarColaborador.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarColaborador.Location = new System.Drawing.Point(878, 188);
+            this.BtnBuscarColaborador.Location = new System.Drawing.Point(866, 202);
             this.BtnBuscarColaborador.Name = "BtnBuscarColaborador";
             this.BtnBuscarColaborador.Size = new System.Drawing.Size(40, 23);
             this.BtnBuscarColaborador.TabIndex = 36;
@@ -387,7 +389,7 @@
             // 
             this.BtnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarCliente.Location = new System.Drawing.Point(838, 83);
+            this.BtnBuscarCliente.Location = new System.Drawing.Point(866, 80);
             this.BtnBuscarCliente.Name = "BtnBuscarCliente";
             this.BtnBuscarCliente.Size = new System.Drawing.Size(40, 23);
             this.BtnBuscarCliente.TabIndex = 37;
@@ -418,26 +420,26 @@
             this.label16.TabIndex = 40;
             this.label16.Text = "Forma de Pagamento";
             // 
-            // comboBox1
+            // cbFormaPagamento
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbFormaPagamento.FormattingEnabled = true;
+            this.cbFormaPagamento.Items.AddRange(new object[] {
             "À vista no dinheiro",
             "Á prazo",
             "Crédito",
             "Débito",
             "Pix"});
-            this.comboBox1.Location = new System.Drawing.Point(225, 580);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(141, 23);
-            this.comboBox1.TabIndex = 41;
+            this.cbFormaPagamento.Location = new System.Drawing.Point(225, 580);
+            this.cbFormaPagamento.Name = "cbFormaPagamento";
+            this.cbFormaPagamento.Size = new System.Drawing.Size(141, 23);
+            this.cbFormaPagamento.TabIndex = 41;
             // 
             // FrmCadastraPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 682);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbFormaPagamento);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.BtnRemoverProdutoCarrinho);
             this.Controls.Add(this.BtnBuscarCliente);
@@ -522,6 +524,6 @@
         private System.Windows.Forms.Button BtnBuscarCliente;
         private System.Windows.Forms.Button BtnRemoverProdutoCarrinho;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbFormaPagamento;
     }
 }

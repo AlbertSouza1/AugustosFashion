@@ -10,8 +10,9 @@ namespace AugustosFashion.Repositorios
     {
         public static void CadastrarPedido(PedidoModel pedido)
         {
-            var strSqlPedido = "Insert into Pedidos (IdCliente, IdColaborador, FormaPagamento, DataEmissao, TotalBruto, TotalDesconto, TotalLiquido) " +
-                "values (@IdCliente, @IdColaborador, @FormaPagamento, @DataEmissao, @TotalBruto, @TotalDesconto, @TotalLiquido)";
+            var strSqlPedido = @"Insert into Pedidos (IdCliente, IdColaborador, FormaPagamento, DataEmissao, TotalBruto, TotalDesconto, TotalLiquido)  
+                output inserted.IdPedido 
+                values (@IdCliente, @IdColaborador, @FormaPagamento, @DataEmissao, @TotalBruto, @TotalDesconto, @TotalLiquido)";
 
             var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, PrecoVenda, Quantidade, Desconto, PrecoLiquido, Total)
                 values (@IdPedido, @IdProduto, @PrecoVenda, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";
@@ -26,7 +27,11 @@ namespace AugustosFashion.Repositorios
                     {
                         pedido.IdPedido = sqlCon.ExecuteScalar<int>(strSqlPedido, pedido, transaction);
 
+                        pedido.Produtos.ForEach(x => x.IdPedido = pedido.IdPedido);
+
                         sqlCon.Execute(strSqlPedidoProduto, pedido.Produtos, transaction);
+
+                        transaction.Commit();
                     }                   
                 }
             }
