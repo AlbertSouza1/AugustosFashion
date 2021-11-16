@@ -116,9 +116,9 @@ namespace AugustosFashion.Views.Pedidos
         {
             AtualizarProdutosNoPedido();
 
-            txtTotalBruto.Text = _pedido.TotalBruto.ToString();
-            txtTotalDesconto.Text = _pedido.TotalDesconto.ToString();
-            txtTotalLiquido.Text = _pedido.TotalLiquido.ToString();
+            txtTotalBruto.Text = _pedido.TotalBruto.ToString("c");
+            txtTotalDesconto.Text = _pedido.TotalDesconto.ToString("c");
+            txtTotalLiquido.Text = _pedido.TotalLiquido.ToString("c");
         }
 
         private void AtualizarProdutosNoPedido()

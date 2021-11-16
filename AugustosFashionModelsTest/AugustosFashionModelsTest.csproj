@@ -58,6 +58,9 @@
     <Compile Include="ColaboradorModelTestes.cs" />
     <Compile Include="CPFTestes.cs" />
     <Compile Include="NomeCompletoTestes.cs" />
+    <Compile Include="PedidoModelTestes.cs" />
+    <Compile Include="PedidoProdutoModelTestes.cs" />
+    <Compile Include="ProdutoCarrinhoTestes.cs" />
     <Compile Include="UsuarioModelTestes.cs" />
     <Compile Include="ValidadoresCadastroTestes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
