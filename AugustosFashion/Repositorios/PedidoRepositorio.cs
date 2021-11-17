@@ -19,7 +19,7 @@ namespace AugustosFashion.Repositorios
             var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, PrecoVenda, Quantidade, Desconto, PrecoLiquido, Total)
                 values (@IdPedido, @IdProduto, @PrecoVenda, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";
 
-            var strSqlEstoqueProduto = @"update Produtos set Estoque = Estoque - @Estoque where IdProduto = @IdProduto";
+            var strSqlEstoqueProduto = @"update Produtos set Estoque = Estoque - @Quantidade where IdProduto = @IdProduto";
 
             try
             {
@@ -37,8 +37,9 @@ namespace AugustosFashion.Repositorios
 
                         foreach (var item in pedido.Produtos)
                         {
-                            sqlCon.Execute(strSqlEstoqueProduto, new { Estoque = item.Quantidade, IdProduto = item.IdProduto }, transaction) ;
+                            sqlCon.Execute(strSqlEstoqueProduto, new { Quantidade = item.Quantidade, IdProduto = item.IdProduto }, transaction);
                         }
+
                         transaction.Commit();
                     }                   
                 }

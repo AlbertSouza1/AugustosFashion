@@ -21,8 +21,6 @@ namespace AugustosFashion.Views.Pedidos
         private ProdutoCarrinho _produto;
         private List<ProdutoCarrinho> _produtosNoCarrinho = new List<ProdutoCarrinho>();
 
-
-
         public FrmCadastraPedido(CadastroPedidoController cadastroPedidoController)
         {
             InitializeComponent();
@@ -75,6 +73,12 @@ namespace AugustosFashion.Views.Pedidos
                 MessageBox.Show("Quantidade deve ser maior que 0");
                 return;
             }
+            if(_produto.Estoque < numQuantidade.Value)
+            {
+                MessageBox.Show($"O produto selecionado possui apenas {_produto.Estoque} itens disponíveis em estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             SetarDadosDoProdudoCarrinho();
 
             if (SelecionarProdutoDoCarrinho(_produto.IdProduto) != null)

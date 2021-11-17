@@ -91,7 +91,7 @@ namespace AugustosFashion.Repositorios
 
         public static List<ProdutoListagem> ListarTodosOsProdutos(StatusProduto status)
         {
-            var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda
+            var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda, Estoque
                 from Produtos where status = @status
                 ";
 
@@ -153,7 +153,7 @@ namespace AugustosFashion.Repositorios
 
         internal static List<ProdutoListagem> BuscarProdutosPorNome(string busca, StatusProduto status)
         {
-            var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda
+            var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda, Estoque
                 from Produtos where status = @status and Nome like @busca + '%'
                 ";
 

@@ -10,5 +10,6 @@ namespace AugustosFashionModels.Entidades.Produtos
         public string Fabricante { get; set; }
         [DisplayName("Preço")]
         public double PrecoVenda { get; set; }
+        public int Estoque { get; set; }
     }
 }

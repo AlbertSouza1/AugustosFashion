@@ -49,7 +49,8 @@ namespace AugustosFashion.Views.Pedidos
                 IdProduto = Convert.ToInt32(dgvProdutos.SelectedRows[0].Cells[0].Value),
                 Nome = dgvProdutos.SelectedRows[0].Cells[1].Value.ToString(),
                 Fabricante = dgvProdutos.SelectedRows[0].Cells[2].Value.ToString(),
-                PrecoVenda = Convert.ToDouble(dgvProdutos.SelectedRows[0].Cells[3].Value)
+                PrecoVenda = Convert.ToDouble(dgvProdutos.SelectedRows[0].Cells[3].Value),
+                Estoque = Convert.ToInt32(dgvProdutos.SelectedRows[0].Cells[4].Value)
             };
         }
 

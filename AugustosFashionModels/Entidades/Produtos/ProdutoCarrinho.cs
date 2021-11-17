@@ -11,6 +11,8 @@ namespace AugustosFashionModels.Entidades.Produtos
         [DisplayName("Preço de Venda")]
         public double PrecoVenda { get; set; }
         public int Quantidade { get; set; }
+        [Browsable(false)]
+        public int Estoque { get; set; }
         [DisplayName("Desconto Unitário")]
         public double Desconto { get; set; }
         [DisplayName("Preço Líquido")]
