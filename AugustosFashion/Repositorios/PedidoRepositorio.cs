@@ -19,6 +19,8 @@ namespace AugustosFashion.Repositorios
             var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, PrecoVenda, Quantidade, Desconto, PrecoLiquido, Total)
                 values (@IdPedido, @IdProduto, @PrecoVenda, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";
 
+            var strSqlEstoqueProduto = @"update Produtos set Estoque = Estoque - @Estoque where IdProduto = @IdProduto";
+
             try
             {
                 using (SqlConnection sqlCon = SqlHelper.ObterConexao())
@@ -33,6 +35,10 @@ namespace AugustosFashion.Repositorios
 
                         sqlCon.Execute(strSqlPedidoProduto, pedido.Produtos, transaction);
 
+                        foreach (var item in pedido.Produtos)
+                        {
+                            sqlCon.Execute(strSqlEstoqueProduto, new { Estoque = item.Quantidade, IdProduto = item.IdProduto }, transaction) ;
+                        }
                         transaction.Commit();
                     }                   
                 }
@@ -45,11 +51,14 @@ namespace AugustosFashion.Repositorios
 
         public static List<PedidoListagem> ListarPedidos()
         {
-            var strSqlPedidos = @"select 
-	            p.IdPedido, p.DataEmissao, (select Nome from nome_cliente where IdCliente = p.IdCliente) as NomeCliente,
-	            (select Nome from nome_colaborador where IdColaborador = p.IdColaborador) as NomeColaborador,
-	            p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido
-                from Pedidos p
+            var strSqlPedido = @"select  p.IdPedido, concat(u.Nome,' ',u.SobreNome) as NomeCliente,
+				concat(u2.Nome, ' ', u2.SobreNome) as NomeColaborador,
+				p.DataEmissao,p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido
+				from Pedidos p
+				inner join Colaboradores as co on p.IdColaborador = co.IdColaborador
+				inner join Clientes as c on p.IdCliente = c.IdCliente				
+				inner join Usuarios u on u.IdUsuario = c.IdUsuario
+				inner join Usuarios u2 on u2.IdUsuario = co.IdUsuario
                 ";
 
             try
@@ -59,7 +68,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     return sqlCon.Query<PedidoListagem>(
-                        strSqlPedidos                                             
+                        strSqlPedido                                             
                      ).ToList();
                 }
             }

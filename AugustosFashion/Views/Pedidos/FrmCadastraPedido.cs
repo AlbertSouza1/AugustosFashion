@@ -70,6 +70,11 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnAdicionarAoCarrinho_Click(object sender, EventArgs e)
         {
+            if(numQuantidade.Value < 1)
+            {
+                MessageBox.Show("Quantidade deve ser maior que 0");
+                return;
+            }
             SetarDadosDoProdudoCarrinho();
 
             if (SelecionarProdutoDoCarrinho(_produto.IdProduto) != null)
@@ -128,6 +133,9 @@ namespace AugustosFashion.Views.Pedidos
             txtPreco.Text = "0";
             numDesconto.Value = 0;
             numQuantidade.Value = 1;
+            txtTotalDescontoProduto.Text = "0";
+            txtPrecoLiquido.Text = "0";
+            lblTotalProduto.Text = "0";
         }
 
         private void AtualizarCarrinho()
@@ -237,19 +245,16 @@ namespace AugustosFashion.Views.Pedidos
         {
             if (numDesconto.Value == 0)
                 return;
-            if (numDesconto.Value < (decimal.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100))
-            {
-                CalcularTotalProduto();
-                CalcularTotalDesconto();
-            }               
-            else
+            if (numDesconto.Value > (decimal.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100))
             {
                 MessageBox.Show("Desconto não pode ser maior que o preço do produto");
                 numDesconto.Value = 0;
                 txtTotalDesconto.Text = "0";
-                CalcularTotalProduto();
-                CalcularTotalDesconto();
             }               
+
+            CalcularTotalProduto();
+            CalcularTotalDesconto();
+            CalcularPrecoLiquido();
         }
         private void numQuantidade_ValueChanged(object sender, EventArgs e)
         {
@@ -260,6 +265,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             CalcularTotalProduto();
             CalcularTotalDesconto();
+            CalcularPrecoLiquido();
         }
         private void CalcularTotalProduto()
         {
@@ -292,6 +298,23 @@ namespace AugustosFashion.Views.Pedidos
             {
                 numDesconto.Value = 0;
                 numQuantidade.Value = 0;
+            }
+        }
+        private void CalcularPrecoLiquido()
+        {
+            try
+            {
+                double preco = double.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100;
+                double desconto = double.Parse(numDesconto.Text);
+
+                txtPrecoLiquido.Text =
+                    (preco - desconto).ToString("c");
+            }
+            catch (Exception ex)
+            {
+                numDesconto.Value = 0;
+                numQuantidade.Value = 0;
+                txtPrecoLiquido.Text = "0";
             }
         }
 
