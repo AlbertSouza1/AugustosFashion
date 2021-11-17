@@ -4,6 +4,7 @@ using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Produtos;
+using AugustosFashionModels.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private void FrmCadastraPedido_Load(object sender, EventArgs e)
         {
+            CalcularTotalProduto();
         }
         private void BtnBuscarProdutos_Click_1(object sender, EventArgs e)
         {
@@ -40,9 +42,8 @@ namespace AugustosFashion.Views.Pedidos
         {
             _produto = produto;
 
-
             txtNome.Text = _produto.Nome;
-            txtPreco.Text = _produto.PrecoVenda.ToString();
+            txtPreco.Text = _produto.PrecoVenda.ToString("c");
         }
 
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace AugustosFashion.Views.Pedidos
         public void CarregarDadosDeClienteSelecionado(ClienteListagem cliente)
         {
             txtCliente.Text = cliente.NomeCompleto.Nome;
-            _pedido.IdCliente = cliente.IdCliente; 
+            _pedido.IdCliente = cliente.IdCliente;
         }
 
         public void CarregarDadosDeColaboradorSelecionado(ColaboradorListagem colaborador)
@@ -72,14 +73,37 @@ namespace AugustosFashion.Views.Pedidos
             SetarDadosDoProdudoCarrinho();
 
             if (SelecionarProdutoDoCarrinho(_produto.IdProduto) != null)
+            {               
                 AlterarValoresDeProdutoNoCarrinho();
+                AlterarProdutoNoPedido();
+            }
             else
+            {
                 _produtosNoCarrinho.Add(_produto);
+                AdicionarProdutoNoPedido();
+            }
 
             LimparCamposDeProduto();
 
             AtualizarCarrinho();
+
             AtualizarTotaisDoPedido();
+        }
+
+        //private void PreencherCamposDeQuantidadeEDesconto()
+        //{
+        //    numDesconto.Text = _produto.Desconto.ToString();
+        //    numQuantidade.Text = _produto.Quantidade.ToString();
+        //}
+
+        private void AlterarProdutoNoPedido()
+        {
+            var produto = SelecionarProdutoDoPedido(_produto.IdProduto);
+
+            var index = _pedido.Produtos.IndexOf(produto);
+
+            _pedido.Produtos[index].Quantidade = _produto.Quantidade;
+            _pedido.Produtos[index].Desconto = _produto.Desconto;
         }
 
         private void AlterarValoresDeProdutoNoCarrinho()
@@ -95,15 +119,15 @@ namespace AugustosFashion.Views.Pedidos
         private void SetarDadosDoProdudoCarrinho()
         {
             _produto.Quantidade = int.Parse(numQuantidade.Text);
-            _produto.Desconto = double.Parse(txtDesconto.Text);
+            _produto.Desconto = double.Parse(numDesconto.Text);
         }
 
         private void LimparCamposDeProduto()
         {
             txtNome.Text = string.Empty;
-            txtPreco.Text = string.Empty;
-            txtDesconto.Text = string.Empty;
-            numQuantidade.Text = string.Empty;
+            txtPreco.Text = "0";
+            numDesconto.Value = 0;
+            numQuantidade.Value = 1;
         }
 
         private void AtualizarCarrinho()
@@ -114,14 +138,12 @@ namespace AugustosFashion.Views.Pedidos
 
         private void AtualizarTotaisDoPedido()
         {
-            AtualizarProdutosNoPedido();
-
             txtTotalBruto.Text = _pedido.TotalBruto.ToString("c");
             txtTotalDesconto.Text = _pedido.TotalDesconto.ToString("c");
             txtTotalLiquido.Text = _pedido.TotalLiquido.ToString("c");
         }
 
-        private void AtualizarProdutosNoPedido()
+        private void AdicionarProdutoNoPedido()
         {
             _pedido.Produtos.Add(
                 new PedidoProdutoModel()
@@ -138,7 +160,9 @@ namespace AugustosFashion.Views.Pedidos
             int id = Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
 
             _produtosNoCarrinho.Remove(SelecionarProdutoDoCarrinho(id));
+            _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
 
+            AtualizarTotaisDoPedido();
             AtualizarCarrinho();
         }
 
@@ -148,7 +172,12 @@ namespace AugustosFashion.Views.Pedidos
                     where x.IdProduto == id
                     select x).FirstOrDefault();
         }
-
+        private PedidoProdutoModel SelecionarProdutoDoPedido(int id)
+        {
+            return (from x in _pedido.Produtos
+                    where x.IdProduto == id
+                    select x).FirstOrDefault();
+        }
         private void BtnFinalizarVenda_Click(object sender, EventArgs e)
         {
             try
@@ -171,7 +200,7 @@ namespace AugustosFashion.Views.Pedidos
         private void SetarValoresDoPedido()
         {
             _pedido.FormaPagamento = cbFormaPagamento.SelectedItem.ToString();
-            _pedido.DataEmissao = DateTime.Now; 
+            _pedido.DataEmissao = DateTime.Now;
         }
 
         private bool VerificarSeNaoHaCamposInvalidos()
@@ -198,5 +227,78 @@ namespace AugustosFashion.Views.Pedidos
             }
             return true;
         }
+
+        private void numQuantidade_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalcularTotalProduto();
+            CalcularTotalDesconto();
+        }
+        private void numDesconto_ValueChanged(object sender, EventArgs e)
+        {
+            if (numDesconto.Value == 0)
+                return;
+            if (numDesconto.Value < (decimal.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100))
+            {
+                CalcularTotalProduto();
+                CalcularTotalDesconto();
+            }               
+            else
+            {
+                MessageBox.Show("Desconto não pode ser maior que o preço do produto");
+                numDesconto.Value = 0;
+                txtTotalDesconto.Text = "0";
+                CalcularTotalProduto();
+                CalcularTotalDesconto();
+            }               
+        }
+        private void numQuantidade_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularTotalProduto();
+            CalcularTotalDesconto();
+        }
+        private void numDesconto_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalcularTotalProduto();
+            CalcularTotalDesconto();
+        }
+        private void CalcularTotalProduto()
+        {
+            try
+            {
+                double preco = double.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100;
+                double quantidade = int.Parse(numQuantidade.Text);
+                double desconto = double.Parse(numDesconto.Text);
+
+                lblTotalProduto.Text =
+                    ((preco - desconto) * quantidade).ToString("c");
+            }
+            catch (Exception ex)
+            {
+                numDesconto.Value = 0;
+                numQuantidade.Value = 0;
+            }
+        }
+        private void CalcularTotalDesconto()
+        {
+            try
+            {
+                double quantidade = int.Parse(numQuantidade.Text);
+                double desconto = double.Parse(numDesconto.Text);
+
+                txtTotalDescontoProduto.Text =
+                    (desconto * quantidade).ToString("c");
+            }
+            catch (Exception ex)
+            {
+                numDesconto.Value = 0;
+                numQuantidade.Value = 0;
+            }
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
     }
 }
