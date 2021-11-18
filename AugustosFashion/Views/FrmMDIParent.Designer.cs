@@ -40,16 +40,10 @@ namespace AugustosFashion
             this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novoProdutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panelCentral = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.vendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novaVendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
-            this.panelCentral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -128,56 +122,16 @@ namespace AugustosFashion
             // novoProdutoToolStripMenuItem
             // 
             this.novoProdutoToolStripMenuItem.Name = "novoProdutoToolStripMenuItem";
-            this.novoProdutoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novoProdutoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.novoProdutoToolStripMenuItem.Text = "Novo Produto";
             this.novoProdutoToolStripMenuItem.Click += new System.EventHandler(this.novoProdutoToolStripMenuItem_Click);
             // 
             // visualizarProdutosToolStripMenuItem
             // 
             this.visualizarProdutosToolStripMenuItem.Name = "visualizarProdutosToolStripMenuItem";
-            this.visualizarProdutosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visualizarProdutosToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.visualizarProdutosToolStripMenuItem.Text = "Visualizar Produtos";
             this.visualizarProdutosToolStripMenuItem.Click += new System.EventHandler(this.visualizarProdutosToolStripMenuItem_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(191)))), ((int)(((byte)(237)))));
-            this.panel1.Location = new System.Drawing.Point(0, 566);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(987, 173);
-            this.panel1.TabIndex = 2;
-            // 
-            // panelCentral
-            // 
-            this.panelCentral.Controls.Add(this.label1);
-            this.panelCentral.Controls.Add(this.pictureBox1);
-            this.panelCentral.Controls.Add(this.panel1);
-            this.panelCentral.Location = new System.Drawing.Point(0, 27);
-            this.panelCentral.Name = "panelCentral";
-            this.panelCentral.Size = new System.Drawing.Size(987, 739);
-            this.panelCentral.TabIndex = 3;
-            this.panelCentral.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(191)))), ((int)(((byte)(237)))));
-            this.label1.Location = new System.Drawing.Point(313, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(419, 42);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "AUGUSTU\'s FASHION";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(351, 227);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(269, 180);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // vendasToolStripMenuItem
             // 
@@ -191,14 +145,14 @@ namespace AugustosFashion
             // novaVendaToolStripMenuItem
             // 
             this.novaVendaToolStripMenuItem.Name = "novaVendaToolStripMenuItem";
-            this.novaVendaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novaVendaToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.novaVendaToolStripMenuItem.Text = "Nova Venda";
             this.novaVendaToolStripMenuItem.Click += new System.EventHandler(this.novaVendaToolStripMenuItem_Click);
             // 
             // visualizarVendasToolStripMenuItem
             // 
             this.visualizarVendasToolStripMenuItem.Name = "visualizarVendasToolStripMenuItem";
-            this.visualizarVendasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visualizarVendasToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.visualizarVendasToolStripMenuItem.Text = "Visualizar Vendas";
             this.visualizarVendasToolStripMenuItem.Click += new System.EventHandler(this.visualizarVendasToolStripMenuItem_Click);
             // 
@@ -207,22 +161,19 @@ namespace AugustosFashion
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 768);
-            this.Controls.Add(this.panelCentral);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MaximizeBox = false;
             this.Name = "FrmMDIParent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Augustu\'s Fashion";
             this.Load += new System.EventHandler(this.FrmMDIParent_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.panelCentral.ResumeLayout(false);
-            this.panelCentral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,10 +188,6 @@ namespace AugustosFashion
         private System.Windows.Forms.ToolStripMenuItem tsListarClientes;
         private System.Windows.Forms.ToolStripMenuItem novoColaboradorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarColaboradoresToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        public System.Windows.Forms.Panel panelCentral;
         private System.Windows.Forms.ToolStripMenuItem produtosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem novoProdutoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarProdutosToolStripMenuItem;

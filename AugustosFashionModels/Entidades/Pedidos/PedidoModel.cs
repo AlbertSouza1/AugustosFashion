@@ -24,6 +24,10 @@ namespace AugustosFashionModels.Entidades.Pedidos
             get => Produtos.Sum(p => p.Total);
         }
         public List<PedidoProdutoModel> Produtos { get; set; }
+        public double Lucro
+        {
+            get => Produtos.Sum(p => p.Total) - Produtos.Sum(p => p.PrecoCusto * p.Quantidade);
+        }
 
         public PedidoModel()
         {

@@ -3,6 +3,7 @@ using AugustosFashion.Controllers.Produtos;
 using AugustosFashionModels.Entidades.Produtos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos
@@ -10,6 +11,7 @@ namespace AugustosFashion.Views.Pedidos
     public partial class FrmBuscaProdutos : Form
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
+        private List<ProdutoListagem> _produtos;
 
         public FrmBuscaProdutos(CadastroPedidoController cadastroPedidoController, string busca)
         {
@@ -20,8 +22,8 @@ namespace AugustosFashion.Views.Pedidos
 
         private void FrmBuscaProdutos_Load(object sender, System.EventArgs e)
         {
-            var produtos = BuscarProdutos();
-            ListarProdutosBuscados(produtos);
+            _produtos = BuscarProdutos();
+            ListarProdutosBuscados(_produtos);
         }
 
         private List<ProdutoListagem> BuscarProdutos() => new ListaProdutoController().BuscarProdutosPorNome(txtBuscarProdutos.Text, StatusProduto.Ativo);
@@ -35,22 +37,26 @@ namespace AugustosFashion.Views.Pedidos
         {
             if (VerificarSeHaProdutoSelecionado())
             {
-                var produto = InstanciarProdutoSelecionado();
-                _cadastroPedidoController.RecuperarProdutoSelecionado(produto);
+                int id = Convert.ToInt32(dgvProdutos.SelectedRows[0].Cells[0].Value);
+
+                var produto = SelecionarProdutoDaLista(id);
+
+                _cadastroPedidoController.RecuperarProdutoSelecionado(InstanciarProdutoSelecionado(produto));
                 Close();
             }
             else
                 MessageBox.Show("Selecione um produto na lista antes de confirmar.");           
         }
 
-        private ProdutoCarrinho InstanciarProdutoSelecionado()
+        private ProdutoCarrinho InstanciarProdutoSelecionado(ProdutoListagem produto)
         {
             return new ProdutoCarrinho() {
-                IdProduto = Convert.ToInt32(dgvProdutos.SelectedRows[0].Cells[0].Value),
-                Nome = dgvProdutos.SelectedRows[0].Cells[1].Value.ToString(),
-                Fabricante = dgvProdutos.SelectedRows[0].Cells[2].Value.ToString(),
-                PrecoVenda = Convert.ToDouble(dgvProdutos.SelectedRows[0].Cells[3].Value),
-                Estoque = Convert.ToInt32(dgvProdutos.SelectedRows[0].Cells[4].Value)
+                IdProduto = produto.IdProduto,
+                Nome = produto.Nome,
+                Fabricante = produto.Fabricante,
+                PrecoCusto = produto.PrecoCusto,
+                PrecoVenda = produto.PrecoVenda,
+                Estoque = produto.Estoque
             };
         }
 
@@ -59,8 +65,14 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnBuscarProdutos_Click(object sender, EventArgs e)
         {
-            var produtos = BuscarProdutos();
-            ListarProdutosBuscados(produtos);
+            _produtos = BuscarProdutos();
+            ListarProdutosBuscados(_produtos);
+        }
+        private ProdutoListagem SelecionarProdutoDaLista(int id)
+        {
+            return (from x in _produtos
+                           where x.IdProduto == id
+                           select x).FirstOrDefault();
         }
     }
 }

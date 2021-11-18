@@ -2,16 +2,11 @@
 using AugustosFashion.Controllers.Colaborador;
 using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Controllers.Produtos;
-using AugustosFashion.Views.Pedidos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using AugustosFashion.Views;
 
 namespace AugustosFashion
 {
@@ -88,7 +83,10 @@ namespace AugustosFashion
 
         private void FrmMDIParent_Load(object sender, EventArgs e)
         {
-            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.WhiteSmoke;
+            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.RoyalBlue;
+            var FrmFundoHome = new FrmFundoHome();
+            FrmFundoHome.MdiParent = this;
+            FrmFundoHome.Show();
         }
 
         private void tsNovoCliente_Click(object sender, EventArgs e)

@@ -161,6 +161,7 @@ namespace AugustosFashion.Views.Pedidos
                 new PedidoProdutoModel()
                 {
                     IdProduto = _produto.IdProduto,
+                    PrecoCusto = _produto.PrecoCusto,
                     PrecoVenda = _produto.PrecoVenda,
                     Quantidade = _produto.Quantidade,
                     Desconto = _produto.Desconto,
@@ -173,7 +174,8 @@ namespace AugustosFashion.Views.Pedidos
 
             _produtosNoCarrinho.Remove(SelecionarProdutoDoCarrinho(id));
             _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
-
+            _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
+            
             AtualizarTotaisDoPedido();
             AtualizarCarrinho();
         }
@@ -244,6 +246,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             CalcularTotalProduto();
             CalcularTotalDesconto();
+            CalcularPrecoLiquido();
         }
         private void numDesconto_ValueChanged(object sender, EventArgs e)
         {
@@ -264,6 +267,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             CalcularTotalProduto();
             CalcularTotalDesconto();
+            CalcularPrecoLiquido();
         }
         private void numDesconto_KeyUp(object sender, KeyEventArgs e)
         {
@@ -321,7 +325,6 @@ namespace AugustosFashion.Views.Pedidos
                 txtPrecoLiquido.Text = "0";
             }
         }
-
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();

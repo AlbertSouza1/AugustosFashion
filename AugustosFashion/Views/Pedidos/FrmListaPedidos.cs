@@ -52,5 +52,10 @@ namespace AugustosFashion.Views.Pedidos
         {
             dgvPedidos.DataSource = pedidos;
         }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
