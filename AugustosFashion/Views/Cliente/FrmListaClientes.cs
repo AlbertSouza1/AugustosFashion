@@ -120,5 +120,10 @@ namespace AugustosFashion.Views
                 MessageBox.Show("Selecione um cliente na tabela para excluir", "Aviso");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

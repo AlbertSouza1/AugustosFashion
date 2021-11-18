@@ -42,6 +42,7 @@ namespace AugustosFashion.Views.Pedidos
 
             txtNome.Text = _produto.Nome;
             txtPreco.Text = _produto.PrecoVenda.ToString("c");
+            numQuantidade.Maximum = _produto.Estoque;
         }
 
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
@@ -268,6 +269,7 @@ namespace AugustosFashion.Views.Pedidos
             CalcularTotalProduto();
             CalcularTotalDesconto();
             CalcularPrecoLiquido();
+            AvisarSeLimiteNoEstoqueFoiAtingido();
         }
         private void numDesconto_KeyUp(object sender, KeyEventArgs e)
         {
@@ -328,6 +330,14 @@ namespace AugustosFashion.Views.Pedidos
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void AvisarSeLimiteNoEstoqueFoiAtingido()
+        {
+            if(numQuantidade.Value >= numQuantidade.Maximum)
+            {
+                MessageBox.Show($"O produto selecionado possui apenas {_produto.Estoque} itens disponíveis em estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);                
+            }
         }
 
     }

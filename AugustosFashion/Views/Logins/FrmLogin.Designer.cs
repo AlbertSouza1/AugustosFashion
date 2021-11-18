@@ -124,6 +124,7 @@ namespace AugustosFashion.Views.Logins
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logar";
             this.ResumeLayout(false);
             this.PerformLayout();

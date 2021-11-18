@@ -106,5 +106,10 @@ namespace AugustosFashion.Views.Produtos
 
             return validacoes;
         }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

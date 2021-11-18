@@ -33,33 +33,36 @@ namespace AugustosFashion.Views.Colaborador
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListaColaboradores));
             this.label2 = new System.Windows.Forms.Label();
             this.btnVisualizarColaborador = new System.Windows.Forms.Button();
             this.dgvColaboradores = new System.Windows.Forms.DataGridView();
             this.btnBuscarColaborador = new System.Windows.Forms.Button();
             this.txtBuscaColaborador = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnFechar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaboradores)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(206, 475);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(262, 558);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(518, 18);
+            this.label2.Size = new System.Drawing.Size(517, 18);
             this.label2.TabIndex = 14;
             this.label2.Text = "Selecione um cliente na tabela para interagir com as opções abaixo";
             // 
             // btnVisualizarColaborador
             // 
+            this.btnVisualizarColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnVisualizarColaborador.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnVisualizarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnVisualizarColaborador.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnVisualizarColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnVisualizarColaborador.ForeColor = System.Drawing.Color.White;
-            this.btnVisualizarColaborador.Location = new System.Drawing.Point(373, 513);
+            this.btnVisualizarColaborador.Location = new System.Drawing.Point(429, 596);
             this.btnVisualizarColaborador.Name = "btnVisualizarColaborador";
             this.btnVisualizarColaborador.Size = new System.Drawing.Size(161, 49);
             this.btnVisualizarColaborador.TabIndex = 12;
@@ -69,6 +72,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             // dgvColaboradores
             // 
+            this.dgvColaboradores.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvColaboradores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -87,7 +91,7 @@ namespace AugustosFashion.Views.Colaborador
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvColaboradores.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvColaboradores.Location = new System.Drawing.Point(4, 133);
+            this.dgvColaboradores.Location = new System.Drawing.Point(60, 216);
             this.dgvColaboradores.MultiSelect = false;
             this.dgvColaboradores.Name = "dgvColaboradores";
             this.dgvColaboradores.ReadOnly = true;
@@ -108,8 +112,9 @@ namespace AugustosFashion.Views.Colaborador
             // 
             // btnBuscarColaborador
             // 
+            this.btnBuscarColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnBuscarColaborador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBuscarColaborador.Location = new System.Drawing.Point(451, 82);
+            this.btnBuscarColaborador.Location = new System.Drawing.Point(491, 128);
             this.btnBuscarColaborador.Name = "btnBuscarColaborador";
             this.btnBuscarColaborador.Size = new System.Drawing.Size(352, 30);
             this.btnBuscarColaborador.TabIndex = 10;
@@ -119,43 +124,46 @@ namespace AugustosFashion.Views.Colaborador
             // 
             // txtBuscaColaborador
             // 
+            this.txtBuscaColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBuscaColaborador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBuscaColaborador.Location = new System.Drawing.Point(250, 84);
+            this.txtBuscaColaborador.Location = new System.Drawing.Point(290, 130);
             this.txtBuscaColaborador.Name = "txtBuscaColaborador";
             this.txtBuscaColaborador.Size = new System.Drawing.Size(204, 27);
             this.txtBuscaColaborador.TabIndex = 9;
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(318, 18);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(358, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(300, 25);
+            this.label1.Size = new System.Drawing.Size(306, 25);
             this.label1.TabIndex = 8;
             this.label1.Text = "Colaboradores Cadastrados";
             // 
-            // btnFechar
+            // button1
             // 
-            this.btnFechar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnFechar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnFechar.Location = new System.Drawing.Point(836, 0);
-            this.btnFechar.Name = "btnFechar";
-            this.btnFechar.Size = new System.Drawing.Size(30, 23);
-            this.btnFechar.TabIndex = 15;
-            this.btnFechar.Text = "X";
-            this.btnFechar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnFechar.UseVisualStyleBackColor = false;
-            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(60, 62);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(43, 36);
+            this.button1.TabIndex = 94;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmListaColaboradores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(870, 574);
-            this.Controls.Add(this.btnFechar);
+            this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnVisualizarColaborador);
             this.Controls.Add(this.dgvColaboradores);
@@ -181,6 +189,6 @@ namespace AugustosFashion.Views.Colaborador
         private System.Windows.Forms.Button btnBuscarColaborador;
         private System.Windows.Forms.TextBox txtBuscaColaborador;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnFechar;
+        private System.Windows.Forms.Button button1;
     }
 }

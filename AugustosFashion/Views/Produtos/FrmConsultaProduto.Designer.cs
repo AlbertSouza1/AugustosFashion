@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaProduto));
             this.numPrecoVenda = new System.Windows.Forms.NumericUpDown();
             this.numPrecoCusto = new System.Windows.Forms.NumericUpDown();
             this.numEstoque = new System.Windows.Forms.NumericUpDown();
@@ -52,6 +53,7 @@
             this.numAddEstoque = new System.Windows.Forms.NumericUpDown();
             this.btnAdicionarEstoque = new System.Windows.Forms.Button();
             this.btnAtivarProduto = new System.Windows.Forms.Button();
+            this.btnFechar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoVenda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoCusto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numEstoque)).BeginInit();
@@ -60,28 +62,42 @@
             // 
             // numPrecoVenda
             // 
-            this.numPrecoVenda.Location = new System.Drawing.Point(211, 519);
+            this.numPrecoVenda.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numPrecoVenda.Location = new System.Drawing.Point(247, 568);
+            this.numPrecoVenda.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numPrecoVenda.Name = "numPrecoVenda";
             this.numPrecoVenda.Size = new System.Drawing.Size(462, 23);
             this.numPrecoVenda.TabIndex = 150;
             // 
             // numPrecoCusto
             // 
-            this.numPrecoCusto.Location = new System.Drawing.Point(211, 400);
+            this.numPrecoCusto.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numPrecoCusto.Location = new System.Drawing.Point(247, 449);
+            this.numPrecoCusto.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numPrecoCusto.Name = "numPrecoCusto";
             this.numPrecoCusto.Size = new System.Drawing.Size(462, 23);
             this.numPrecoCusto.TabIndex = 149;
             // 
             // numEstoque
             // 
-            this.numEstoque.Location = new System.Drawing.Point(211, 275);
+            this.numEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numEstoque.Location = new System.Drawing.Point(247, 324);
             this.numEstoque.Name = "numEstoque";
             this.numEstoque.Size = new System.Drawing.Size(176, 23);
             this.numEstoque.TabIndex = 148;
             // 
             // mtxtPorcentagemLucro
             // 
-            this.mtxtPorcentagemLucro.Location = new System.Drawing.Point(211, 460);
+            this.mtxtPorcentagemLucro.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mtxtPorcentagemLucro.Location = new System.Drawing.Point(247, 509);
             this.mtxtPorcentagemLucro.Mask = "000%";
             this.mtxtPorcentagemLucro.Name = "mtxtPorcentagemLucro";
             this.mtxtPorcentagemLucro.Size = new System.Drawing.Size(316, 23);
@@ -89,7 +105,8 @@
             // 
             // mtxtCodigoBarras
             // 
-            this.mtxtCodigoBarras.Location = new System.Drawing.Point(211, 149);
+            this.mtxtCodigoBarras.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mtxtCodigoBarras.Location = new System.Drawing.Point(247, 198);
             this.mtxtCodigoBarras.Mask = "000000000000";
             this.mtxtCodigoBarras.Name = "mtxtCodigoBarras";
             this.mtxtCodigoBarras.Size = new System.Drawing.Size(462, 23);
@@ -98,11 +115,12 @@
             // 
             // btnCalcularPreco
             // 
+            this.btnCalcularPreco.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCalcularPreco.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnCalcularPreco.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCalcularPreco.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCalcularPreco.ForeColor = System.Drawing.Color.White;
-            this.btnCalcularPreco.Location = new System.Drawing.Point(533, 460);
+            this.btnCalcularPreco.Location = new System.Drawing.Point(569, 509);
             this.btnCalcularPreco.Name = "btnCalcularPreco";
             this.btnCalcularPreco.Size = new System.Drawing.Size(140, 23);
             this.btnCalcularPreco.TabIndex = 145;
@@ -112,9 +130,10 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(211, 436);
+            this.label5.Location = new System.Drawing.Point(247, 485);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(231, 21);
             this.label5.TabIndex = 144;
@@ -122,9 +141,10 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(95, 328);
+            this.label4.Location = new System.Drawing.Point(131, 377);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(721, 21);
             this.label4.TabIndex = 143;
@@ -133,12 +153,13 @@
             // 
             // BtnAlterar
             // 
+            this.BtnAlterar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnAlterar.BackColor = System.Drawing.Color.RoyalBlue;
             this.BtnAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnAlterar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnAlterar.ForeColor = System.Drawing.Color.White;
             this.BtnAlterar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAlterar.Location = new System.Drawing.Point(225, 593);
+            this.BtnAlterar.Location = new System.Drawing.Point(261, 642);
             this.BtnAlterar.Name = "BtnAlterar";
             this.BtnAlterar.Size = new System.Drawing.Size(162, 37);
             this.BtnAlterar.TabIndex = 142;
@@ -148,23 +169,26 @@
             // 
             // txtFabricante
             // 
-            this.txtFabricante.Location = new System.Drawing.Point(211, 208);
+            this.txtFabricante.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtFabricante.Location = new System.Drawing.Point(247, 257);
             this.txtFabricante.Name = "txtFabricante";
             this.txtFabricante.Size = new System.Drawing.Size(462, 23);
             this.txtFabricante.TabIndex = 141;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(211, 90);
+            this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtNome.Location = new System.Drawing.Point(247, 139);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(462, 23);
             this.txtNome.TabIndex = 140;
             // 
             // label14
             // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(211, 251);
+            this.label14.Location = new System.Drawing.Point(247, 300);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(176, 21);
             this.label14.TabIndex = 139;
@@ -172,9 +196,10 @@
             // 
             // label13
             // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(211, 184);
+            this.label13.Location = new System.Drawing.Point(247, 233);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(81, 21);
             this.label13.TabIndex = 138;
@@ -182,9 +207,10 @@
             // 
             // label10
             // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(211, 375);
+            this.label10.Location = new System.Drawing.Point(247, 424);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(114, 21);
             this.label10.TabIndex = 137;
@@ -192,9 +218,10 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(211, 494);
+            this.label9.Location = new System.Drawing.Point(247, 543);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(117, 21);
             this.label9.TabIndex = 136;
@@ -202,9 +229,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(211, 125);
+            this.label3.Location = new System.Drawing.Point(247, 174);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 21);
             this.label3.TabIndex = 135;
@@ -212,9 +240,10 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(211, 66);
+            this.label2.Location = new System.Drawing.Point(247, 115);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(135, 21);
             this.label2.TabIndex = 134;
@@ -222,9 +251,10 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(350, 12);
+            this.label1.Location = new System.Drawing.Point(386, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(194, 30);
             this.label1.TabIndex = 133;
@@ -232,11 +262,12 @@
             // 
             // btnExcluir
             // 
+            this.btnExcluir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnExcluir.BackColor = System.Drawing.Color.Red;
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnExcluir.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnExcluir.ForeColor = System.Drawing.Color.White;
-            this.btnExcluir.Location = new System.Drawing.Point(500, 593);
+            this.btnExcluir.Location = new System.Drawing.Point(536, 642);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(150, 37);
             this.btnExcluir.TabIndex = 151;
@@ -246,7 +277,8 @@
             // 
             // txtIdProduto
             // 
-            this.txtIdProduto.Location = new System.Drawing.Point(741, 90);
+            this.txtIdProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtIdProduto.Location = new System.Drawing.Point(777, 139);
             this.txtIdProduto.Name = "txtIdProduto";
             this.txtIdProduto.Size = new System.Drawing.Size(50, 23);
             this.txtIdProduto.TabIndex = 152;
@@ -254,9 +286,10 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(453, 251);
+            this.label6.Location = new System.Drawing.Point(489, 300);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(156, 21);
             this.label6.TabIndex = 153;
@@ -264,17 +297,19 @@
             // 
             // numAddEstoque
             // 
-            this.numAddEstoque.Location = new System.Drawing.Point(453, 275);
+            this.numAddEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numAddEstoque.Location = new System.Drawing.Point(489, 324);
             this.numAddEstoque.Name = "numAddEstoque";
             this.numAddEstoque.Size = new System.Drawing.Size(156, 23);
             this.numAddEstoque.TabIndex = 154;
             // 
             // btnAdicionarEstoque
             // 
+            this.btnAdicionarEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAdicionarEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAdicionarEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdicionarEstoque.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdicionarEstoque.Location = new System.Drawing.Point(615, 275);
+            this.btnAdicionarEstoque.Location = new System.Drawing.Point(651, 324);
             this.btnAdicionarEstoque.Name = "btnAdicionarEstoque";
             this.btnAdicionarEstoque.Size = new System.Drawing.Size(45, 23);
             this.btnAdicionarEstoque.TabIndex = 155;
@@ -285,10 +320,11 @@
             // 
             // btnAtivarProduto
             // 
+            this.btnAtivarProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAtivarProduto.BackColor = System.Drawing.Color.Lime;
             this.btnAtivarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAtivarProduto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAtivarProduto.Location = new System.Drawing.Point(500, 593);
+            this.btnAtivarProduto.Location = new System.Drawing.Point(536, 642);
             this.btnAtivarProduto.Name = "btnAtivarProduto";
             this.btnAtivarProduto.Size = new System.Drawing.Size(150, 37);
             this.btnAtivarProduto.TabIndex = 156;
@@ -297,11 +333,28 @@
             this.btnAtivarProduto.Visible = false;
             this.btnAtivarProduto.Click += new System.EventHandler(this.btnAtivarProduto_Click);
             // 
+            // btnFechar
+            // 
+            this.btnFechar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFechar.BackColor = System.Drawing.Color.Transparent;
+            this.btnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFechar.BackgroundImage")));
+            this.btnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnFechar.ForeColor = System.Drawing.Color.White;
+            this.btnFechar.Location = new System.Drawing.Point(81, 61);
+            this.btnFechar.Name = "btnFechar";
+            this.btnFechar.Size = new System.Drawing.Size(43, 36);
+            this.btnFechar.TabIndex = 157;
+            this.btnFechar.UseVisualStyleBackColor = false;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
+            // 
             // FrmConsultaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 642);
+            this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.btnAtivarProduto);
             this.Controls.Add(this.btnAdicionarEstoque);
             this.Controls.Add(this.numAddEstoque);
@@ -326,7 +379,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmConsultaProduto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmConsultaProduto";
             this.Load += new System.EventHandler(this.FrmConsultaProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPrecoVenda)).EndInit();
@@ -364,5 +419,6 @@
         private System.Windows.Forms.NumericUpDown numAddEstoque;
         private System.Windows.Forms.Button btnAdicionarEstoque;
         private System.Windows.Forms.Button btnAtivarProduto;
+        private System.Windows.Forms.Button btnFechar;
     }
 }

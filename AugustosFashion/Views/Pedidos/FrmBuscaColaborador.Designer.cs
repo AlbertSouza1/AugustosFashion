@@ -97,6 +97,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvColaboradores);
             this.Name = "FrmBuscaColaborador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmBuscaColaborador";
             this.Load += new System.EventHandler(this.FrmBuscaColaborador_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaboradores)).EndInit();

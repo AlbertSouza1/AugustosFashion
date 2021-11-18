@@ -15,6 +15,7 @@ namespace AugustosFashion.Views.Pedidos
     public partial class FrmListaPedidos : Form
     {
         private readonly ListaPedidoController _listaPedidoController;
+        private readonly ConsultaPedidoController _consultaPedidoController = new ConsultaPedidoController();
 
         public FrmListaPedidos(ListaPedidoController listaPedidoController)
         {
@@ -56,6 +57,11 @@ namespace AugustosFashion.Views.Pedidos
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnConsultarPedido_Click(object sender, EventArgs e)
+        {
+            _consultaPedidoController.AbrirFormConsultaPedido();
         }
     }
 }

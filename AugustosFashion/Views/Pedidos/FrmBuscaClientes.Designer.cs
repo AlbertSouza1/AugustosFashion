@@ -99,6 +99,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvClientes);
             this.Name = "FrmBuscaClientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmBuscaClientes";
             this.Load += new System.EventHandler(this.FrmBuscaClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();

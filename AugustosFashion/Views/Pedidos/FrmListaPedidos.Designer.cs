@@ -34,12 +34,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListaPedidos));
             this.label2 = new System.Windows.Forms.Label();
-            this.btnVisualizarProduto = new System.Windows.Forms.Button();
+            this.btnConsultarPedido = new System.Windows.Forms.Button();
             this.dgvPedidos = new System.Windows.Forms.DataGridView();
             this.btnBuscarPedidos = new System.Windows.Forms.Button();
             this.txtBuscaPedidos = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFechar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,24 +55,26 @@
             this.label2.TabIndex = 96;
             this.label2.Text = "Selecione um pedido na tabela para interagir com as opções abaixo";
             // 
-            // btnVisualizarProduto
+            // btnConsultarPedido
             // 
-            this.btnVisualizarProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnVisualizarProduto.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnVisualizarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnVisualizarProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnVisualizarProduto.ForeColor = System.Drawing.Color.White;
-            this.btnVisualizarProduto.Location = new System.Drawing.Point(411, 590);
-            this.btnVisualizarProduto.Name = "btnVisualizarProduto";
-            this.btnVisualizarProduto.Size = new System.Drawing.Size(161, 46);
-            this.btnVisualizarProduto.TabIndex = 95;
-            this.btnVisualizarProduto.Text = "Consultar Pedido";
-            this.btnVisualizarProduto.UseVisualStyleBackColor = false;
+            this.btnConsultarPedido.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnConsultarPedido.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnConsultarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnConsultarPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnConsultarPedido.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarPedido.Location = new System.Drawing.Point(411, 590);
+            this.btnConsultarPedido.Name = "btnConsultarPedido";
+            this.btnConsultarPedido.Size = new System.Drawing.Size(161, 46);
+            this.btnConsultarPedido.TabIndex = 95;
+            this.btnConsultarPedido.Text = "Consultar Pedido";
+            this.btnConsultarPedido.UseVisualStyleBackColor = false;
+            this.btnConsultarPedido.Click += new System.EventHandler(this.btnConsultarPedido_Click);
             // 
             // dgvPedidos
             // 
             this.dgvPedidos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvPedidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvPedidos.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -111,12 +114,15 @@
             // btnBuscarPedidos
             // 
             this.btnBuscarPedidos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBuscarPedidos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBuscarPedidos.BackgroundImage")));
+            this.btnBuscarPedidos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBuscarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarPedidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBuscarPedidos.Location = new System.Drawing.Point(461, 163);
+            this.btnBuscarPedidos.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.btnBuscarPedidos.Location = new System.Drawing.Point(324, 176);
             this.btnBuscarPedidos.Name = "btnBuscarPedidos";
-            this.btnBuscarPedidos.Size = new System.Drawing.Size(265, 27);
+            this.btnBuscarPedidos.Size = new System.Drawing.Size(39, 27);
             this.btnBuscarPedidos.TabIndex = 93;
-            this.btnBuscarPedidos.Text = "Buscar  (% para trazer todos)";
             this.btnBuscarPedidos.UseVisualStyleBackColor = true;
             this.btnBuscarPedidos.Click += new System.EventHandler(this.btnBuscarPedidos_Click);
             // 
@@ -124,9 +130,9 @@
             // 
             this.txtBuscaPedidos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBuscaPedidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtBuscaPedidos.Location = new System.Drawing.Point(260, 163);
+            this.txtBuscaPedidos.Location = new System.Drawing.Point(60, 176);
             this.txtBuscaPedidos.Name = "txtBuscaPedidos";
-            this.txtBuscaPedidos.Size = new System.Drawing.Size(204, 27);
+            this.txtBuscaPedidos.Size = new System.Drawing.Size(268, 27);
             this.txtBuscaPedidos.TabIndex = 92;
             // 
             // label1
@@ -134,7 +140,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(370, 91);
+            this.label1.Location = new System.Drawing.Point(379, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(193, 30);
             this.label1.TabIndex = 91;
@@ -150,27 +156,39 @@
             this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFechar.ForeColor = System.Drawing.Color.White;
-            this.btnFechar.Location = new System.Drawing.Point(60, 85);
+            this.btnFechar.Location = new System.Drawing.Point(60, 69);
             this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(43, 36);
             this.btnFechar.TabIndex = 97;
             this.btnFechar.UseVisualStyleBackColor = false;
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(60, 156);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 17);
+            this.label3.TabIndex = 98;
+            this.label3.Text = "Buscar pedidos";
+            // 
             // FrmListaPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnVisualizarProduto);
+            this.Controls.Add(this.btnConsultarPedido);
             this.Controls.Add(this.dgvPedidos);
             this.Controls.Add(this.btnBuscarPedidos);
             this.Controls.Add(this.txtBuscaPedidos);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmListaPedidos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmListaPedidos";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
             this.ResumeLayout(false);
@@ -181,11 +199,12 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnVisualizarProduto;
+        private System.Windows.Forms.Button btnConsultarPedido;
         private System.Windows.Forms.DataGridView dgvPedidos;
         private System.Windows.Forms.Button btnBuscarPedidos;
         private System.Windows.Forms.TextBox txtBuscaPedidos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFechar;
+        private System.Windows.Forms.Label label3;
     }
 }

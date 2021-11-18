@@ -169,5 +169,10 @@ namespace AugustosFashion.Views.Produtos
                 btnAtivarProduto.Visible = true;
             }
         }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

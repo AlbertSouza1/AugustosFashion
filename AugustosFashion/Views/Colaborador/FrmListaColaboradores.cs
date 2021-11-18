@@ -60,11 +60,6 @@ namespace AugustosFashion.Views.Colaborador
         private bool VerificarSeHaRegistroSelecionado() =>
            dgvColaboradores.SelectedRows.Count == 0 ? false : true;
 
-        private void btnFechar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnBuscarColaborador_Click(object sender, EventArgs e)
         {
             if (txtBuscaColaborador.Text == string.Empty)
@@ -118,6 +113,11 @@ namespace AugustosFashion.Views.Colaborador
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

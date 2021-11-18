@@ -289,6 +289,11 @@
             // 
             this.numQuantidade.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numQuantidade.Location = new System.Drawing.Point(458, 164);
+            this.numQuantidade.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numQuantidade.Name = "numQuantidade";
             this.numQuantidade.Size = new System.Drawing.Size(104, 23);
             this.numQuantidade.TabIndex = 24;
