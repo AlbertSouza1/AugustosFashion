@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Helpers;
+using AugustosFashionModels.Entidades.Dinheiros;
 using AugustosFashionModels.Entidades.Produtos;
 using Dapper;
 using System;
@@ -91,7 +92,7 @@ namespace AugustosFashion.Repositorios
 
         public static List<ProdutoListagem> ListarTodosOsProdutos(StatusProduto status)
         {
-            var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda, Estoque
+            var strSqlProduto = @"select IdProduto, Nome, Fabricante, cast(PrecoVenda as varchar) as PrecoVenda, Estoque
                 from Produtos where status = @status
                 ";
 
@@ -153,7 +154,7 @@ namespace AugustosFashion.Repositorios
 
         internal static List<ProdutoListagem> BuscarProdutosPorNome(string busca, StatusProduto status)
         {
-            var strSqlProduto = @"select IdProduto, Nome, Fabricante, PrecoVenda, PrecoCusto, Estoque
+            var strSqlProduto = @"select IdProduto, Nome, Fabricante, cast(PrecoVenda as varchar) as PrecoVenda, PrecoCusto, Estoque
                 from Produtos where status = @status and Nome like @busca + '%'
                 ";
 
@@ -170,6 +171,13 @@ namespace AugustosFashion.Repositorios
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private static ProdutoListagem MapearProduto(ProdutoListagem produto, Dinheiro dinheiro)
+        {
+            produto.PrecoVenda = dinheiro;
+
+            return produto;
         }
     }
 }

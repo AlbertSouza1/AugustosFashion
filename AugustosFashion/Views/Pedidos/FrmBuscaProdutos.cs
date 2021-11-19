@@ -55,7 +55,7 @@ namespace AugustosFashion.Views.Pedidos
                 Nome = produto.Nome,
                 Fabricante = produto.Fabricante,
                 PrecoCusto = produto.PrecoCusto,
-                PrecoVenda = produto.PrecoVenda,
+                PrecoVenda = produto.PrecoVenda.RetornaValor,
                 Estoque = produto.Estoque
             };
         }

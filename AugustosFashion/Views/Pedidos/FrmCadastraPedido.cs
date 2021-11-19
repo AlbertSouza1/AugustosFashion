@@ -41,7 +41,7 @@ namespace AugustosFashion.Views.Pedidos
             _produto = produto;
 
             txtNome.Text = _produto.Nome;
-            txtPreco.Text = _produto.PrecoVenda.ToString("c");
+            txtPreco.Text = _produto.PrecoVenda.ToString();
             numQuantidade.Maximum = _produto.Estoque;
         }
 

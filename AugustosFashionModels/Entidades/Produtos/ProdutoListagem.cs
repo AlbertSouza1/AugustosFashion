@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using AugustosFashionModels.Entidades.Dinheiros;
+using System.ComponentModel;
 
 namespace AugustosFashionModels.Entidades.Produtos
 {
@@ -13,7 +14,7 @@ namespace AugustosFashionModels.Entidades.Produtos
         public double PrecoCusto { get; set; }
 
         [DisplayName("Preço")]
-        public double PrecoVenda { get; set; }
+        public Dinheiro PrecoVenda { get; set; }
         public int Estoque { get; set; }
     }
 }

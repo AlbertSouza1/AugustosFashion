@@ -55,7 +55,7 @@ namespace AugustosFashionModelsTest
             var pedido = new PedidoModel();
             pedido.Produtos = _produtosNoPedido;
 
-            var esperado = 29;
+            var esperado = 16;
 
             Assert.AreEqual(esperado, pedido.TotalLiquido);
         }
