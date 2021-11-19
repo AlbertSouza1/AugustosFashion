@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AugustosFashionModels.Entidades.Dinheiros
+﻿namespace AugustosFashionModels.Entidades.Dinheiros
 {
     public class Dinheiro
     {
@@ -26,5 +20,6 @@ namespace AugustosFashionModels.Entidades.Dinheiros
 
         public static implicit operator Dinheiro(double valor) => new Dinheiro(valor.ToString());    
         public static implicit operator Dinheiro(string valor) => new Dinheiro(valor);    
+        public static implicit operator Dinheiro(decimal valor) => new Dinheiro(valor.ToString());    
     }
 }

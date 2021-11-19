@@ -1,10 +1,6 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashionModelsTest
 {
@@ -35,7 +31,7 @@ namespace AugustosFashionModelsTest
 
             var esperado = 29;
 
-            Assert.AreEqual(esperado, pedido.TotalBruto);
+            Assert.AreEqual(esperado, pedido.TotalBruto.RetornaValor);
         }
 
         [TestMethod]
@@ -46,7 +42,7 @@ namespace AugustosFashionModelsTest
 
             var esperado = 13;
 
-            Assert.AreEqual(esperado, pedido.TotalDesconto);
+            Assert.AreEqual(esperado, pedido.TotalDesconto.RetornaValor);
         }
 
         [TestMethod]
@@ -57,7 +53,7 @@ namespace AugustosFashionModelsTest
 
             var esperado = 16;
 
-            Assert.AreEqual(esperado, pedido.TotalLiquido);
+            Assert.AreEqual(esperado, pedido.TotalLiquido.RetornaValor);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AugustosFashionModels.Entidades.Dinheiros;
+using System;
 
 namespace AugustosFashionModels.Entidades.Pedidos
 {
@@ -9,9 +10,9 @@ namespace AugustosFashionModels.Entidades.Pedidos
         public string NomeCliente { get; set; }
         public string NomeColaborador { get; set; }
         public string FormaPagamento { get; set; }
-        public double TotalBruto { get; set; }
-        public double TotalDesconto { get; set; }
-        public double TotalLiquido { get; set; }
-        public double Lucro { get; set; }
+        public Dinheiro TotalBruto { get; set; }
+        public Dinheiro TotalDesconto { get; set; }
+        public Dinheiro TotalLiquido { get; set; }
+        public Dinheiro Lucro { get; set; }
     }
 }

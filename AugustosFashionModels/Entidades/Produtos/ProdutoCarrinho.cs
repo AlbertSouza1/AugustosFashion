@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using AugustosFashionModels.Entidades.Dinheiros;
+using System.ComponentModel;
 
 namespace AugustosFashionModels.Entidades.Produtos
 {
@@ -9,26 +10,26 @@ namespace AugustosFashionModels.Entidades.Produtos
         public string Nome { get; set; }
         public string Fabricante { get; set; }
         [Browsable(false)]
-        public double PrecoCusto { get; set; }
+        public Dinheiro PrecoCusto { get; set; }
 
         [DisplayName("Preço de Venda")]
-        public double PrecoVenda { get; set; }       
+        public Dinheiro PrecoVenda { get; set; }       
         public int Quantidade { get; set; }
 
         [Browsable(false)]
         public int Estoque { get; set; }
 
         [DisplayName("Desconto Unitário")]
-        public double Desconto { get; set; }
+        public Dinheiro Desconto { get; set; }
 
         [DisplayName("Preço Líquido")]
-        public double PrecoLiquido
+        public Dinheiro PrecoLiquido
         {
-            get => PrecoVenda - Desconto;
+            get => PrecoVenda.RetornaValor - Desconto.RetornaValor;
         }
-        public double Total
+        public Dinheiro Total
         {
-            get => PrecoLiquido * Quantidade;
+            get => PrecoLiquido.RetornaValor * Quantidade;
         }
     }
 }

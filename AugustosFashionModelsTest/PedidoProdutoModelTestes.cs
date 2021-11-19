@@ -17,7 +17,7 @@ namespace AugustosFashionModelsTest
             produtoCarrinho.PrecoVenda = precoVenda;
             produtoCarrinho.Desconto = desconto;
 
-            Assert.AreEqual(esperado, produtoCarrinho.PrecoLiquido);
+            Assert.AreEqual(esperado, produtoCarrinho.PrecoLiquido.RetornaValor);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace AugustosFashionModelsTest
             produtoCarrinho.Quantidade = quantidade;
             produtoCarrinho.Desconto = 0;
 
-            Assert.AreEqual(esperado, produtoCarrinho.Total);
+            Assert.AreEqual(esperado, produtoCarrinho.Total.RetornaValor);
         }
     }
 }

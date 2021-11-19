@@ -250,6 +250,7 @@ namespace AugustosFashion.Views.Produtos
             // numPrecoCusto
             // 
             this.numPrecoCusto.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numPrecoCusto.DecimalPlaces = 2;
             this.numPrecoCusto.Location = new System.Drawing.Point(274, 446);
             this.numPrecoCusto.Name = "numPrecoCusto";
             this.numPrecoCusto.Size = new System.Drawing.Size(462, 23);
@@ -258,6 +259,7 @@ namespace AugustosFashion.Views.Produtos
             // numPrecoVenda
             // 
             this.numPrecoVenda.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numPrecoVenda.DecimalPlaces = 2;
             this.numPrecoVenda.Location = new System.Drawing.Point(274, 565);
             this.numPrecoVenda.Name = "numPrecoVenda";
             this.numPrecoVenda.Size = new System.Drawing.Size(462, 23);

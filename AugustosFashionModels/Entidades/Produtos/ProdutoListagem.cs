@@ -11,7 +11,7 @@ namespace AugustosFashionModels.Entidades.Produtos
         public string Fabricante { get; set; }
 
         [Browsable(false)]
-        public double PrecoCusto { get; set; }
+        public Dinheiro PrecoCusto { get; set; }
 
         [DisplayName("Preço")]
         public Dinheiro PrecoVenda { get; set; }

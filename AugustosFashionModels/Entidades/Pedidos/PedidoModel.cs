@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AugustosFashionModels.Entidades.Dinheiros;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,20 +12,20 @@ namespace AugustosFashionModels.Entidades.Pedidos
         public int IdColaborador { get; set; }
         public string FormaPagamento { get; set; }
         public DateTime DataEmissao { get; set; }
-        public double TotalBruto 
+        public Dinheiro TotalBruto 
         {
             get => Produtos.Sum(p => (p.PrecoVenda * p.Quantidade));
         }
-        public double TotalDesconto
+        public Dinheiro TotalDesconto
         {
             get => Produtos.Sum(p => (p.Desconto * p.Quantidade));
         }
-        public double TotalLiquido
+        public Dinheiro TotalLiquido
         {
             get => Produtos.Sum(p => p.Total);
         }
         public List<PedidoProdutoModel> Produtos { get; set; }
-        public double Lucro
+        public Dinheiro Lucro
         {
             get => Produtos.Sum(p => p.Total) - Produtos.Sum(p => p.PrecoCusto * p.Quantidade);
         }

@@ -1,5 +1,4 @@
 ﻿using AugustosFashion.Controllers.Pedidos;
-using AugustosFashion.Controllers.Produtos;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
@@ -113,7 +112,7 @@ namespace AugustosFashion.Views.Pedidos
             var index = _pedido.Produtos.IndexOf(produto);
 
             _pedido.Produtos[index].Quantidade = _produto.Quantidade;
-            _pedido.Produtos[index].Desconto = _produto.Desconto;
+            _pedido.Produtos[index].Desconto = _produto.Desconto.RetornaValor;
         }
 
         private void AlterarValoresDeProdutoNoCarrinho()
@@ -151,9 +150,9 @@ namespace AugustosFashion.Views.Pedidos
 
         private void AtualizarTotaisDoPedido()
         {
-            txtTotalBruto.Text = _pedido.TotalBruto.ToString("c");
-            txtTotalDesconto.Text = _pedido.TotalDesconto.ToString("c");
-            txtTotalLiquido.Text = _pedido.TotalLiquido.ToString("c");
+            txtTotalBruto.Text = _pedido.TotalBruto.ToString();
+            txtTotalDesconto.Text = _pedido.TotalDesconto.ToString();
+            txtTotalLiquido.Text = _pedido.TotalLiquido.ToString();
         }
 
         private void AdicionarProdutoNoPedido()
@@ -162,13 +161,12 @@ namespace AugustosFashion.Views.Pedidos
                 new PedidoProdutoModel()
                 {
                     IdProduto = _produto.IdProduto,
-                    PrecoCusto = _produto.PrecoCusto,
-                    PrecoVenda = _produto.PrecoVenda,
+                    PrecoCusto = _produto.PrecoCusto.RetornaValor,
+                    PrecoVenda = _produto.PrecoVenda.RetornaValor,
                     Quantidade = _produto.Quantidade,
-                    Desconto = _produto.Desconto,
+                    Desconto = _produto.Desconto.RetornaValor,
                 });
         }
-
         private void BtnRemoverProdutoCarrinho_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);

@@ -25,7 +25,7 @@ namespace AugustosFashion.Views.Produtos
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(numPrecoCusto.Text) || int.Parse(numPrecoCusto.Text) == 0)
+            if (string.IsNullOrWhiteSpace(numPrecoCusto.Text) || decimal.Parse(numPrecoCusto.Text) == 0)
                 MessageBox.Show("Digite um preco de custo para calcular");
             else
                 CalcularPrecoVendaPorPorcentagemDeLucro(int.Parse(porcentagemLucro));
