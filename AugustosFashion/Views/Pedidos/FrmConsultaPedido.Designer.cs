@@ -49,6 +49,8 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblData = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +73,7 @@
             // dgvPedidos
             // 
             this.dgvPedidos.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dgvPedidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvPedidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPedidos.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -102,6 +104,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.dgvPedidos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPedidos.RowTemplate.Height = 25;
@@ -126,7 +129,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(60, 142);
+            this.label8.Location = new System.Drawing.Point(60, 150);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 19);
             this.label8.TabIndex = 106;
@@ -136,7 +139,7 @@
             // 
             this.lblCliente.AutoSize = true;
             this.lblCliente.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCliente.Location = new System.Drawing.Point(156, 142);
+            this.lblCliente.Location = new System.Drawing.Point(156, 150);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(92, 19);
             this.lblCliente.TabIndex = 107;
@@ -229,7 +232,7 @@
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(109, 23);
             this.btnAlterar.TabIndex = 108;
-            this.btnAlterar.Text = "Salvar Alterações";
+            this.btnAlterar.Text = "Alterar Pedido";
             this.btnAlterar.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
@@ -251,11 +254,33 @@
             this.label11.TabIndex = 107;
             this.label11.Text = "Pedidos Comprados";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(750, 178);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(106, 17);
+            this.label4.TabIndex = 109;
+            this.label4.Text = "Data de Emissão";
+            // 
+            // lblData
+            // 
+            this.lblData.AutoSize = true;
+            this.lblData.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblData.Location = new System.Drawing.Point(873, 178);
+            this.lblData.Name = "lblData";
+            this.lblData.Size = new System.Drawing.Size(49, 17);
+            this.lblData.TabIndex = 109;
+            this.lblData.Text = "lblData";
+            // 
             // FrmConsultaPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.lblData);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.label11);
@@ -300,5 +325,7 @@
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblData;
     }
 }

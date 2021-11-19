@@ -8,15 +8,15 @@ namespace AugustosFashionModelsTest
     [TestClass]
     public class PedidoModelTestes
     {
-        List<ProdutoCarrinho> _produtosNoPedido = new List<ProdutoCarrinho>()
+        List<PedidoProduto> _produtosNoPedido = new List<PedidoProduto>()
         {
-            new ProdutoCarrinho(){
+            new PedidoProduto(){
                 IdProduto = 1,
                 PrecoVenda = 3,
                 Quantidade = 3,
                 Desconto = 1                
             },
-            new ProdutoCarrinho(){
+            new PedidoProduto(){
                 IdProduto = 2,
                 PrecoVenda = 4,
                 Quantidade = 5,

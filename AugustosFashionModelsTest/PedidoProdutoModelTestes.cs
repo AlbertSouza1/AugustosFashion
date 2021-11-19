@@ -14,7 +14,7 @@ namespace AugustosFashionModelsTest
         [DataRow(15, 6, 9)]
         public void VerificarSePrecoLiquidoEstaCalculandoCorretamente(double precoVenda, double desconto, double esperado)
         {
-            var produtoCarrinho = new ProdutoCarrinho();
+            var produtoCarrinho = new PedidoProduto();
             produtoCarrinho.PrecoVenda = Convert.ToDecimal(precoVenda);
             produtoCarrinho.Desconto =Convert.ToDecimal(desconto);
 
@@ -28,7 +28,7 @@ namespace AugustosFashionModelsTest
         [DataRow(15, 2, 30)]
         public void VerificarSeTotalEstaCalculandoCorretamente(double preco, int quantidade, double esperado)
         {
-            var produtoCarrinho = new ProdutoCarrinho();
+            var produtoCarrinho = new PedidoProduto();
             produtoCarrinho.PrecoVenda = Convert.ToDecimal(preco);
             produtoCarrinho.Quantidade = quantidade;
             produtoCarrinho.Desconto = 0;

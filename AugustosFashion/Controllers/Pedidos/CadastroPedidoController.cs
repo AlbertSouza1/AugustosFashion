@@ -4,7 +4,6 @@ using AugustosFashion.Entidades.Colaborador;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos;
-using AugustosFashionModels.Entidades.Produtos;
 using System;
 
 namespace AugustosFashion.Controllers.Pedidos
@@ -15,7 +14,13 @@ namespace AugustosFashion.Controllers.Pedidos
 
         internal void AbrirFormCadastroPedidos()
         {
-            _frmCadastroPedido = new FrmCadastraPedido(this);
+            _frmCadastroPedido = new FrmCadastraPedido(this, new PedidoModel());
+            _frmCadastroPedido.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
+            _frmCadastroPedido.Show();
+        }
+        internal void AbrirFormCadastroPedidoParaEdicao(PedidoModel pedido)
+        {
+            _frmCadastroPedido = new FrmCadastraPedido(this, pedido);
             _frmCadastroPedido.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             _frmCadastroPedido.Show();
         }
@@ -40,7 +45,7 @@ namespace AugustosFashion.Controllers.Pedidos
             frmBuscaProdutos.BringToFront();
         }
 
-        internal void RecuperarProdutoSelecionado(ProdutoCarrinho produto)
+        internal void RecuperarProdutoSelecionado(PedidoProduto produto)
         {
             _frmCadastroPedido.CarregarDadosDeProdutoSelecionado(produto);
         }

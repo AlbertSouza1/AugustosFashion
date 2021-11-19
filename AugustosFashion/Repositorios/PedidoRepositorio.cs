@@ -77,6 +77,56 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        public static List<PedidoProduto> ListarProdutosDoPedido(int id)
+        {
+            var strSqlPedido = @"select p.IdPedido, p.IdProduto, p.PrecoVenda, pro.Nome, pro.Fabricante,
+                p.Quantidade, p.Desconto, p.PrecoLiquido, p.Total, p.PrecoCusto							
+				from Pedido_Produto p
+                inner join Produtos pro on p.IdProduto = pro.IdProduto
+                where IdPedido = @id				
+                ";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<PedidoProduto>(
+                        strSqlPedido, new { id }
+                     ).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        internal static PedidoModel ConsultarPedido(int id)
+        {
+            var strSqlPedido = @"select IdPedido,			
+				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido, Lucro
+				from Pedidos where IdPedido = @id				
+                ";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<PedidoModel>(
+                        strSqlPedido, new {id}
+                     ).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static List<PedidoListagem> ListarPedidos()
         {
             var strSqlPedido = @"select  p.IdPedido, concat(u.Nome,' ',u.SobreNome) as NomeCliente,

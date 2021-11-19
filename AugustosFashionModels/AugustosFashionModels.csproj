@@ -64,8 +64,7 @@
     <Compile Include="Entidades\NomesCompletos\NomeCompletoValidator.cs" />
     <Compile Include="Entidades\Pedidos\PedidoListagem.cs" />
     <Compile Include="Entidades\Pedidos\PedidoModel.cs" />
-    <Compile Include="Entidades\Pedidos\PedidoProdutoModel.cs" />
-    <Compile Include="Entidades\Produtos\ProdutoCarrinho.cs" />
+    <Compile Include="Entidades\Pedidos\PedidoProduto.cs" />
     <Compile Include="Entidades\Produtos\ProdutoListagem.cs" />
     <Compile Include="Entidades\Produtos\ProdutoModel.cs" />
     <Compile Include="Entidades\Produtos\StatusProduto.cs" />

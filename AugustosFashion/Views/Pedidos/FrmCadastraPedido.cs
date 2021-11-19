@@ -5,7 +5,6 @@ using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Produtos;
 using AugustosFashionModels.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,15 +14,14 @@ namespace AugustosFashion.Views.Pedidos
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
 
-        private PedidoModel _pedido = new PedidoModel();
+        private PedidoModel _pedido;
+        private PedidoProduto _produto;
 
-        private ProdutoCarrinho _produto;
-        private List<ProdutoCarrinho> _produtosNoCarrinho = new List<ProdutoCarrinho>();
-
-        public FrmCadastraPedido(CadastroPedidoController cadastroPedidoController)
+        public FrmCadastraPedido(CadastroPedidoController cadastroPedidoController, PedidoModel pedido)
         {
             InitializeComponent();
             _cadastroPedidoController = cadastroPedidoController;
+            _pedido = pedido;
         }
 
         private void FrmCadastraPedido_Load(object sender, EventArgs e)
@@ -35,7 +33,7 @@ namespace AugustosFashion.Views.Pedidos
             _cadastroPedidoController.AbrirFormBuscaProdutos(txtBuscarProdutos.Text);
         }
 
-        public void CarregarDadosDeProdutoSelecionado(ProdutoCarrinho produto)
+        public void CarregarDadosDeProdutoSelecionado(PedidoProduto produto)
         {
             if (SelecionarProdutoDoPedido(produto.IdProduto) == null)
 
@@ -73,28 +71,20 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnAdicionarAoCarrinho_Click(object sender, EventArgs e)
         {
-            if(numQuantidade.Value < 1)
-            {
-                MessageBox.Show("Quantidade deve ser maior que 0");
+            if (!ValidarInformacoesDeProdutoParaAdicionarAoCarrinho())
                 return;
-            }
-            if(_produto.Estoque < numQuantidade.Value)
-            {
-                MessageBox.Show($"O produto selecionado possui apenas {_produto.Estoque} itens disponíveis em estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
 
             SetarDadosDoProdudoCarrinho();
 
-            var produto = SelecionarProdutoDoPedido(_produto.IdProduto);
+            var produtoJaInserido = _pedido.SelecionarProdutoDoPedido(_produto.IdProduto);
 
-            if (produto != null)
+            if (produtoJaInserido != null)
             {               
-                AlterarProdutoNoPedido(produto);
+                _pedido.AlterarProduto(produtoJaInserido, _produto);
             }
             else
             {
-                _pedido.Produtos.Add(_produto);
+                _pedido.AdicionarProduto(produtoJaInserido);
             }
 
             LimparCamposDeProduto();
@@ -104,14 +94,21 @@ namespace AugustosFashion.Views.Pedidos
             AtualizarTotaisDoPedido();
         }
 
-        private void AlterarProdutoNoPedido(ProdutoCarrinho produto)
+        private bool ValidarInformacoesDeProdutoParaAdicionarAoCarrinho()
         {
-            var index = _pedido.Produtos.IndexOf(produto);
+            if (numQuantidade.Value < 1)
+            {
+                MessageBox.Show("Quantidade deve ser maior que 0");
+                return false;
+            }
+            if (_produto.Estoque < numQuantidade.Value)
+            {
+                MessageBox.Show($"O produto selecionado possui apenas {_produto.Estoque} itens disponíveis em estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
 
-            _pedido.Produtos[index].Quantidade = _produto.Quantidade;
-            _pedido.Produtos[index].Desconto = _produto.Desconto.RetornaValor;
+            return true;
         }
-
         private void SetarDadosDoProdudoCarrinho()
         {
             _produto.Quantidade = int.Parse(numQuantidade.Text);
@@ -144,14 +141,19 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnRemoverProdutoCarrinho_Click(object sender, EventArgs e)
         {
+            RemoverProdutoDoCarrinho();
+        }
+
+        private void RemoverProdutoDoCarrinho()
+        {
             int id = Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
 
             _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
-            
+
             AtualizarTotaisDoPedido();
             AtualizarCarrinho();
         }
-        private ProdutoCarrinho SelecionarProdutoDoPedido(int id)
+        private PedidoProduto SelecionarProdutoDoPedido(int id)
         {
             return (from x in _pedido.Produtos
                     where x.IdProduto == id

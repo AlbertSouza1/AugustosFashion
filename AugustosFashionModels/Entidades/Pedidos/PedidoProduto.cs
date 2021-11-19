@@ -1,9 +1,10 @@
 ﻿using AugustosFashionModels.Entidades.Dinheiros;
+using System;
 using System.ComponentModel;
 
-namespace AugustosFashionModels.Entidades.Produtos
+namespace AugustosFashionModels.Entidades.Pedidos
 {
-    public class ProdutoCarrinho
+    public class PedidoProduto
     {
         [Browsable(false)]
         public int IdPedido { get; set; }

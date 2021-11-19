@@ -25,15 +25,31 @@ namespace AugustosFashionModels.Entidades.Pedidos
         {
             get => Produtos.Sum(p => p.Total.RetornaValor);
         }
-        public List<ProdutoCarrinho> Produtos { get; set; }
+        public List<PedidoProduto> Produtos { get; set; }
         public Dinheiro Lucro
         {
             get => Produtos.Sum(p => p.Total.RetornaValor) - Produtos.Sum(p => p.PrecoCusto.RetornaValor * p.Quantidade);
         }
-
         public PedidoModel()
         {
-            Produtos = new List<ProdutoCarrinho>();
+            Produtos = new List<PedidoProduto>();
+        }
+
+        public void AdicionarProduto(PedidoProduto produto) => Produtos.Add(produto);
+
+        public PedidoProduto SelecionarProdutoDoPedido(int id)
+        {
+            return (from x in Produtos
+                    where x.IdProduto == id
+                    select x).FirstOrDefault();
+        }
+
+        public void AlterarProduto(PedidoProduto produtoEncontrado, PedidoProduto produtoComDadosNovos)
+        {
+            var index = Produtos.IndexOf(produtoEncontrado);
+
+            Produtos[index].Quantidade = produtoComDadosNovos.Quantidade;
+            Produtos[index].Desconto = produtoComDadosNovos.Desconto.RetornaValor;
         }
     }
 }

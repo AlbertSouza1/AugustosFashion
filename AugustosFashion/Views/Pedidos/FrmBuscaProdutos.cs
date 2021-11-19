@@ -1,6 +1,7 @@
 ﻿using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Controllers.Produtos;
 using AugustosFashionModels.Entidades.Produtos;
+using AugustosFashionModels.Entidades.Pedidos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,9 +49,9 @@ namespace AugustosFashion.Views.Pedidos
                 MessageBox.Show("Selecione um produto na lista antes de confirmar.");           
         }
 
-        private ProdutoCarrinho InstanciarProdutoSelecionado(ProdutoListagem produto)
+        private PedidoProduto InstanciarProdutoSelecionado(ProdutoListagem produto)
         {
-            return new ProdutoCarrinho() {
+            return new PedidoProduto() {
                 IdProduto = produto.IdProduto,
                 Nome = produto.Nome,
                 Fabricante = produto.Fabricante,
