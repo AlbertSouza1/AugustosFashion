@@ -5,6 +5,8 @@ namespace AugustosFashionModels.Entidades.Produtos
 {
     public class ProdutoCarrinho
     {
+        [Browsable(false)]
+        public int IdPedido { get; set; }
         [DisplayName("Código")]
         public int IdProduto { get; set; }
         public string Nome { get; set; }

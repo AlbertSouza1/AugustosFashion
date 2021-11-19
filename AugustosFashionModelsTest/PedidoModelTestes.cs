@@ -1,4 +1,5 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos;
+using AugustosFashionModels.Entidades.Produtos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -7,15 +8,15 @@ namespace AugustosFashionModelsTest
     [TestClass]
     public class PedidoModelTestes
     {
-        List<PedidoProdutoModel> _produtosNoPedido = new List<PedidoProdutoModel>()
+        List<ProdutoCarrinho> _produtosNoPedido = new List<ProdutoCarrinho>()
         {
-            new PedidoProdutoModel(){
+            new ProdutoCarrinho(){
                 IdProduto = 1,
                 PrecoVenda = 3,
                 Quantidade = 3,
                 Desconto = 1                
             },
-            new PedidoProdutoModel(){
+            new ProdutoCarrinho(){
                 IdProduto = 2,
                 PrecoVenda = 4,
                 Quantidade = 5,

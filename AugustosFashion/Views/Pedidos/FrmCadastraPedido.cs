@@ -37,11 +37,16 @@ namespace AugustosFashion.Views.Pedidos
 
         public void CarregarDadosDeProdutoSelecionado(ProdutoCarrinho produto)
         {
+            if (SelecionarProdutoDoPedido(produto.IdProduto) == null)
+
             _produto = produto;
 
             txtNome.Text = _produto.Nome;
             txtPreco.Text = _produto.PrecoVenda.ToString();
             numQuantidade.Maximum = _produto.Estoque;
+            numQuantidade.Value = 1;
+
+            CalcularPrecoLiquido();
         }
 
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
@@ -81,15 +86,15 @@ namespace AugustosFashion.Views.Pedidos
 
             SetarDadosDoProdudoCarrinho();
 
-            if (SelecionarProdutoDoCarrinho(_produto.IdProduto) != null)
+            var produto = SelecionarProdutoDoPedido(_produto.IdProduto);
+
+            if (produto != null)
             {               
-                AlterarValoresDeProdutoNoCarrinho();
-                AlterarProdutoNoPedido();
+                AlterarProdutoNoPedido(produto);
             }
             else
             {
-                _produtosNoCarrinho.Add(_produto);
-                AdicionarProdutoNoPedido();
+                _pedido.Produtos.Add(_produto);
             }
 
             LimparCamposDeProduto();
@@ -99,36 +104,18 @@ namespace AugustosFashion.Views.Pedidos
             AtualizarTotaisDoPedido();
         }
 
-        //private void PreencherCamposDeQuantidadeEDesconto()
-        //{
-        //    numDesconto.Text = _produto.Desconto.ToString();
-        //    numQuantidade.Text = _produto.Quantidade.ToString();
-        //}
-
-        private void AlterarProdutoNoPedido()
+        private void AlterarProdutoNoPedido(ProdutoCarrinho produto)
         {
-            var produto = SelecionarProdutoDoPedido(_produto.IdProduto);
-
             var index = _pedido.Produtos.IndexOf(produto);
 
             _pedido.Produtos[index].Quantidade = _produto.Quantidade;
             _pedido.Produtos[index].Desconto = _produto.Desconto.RetornaValor;
         }
 
-        private void AlterarValoresDeProdutoNoCarrinho()
-        {
-            var produto = SelecionarProdutoDoCarrinho(_produto.IdProduto);
-
-            var index = _produtosNoCarrinho.IndexOf(produto);
-
-            _produtosNoCarrinho[index].Quantidade = _produto.Quantidade;
-            _produtosNoCarrinho[index].Desconto = _produto.Desconto;
-        }
-
         private void SetarDadosDoProdudoCarrinho()
         {
             _produto.Quantidade = int.Parse(numQuantidade.Text);
-            _produto.Desconto = double.Parse(numDesconto.Text);
+            _produto.Desconto = decimal.Parse(numDesconto.Text);
         }
 
         private void LimparCamposDeProduto()
@@ -145,7 +132,7 @@ namespace AugustosFashion.Views.Pedidos
         private void AtualizarCarrinho()
         {
             dgvCarrinho.DataSource = null;
-            dgvCarrinho.DataSource = _produtosNoCarrinho;
+            dgvCarrinho.DataSource = _pedido.Produtos;
         }
 
         private void AtualizarTotaisDoPedido()
@@ -155,37 +142,16 @@ namespace AugustosFashion.Views.Pedidos
             txtTotalLiquido.Text = _pedido.TotalLiquido.ToString();
         }
 
-        private void AdicionarProdutoNoPedido()
-        {
-            _pedido.Produtos.Add(
-                new PedidoProdutoModel()
-                {
-                    IdProduto = _produto.IdProduto,
-                    PrecoCusto = _produto.PrecoCusto.RetornaValor,
-                    PrecoVenda = _produto.PrecoVenda.RetornaValor,
-                    Quantidade = _produto.Quantidade,
-                    Desconto = _produto.Desconto.RetornaValor,
-                });
-        }
         private void BtnRemoverProdutoCarrinho_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
 
-            _produtosNoCarrinho.Remove(SelecionarProdutoDoCarrinho(id));
-            _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
             _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
             
             AtualizarTotaisDoPedido();
             AtualizarCarrinho();
         }
-
-        private ProdutoCarrinho SelecionarProdutoDoCarrinho(int id)
-        {
-            return (from x in _produtosNoCarrinho
-                    where x.IdProduto == id
-                    select x).FirstOrDefault();
-        }
-        private PedidoProdutoModel SelecionarProdutoDoPedido(int id)
+        private ProdutoCarrinho SelecionarProdutoDoPedido(int id)
         {
             return (from x in _pedido.Produtos
                     where x.IdProduto == id
@@ -197,7 +163,7 @@ namespace AugustosFashion.Views.Pedidos
             {
                 if (VerificarSeNaoHaCamposInvalidos())
                 {
-                    SetarValoresDoPedido();
+                    SetarInformacoesDoPedido();
                     _cadastroPedidoController.CadastrarPedido(_pedido);
 
                     MessageBox.Show("Venda realizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -210,7 +176,7 @@ namespace AugustosFashion.Views.Pedidos
             }
         }
 
-        private void SetarValoresDoPedido()
+        private void SetarInformacoesDoPedido()
         {
             _pedido.FormaPagamento = cbFormaPagamento.SelectedItem.ToString();
             _pedido.DataEmissao = DateTime.Now;

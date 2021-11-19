@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AugustosFashionModels.Entidades.Produtos;
+using System;
 
 namespace AugustosFashionModelsTest
 {
@@ -14,10 +15,10 @@ namespace AugustosFashionModelsTest
         public void VerificarSePrecoLiquidoEstaCalculandoCorretamente(double precoVenda, double desconto, double esperado)
         {
             var produtoCarrinho = new ProdutoCarrinho();
-            produtoCarrinho.PrecoVenda = precoVenda;
-            produtoCarrinho.Desconto = desconto;
+            produtoCarrinho.PrecoVenda = Convert.ToDecimal(precoVenda);
+            produtoCarrinho.Desconto = Convert.ToDecimal(desconto);
 
-            Assert.AreEqual(esperado, produtoCarrinho.PrecoLiquido.RetornaValor);
+            Assert.AreEqual(Convert.ToDecimal(esperado), produtoCarrinho.PrecoLiquido.RetornaValor);
         }
 
         [TestMethod]
@@ -28,11 +29,11 @@ namespace AugustosFashionModelsTest
         public void VerificarSeTotalEstaCalculandoCorretamente(double preco, int quantidade, double esperado)
         {
             var produtoCarrinho = new ProdutoCarrinho();
-            produtoCarrinho.PrecoVenda = preco;          
+            produtoCarrinho.PrecoVenda = (Convert.ToDecimal(preco));          
             produtoCarrinho.Quantidade = quantidade;
             produtoCarrinho.Desconto = 0;
 
-            Assert.AreEqual(esperado, produtoCarrinho.Total.RetornaValor);
+            Assert.AreEqual(Convert.ToDecimal(esperado), produtoCarrinho.Total.RetornaValor);
         }
     }
 }

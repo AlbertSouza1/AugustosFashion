@@ -12,9 +12,9 @@ namespace AugustosFashion.Repositorios
     {
         public static void CadastrarPedido(PedidoModel pedido)
         {
-            var strSqlPedido = @"Insert into Pedidos (IdCliente, IdColaborador, FormaPagamento, DataEmissao, TotalBruto, TotalDesconto, TotalLiquido, Lucro)  
+            var strSqlPedido = @"Insert into Pedidos (IdCliente, IdColaborador, FormaPagamento, DataEmissao, TotalBruto, TotalDesconto, TotalLiquido)  
                 output inserted.IdPedido 
-                values (@IdCliente, @IdColaborador, @FormaPagamento, @DataEmissao, @TotalBruto, @TotalDesconto, @TotalLiquido, @Lucro)";
+                values (@IdCliente, @IdColaborador, @FormaPagamento, @DataEmissao, @TotalBruto, @TotalDesconto, @TotalLiquido)";
 
             var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, PrecoVenda, PrecoCusto, Quantidade, Desconto, PrecoLiquido, Total)
                 values (@IdPedido, @IdProduto, @PrecoVenda, @PrecoCusto, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";
@@ -27,13 +27,40 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    using(SqlTransaction transaction = sqlCon.BeginTransaction())
+                    using (SqlTransaction transaction = sqlCon.BeginTransaction())
                     {
-                        pedido.IdPedido = sqlCon.ExecuteScalar<int>(strSqlPedido, pedido, transaction);
+                        pedido.IdPedido = sqlCon.ExecuteScalar<int>(strSqlPedido,
+                        new
+                        {
+                            pedido.IdCliente,
+                            pedido.IdColaborador,
+                            pedido.FormaPagamento,
+                            pedido.DataEmissao,
+                            TotalBruto = pedido.TotalBruto.RetornaValor,
+                            TotalDesconto = pedido.TotalDesconto.RetornaValor,
+                            TotalLiquido = pedido.TotalLiquido.RetornaValor,
+
+                        },
+                            transaction);
 
                         pedido.Produtos.ForEach(x => x.IdPedido = pedido.IdPedido);
 
-                        sqlCon.Execute(strSqlPedidoProduto, pedido.Produtos, transaction);
+                        foreach (var x in pedido.Produtos)
+                        {
+                            sqlCon.Execute(strSqlPedidoProduto,
+                            new
+                            {
+                                x.IdPedido,
+                                x.IdProduto,
+                                PrecoVenda = x.PrecoVenda.RetornaValor,
+                                PrecoCusto = x.PrecoCusto.RetornaValor,
+                                x.Quantidade,
+                                Desconto = x.Desconto.RetornaValor,
+                                PrecoLiquido = x.PrecoLiquido.RetornaValor,
+                                Total = x.Total.RetornaValor
+
+                            }, transaction);
+                        }
 
                         foreach (var item in pedido.Produtos)
                         {
@@ -41,7 +68,7 @@ namespace AugustosFashion.Repositorios
                         }
 
                         transaction.Commit();
-                    }                   
+                    }
                 }
             }
             catch (Exception ex)
@@ -69,7 +96,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     return sqlCon.Query<PedidoListagem>(
-                        strSqlPedido                                             
+                        strSqlPedido
                      ).ToList();
                 }
             }
