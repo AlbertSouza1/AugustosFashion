@@ -105,7 +105,7 @@ namespace AugustosFashion.Repositorios
 
         internal static PedidoModel ConsultarPedido(int id)
         {
-            var strSqlPedido = @"select IdPedido,			
+            var strSqlPedido = @"select IdPedido, IdCliente, IdColaborador,			
 				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido, Lucro
 				from Pedidos where IdPedido = @id				
                 ";

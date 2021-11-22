@@ -30,9 +30,11 @@ namespace AugustosFashion.Controllers.Pedidos
             }
         }
 
-        public void AlterarPedido()
+        public void AlterarPedido(PedidoModel pedido)
         {
+            var cadastroPedidoController = new CadastroPedidoController();
 
+            cadastroPedidoController.AbrirFormCadastroPedidoParaEdicao(pedido);
         }
     }
 }

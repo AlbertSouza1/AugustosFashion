@@ -52,6 +52,32 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        public static ClienteModel BuscarNomeDoCliente(int idCliente)
+        {
+            var strSqlBusca = @"
+                SELECT c.IdCliente, u.IdUsuario, u.Nome, u.Sobrenome FROM Clientes c
+                INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario          
+                where IdCliente = @idCliente";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ClienteModel, NomeCompleto, ClienteModel>(
+                        strSqlBusca,
+                        (clienteModel, nomeCompleto) => MapearClienteParaRecuperarNome(clienteModel, nomeCompleto), new { idCliente },
+                        splitOn: "IdUsuario"
+                     ).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static List<ClienteListagem> BuscarClientesPorId(int idBuscado)
         {            
             var strSqlBusca = @"select
@@ -277,6 +303,13 @@ namespace AugustosFashion.Repositorios
         private static ClienteModel MapearClienteParaConsulta(ClienteModel cliente, NomeCompleto nomeCompleto, EnderecoModel endereco)
         {
             cliente.Endereco = endereco;
+            cliente.NomeCompleto = nomeCompleto;
+
+            return cliente;
+        }
+
+        private static ClienteModel MapearClienteParaRecuperarNome(ClienteModel cliente, NomeCompleto nomeCompleto)
+        {
             cliente.NomeCompleto = nomeCompleto;
 
             return cliente;

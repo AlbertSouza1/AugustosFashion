@@ -61,6 +61,32 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        public static ColaboradorModel BuscarNomeDoColaborador(int idColaborador)
+        {
+            var strSqlBusca = @"
+                SELECT c.IdColaborador, u.IdUsuario, u.Nome, u.Sobrenome FROM Colaboradores c
+                INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario          
+                where IdColaborador = @idColaborador";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ColaboradorModel, NomeCompleto, ColaboradorModel>(
+                        strSqlBusca,
+                        (colaboradorModel, nomeCompleto) => MapearColaboradorParaRecuperarNome(colaboradorModel, nomeCompleto), new { idColaborador },
+                        splitOn: "IdUsuario"
+                     ).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static List<ColaboradorListagem> ListarColaboradores()
         {
             SqlConnection sqlCon = SqlHelper.ObterConexao();
@@ -294,6 +320,12 @@ namespace AugustosFashion.Repositorios
         {
             colaboradorModel.Endereco = enderecoModel;
             colaboradorModel.ContaBancaria = contaBancaria;
+            colaboradorModel.NomeCompleto = nomeCompleto;
+
+            return colaboradorModel;
+        }
+        private static ColaboradorModel MapearColaboradorParaRecuperarNome(ColaboradorModel colaboradorModel, NomeCompleto nomeCompleto)
+        {
             colaboradorModel.NomeCompleto = nomeCompleto;
 
             return colaboradorModel;

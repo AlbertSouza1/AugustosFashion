@@ -23,7 +23,7 @@ namespace AugustosFashionModels.Entidades.Pedidos
         public int Estoque { get; set; }
 
         [DisplayName("Desconto Unitário")]
-        public Dinheiro Desconto { get; set; }
+        public Dinheiro Desconto { get; set; } = 0;
 
         [DisplayName("Preço Líquido")]
         public Dinheiro PrecoLiquido

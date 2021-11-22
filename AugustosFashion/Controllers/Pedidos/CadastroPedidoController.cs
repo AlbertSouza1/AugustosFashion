@@ -12,20 +12,43 @@ namespace AugustosFashion.Controllers.Pedidos
     {
         FrmCadastraPedido _frmCadastroPedido;
 
-        internal void AbrirFormCadastroPedidos()
+        public void AbrirFormCadastroPedido()
         {
             _frmCadastroPedido = new FrmCadastraPedido(this, new PedidoModel());
             _frmCadastroPedido.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             _frmCadastroPedido.Show();
         }
-        internal void AbrirFormCadastroPedidoParaEdicao(PedidoModel pedido)
+        public void AbrirFormCadastroPedidoParaEdicao(PedidoModel pedido)
         {
             _frmCadastroPedido = new FrmCadastraPedido(this, pedido);
             _frmCadastroPedido.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             _frmCadastroPedido.Show();
         }
 
-        internal void CadastrarPedido(PedidoModel pedido)
+        public ClienteModel RetornarClienteDoPedido(int idCliente)
+        {
+            try
+            {
+                return ClienteRepositorio.BuscarNomeDoCliente(idCliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public ColaboradorModel RetornarColaboradorDoPedido(int idColaborador)
+        {
+            try
+            {
+                return ColaboradorRepositorio.BuscarNomeDoColaborador(idColaborador);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void CadastrarPedido(PedidoModel pedido)
         {
             try
             {
@@ -37,7 +60,7 @@ namespace AugustosFashion.Controllers.Pedidos
             }
         }
 
-        internal void AbrirFormBuscaProdutos(string busca)
+        public void AbrirFormBuscaProdutos(string busca)
         {
             var frmBuscaProdutos = new FrmBuscaProdutos(this, busca);
             frmBuscaProdutos.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
@@ -45,31 +68,31 @@ namespace AugustosFashion.Controllers.Pedidos
             frmBuscaProdutos.BringToFront();
         }
 
-        internal void RecuperarProdutoSelecionado(PedidoProduto produto)
+        public void RecuperarProdutoSelecionado(PedidoProduto produto)
         {
             _frmCadastroPedido.CarregarDadosDeProdutoSelecionado(produto);
         }
 
-        internal void AbrirFormBuscaCliente(string busca)
+        public void AbrirFormBuscaCliente(string busca)
         {
             var frmBuscaClientes = new FrmBuscaClientes(this, busca);
             frmBuscaClientes.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             frmBuscaClientes.Show();
             frmBuscaClientes.BringToFront();
         }
-        internal void RecuperarClienteSelecionado(ClienteListagem cliente)
+        public void RecuperarClienteSelecionado(ClienteListagem cliente)
         {
             _frmCadastroPedido.CarregarDadosDeClienteSelecionado(cliente);
         }
 
-        internal void AbrirFormBuscaColaborador(string busca)
+        public void AbrirFormBuscaColaborador(string busca)
         {
             var frmBuscaColaborador = new FrmBuscaColaborador(this, busca);
             frmBuscaColaborador.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             frmBuscaColaborador.Show();
             frmBuscaColaborador.BringToFront();
         }
-        internal void RecuperarColaboradorSelecionado(ColaboradorListagem colaborador)
+        public void RecuperarColaboradorSelecionado(ColaboradorListagem colaborador)
         {
             _frmCadastroPedido.CarregarDadosDeColaboradorSelecionado(colaborador);
         }

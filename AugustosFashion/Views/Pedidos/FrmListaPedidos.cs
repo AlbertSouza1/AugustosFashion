@@ -63,6 +63,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             int id = Convert.ToInt32(dgvPedidos.SelectedRows[0].Cells[0].Value);
             _consultaPedidoController.AbrirFormConsultaPedido(id);
+            Close();
         }
     }
 }

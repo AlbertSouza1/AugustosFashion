@@ -126,7 +126,7 @@ namespace AugustosFashion
 
         private void novaVendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new CadastroPedidoController().AbrirFormCadastroPedidos();
+            new CadastroPedidoController().AbrirFormCadastroPedido();
         }
 
         private void visualizarVendasToolStripMenuItem_Click(object sender, EventArgs e)

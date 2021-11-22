@@ -2,7 +2,6 @@
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
-using AugustosFashionModels.Entidades.Produtos;
 using AugustosFashionModels.Helpers;
 using System;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace AugustosFashion.Views.Pedidos
         private readonly CadastroPedidoController _cadastroPedidoController;
 
         private PedidoModel _pedido;
-        private PedidoProduto _produto;
+        private PedidoProduto _produto = new PedidoProduto();
 
         public FrmCadastraPedido(CadastroPedidoController cadastroPedidoController, PedidoModel pedido)
         {
@@ -26,8 +25,43 @@ namespace AugustosFashion.Views.Pedidos
 
         private void FrmCadastraPedido_Load(object sender, EventArgs e)
         {
+            if (_pedido.IdPedido != 0)
+            {
+                RecuperarInformacoesDePedidoExistente();
+            }                
+
             CalcularTotalProduto();
         }
+        private void RecuperarInformacoesDePedidoExistente()
+        {
+            AtualizarCarrinho();
+            AtualizarTotaisDoPedido();
+            BloquearSelecaoDeClienteEColaborador();
+            RecuperarClienteDoPedido();
+            RecuperarColaboradorDoPedido();
+            cbFormaPagamento.SelectedItem = _pedido.FormaPagamento;
+        }
+
+        private void RecuperarColaboradorDoPedido()
+        {
+            var colaborador = _cadastroPedidoController.RetornarColaboradorDoPedido(_pedido.IdColaborador);
+            txtColaborador.Text = colaborador.NomeCompleto.Nome + ' ' + colaborador.NomeCompleto.SobreNome;
+        }
+
+        private void RecuperarClienteDoPedido()
+        {
+            var cliente = _cadastroPedidoController.RetornarClienteDoPedido(_pedido.IdCliente);
+            txtCliente.Text = cliente.NomeCompleto.Nome + ' ' + cliente.NomeCompleto.SobreNome;
+        }
+
+        private void BloquearSelecaoDeClienteEColaborador()
+        {
+            BtnBuscarCliente.Enabled = false;
+            BtnBuscarColaborador.Enabled = false;
+            txtBuscaCliente.Enabled=false;
+            txtBuscarColaborador.Enabled=false;
+        }
+
         private void BtnBuscarProdutos_Click_1(object sender, EventArgs e)
         {
             _cadastroPedidoController.AbrirFormBuscaProdutos(txtBuscarProdutos.Text);
@@ -84,7 +118,7 @@ namespace AugustosFashion.Views.Pedidos
             }
             else
             {
-                _pedido.AdicionarProduto(produtoJaInserido);
+                _pedido.AdicionarProduto(_produto);
             }
 
             LimparCamposDeProduto();

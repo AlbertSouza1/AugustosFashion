@@ -384,7 +384,7 @@
             // BtnFinalizarVenda
             // 
             this.BtnFinalizarVenda.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnFinalizarVenda.BackColor = System.Drawing.Color.Green;
+            this.BtnFinalizarVenda.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.BtnFinalizarVenda.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnFinalizarVenda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnFinalizarVenda.ForeColor = System.Drawing.Color.White;

@@ -15,8 +15,6 @@ namespace AugustosFashion.Views.Pedidos
             InitializeComponent();
             _consultaPedidoController = consultaPedidoController;
             _pedido = pedido;
-
-            AtualizarGridProdutosDoPedido();
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -24,11 +22,29 @@ namespace AugustosFashion.Views.Pedidos
             Close();
         }
 
-        public void AtualizarGridProdutosDoPedido()
+        private void FrmConsultaPedido_Load(object sender, EventArgs e)
         {
-            dgvPedidos.DataSource = _pedido.Produtos;
+            AtualizarGridProdutosDoPedido();
+            ExibirInformacoesDoPedido();
+        }
 
+        private void AtualizarGridProdutosDoPedido()
+        {
+            dgvPedidos.DataSource = _pedido.Produtos;            
+        }
+
+        private void ExibirInformacoesDoPedido() 
+        {
             lblData.Text = _pedido.DataEmissao.ToString("dd/MM/yyyy H:mm");
+            lblTotalBruto.Text = _pedido.TotalBruto.ValorFormatado;
+            lblTotalDesconto.Text = _pedido.TotalDesconto.ValorFormatado;
+            lblTotalLiquido.Text = _pedido.TotalLiquido.ValorFormatado;
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            _consultaPedidoController.AlterarPedido(_pedido);
+            Close();
         }
     }
 }

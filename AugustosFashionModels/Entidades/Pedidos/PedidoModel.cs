@@ -1,5 +1,4 @@
 ﻿using AugustosFashionModels.Entidades.Dinheiros;
-using AugustosFashionModels.Entidades.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
