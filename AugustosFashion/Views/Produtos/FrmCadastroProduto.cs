@@ -14,29 +14,6 @@ namespace AugustosFashion.Views.Produtos
             InitializeComponent();
             _cadastroProdutoController = cadastroProdutoController;
         }
-
-        private void btnCalcularPreco_Click(object sender, EventArgs e)
-        {
-            var porcentagemLucro = RemoveNaoNumericos.RetornarApenasNumeros(mtxtPorcentagemLucro.Text);
-
-            if (string.IsNullOrWhiteSpace(porcentagemLucro))
-            {           
-                MessageBox.Show("Digite uma porcentagem de lucro para calcular");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(numPrecoCusto.Text) || decimal.Parse(numPrecoCusto.Text) == 0)
-                MessageBox.Show("Digite um preco de custo para calcular");
-            else
-                CalcularPrecoVendaPorPorcentagemDeLucro(int.Parse(porcentagemLucro));
-        }
-
-        public void CalcularPrecoVendaPorPorcentagemDeLucro(int porcentagemLucro)
-        {
-            double precoCusto = double.Parse(numPrecoCusto.Text);
-            numPrecoVenda.Text = (precoCusto + (precoCusto * porcentagemLucro / 100)).ToString();
-        }
-
         private void btnCadastrarProduto_Click(object sender, EventArgs e)
         {
             if (ValidarCamposDeProduto())
@@ -110,6 +87,94 @@ namespace AugustosFashion.Views.Produtos
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void numPrecoCusto_ValueChanged(object sender, EventArgs e)
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            if (numPrecoVenda.Value != 0)
+            {
+                CalcularPrecoVendaPorPorcentagemDeLucro();
+            }
+        }
+
+        private void AtualizarPorcentagemLucro()
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            var precocusto = numPrecoCusto.Value;
+            var precoVenda = numPrecoVenda.Value;
+
+            numPorcentagemLucro.Value = ((precoVenda - precocusto) / precocusto * 100);
+        }
+
+        private void numPrecoVenda_ValueChanged(object sender, EventArgs e)
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            AtualizarPorcentagemLucro();
+        }
+
+        public void CalcularPrecoVendaPorPorcentagemDeLucro()
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            var porcentagemLucro = numPorcentagemLucro.Value;
+
+            var precoCusto = decimal.Parse(numPrecoCusto.Text);
+            numPrecoVenda.Value = (precoCusto + (precoCusto * porcentagemLucro / 100));
+        }
+
+        private void numPorcentagemLucro_ValueChanged(object sender, EventArgs e)
+        {
+            AtribuirZeroACamposNumericosVazios();
+            CalcularPrecoVendaPorPorcentagemDeLucro();
+        }
+
+        private void numPorcentagemLucro_KeyUp(object sender, KeyEventArgs e)
+        {
+            AtribuirZeroACamposNumericosVazios();
+            CalcularPrecoVendaPorPorcentagemDeLucro();
+        }
+
+        private bool AtribuirZeroACamposNumericosVazios()
+        {
+            if (numPrecoCusto.Text == string.Empty)
+            {
+                numPrecoCusto.Value = 0;
+                numPrecoCusto.Text = "0";
+                return false;
+            }
+                
+            if(numPrecoVenda.Text == string.Empty)
+            {
+                numPrecoVenda.Value = 0;
+                numPrecoVenda.Text = "0";
+                return false;
+            }
+               
+            if (numPorcentagemLucro.Text == string.Empty)
+            {
+                numPorcentagemLucro.Value = 0;
+                numPorcentagemLucro.Text = "0";
+                return false;
+            }
+            return true;
+        }
+
+        private void numPrecoCusto_KeyUp(object sender, KeyEventArgs e)
+        {
+            AtribuirZeroACamposNumericosVazios();
+        }
+
+        private void numPrecoVenda_KeyUp(object sender, KeyEventArgs e)
+        {
+            AtribuirZeroACamposNumericosVazios();
         }
     }
 }
