@@ -26,6 +26,21 @@ namespace AugustosFashion.Views.Pedidos
         {
             AtualizarGridProdutosDoPedido();
             ExibirInformacoesDoPedido();
+
+            RecuperarClienteDoPedido();
+            RecuperarColaboradorDoPedido();
+        }
+
+        private void RecuperarColaboradorDoPedido()
+        {
+            var colaborador = new CadastroPedidoController().RetornarColaboradorDoPedido(_pedido.IdColaborador);
+            lblColaborador.Text = colaborador.NomeCompleto.Nome + ' ' + colaborador.NomeCompleto.SobreNome;
+        }
+
+        private void RecuperarClienteDoPedido()
+        {
+            var cliente = new CadastroPedidoController().RetornarClienteDoPedido(_pedido.IdCliente);
+            lblCliente.Text = cliente.NomeCompleto.Nome + ' ' + cliente.NomeCompleto.SobreNome;
         }
 
         private void AtualizarGridProdutosDoPedido()
@@ -39,6 +54,7 @@ namespace AugustosFashion.Views.Pedidos
             lblTotalBruto.Text = _pedido.TotalBruto.ValorFormatado;
             lblTotalDesconto.Text = _pedido.TotalDesconto.ValorFormatado;
             lblTotalLiquido.Text = _pedido.TotalLiquido.ValorFormatado;
+            lblFormaPagamento.Text = _pedido.FormaPagamento;
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)

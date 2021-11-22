@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AugustosFashion.Repositorios;
+using AugustosFashionModels.Entidades.Pedidos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace AugustosFashion.Controllers.Pedidos
 {
-    internal class AlteraPedidoController
+    public class AlteraPedidoController
     {
-        internal void AlterarPedido()
+        public void AlterarPedido(PedidoModel pedido)
         {
-
+            try
+            {
+                PedidoRepositorio.AlterarPedido(pedido);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

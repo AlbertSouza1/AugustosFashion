@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastraPedido));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@
             this.txtTotalLiquido = new System.Windows.Forms.TextBox();
             this.BtnBuscarProdutos = new System.Windows.Forms.Button();
             this.BtnAdicionarAoCarrinho = new System.Windows.Forms.Button();
-            this.BtnFinalizarVenda = new System.Windows.Forms.Button();
+            this.BtnFinalizarPedido = new System.Windows.Forms.Button();
             this.txtBuscarColaborador = new System.Windows.Forms.TextBox();
             this.txtBuscaCliente = new System.Windows.Forms.TextBox();
             this.BtnBuscarColaborador = new System.Windows.Forms.Button();
@@ -78,17 +78,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.numDesconto)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(441, 59);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Efetuar pedido";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitulo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTitulo.Location = new System.Drawing.Point(441, 59);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(144, 25);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Efetuar pedido";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -381,20 +381,20 @@
             this.BtnAdicionarAoCarrinho.UseVisualStyleBackColor = false;
             this.BtnAdicionarAoCarrinho.Click += new System.EventHandler(this.BtnAdicionarAoCarrinho_Click);
             // 
-            // BtnFinalizarVenda
+            // BtnFinalizarPedido
             // 
-            this.BtnFinalizarVenda.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnFinalizarVenda.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.BtnFinalizarVenda.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnFinalizarVenda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BtnFinalizarVenda.ForeColor = System.Drawing.Color.White;
-            this.BtnFinalizarVenda.Location = new System.Drawing.Point(739, 655);
-            this.BtnFinalizarVenda.Name = "BtnFinalizarVenda";
-            this.BtnFinalizarVenda.Size = new System.Drawing.Size(183, 31);
-            this.BtnFinalizarVenda.TabIndex = 33;
-            this.BtnFinalizarVenda.Text = "Finalizar Venda";
-            this.BtnFinalizarVenda.UseVisualStyleBackColor = false;
-            this.BtnFinalizarVenda.Click += new System.EventHandler(this.BtnFinalizarVenda_Click);
+            this.BtnFinalizarPedido.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnFinalizarPedido.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.BtnFinalizarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnFinalizarPedido.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BtnFinalizarPedido.ForeColor = System.Drawing.Color.White;
+            this.BtnFinalizarPedido.Location = new System.Drawing.Point(739, 655);
+            this.BtnFinalizarPedido.Name = "BtnFinalizarPedido";
+            this.BtnFinalizarPedido.Size = new System.Drawing.Size(183, 31);
+            this.BtnFinalizarPedido.TabIndex = 33;
+            this.BtnFinalizarPedido.Text = "Efetuar Pedido";
+            this.BtnFinalizarPedido.UseVisualStyleBackColor = false;
+            this.BtnFinalizarPedido.Click += new System.EventHandler(this.BtnFinalizarPedido_Click);
             // 
             // txtBuscarColaborador
             // 
@@ -601,7 +601,7 @@
             this.Controls.Add(this.BtnBuscarColaborador);
             this.Controls.Add(this.txtBuscaCliente);
             this.Controls.Add(this.txtBuscarColaborador);
-            this.Controls.Add(this.BtnFinalizarVenda);
+            this.Controls.Add(this.BtnFinalizarPedido);
             this.Controls.Add(this.BtnAdicionarAoCarrinho);
             this.Controls.Add(this.BtnBuscarProdutos);
             this.Controls.Add(this.txtTotalLiquido);
@@ -628,7 +628,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmCadastraPedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -644,7 +644,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -671,7 +671,7 @@
         private System.Windows.Forms.TextBox txtTotalLiquido;
         private System.Windows.Forms.Button BtnBuscarProdutos;
         private System.Windows.Forms.Button BtnAdicionarAoCarrinho;
-        private System.Windows.Forms.Button BtnFinalizarVenda;
+        private System.Windows.Forms.Button BtnFinalizarPedido;
         private System.Windows.Forms.TextBox txtBuscarColaborador;
         private System.Windows.Forms.TextBox txtBuscaCliente;
         private System.Windows.Forms.Button BtnBuscarColaborador;

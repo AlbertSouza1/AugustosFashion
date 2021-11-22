@@ -16,10 +16,9 @@ namespace AugustosFashion.Repositorios
                 output inserted.IdPedido 
                 values (@IdCliente, @IdColaborador, @FormaPagamento, @DataEmissao, @TotalBruto, @TotalDesconto, @TotalLiquido)";
 
-            var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, PrecoVenda, PrecoCusto, Quantidade, Desconto, PrecoLiquido, Total)
-                values (@IdPedido, @IdProduto, @PrecoVenda, @PrecoCusto, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";
-
-            var strSqlEstoqueProduto = @"update Produtos set Estoque = Estoque - @Quantidade where IdProduto = @IdProduto";
+            var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, PrecoVenda, PrecoCusto, Quantidade, 
+                Desconto, PrecoLiquido, Total)
+                values (@IdPedido, @IdProduto, @PrecoVenda, @PrecoCusto, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";          
 
             try
             {
@@ -62,10 +61,104 @@ namespace AugustosFashion.Repositorios
                             }, transaction);
                         }
 
-                        foreach (var item in pedido.Produtos)
+                        SubtrairEstoqueDosProdutos(sqlCon, transaction, pedido.Produtos);
+
+                        transaction.Commit();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private static void SubtrairEstoqueDosProdutos(SqlConnection sqlCon, SqlTransaction transaction, List<PedidoProduto> produtos)
+        {
+            try
+            {
+                var strSqlEstoqueProduto = @"update Produtos set Estoque = Estoque - @Quantidade where IdProduto = @IdProduto";
+
+                foreach (var item in produtos)
+                {
+                    sqlCon.Execute(strSqlEstoqueProduto, new { Quantidade = item.Quantidade, IdProduto = item.IdProduto }, transaction);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public static void AlterarPedido(PedidoModel pedido)
+        {
+            var strSelectQuantidadeAntigaProdutos = @"SELECT IdProduto, Quantidade from Pedido_Produto where IdPedido = @IdPedido";
+
+            var strDeleteProdutosDoPedido = @"DELETE FROM Pedido_Produto WHERE IdPedido = @IdPedido";
+            var strVoltaEstoqueProdutos = @"UPDATE Produtos SET Estoque = Estoque + @Quantidade WHERE IdProduto = @IdProduto";
+            var strInsereNovosProdutos = @"INSERT INTO Pedido_Produto (IdPedido, IdProduto, PrecoVenda, PrecoCusto, Quantidade, 
+                Desconto, PrecoLiquido, Total)
+                VALUES (@IdPedido, @IdProduto, @PrecoVenda, @PrecoCusto, @Quantidade, @Desconto, @PrecoLiquido, @Total)";
+
+            var strAtualizaPedido = @"UPDATE Pedidos SET FormaPagamento = @FormaPagamento,
+                DataEmissao = @DataEmissao, TotalBruto = @TotalBruto, TotalDesconto = @TotalDesconto, TotalLiquido = @TotalLiquido
+                WHERE IdPedido = @IdPedido";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    using (SqlTransaction transaction = sqlCon.BeginTransaction())
+                    {
+                        pedido.Produtos.ForEach(x => x.IdPedido = pedido.IdPedido);
+
+                        List<PedidoProduto> produtosPreAlteracao = sqlCon.Query<PedidoProduto>(
+                        strSelectQuantidadeAntigaProdutos, new { pedido.IdPedido }, transaction
+                        ).ToList();
+
+                        foreach (var x in produtosPreAlteracao)
                         {
-                            sqlCon.Execute(strSqlEstoqueProduto, new { Quantidade = item.Quantidade, IdProduto = item.IdProduto }, transaction);
+                            sqlCon.Execute(strVoltaEstoqueProdutos,
+                            new
+                            {
+                                Quantidade = x.Quantidade,
+                                IdProduto = x.IdProduto
+                            }, transaction);
                         }
+
+                        sqlCon.Execute(strDeleteProdutosDoPedido, new { IdPedido = pedido.IdPedido }, transaction);
+
+                        foreach (var x in pedido.Produtos)
+                        {
+                            sqlCon.Execute(strInsereNovosProdutos,
+                            new
+                            {
+                                x.IdPedido,
+                                x.IdProduto,
+                                PrecoVenda = x.PrecoVenda.RetornaValor,
+                                PrecoCusto = x.PrecoCusto.RetornaValor,
+                                x.Quantidade,
+                                Desconto = x.Desconto.RetornaValor,
+                                PrecoLiquido = x.PrecoLiquido.RetornaValor,
+                                Total = x.Total.RetornaValor
+
+                            }, transaction);
+                        }
+
+                        SubtrairEstoqueDosProdutos(sqlCon, transaction, pedido.Produtos);
+
+                        sqlCon.ExecuteScalar<int>(strAtualizaPedido,
+                            new
+                            {
+                                pedido.FormaPagamento,
+                                pedido.DataEmissao,
+                                TotalBruto = pedido.TotalBruto.RetornaValor,
+                                TotalDesconto = pedido.TotalDesconto.RetornaValor,
+                                TotalLiquido = pedido.TotalLiquido.RetornaValor,
+                                pedido.IdPedido
+                            },
+                            transaction);
 
                         transaction.Commit();
                     }
@@ -117,7 +210,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     return sqlCon.Query<PedidoModel>(
-                        strSqlPedido, new {id}
+                        strSqlPedido, new { id }
                      ).FirstOrDefault();
                 }
             }

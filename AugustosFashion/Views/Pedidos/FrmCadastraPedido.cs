@@ -28,7 +28,11 @@ namespace AugustosFashion.Views.Pedidos
             if (_pedido.IdPedido != 0)
             {
                 RecuperarInformacoesDePedidoExistente();
-            }                
+                EsconderSelecaoDeClienteEColaborador();
+
+                AtualizarTituloParaAlteracao();
+                BtnFinalizarPedido.Text = "Salvar Alterações";
+            }
 
             CalcularTotalProduto();
         }
@@ -36,7 +40,6 @@ namespace AugustosFashion.Views.Pedidos
         {
             AtualizarCarrinho();
             AtualizarTotaisDoPedido();
-            BloquearSelecaoDeClienteEColaborador();
             RecuperarClienteDoPedido();
             RecuperarColaboradorDoPedido();
             cbFormaPagamento.SelectedItem = _pedido.FormaPagamento;
@@ -54,12 +57,12 @@ namespace AugustosFashion.Views.Pedidos
             txtCliente.Text = cliente.NomeCompleto.Nome + ' ' + cliente.NomeCompleto.SobreNome;
         }
 
-        private void BloquearSelecaoDeClienteEColaborador()
+        private void EsconderSelecaoDeClienteEColaborador()
         {
-            BtnBuscarCliente.Enabled = false;
-            BtnBuscarColaborador.Enabled = false;
-            txtBuscaCliente.Enabled=false;
-            txtBuscarColaborador.Enabled=false;
+            BtnBuscarCliente.Visible = false;
+            BtnBuscarColaborador.Visible = false;
+            txtBuscaCliente.Visible = false;
+            txtBuscarColaborador.Visible = false;
         }
 
         private void BtnBuscarProdutos_Click_1(object sender, EventArgs e)
@@ -69,8 +72,6 @@ namespace AugustosFashion.Views.Pedidos
 
         public void CarregarDadosDeProdutoSelecionado(PedidoProduto produto)
         {
-            if (SelecionarProdutoDoPedido(produto.IdProduto) == null)
-
             _produto = produto;
 
             txtNome.Text = _produto.Nome;
@@ -113,7 +114,7 @@ namespace AugustosFashion.Views.Pedidos
             var produtoJaInserido = _pedido.SelecionarProdutoDoPedido(_produto.IdProduto);
 
             if (produtoJaInserido != null)
-            {               
+            {
                 _pedido.AlterarProduto(produtoJaInserido, _produto);
             }
             else
@@ -193,7 +194,8 @@ namespace AugustosFashion.Views.Pedidos
                     where x.IdProduto == id
                     select x).FirstOrDefault();
         }
-        private void BtnFinalizarVenda_Click(object sender, EventArgs e)
+
+        private void EfeutarPedido()
         {
             try
             {
@@ -202,13 +204,34 @@ namespace AugustosFashion.Views.Pedidos
                     SetarInformacoesDoPedido();
                     _cadastroPedidoController.CadastrarPedido(_pedido);
 
-                    MessageBox.Show("Venda realizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao realizar venda. Erro: " + ex.Message);
+                MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
+            }
+        }
+
+        private void AlterarPedido()
+        {
+            if (dgvCarrinho.RowCount == 0)
+            {
+                MessageBox.Show("Não é possível salvar um pedido sem produtos.");
+                return;
+            }
+            try
+            {
+                SetarInformacoesDoPedido();
+                new AlteraPedidoController().AlterarPedido(_pedido);
+
+                MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao atualizar pedido. Erro: " + ex.Message);
             }
         }
 
@@ -222,7 +245,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             if (dgvCarrinho.RowCount == 0)
             {
-                MessageBox.Show("Não é possível realizar uma venda sem produtos.");
+                MessageBox.Show("Não é possível efetuar um pedido sem produtos.");
                 return false;
             }
             else if (string.IsNullOrEmpty(txtCliente.Text))
@@ -258,7 +281,7 @@ namespace AugustosFashion.Views.Pedidos
                 MessageBox.Show("Desconto não pode ser maior que o preço do produto");
                 numDesconto.Value = 0;
                 txtTotalDesconto.Text = "0";
-            }               
+            }
 
             CalcularTotalProduto();
             CalcularTotalDesconto();
@@ -331,14 +354,27 @@ namespace AugustosFashion.Views.Pedidos
         {
             Close();
         }
+        private void BtnFinalizarPedido_Click(object sender, EventArgs e)
+        {
+            if (_pedido.IdPedido != 0)
+                AlterarPedido();
+            else
+                EfeutarPedido();
+        }
 
         private void AvisarSeLimiteNoEstoqueFoiAtingido()
         {
-            if(numQuantidade.Value >= numQuantidade.Maximum)
+            if (numQuantidade.Value >= numQuantidade.Maximum)
             {
-                MessageBox.Show($"O produto selecionado possui apenas {_produto.Estoque} itens disponíveis em estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);                
+                MessageBox.Show($"O produto selecionado possui apenas {_produto.Estoque} itens disponíveis em estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
+        private void AtualizarTituloParaAlteracao()
+        {
+            lblTitulo.Text = "Alterar Pedido";
+            lblTitulo.Left = 441;
+            lblTitulo.Top = 40;
+        }      
     }
 }
