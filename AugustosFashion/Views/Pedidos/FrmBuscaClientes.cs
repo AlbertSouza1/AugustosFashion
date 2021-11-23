@@ -37,6 +37,7 @@ namespace AugustosFashion.Views.Pedidos
 
             cliente.IdCliente = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value);
             cliente.NomeCompleto.Nome = dgvClientes.SelectedRows[0].Cells[1].Value.ToString();
+            cliente.Email = dgvClientes.SelectedRows[0].Cells[2].Value.ToString();
             return cliente;
            
         }

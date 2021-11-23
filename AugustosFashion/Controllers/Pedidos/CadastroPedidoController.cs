@@ -4,7 +4,13 @@ using AugustosFashion.Entidades.Colaborador;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos;
+using AugustosFashionModels.Servicos.ServicosDeEmails;
 using System;
+using CriptHashes;
+using System.Windows.Forms;
+using AugustosFashionModels.Entidades.ServicoEmails;
+using AugustosFashionModels.Servicos.Criptografias;
+using AugustosFashion.Controllers.ServicosEmail;
 
 namespace AugustosFashion.Controllers.Pedidos
 {
@@ -95,6 +101,18 @@ namespace AugustosFashion.Controllers.Pedidos
         public void RecuperarColaboradorSelecionado(ColaboradorListagem colaborador)
         {
             _frmCadastroPedido.CarregarDadosDeColaboradorSelecionado(colaborador);
+        }
+
+        public void EnviarEmailDeAgradecimento(ClienteModel cliente)
+        {
+            try
+            {
+                new ServicoEmailController().EnviarEmail(cliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

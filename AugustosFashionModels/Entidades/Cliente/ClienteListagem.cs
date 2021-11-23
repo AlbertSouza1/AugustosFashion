@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Entidades.Endereco;
+using AugustosFashionModels.Entidades.Emails;
 using AugustosFashionModels.Entidades.NomesCompletos;
 using System;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ namespace AugustosFashion.Entidades.Cliente
 
         [DisplayName("Nome")]
         public NomeCompleto NomeCompleto { get; set; }
+        public Email Email { get; set; }
         public string Sexo { get; set; }
         public int Idade { get; set; }
 

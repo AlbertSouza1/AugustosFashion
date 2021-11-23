@@ -15,6 +15,8 @@ namespace AugustosFashion.Views.Pedidos
 
         private PedidoModel _pedido;
         private PedidoProduto _produto = new PedidoProduto();
+        private ColaboradorModel _colaborador = new ColaboradorModel();
+        private ClienteModel _cliente = new ClienteModel();
 
         public FrmCadastraPedido(CadastroPedidoController cadastroPedidoController, PedidoModel pedido)
         {
@@ -47,14 +49,14 @@ namespace AugustosFashion.Views.Pedidos
 
         private void RecuperarColaboradorDoPedido()
         {
-            var colaborador = _cadastroPedidoController.RetornarColaboradorDoPedido(_pedido.IdColaborador);
-            txtColaborador.Text = colaborador.NomeCompleto.Nome + ' ' + colaborador.NomeCompleto.SobreNome;
+            _colaborador = _cadastroPedidoController.RetornarColaboradorDoPedido(_pedido.IdColaborador);
+            txtColaborador.Text = _colaborador.NomeCompleto.Nome + ' ' + _colaborador.NomeCompleto.SobreNome;
         }
 
         private void RecuperarClienteDoPedido()
         {
-            var cliente = _cadastroPedidoController.RetornarClienteDoPedido(_pedido.IdCliente);
-            txtCliente.Text = cliente.NomeCompleto.Nome + ' ' + cliente.NomeCompleto.SobreNome;
+            _cliente = _cadastroPedidoController.RetornarClienteDoPedido(_pedido.IdCliente);
+            txtCliente.Text = _cliente.NomeCompleto.Nome + ' ' + _cliente.NomeCompleto.SobreNome;
         }
 
         private void EsconderSelecaoDeClienteEColaborador()
@@ -89,14 +91,21 @@ namespace AugustosFashion.Views.Pedidos
 
         public void CarregarDadosDeClienteSelecionado(ClienteListagem cliente)
         {
-            txtCliente.Text = cliente.NomeCompleto.Nome;
-            _pedido.IdCliente = cliente.IdCliente;
+            _cliente.NomeCompleto.Nome = cliente.NomeCompleto.Nome;
+            _cliente.Email = cliente.Email;
+            _cliente.IdCliente = cliente.IdCliente;
+
+            txtCliente.Text = _cliente.NomeCompleto.Nome;
+            _pedido.IdCliente = _cliente.IdCliente;
         }
 
         public void CarregarDadosDeColaboradorSelecionado(ColaboradorListagem colaborador)
         {
-            txtColaborador.Text = colaborador.NomeCompleto.Nome;
-            _pedido.IdColaborador = colaborador.IdColaborador;
+            _colaborador.NomeCompleto.Nome = colaborador.NomeCompleto.Nome;
+            _colaborador.IdColaborador = colaborador.IdColaborador;
+
+            txtColaborador.Text = _colaborador.NomeCompleto.Nome;
+            _pedido.IdColaborador = _colaborador.IdColaborador;
         }
 
         private void BtnBuscarColaborador_Click(object sender, EventArgs e)
@@ -206,6 +215,8 @@ namespace AugustosFashion.Views.Pedidos
                     _cadastroPedidoController.CadastrarPedido(_pedido);
 
                     MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _cadastroPedidoController.EnviarEmailDeAgradecimento(_cliente);
                     Close();
                 }
             }
@@ -213,6 +224,10 @@ namespace AugustosFashion.Views.Pedidos
             {
                 MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
             }
+            //catch (EmailException ex)
+            //{
+            //    MessageBox.Show("Não foi possível enviar o e-mail de confirmação de compra. Erro: " + ex.Message);
+            //}
         }
 
         private void AlterarPedido()

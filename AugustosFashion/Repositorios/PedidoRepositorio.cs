@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace AugustosFashion.Repositorios
 {
-    internal static class PedidoRepositorio
+    public static class PedidoRepositorio
     {
         public static void CadastrarPedido(PedidoModel pedido)
         {
