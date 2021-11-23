@@ -1,5 +1,8 @@
 ﻿using AugustosFashion.Controllers.Produtos;
+using AugustosFashion.Repositorios;
 using AugustosFashionModels.Entidades.Produtos;
+using AugustosFashionModels.Entidades.ServicoEmails;
+using AugustosFashionModels.Servicos.Criptografias;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,7 +12,7 @@ namespace AugustosFashion.Views.Produtos
     public partial class FrmListaProduto : Form
     {
         private readonly ListaProdutoController _listaProdutoController;
-        private readonly  ConsultaProdutoController _consultaProdutoController = new ConsultaProdutoController();
+        private readonly ConsultaProdutoController _consultaProdutoController = new ConsultaProdutoController();
         private StatusProduto _statusProduto;
 
         public FrmListaProduto(ListaProdutoController listaProdutoController)
@@ -35,7 +38,7 @@ namespace AugustosFashion.Views.Produtos
         }
 
         private void ListarTodosProdutos()
-        {           
+        {
             try
             {
                 List<ProdutoListagem> listaColaboradores = _listaProdutoController.ListarProdutos(_statusProduto);
@@ -94,6 +97,10 @@ namespace AugustosFashion.Views.Produtos
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void FrmListaProduto_Load(object sender, EventArgs e)
+        {
         }
     }
 }

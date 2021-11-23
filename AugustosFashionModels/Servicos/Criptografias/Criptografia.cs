@@ -12,17 +12,12 @@ namespace AugustosFashionModels.Servicos.Criptografias
             byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(secureUserData);
             byte[] resultArray;
 
-            //PEGAR KEY DO BANCO
-            //key = "MAKV2SPBNI99212";
-
-
             if (useHashing)
             {
 
                 MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
                 keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
                 hashmd5.Clear();
-
             }
             else
             {
@@ -48,10 +43,6 @@ namespace AugustosFashionModels.Servicos.Criptografias
             byte[] keyArray;
             byte[] toEncryptArray = Convert.FromBase64String(cipherString);
             byte[] resultArray;
-
-            //PEGAR KEY DO BANCO
-            //key = "MAKV2SPBNI99212";
-
 
             if (useHashing)
             {

@@ -213,6 +213,7 @@ namespace AugustosFashion.Views.Produtos
             this.Name = "FrmListaProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmListaProduto";
+            this.Load += new System.EventHandler(this.FrmListaProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
