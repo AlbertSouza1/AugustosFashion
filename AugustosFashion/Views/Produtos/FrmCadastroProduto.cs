@@ -132,13 +132,15 @@ namespace AugustosFashion.Views.Produtos
 
         private void numPorcentagemLucro_ValueChanged(object sender, EventArgs e)
         {
-            AtribuirZeroACamposNumericosVazios();
+            if (AtribuirZeroACamposNumericosVazios())
+                return;
             CalcularPrecoVendaPorPorcentagemDeLucro();
         }
 
         private void numPorcentagemLucro_KeyUp(object sender, KeyEventArgs e)
         {
-            AtribuirZeroACamposNumericosVazios();
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
             CalcularPrecoVendaPorPorcentagemDeLucro();
         }
 
@@ -169,12 +171,14 @@ namespace AugustosFashion.Views.Produtos
 
         private void numPrecoCusto_KeyUp(object sender, KeyEventArgs e)
         {
-            AtribuirZeroACamposNumericosVazios();
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
         }
 
         private void numPrecoVenda_KeyUp(object sender, KeyEventArgs e)
         {
-            AtribuirZeroACamposNumericosVazios();
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
         }
     }
 }

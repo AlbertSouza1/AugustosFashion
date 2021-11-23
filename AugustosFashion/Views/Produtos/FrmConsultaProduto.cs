@@ -27,27 +27,12 @@ namespace AugustosFashion.Views.Produtos
             numEstoque.Text = _produto.Estoque.ToString();
             numPrecoCusto.Text = _produto.PrecoCusto.ToString();
             numPrecoVenda.Text = _produto.PrecoVenda.ToString();
-
         }
-    
-        private void btnCalcularPreco_Click(object sender, System.EventArgs e)
-        {
-            var porcentagemLucro = RemoveNaoNumericos.RetornarApenasNumeros(mtxtPorcentagemLucro.Text);
 
-            if (string.IsNullOrWhiteSpace(porcentagemLucro))
-            {
-                MessageBox.Show("Digite uma porcentagem de lucro para calcular");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(numPrecoCusto.Text) || int.Parse(numPrecoCusto.Text) == 0)
-                MessageBox.Show("Digite um preco de custo para calcular");
-            else
-                CalcularPrecoVendaPorPorcentagemDeLucro(int.Parse(porcentagemLucro));
-        }
-        public void CalcularPrecoVendaPorPorcentagemDeLucro(int porcentagemLucro)
+        public void CalcularPrecoVendaPorPorcentagemDeLucro()
         {
             double precoCusto = double.Parse(numPrecoCusto.Text);
+            int porcentagemLucro = Convert.ToInt32(numPorcentagemLucro.Value);
             numPrecoVenda.Text = (precoCusto + (precoCusto * porcentagemLucro / 100)).ToString();
         }
 
@@ -118,7 +103,6 @@ namespace AugustosFashion.Views.Produtos
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            //_consultaProdutoController.ExcluirProduto(_produto.IdProduto);
 
             DialogResult result = MessageBox.Show("Você está prestes a inativar este produto. Deseja prosseguir com esta ação?", "Confirmação",
                 MessageBoxButtons.YesNo);
@@ -169,10 +153,95 @@ namespace AugustosFashion.Views.Produtos
                 btnAtivarProduto.Visible = true;
             }
         }
-
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private bool AtribuirZeroACamposNumericosVazios()
+        {
+            if (numPrecoCusto.Text == string.Empty || numPrecoCusto.Value < 0)
+            {
+                numPrecoCusto.Value = 0;
+                numPrecoCusto.Text = "0";
+                return false;
+            }
+
+            if (numPrecoVenda.Text == string.Empty || numPrecoVenda.Value < 0)
+            {
+                numPrecoVenda.Value = 0;
+                numPrecoVenda.Text = "0";
+                return false;
+            }
+
+            if (numPorcentagemLucro.Text == string.Empty || numPorcentagemLucro.Value < 0)
+            {
+                numPorcentagemLucro.Value = 0;
+                numPorcentagemLucro.Text = "0";
+                return false;
+            }
+            return true;
+        }
+
+        private void numPrecoCusto_ValueChanged(object sender, EventArgs e)
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            if (numPrecoVenda.Value != 0)
+            {
+                CalcularPrecoVendaPorPorcentagemDeLucro();
+            }
+        }
+
+        private void numPrecoCusto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            if (numPrecoVenda.Value != 0)
+            {
+                CalcularPrecoVendaPorPorcentagemDeLucro();
+            }
+        }
+
+        private void numPrecoVenda_ValueChanged(object sender, EventArgs e)
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            AtualizarPorcentagemLucro();
+        }
+
+        private void numPrecoVenda_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+            AtualizarPorcentagemLucro();
+        }
+
+        private void AtualizarPorcentagemLucro()
+        {
+            var precocusto = numPrecoCusto.Value > 0 ? numPrecoCusto.Value : 1;
+            var precoVenda = numPrecoVenda.Value;
+            var porcentagemLucro = ((precoVenda - precocusto) / precocusto * 100);
+            numPorcentagemLucro.Value = porcentagemLucro > 0 ? porcentagemLucro : 0;
+        }
+
+        private void numPorcentagemLucro_ValueChanged(object sender, EventArgs e)
+        {
+            if (!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            CalcularPrecoVendaPorPorcentagemDeLucro();
+        }
+
+        private void numPorcentagemLucro_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(!AtribuirZeroACamposNumericosVazios())
+                return;
+
+            CalcularPrecoVendaPorPorcentagemDeLucro();
         }
     }
 }
