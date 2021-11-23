@@ -165,6 +165,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             dgvCarrinho.DataSource = null;
             dgvCarrinho.DataSource = _pedido.Produtos;
+            dgvCarrinho.Columns[3].Visible = false;
         }
 
         private void AtualizarTotaisDoPedido()

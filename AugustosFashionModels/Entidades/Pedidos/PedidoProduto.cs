@@ -1,6 +1,7 @@
 ﻿using AugustosFashionModels.Entidades.Dinheiros;
 using System;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace AugustosFashionModels.Entidades.Pedidos
 {
@@ -12,11 +13,13 @@ namespace AugustosFashionModels.Entidades.Pedidos
         public int IdProduto { get; set; }
         public string Nome { get; set; }
         public string Fabricante { get; set; }
-        [Browsable(false)]
+
+        [DisplayName("Preço de Custo")]
+        //[Browsable(false)]
         public Dinheiro PrecoCusto { get; set; }
 
         [DisplayName("Preço de Venda")]
-        public Dinheiro PrecoVenda { get; set; }       
+        public Dinheiro PrecoVenda { get; set; }
         public int Quantidade { get; set; }
 
         [Browsable(false)]

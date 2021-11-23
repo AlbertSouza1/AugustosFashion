@@ -196,7 +196,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        internal static PedidoModel ConsultarPedido(int id)
+        public static PedidoModel ConsultarPedido(int id)
         {
             var strSqlPedido = @"select IdPedido, IdCliente, IdColaborador,			
 				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido, Lucro
@@ -232,15 +232,25 @@ namespace AugustosFashion.Repositorios
 				inner join Usuarios u2 on u2.IdUsuario = co.IdUsuario
                 ";
 
+            var strSqlRecuperaLucro = @"SELECT (SUM(Total) - SUM(PrecoCusto * Quantidade)) as Lucro
+                FROM Pedido_Produto WHERE IdPedido = @IdPedido group by IdPedido";
+
             try
             {
                 using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<PedidoListagem>(
+                    var pedidos = sqlCon.Query<PedidoListagem>(
                         strSqlPedido
                      ).ToList();
+
+                    foreach (var pedido in pedidos)
+                    {
+                        pedido.Lucro = sqlCon.Query<decimal>(strSqlRecuperaLucro, new {IdPedido = pedido.IdPedido}).FirstOrDefault();
+                    }
+
+                    return pedidos;
                 }
             }
             catch (Exception ex)

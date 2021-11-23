@@ -30,7 +30,6 @@ namespace AugustosFashion.Views.Pedidos
             RecuperarClienteDoPedido();
             RecuperarColaboradorDoPedido();
         }
-
         private void RecuperarColaboradorDoPedido()
         {
             var colaborador = new CadastroPedidoController().RetornarColaboradorDoPedido(_pedido.IdColaborador);
@@ -55,6 +54,7 @@ namespace AugustosFashion.Views.Pedidos
             lblTotalDesconto.Text = _pedido.TotalDesconto.ValorFormatado;
             lblTotalLiquido.Text = _pedido.TotalLiquido.ValorFormatado;
             lblFormaPagamento.Text = _pedido.FormaPagamento;
+            lblLucro.Text = _pedido.Lucro.ValorFormatado;
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)

@@ -53,6 +53,8 @@
             this.lblData = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblFormaPagamento = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblLucro = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -302,6 +304,26 @@
             this.lblFormaPagamento.Text = "Á vista no dinheiro";
             this.lblFormaPagamento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(625, 613);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(113, 17);
+            this.label9.TabIndex = 107;
+            this.label9.Text = "Lucro do Pedido:";
+            // 
+            // lblLucro
+            // 
+            this.lblLucro.AutoSize = true;
+            this.lblLucro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblLucro.Location = new System.Drawing.Point(744, 613);
+            this.lblLucro.Name = "lblLucro";
+            this.lblLucro.Size = new System.Drawing.Size(23, 17);
+            this.lblLucro.TabIndex = 107;
+            this.lblLucro.Text = "RS";
+            // 
             // FrmConsultaPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -315,7 +337,9 @@
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.lblColaborador);
+            this.Controls.Add(this.lblLucro);
             this.Controls.Add(this.lblTotalLiquido);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblTotalDesconto);
             this.Controls.Add(this.label5);
@@ -360,5 +384,7 @@
         private System.Windows.Forms.Label lblData;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblFormaPagamento;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblLucro;
     }
 }
