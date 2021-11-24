@@ -79,7 +79,8 @@ namespace AugustosFashion.Views.Pedidos
             txtNome.Text = _produto.Nome;
             txtPreco.Text = _produto.PrecoVenda.ToString();
             numQuantidade.Maximum = _produto.Estoque;
-            numQuantidade.Value = 1;
+            numQuantidade.Value = _produto.Quantidade;
+            numDesconto.Value = _produto.Desconto.RetornaValor;
 
             CalcularPrecoLiquido();
         }
@@ -164,7 +165,7 @@ namespace AugustosFashion.Views.Pedidos
             txtNome.Text = string.Empty;
             txtPreco.Text = "0";
             numDesconto.Value = 0;
-            numQuantidade.Value = 1;
+            numQuantidade.Value = 0;
             txtTotalDescontoProduto.Text = "0";
             txtPrecoLiquido.Text = "0";
             lblTotalProduto.Text = "0";
@@ -191,7 +192,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private void RemoverProdutoDoCarrinho()
         {
-            int id = Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
+            int id = RecuperarIdProdutoDaGrid();
 
             _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
 
@@ -391,6 +392,19 @@ namespace AugustosFashion.Views.Pedidos
             lblTitulo.Text = "Alterar Pedido";
             lblTitulo.Left = 441;
             lblTitulo.Top = 40;
-        }      
+        }
+
+        private void dgvCarrinho_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int id = RecuperarIdProdutoDaGrid();
+
+            var produto = SelecionarProdutoDoPedido(id);
+
+            CarregarDadosDeProdutoSelecionado(produto);
+        }
+        private int RecuperarIdProdutoDaGrid()
+        {
+            return Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
+        }
     }
 }

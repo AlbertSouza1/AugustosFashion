@@ -258,6 +258,7 @@
             this.dgvCarrinho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarrinho.Size = new System.Drawing.Size(861, 196);
             this.dgvCarrinho.TabIndex = 18;
+            this.dgvCarrinho.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCarrinho_CellMouseClick);
             // 
             // txtBuscarProdutos
             // 
