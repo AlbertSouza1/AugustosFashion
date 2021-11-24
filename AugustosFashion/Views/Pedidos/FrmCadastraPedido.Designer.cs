@@ -73,6 +73,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtTotalDescontoProduto = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.checkEnviarEmail = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDesconto)).BeginInit();
@@ -580,12 +581,23 @@
             this.label20.TabIndex = 50;
             this.label20.Text = "🛒";
             // 
+            // checkEnviarEmail
+            // 
+            this.checkEnviarEmail.AutoSize = true;
+            this.checkEnviarEmail.Location = new System.Drawing.Point(61, 667);
+            this.checkEnviarEmail.Name = "checkEnviarEmail";
+            this.checkEnviarEmail.Size = new System.Drawing.Size(190, 19);
+            this.checkEnviarEmail.TabIndex = 51;
+            this.checkEnviarEmail.Text = "Enviar comprovante por e-mail";
+            this.checkEnviarEmail.UseVisualStyleBackColor = true;
+            // 
             // FrmCadastraPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.checkEnviarEmail);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.txtTotalDescontoProduto);
             this.Controls.Add(this.label19);
@@ -689,5 +701,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtTotalDescontoProduto;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.CheckBox checkEnviarEmail;
     }
 }

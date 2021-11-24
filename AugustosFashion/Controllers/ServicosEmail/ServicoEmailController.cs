@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Repositorios;
+using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.ServicoEmails;
 using AugustosFashionModels.Servicos.ServicosDeEmails;
 using System;
@@ -13,13 +14,13 @@ namespace AugustosFashion.Controllers.ServicosEmail
 {
     public class ServicoEmailController
     {
-        public void EnviarEmail(ClienteModel cliente)
+        public void EnviarEmailDeConfirmacaoDePedido(ClienteModel cliente, PedidoModel pedido)
         {
             try
             {
                 var email = RecuperarInformacoesDeEmail();
 
-                var servicoDeEmail = new ServicoDeEmail(cliente, email.Email, email.RetornarSenhaDescriptografada());
+                var servicoDeEmail = new ServicoDeEmail(cliente, pedido, email.Email, email.RetornarSenhaDescriptografada());
                 servicoDeEmail.EnviarEmail();
             }
             catch (Exception ex)

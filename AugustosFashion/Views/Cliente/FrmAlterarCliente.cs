@@ -252,6 +252,15 @@ namespace AugustosFashion.Views
                     MessageBox.Show("Falha ao excluir cliente. Erro: " + ex.Message);
                 }
             }
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void FrmAlterarCliente_Load(object sender, EventArgs e)
+        {
 
         }
     }

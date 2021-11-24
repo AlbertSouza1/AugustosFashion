@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Controllers.Pedidos;
+using AugustosFashion.Controllers.ServicosEmail;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
@@ -217,7 +218,8 @@ namespace AugustosFashion.Views.Pedidos
 
                     MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    _cadastroPedidoController.EnviarEmailDeAgradecimento(_cliente);
+                    EnviarComprovantePorEmail();
+                    
                     Close();
                 }
             }
@@ -229,6 +231,12 @@ namespace AugustosFashion.Views.Pedidos
             //{
             //    MessageBox.Show("Não foi possível enviar o e-mail de confirmação de compra. Erro: " + ex.Message);
             //}
+        }
+
+        private void EnviarComprovantePorEmail()
+        {
+            if(checkEnviarEmail.Checked)
+                new ServicoEmailController().EnviarEmailDeConfirmacaoDePedido(_cliente, _pedido);
         }
 
         private void AlterarPedido()

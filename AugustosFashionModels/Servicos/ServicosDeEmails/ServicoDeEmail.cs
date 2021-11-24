@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Entidades.Cliente;
+using AugustosFashionModels.Entidades.Pedidos;
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -9,14 +10,16 @@ namespace AugustosFashionModels.Servicos.ServicosDeEmails
     public class ServicoDeEmail : IServicoDeEmail
     {
         private readonly ClienteModel _destinatario;
+        private readonly PedidoModel _pedido;
         private readonly string _emailRemetente;
         private readonly string _senhaRemetente;
 
-        public ServicoDeEmail(ClienteModel destinatario, string emailRemetente, string senhaRemetente)
+        public ServicoDeEmail(ClienteModel destinatario, PedidoModel pedido, string emailRemetente, string senhaRemetente)
         {
             _destinatario = destinatario;
             _emailRemetente = emailRemetente;
             _senhaRemetente = senhaRemetente;
+            _pedido = pedido;
         }
         public string ConstruirCorpoDoEmail()
         {
@@ -25,7 +28,18 @@ namespace AugustosFashionModels.Servicos.ServicosDeEmails
             mensagem.Append($"Olá, {_destinatario.NomeCompleto.Nome}!");
             mensagem.AppendLine();
             mensagem.AppendLine();
-            mensagem.Append($"Estamos enviando este e-mail como confirmação do seu pedido.");
+            mensagem.Append($"Seu pedido na Agustu's Fashion foi efetuado com sucesso.");
+            mensagem.AppendLine();
+            mensagem.Append($"Verifique se os itens listados abaixo estão de acordo com sua solicitação.");
+            mensagem.AppendLine();
+            mensagem.AppendLine();
+            foreach (var item in _pedido.Produtos)
+            {
+                mensagem.AppendLine($"{item.Quantidade} {item.Nome} - {item.PrecoLiquido.ValorFormatado} a unidade");
+            }
+            mensagem.AppendLine();
+            mensagem.AppendLine($"Total do pedido: {_pedido.TotalLiquido}");
+            mensagem.AppendLine();
             mensagem.AppendLine();
             mensagem.Append("Agradecemos a preferência. Volte sempre que desejar!");
             mensagem.AppendLine();

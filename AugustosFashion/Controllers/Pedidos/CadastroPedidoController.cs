@@ -102,17 +102,5 @@ namespace AugustosFashion.Controllers.Pedidos
         {
             _frmCadastroPedido.CarregarDadosDeColaboradorSelecionado(colaborador);
         }
-
-        public void EnviarEmailDeAgradecimento(ClienteModel cliente)
-        {
-            try
-            {
-                new ServicoEmailController().EnviarEmail(cliente);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
     }
 }

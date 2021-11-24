@@ -112,7 +112,7 @@ namespace AugustosFashion.Repositorios
         {          
             var strSql = @"select
                 c.IdCliente, u.IdUsuario,  u.Sexo, FLOOR(DATEDIFF(DAY, u.DataNascimento, GETDATE()) / 365.25) as Idade,
-                u.DataNascimento, e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
+                u.DataNascimento, u.Email, e.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, e.CEP, e.Logradouro, e.Numero, e.Cidade, e.UF, e.Complemento, e.Bairro
                 from
                 Usuarios u join Clientes c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario; ";
