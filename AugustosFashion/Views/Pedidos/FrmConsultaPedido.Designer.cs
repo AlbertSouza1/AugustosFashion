@@ -47,7 +47,7 @@
             this.lblTotalDesconto = new System.Windows.Forms.Label();
             this.lblTotalLiquido = new System.Windows.Forms.Label();
             this.btnAlterar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblData = new System.Windows.Forms.Label();
@@ -194,7 +194,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(439, 613);
+            this.label6.Location = new System.Drawing.Point(448, 613);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 17);
             this.label6.TabIndex = 107;
@@ -204,7 +204,7 @@
             // 
             this.lblTotalBruto.AutoSize = true;
             this.lblTotalBruto.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalBruto.Location = new System.Drawing.Point(156, 613);
+            this.lblTotalBruto.Location = new System.Drawing.Point(146, 613);
             this.lblTotalBruto.Name = "lblTotalBruto";
             this.lblTotalBruto.Size = new System.Drawing.Size(23, 17);
             this.lblTotalBruto.TabIndex = 107;
@@ -214,7 +214,7 @@
             // 
             this.lblTotalDesconto.AutoSize = true;
             this.lblTotalDesconto.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalDesconto.Location = new System.Drawing.Point(371, 613);
+            this.lblTotalDesconto.Location = new System.Drawing.Point(362, 613);
             this.lblTotalDesconto.Name = "lblTotalDesconto";
             this.lblTotalDesconto.Size = new System.Drawing.Size(23, 17);
             this.lblTotalDesconto.TabIndex = 107;
@@ -244,14 +244,19 @@
             this.btnAlterar.UseVisualStyleBackColor = false;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
-            // btnCancelar
+            // btnEliminar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(60, 688);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(109, 23);
-            this.btnCancelar.TabIndex = 108;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnEliminar.BackColor = System.Drawing.Color.Red;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(60, 688);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(109, 25);
+            this.btnEliminar.TabIndex = 108;
+            this.btnEliminar.Text = "Eliminar Pedido";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // label11
             // 
@@ -308,7 +313,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(625, 613);
+            this.label9.Location = new System.Drawing.Point(636, 613);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(113, 17);
             this.label9.TabIndex = 107;
@@ -318,7 +323,7 @@
             // 
             this.lblLucro.AutoSize = true;
             this.lblLucro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblLucro.Location = new System.Drawing.Point(744, 613);
+            this.lblLucro.Location = new System.Drawing.Point(755, 613);
             this.lblLucro.Name = "lblLucro";
             this.lblLucro.Size = new System.Drawing.Size(23, 17);
             this.lblLucro.TabIndex = 107;
@@ -333,7 +338,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblData);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.lblColaborador);
@@ -378,7 +383,7 @@
         private System.Windows.Forms.Label lblTotalDesconto;
         private System.Windows.Forms.Label lblTotalLiquido;
         private System.Windows.Forms.Button btnAlterar;
-        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblData;

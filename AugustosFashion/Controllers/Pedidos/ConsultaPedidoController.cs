@@ -36,5 +36,18 @@ namespace AugustosFashion.Controllers.Pedidos
 
             cadastroPedidoController.AbrirFormCadastroPedidoParaEdicao(pedido);
         }
+
+        public void EliminarPedido(PedidoModel pedido)
+        {
+            try
+            {
+                PedidoRepositorio.EliminarPedido(pedido);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

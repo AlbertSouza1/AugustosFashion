@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AugustosFashionModels.Entidades.Produtos;
+using AugustosFashionModels.Entidades.Pedidos;
 using System;
 
 namespace AugustosFashionModelsTest

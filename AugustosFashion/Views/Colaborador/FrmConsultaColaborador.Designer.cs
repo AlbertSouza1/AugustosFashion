@@ -570,7 +570,7 @@ namespace AugustosFashion.Views.Colaborador
             this.btnAlterarColaborador.Name = "btnAlterarColaborador";
             this.btnAlterarColaborador.Size = new System.Drawing.Size(157, 45);
             this.btnAlterarColaborador.TabIndex = 128;
-            this.btnAlterarColaborador.Text = "Confirmar alterações nos dados";
+            this.btnAlterarColaborador.Text = "Confirmar alterações";
             this.btnAlterarColaborador.UseVisualStyleBackColor = false;
             this.btnAlterarColaborador.Click += new System.EventHandler(this.btnAlterarColaborador_Click);
             // 
@@ -585,7 +585,7 @@ namespace AugustosFashion.Views.Colaborador
             this.btnExcluirColaborador.Name = "btnExcluirColaborador";
             this.btnExcluirColaborador.Size = new System.Drawing.Size(150, 45);
             this.btnExcluirColaborador.TabIndex = 129;
-            this.btnExcluirColaborador.Text = "Confirmar Exclusão do colaborador";
+            this.btnExcluirColaborador.Text = "Excluir colaborador";
             this.btnExcluirColaborador.UseVisualStyleBackColor = false;
             this.btnExcluirColaborador.Click += new System.EventHandler(this.btnExcluirColaborador_Click);
             // 

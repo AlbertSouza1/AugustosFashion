@@ -73,6 +73,42 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        public static void EliminarPedido(PedidoModel pedido)
+        {
+            var strEliminaPedido = @"UPDATE Pedidos set Eliminado = 1 where IdPedido = @IdPedido";
+
+            using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+            {
+                sqlCon.Open();
+
+                using (SqlTransaction transaction = sqlCon.BeginTransaction())
+                {
+                    VoltarEstoqueDosProdutos(sqlCon, transaction, pedido.Produtos);
+
+                    sqlCon.Execute(strEliminaPedido, new { pedido.IdPedido }, transaction);
+
+                    transaction.Commit();
+                }
+            }
+        }
+
+        private static void VoltarEstoqueDosProdutos(SqlConnection sqlCon, SqlTransaction transaction, List<PedidoProduto> produtos)
+        {
+            try
+            {
+                var strSqlVoltaEstoque = @"UPDATE Produtos SET Estoque = Estoque + @Quantidade WHERE IdProduto = @IdProduto";
+
+                foreach (var item in produtos)
+                {
+                    sqlCon.Execute(strSqlVoltaEstoque, new {item.Quantidade, item.IdProduto }, transaction);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         private static void SubtrairEstoqueDosProdutos(SqlConnection sqlCon, SqlTransaction transaction, List<PedidoProduto> produtos)
         {
             try
@@ -199,7 +235,7 @@ namespace AugustosFashion.Repositorios
         public static PedidoModel ConsultarPedido(int id)
         {
             var strSqlPedido = @"select IdPedido, IdCliente, IdColaborador,			
-				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido, Lucro
+				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido
 				from Pedidos where IdPedido = @id				
                 ";
 
@@ -224,7 +260,7 @@ namespace AugustosFashion.Repositorios
         {
             var strSqlPedido = @"select  p.IdPedido, concat(u.Nome,' ',u.SobreNome) as NomeCliente,
 				concat(u2.Nome, ' ', u2.SobreNome) as NomeColaborador,
-				p.DataEmissao,p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido, p.Lucro
+				p.DataEmissao,p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido
 				from Pedidos p
 				inner join Colaboradores as co on p.IdColaborador = co.IdColaborador
 				inner join Clientes as c on p.IdCliente = c.IdCliente				

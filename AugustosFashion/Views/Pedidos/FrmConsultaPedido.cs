@@ -44,10 +44,10 @@ namespace AugustosFashion.Views.Pedidos
 
         private void AtualizarGridProdutosDoPedido()
         {
-            dgvPedidos.DataSource = _pedido.Produtos;            
+            dgvPedidos.DataSource = _pedido.Produtos;
         }
 
-        private void ExibirInformacoesDoPedido() 
+        private void ExibirInformacoesDoPedido()
         {
             lblData.Text = _pedido.DataEmissao.ToString("dd/MM/yyyy H:mm");
             lblTotalBruto.Text = _pedido.TotalBruto.ValorFormatado;
@@ -61,6 +61,28 @@ namespace AugustosFashion.Views.Pedidos
         {
             _consultaPedidoController.AlterarPedido(_pedido);
             Close();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Tem certeza que deseja eliminar esta venda?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+                EliminarPedido();
+        }
+
+        private void EliminarPedido()
+        {
+            try
+            {
+                _consultaPedidoController.EliminarPedido(_pedido);
+
+                MessageBox.Show("Pedido eliminado com sucesso.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Não foi possível eliminar este pedido. Erro: " + ex.Message);
+            }
         }
     }
 }

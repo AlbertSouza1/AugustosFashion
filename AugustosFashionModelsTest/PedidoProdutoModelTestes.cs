@@ -1,4 +1,4 @@
-﻿using AugustosFashionModels.Entidades.Produtos;
+﻿using AugustosFashionModels.Entidades.Pedidos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
