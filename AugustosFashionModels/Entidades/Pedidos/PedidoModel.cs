@@ -33,6 +33,7 @@ namespace AugustosFashionModels.Entidades.Pedidos
         {
             Produtos = new List<PedidoProduto>();
         }
+        public bool Eliminado { get; set; }
 
         public void AdicionarProduto(PedidoProduto produto) => Produtos.Add(produto);
 

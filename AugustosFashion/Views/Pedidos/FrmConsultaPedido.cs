@@ -24,12 +24,25 @@ namespace AugustosFashion.Views.Pedidos
 
         private void FrmConsultaPedido_Load(object sender, EventArgs e)
         {
+            BloquearEdicoesSePedidoEstaEliminado();
+
             AtualizarGridProdutosDoPedido();
             ExibirInformacoesDoPedido();
 
             RecuperarClienteDoPedido();
             RecuperarColaboradorDoPedido();
         }
+
+        private void BloquearEdicoesSePedidoEstaEliminado()
+        {
+            if (_pedido.Eliminado)
+            {
+                btnAlterar.Visible = false;
+                btnEliminar.Visible = false;
+            }
+                
+        }
+
         private void RecuperarColaboradorDoPedido()
         {
             var colaborador = new CadastroPedidoController().RetornarColaboradorDoPedido(_pedido.IdColaborador);

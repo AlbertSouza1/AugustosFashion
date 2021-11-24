@@ -206,13 +206,13 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static List<PedidoProduto> ListarProdutosDoPedido(int id)
+        public static List<PedidoProduto> ListarProdutosDoPedido(int idPedido)
         {
             var strSqlPedido = @"select p.IdPedido, p.IdProduto, p.PrecoVenda, pro.Nome, pro.Fabricante,
-                p.Quantidade, p.Desconto, p.PrecoLiquido, p.Total, p.PrecoCusto							
+                p.Quantidade, p.Desconto, p.PrecoLiquido, p.Total, p.PrecoCusto						
 				from Pedido_Produto p
                 inner join Produtos pro on p.IdProduto = pro.IdProduto
-                where IdPedido = @id				
+                where p.IdPedido = @idPedido			
                 ";
 
             try
@@ -222,7 +222,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     return sqlCon.Query<PedidoProduto>(
-                        strSqlPedido, new { id }
+                        strSqlPedido, new { idPedido }
                      ).ToList();
                 }
             }
@@ -232,11 +232,11 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static PedidoModel ConsultarPedido(int id)
+        public static PedidoModel ConsultarPedido(int idPedido)
         {
             var strSqlPedido = @"select IdPedido, IdCliente, IdColaborador,			
-				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido
-				from Pedidos where IdPedido = @id				
+				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido, Eliminado
+				from Pedidos where IdPedido = @idPedido				
                 ";
 
             try
@@ -246,7 +246,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     return sqlCon.Query<PedidoModel>(
-                        strSqlPedido, new { id }
+                        strSqlPedido, new { idPedido }
                      ).FirstOrDefault();
                 }
             }
@@ -256,16 +256,17 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static List<PedidoListagem> ListarPedidos()
+        public static List<PedidoListagem> ListarPedidos(bool eliminado)
         {
             var strSqlPedido = @"select  p.IdPedido, concat(u.Nome,' ',u.SobreNome) as NomeCliente,
 				concat(u2.Nome, ' ', u2.SobreNome) as NomeColaborador,
-				p.DataEmissao,p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido
+				p.DataEmissao,p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido, p.Eliminado
 				from Pedidos p
 				inner join Colaboradores as co on p.IdColaborador = co.IdColaborador
 				inner join Clientes as c on p.IdCliente = c.IdCliente				
 				inner join Usuarios u on u.IdUsuario = c.IdUsuario
 				inner join Usuarios u2 on u2.IdUsuario = co.IdUsuario
+                where p.Eliminado = @eliminado
                 ";
 
             var strSqlRecuperaLucro = @"SELECT (SUM(Total) - SUM(PrecoCusto * Quantidade)) as Lucro
@@ -278,7 +279,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     var pedidos = sqlCon.Query<PedidoListagem>(
-                        strSqlPedido
+                        strSqlPedido, new {eliminado}
                      ).ToList();
 
                     foreach (var pedido in pedidos)

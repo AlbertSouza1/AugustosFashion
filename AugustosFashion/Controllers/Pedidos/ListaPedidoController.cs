@@ -9,18 +9,18 @@ namespace AugustosFashion.Controllers.Pedidos
 {
     public class ListaPedidoController
     {
-        internal void AbrirFormListaPedidos()
+        public void AbrirFormListaPedidos()
         {
             var frmListaPedido = new FrmListaPedidos(this);
             frmListaPedido.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             frmListaPedido.Show();
         }
 
-        internal List<PedidoListagem> ListarPedidos()
+        public List<PedidoListagem> ListarPedidos(bool eliminado)
         {
             try
             {
-                return PedidoRepositorio.ListarPedidos();
+                return PedidoRepositorio.ListarPedidos(eliminado);
             }
             catch (Exception ex)
             {

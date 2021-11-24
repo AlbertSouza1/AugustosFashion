@@ -25,23 +25,18 @@ namespace AugustosFashion.Views.Pedidos
 
         private void btnBuscarPedidos_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtBuscaPedidos.Text))
-            {
-                MessageBox.Show("Digite algo para buscar");
-            }
-            else if (txtBuscaPedidos.Text == "%")
-            {
-                ListarTodosPedidos();
-            }
+            ListarTodosPedidos();
         }
 
         private void ListarTodosPedidos()
         {
+            var eliminado = RetornarFiltroDeStatusPedido();
+
             try
             {
-                var pedidos = _listaPedidoController.ListarPedidos();
+                var pedidos = _listaPedidoController.ListarPedidos(eliminado);
 
-                ListarPedidos(pedidos);
+                ListarPedidosNaGrid(pedidos);
             }
             catch (Exception ex)
             {
@@ -49,7 +44,9 @@ namespace AugustosFashion.Views.Pedidos
             }
         }
 
-        private void ListarPedidos(List<PedidoListagem> pedidos)
+        private bool RetornarFiltroDeStatusPedido() => Convert.ToBoolean(cbStatus.SelectedIndex);
+            
+        private void ListarPedidosNaGrid(List<PedidoListagem> pedidos)
         {
             dgvPedidos.DataSource = pedidos;
         }
@@ -63,7 +60,11 @@ namespace AugustosFashion.Views.Pedidos
         {
             int id = Convert.ToInt32(dgvPedidos.SelectedRows[0].Cells[0].Value);
             _consultaPedidoController.AbrirFormConsultaPedido(id);
-            Close();
+        }
+
+        private void FrmListaPedidos_Load(object sender, EventArgs e)
+        {
+            cbStatus.SelectedIndex = 0;
         }
     }
 }
