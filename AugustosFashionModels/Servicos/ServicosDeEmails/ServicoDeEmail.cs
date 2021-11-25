@@ -1,6 +1,6 @@
 ﻿using AugustosFashion.Entidades;
-using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos;
+using AugustosFashionModels.Entidades.ServicoEmails;
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -10,18 +10,19 @@ namespace AugustosFashionModels.Servicos.ServicosDeEmails
 {
     public class ServicoDeEmail : IServicoDeEmail
     {
-        private readonly ClienteModel _destinatario;
+        private readonly UsuarioModel _destinatario;
         private readonly PedidoModel _pedido;
         private readonly string _emailRemetente;
         private readonly string _senhaRemetente;
 
-        public ServicoDeEmail(UsuarioModel destinatario, PedidoModel pedido, string emailRemetente, string senhaRemetente)
+        public ServicoDeEmail(UsuarioModel destinatario, PedidoModel pedido, EmailLojaModel remetente)
         {
             _destinatario = destinatario;
-            _emailRemetente = emailRemetente;
-            _senhaRemetente = senhaRemetente;
+            _emailRemetente = remetente.Email;
+            _senhaRemetente = remetente.RetornarSenhaDescriptografada();
             _pedido = pedido;
         }
+       
         public string ConstruirCorpoDoEmail()
         {
             StringBuilder mensagem = new StringBuilder();

@@ -82,7 +82,7 @@ namespace AugustosFashion.Views.Pedidos
 
             RecuperarEstoqueDoProdutoEmAlteracao();
             RecuperarQuantidadePreviamenteVendida();
-          
+
             txtNome.Text = _produto.Nome;
             txtPreco.Text = _produto.PrecoVenda.ToString();
             numQuantidade.Maximum = _produto.Estoque + _quantidadePreviamenteVendida;
@@ -221,7 +221,7 @@ namespace AugustosFashion.Views.Pedidos
                     select x).FirstOrDefault();
         }
 
-        private void EfeutarPedido()
+        private bool EfeutarPedido()
         {
             try
             {
@@ -232,21 +232,32 @@ namespace AugustosFashion.Views.Pedidos
 
                     MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    EnviarComprovantePorEmail();
-                    
                     Close();
+                    return true;
                 }
+                else
+                    return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
+                return false;
             }
         }
 
         private void EnviarComprovantePorEmail()
         {
             if (checkEnviarEmail.Checked)
-                _cadastroPedidoController.EnviarEmailParaCliente(_cliente, _pedido);
+            {
+                try
+                {
+                    _cadastroPedidoController.EnviarEmailParaCliente(_cliente, _pedido);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void AlterarPedido()
@@ -393,7 +404,11 @@ namespace AugustosFashion.Views.Pedidos
             if (_pedido.IdPedido != 0)
                 AlterarPedido();
             else
+            {
                 EfeutarPedido();
+                EnviarComprovantePorEmail();
+            }
+
         }
 
         private void AtualizarTituloParaAlteracao()

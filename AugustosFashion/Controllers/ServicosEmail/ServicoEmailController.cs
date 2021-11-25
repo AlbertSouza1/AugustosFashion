@@ -1,5 +1,4 @@
 ﻿using AugustosFashion.Entidades;
-using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Repositorios;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.ServicoEmails;
@@ -26,7 +25,7 @@ namespace AugustosFashion.Controllers.ServicosEmail
         {
             var email = RecuperarInformacoesDeEmail();
 
-            var servicoDeEmail = new ServicoDeEmail(destinatario, pedido, email.Email, email.RetornarSenhaDescriptografada());
+            var servicoDeEmail = new ServicoDeEmail(destinatario, pedido, email);
 
             EnviarEmail(servicoDeEmail);
         }

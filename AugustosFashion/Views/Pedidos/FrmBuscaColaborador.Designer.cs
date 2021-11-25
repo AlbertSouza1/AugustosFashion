@@ -65,6 +65,8 @@
             // 
             // dgvColaboradores
             // 
+            this.dgvColaboradores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvColaboradores.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvColaboradores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvColaboradores.Location = new System.Drawing.Point(11, 151);
             this.dgvColaboradores.Name = "dgvColaboradores";
