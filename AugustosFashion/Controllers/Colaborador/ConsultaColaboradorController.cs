@@ -76,5 +76,16 @@ namespace AugustosFashion.Controllers.Colaborador
             }
         }
 
+        public void InativarColaborador(int idColaborador)
+        {
+            try
+            {
+                ColaboradorRepositorio.InativarColaborador(idColaborador);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

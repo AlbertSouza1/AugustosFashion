@@ -313,5 +313,28 @@ namespace AugustosFashion.Views.Colaborador
         {
             Close();
         }
+
+        private void btnInativar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Você está prestes a inativar este colaborador. Deseja prosseguir com esta ação?", "Confirmação",
+                MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    _consultaColaboradorController.InativarColaborador(int.Parse(txtIdColaborador.Text));
+
+                    MessageBox.Show("Colaborador inativado com sucesso!");
+
+                    this.Close();
+                    new ListaColaboradorController().AbrirFormularioLista();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falha ao inativar colaborador. Erro: " + ex.Message);
+                }
+            }
+        }
     }
 }

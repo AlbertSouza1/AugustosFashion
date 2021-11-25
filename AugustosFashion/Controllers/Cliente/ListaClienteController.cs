@@ -21,11 +21,11 @@ namespace AugustosFashion.Controllers
             List<ClienteListagem> listaClientes = ClienteRepositorio.ListarClientes();
             return listaClientes;
         }
-        public List<ClienteListagem> BuscarClientesPorNome(string text)
+        public List<ClienteListagem> BuscarClientesPorNome(string text, bool ativo)
         {
             try
             {
-                List<ClienteListagem> clientes = ClienteRepositorio.BuscarClientesPorNome(text);                
+                List<ClienteListagem> clientes = ClienteRepositorio.BuscarClientesPorNome(text, ativo);                
                 return clientes;
             }
             catch (Exception ex)

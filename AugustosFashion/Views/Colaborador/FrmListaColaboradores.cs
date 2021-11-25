@@ -77,15 +77,15 @@ namespace AugustosFashion.Views.Colaborador
             }
             else
             {
-                BuscarColaboradoresPorNome(txtBuscaColaborador.Text);
+                BuscarColaboradoresPorNome(txtBuscaColaborador.Text, true);
             }
         }
 
-        private void BuscarColaboradoresPorNome(string nomeBuscado)
+        private void BuscarColaboradoresPorNome(string nomeBuscado, bool ativo)
         {
             try
             {
-                var listaColaboradores = _listaColaboradorController.BuscarColaboradoresPorNome(nomeBuscado);
+                var listaColaboradores = _listaColaboradorController.BuscarColaboradoresPorNome(nomeBuscado, ativo);
 
                 if (listaColaboradores.Count == 0)
                     MessageBox.Show("Nenhum colaborador encontrado.");

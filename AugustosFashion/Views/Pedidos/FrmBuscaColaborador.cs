@@ -28,7 +28,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             try
             {
-                var colaboradores = BuscarColaboradores();
+                var colaboradores = BuscarColaboradores(true);
                 ListarProdutosBuscados(colaboradores);
 
             }catch(Exception ex)
@@ -37,11 +37,11 @@ namespace AugustosFashion.Views.Pedidos
             }
         }
 
-        private List<ColaboradorListagem> BuscarColaboradores()
+        private List<ColaboradorListagem> BuscarColaboradores(bool ativo)
         {
             try
             {
-                return new ListaColaboradorController().BuscarColaboradoresPorNome(txtBuscar.Text);
+                return new ListaColaboradorController().BuscarColaboradoresPorNome(txtBuscar.Text, ativo);
             }
             catch (Exception ex)
             {
@@ -81,7 +81,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            var colaboradores = BuscarColaboradores();
+            var colaboradores = BuscarColaboradores(true);
             ListarProdutosBuscados(colaboradores);
         }
     }

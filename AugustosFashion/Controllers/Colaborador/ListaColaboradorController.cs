@@ -41,11 +41,11 @@ namespace AugustosFashion.Controllers.Colaborador
             new ConsultaColaboradorController().AbrirFormConsultaColaborador(id);
         }
 
-        public List<ColaboradorListagem> BuscarColaboradoresPorNome(string nomeBuscado)
+        public List<ColaboradorListagem> BuscarColaboradoresPorNome(string nomeBuscado, bool ativo)
         {
             try
             {
-                var colaboradoresBuscados = ColaboradorRepositorio.BuscarColaboradoresPorNome(nomeBuscado);
+                var colaboradoresBuscados = ColaboradorRepositorio.BuscarColaboradoresPorNome(nomeBuscado, ativo);
                 return colaboradoresBuscados;
             }
             catch(Exception ex)

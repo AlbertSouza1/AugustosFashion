@@ -71,11 +71,11 @@ namespace AugustosFashion.Views
             }
         }
 
-        private void BuscarClientesPorNome(string nomeBuscado)
+        private void BuscarClientesPorNome(string nomeBuscado, bool ativo = true)
         {
             try
             {
-                var listaClientes = _listaClienteController.BuscarClientesPorNome(nomeBuscado);
+                var listaClientes = _listaClienteController.BuscarClientesPorNome(nomeBuscado, ativo);
 
                 if (listaClientes.Count == 0)
                     MessageBox.Show("Nenhum cliente encontrado.");

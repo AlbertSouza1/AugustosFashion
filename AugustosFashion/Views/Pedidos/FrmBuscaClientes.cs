@@ -20,11 +20,11 @@ namespace AugustosFashion.Views.Pedidos
 
         private void FrmBuscaClientes_Load(object sender, EventArgs e)
         {
-                var clientes = BuscarClientes();
+                var clientes = BuscarClientes(true);
                 ListarClientesBuscados(clientes);
         }
 
-        private List<ClienteListagem> BuscarClientes() => new ListaClienteController().BuscarClientesPorNome(txtBuscar.Text);
+        private List<ClienteListagem> BuscarClientes(bool ativo) => new ListaClienteController().BuscarClientesPorNome(txtBuscar.Text, ativo);
 
         private void ListarClientesBuscados(List<ClienteListagem> clientes)
         {
@@ -59,7 +59,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            var clientes = BuscarClientes();
+            var clientes = BuscarClientes(true);
             ListarClientesBuscados(clientes);
         }
     }

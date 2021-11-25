@@ -41,7 +41,7 @@ namespace AugustosFashionModels.Servicos.ServicosDeEmails
             mensagem.AppendLine($"Total do pedido: {_pedido.TotalLiquido}");
             mensagem.AppendLine();
             mensagem.AppendLine();
-            mensagem.Append("Agradecemos a preferência. Volte sempre que desejar!");
+            mensagem.Append("Agradecemos a preferência. Volte sempre que desejar! 😎👍");
             mensagem.AppendLine();
             mensagem.AppendLine();
             mensagem.Append("Att: Augustu's Fashion");

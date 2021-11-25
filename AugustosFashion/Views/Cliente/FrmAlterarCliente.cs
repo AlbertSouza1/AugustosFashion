@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Controllers.Cliente;
+﻿using AugustosFashion.Controllers;
+using AugustosFashion.Controllers.Cliente;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
@@ -262,6 +263,29 @@ namespace AugustosFashion.Views
         private void FrmAlterarCliente_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnInativar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Você está prestes a inativar este cliente. Deseja prosseguir com esta ação?", "Confirmação",
+                MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    _alteraClienteController.InativarCliente(int.Parse(txtIdCliente.Text));
+
+                    MessageBox.Show("Cliente inativado com sucesso!");
+
+                    this.Close();
+                    new ListaClienteController().AbrirFormularioLista();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falha ao inativar cliente. Erro: " + ex.Message);
+                }
+            }
         }
     }
 }

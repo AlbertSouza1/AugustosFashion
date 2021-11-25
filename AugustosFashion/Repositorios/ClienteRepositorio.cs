@@ -15,8 +15,8 @@ namespace AugustosFashion.Repositorios
     {
         public static void CadastrarCliente(ClienteModel cliente)
         {          
-            var strSqlCliente = "Insert into Clientes " +
-                "values (@IdUsuario, @LimiteCompraAPrazo, @Observacao)";
+            var strSqlCliente = @"Insert into Clientes (IdUsuario, ValorLimiteCompraAPrazo, Observacao)
+                values (@IdUsuario, @LimiteCompraAPrazo, @Observacao)";
 
             var strSqlUsuario = UsuarioSql.ObterStringInsertUsuario();
 
@@ -70,6 +70,24 @@ namespace AugustosFashion.Repositorios
                         (clienteModel, nomeCompleto) => MapearClienteParaRecuperarNome(clienteModel, nomeCompleto), new { idCliente },
                         splitOn: "IdUsuario"
                      ).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static void InativarCliente(int idCliente)
+        {
+            var strInativaCliente = @"UPDATE Clientes SET Ativo = 0 WHERE IdCliente = @IdCliente";
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    sqlCon.Execute(strInativaCliente, new { idCliente });
                 }
             }
             catch (Exception ex)
@@ -246,7 +264,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static List<ClienteListagem> BuscarClientesPorNome(string nomeBuscado)
+        public static List<ClienteListagem> BuscarClientesPorNome(string nomeBuscado, bool ativo)
         {
             SqlConnection sqlCon = SqlHelper.ObterConexao();
 
@@ -256,7 +274,7 @@ namespace AugustosFashion.Repositorios
                 from
                 Usuarios u join Clientes c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario
-                where u.Nome like @nomeBuscado + '%'
+                where u.Nome like @nomeBuscado + '%' and c.Ativo = @ativo
                 ; ";
 
             try
@@ -267,7 +285,7 @@ namespace AugustosFashion.Repositorios
 
                     return sqlCon.Query<ClienteListagem, NomeCompleto, EnderecoModel, ClienteListagem>(
                         stringSqlBusca,
-                        (clienteModel, nomeCompleto, enderecoModel) => MapearCliente(clienteModel, nomeCompleto, enderecoModel), new { nomeBuscado },
+                        (clienteModel, nomeCompleto, enderecoModel) => MapearCliente(clienteModel, nomeCompleto, enderecoModel), new { nomeBuscado, ativo },
                         splitOn: "IdUsuario"
                      ).ToList();
                 }

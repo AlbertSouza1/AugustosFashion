@@ -211,7 +211,6 @@ namespace AugustosFashion.Views
             this.label13.Size = new System.Drawing.Size(109, 21);
             this.label13.TabIndex = 12;
             this.label13.Text = "Complemento";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // label14
             // 

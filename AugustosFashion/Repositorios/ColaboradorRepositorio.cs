@@ -16,7 +16,7 @@ namespace AugustosFashion.Repositorios
     {
         public static void CadastrarColaborador(ColaboradorModel colaborador)
         {
-            var strSqlColaborador = "Insert into Colaboradores output inserted.IdColaborador " +
+            var strSqlColaborador = "Insert into Colaboradores (IdUsuario, Salario, PorcentagemComissao) output inserted.IdColaborador " +
                 "values (@IdUsuario, @Salario, @PorcentagemComissao)";
 
             var strSqlUsuario = UsuarioSql.ObterStringInsertUsuario();
@@ -53,6 +53,23 @@ namespace AugustosFashion.Repositorios
 
                         transaction.Commit();
                     }                   
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static void InativarColaborador(int idColaborador)
+        {
+            var strInativaColaborador = @"UPDATE Colaboradores SET Ativo = 0 WHERE IdColaborador = @idColaborador";
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();                  
+                    sqlCon.Execute(strInativaColaborador, new {idColaborador });                   
                 }
             }
             catch (Exception ex)
@@ -191,7 +208,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static List<ColaboradorListagem> BuscarColaboradoresPorNome(string nomeBuscado)
+        public static List<ColaboradorListagem> BuscarColaboradoresPorNome(string nomeBuscado, bool ativo)
         {
             SqlConnection sqlCon = SqlHelper.ObterConexao();
 
@@ -201,7 +218,7 @@ namespace AugustosFashion.Repositorios
                 from
                 Usuarios u join Colaboradores c on u.IdUsuario = c.IdUsuario 
                 inner join Enderecos e on u.IdUsuario = e.IdUsuario
-                where u.Nome like @nomeBuscado + '%'; ";
+                where u.Nome like @nomeBuscado + '%' and c.Ativo = @ativo";
             try
             {
                 using (sqlCon)
@@ -210,7 +227,8 @@ namespace AugustosFashion.Repositorios
 
                     return sqlCon.Query<ColaboradorListagem, NomeCompleto, EnderecoModel, ColaboradorListagem>(
                         strSql,
-                        (colaboradorModel, nomeCompleto, enderecoModel) => MapearColaborador(colaboradorModel, nomeCompleto, enderecoModel), new { nomeBuscado },
+                        (colaboradorModel, nomeCompleto, enderecoModel) => MapearColaborador(colaboradorModel, nomeCompleto, enderecoModel),
+                        new { nomeBuscado, ativo },
                         splitOn: "IdUsuario"
                      ).ToList();
                 }

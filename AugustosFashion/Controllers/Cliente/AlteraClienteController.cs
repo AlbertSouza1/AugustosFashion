@@ -19,12 +19,12 @@ namespace AugustosFashion.Controllers.Cliente
             try
             {
                 ClienteModel cliente = RecuperarInfoCliente(id);
-                
+
                 PreencherCamposParaAlteracao(frmAlteracaoCliente, cliente);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Não foi possível recuperar as informações do cliente. Erro: "+ex.Message);
+                MessageBox.Show("Não foi possível recuperar as informações do cliente. Erro: " + ex.Message);
             }
         }
 
@@ -56,7 +56,7 @@ namespace AugustosFashion.Controllers.Cliente
         {
             try
             {
-                ClienteRepositorio.ExcluirCliente(idCliente);                
+                ClienteRepositorio.ExcluirCliente(idCliente);
             }
             catch (Exception ex)
             {
@@ -76,6 +76,18 @@ namespace AugustosFashion.Controllers.Cliente
             {
                 throw new Exception(ex.Message);
             }
-        }       
+        }
+
+        internal void InativarCliente(int idCliente)
+        {
+            try
+            {
+                ClienteRepositorio.InativarCliente(idCliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
