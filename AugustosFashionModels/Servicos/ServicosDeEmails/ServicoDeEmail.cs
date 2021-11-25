@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Entidades.Cliente;
+﻿using AugustosFashion.Entidades;
+using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos;
 using System;
 using System.Net;
@@ -14,7 +15,7 @@ namespace AugustosFashionModels.Servicos.ServicosDeEmails
         private readonly string _emailRemetente;
         private readonly string _senhaRemetente;
 
-        public ServicoDeEmail(ClienteModel destinatario, PedidoModel pedido, string emailRemetente, string senhaRemetente)
+        public ServicoDeEmail(UsuarioModel destinatario, PedidoModel pedido, string emailRemetente, string senhaRemetente)
         {
             _destinatario = destinatario;
             _emailRemetente = emailRemetente;

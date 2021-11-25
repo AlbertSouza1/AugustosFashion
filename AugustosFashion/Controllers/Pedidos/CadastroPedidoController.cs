@@ -102,5 +102,10 @@ namespace AugustosFashion.Controllers.Pedidos
         {
             _frmCadastroPedido.CarregarDadosDeColaboradorSelecionado(colaborador);
         }
+
+        internal void EnviarEmailParaCliente(ClienteModel cliente, PedidoModel pedido)
+        {
+            new ServicoEmailController().PrepararServicoDeEmailDePedido(cliente, pedido);
+        }
     }
 }

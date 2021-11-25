@@ -18,7 +18,6 @@
         public override string ToString() =>       
              RetornaValor.ToString("c");
 
-        //public static implicit operator Dinheiro(string valor) => new Dinheiro(valor);    
         public static implicit operator Dinheiro(decimal valor) => new Dinheiro(valor);    
     }
 }

@@ -1,32 +1,34 @@
-﻿using AugustosFashion.Entidades.Cliente;
+﻿using AugustosFashion.Entidades;
+using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Repositorios;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.ServicoEmails;
 using AugustosFashionModels.Servicos.ServicosDeEmails;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers.ServicosEmail
 {
     public class ServicoEmailController
     {
-        public void EnviarEmailDeConfirmacaoDePedido(ClienteModel cliente, PedidoModel pedido)
+        public void EnviarEmail(IServicoDeEmail servicoDeEmail)
         {
             try
-            {
-                var email = RecuperarInformacoesDeEmail();
-
-                var servicoDeEmail = new ServicoDeEmail(cliente, pedido, email.Email, email.RetornarSenhaDescriptografada());
+            {              
                 servicoDeEmail.EnviarEmail();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public void PrepararServicoDeEmailDePedido(UsuarioModel destinatario, PedidoModel pedido)
+        {
+            var email = RecuperarInformacoesDeEmail();
+
+            var servicoDeEmail = new ServicoDeEmail(destinatario, pedido, email.Email, email.RetornarSenhaDescriptografada());
+
+            EnviarEmail(servicoDeEmail);
         }
 
         public EmailLojaModel RecuperarInformacoesDeEmail()

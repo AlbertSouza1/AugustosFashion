@@ -245,8 +245,8 @@ namespace AugustosFashion.Views.Pedidos
 
         private void EnviarComprovantePorEmail()
         {
-            if(checkEnviarEmail.Checked)
-                new ServicoEmailController().EnviarEmailDeConfirmacaoDePedido(_cliente, _pedido);
+            if (checkEnviarEmail.Checked)
+                _cadastroPedidoController.EnviarEmailParaCliente(_cliente, _pedido);
         }
 
         private void AlterarPedido()

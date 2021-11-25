@@ -18,5 +18,17 @@ namespace AugustosFashionModelsTest
 
             Assert.AreEqual(55.30m, resultado);
         }
+
+        [TestMethod]
+        public void ValorFormatado_deve_retornar_valor_com_simbolo_de_reais()
+        {
+            ProdutoListagem produtoListagem = new ProdutoListagem();
+
+            produtoListagem.PrecoVenda = 55.3m;
+
+            var resultado = produtoListagem.PrecoVenda.ValorFormatado;
+
+            Assert.AreEqual("R$ 55,30", resultado);
+        }
     }
 }
