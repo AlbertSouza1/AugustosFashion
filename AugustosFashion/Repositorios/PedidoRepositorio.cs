@@ -73,6 +73,27 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        internal static int RecuperarQuantidadePreviamenteVendida(int idProduto, int idPedido)
+        {
+            var strSqlQuantidade = @"select Quantidade
+                from Pedido_Produto where idProduto = @idProduto and idPedido = @idPedido
+                ";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<int>(strSqlQuantidade, new { idProduto, idPedido }).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static void EliminarPedido(PedidoModel pedido)
         {
             var strEliminaPedido = @"UPDATE Pedidos set Eliminado = 1 where IdPedido = @IdPedido";
@@ -256,7 +277,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static List<PedidoListagem> ListarPedidos(bool eliminado)
+        public static List<PedidoListagem> ListarPedidos(DateTime data, bool eliminado)
         {
             var strSqlPedido = @"select  p.IdPedido, concat(u.Nome,' ',u.SobreNome) as NomeCliente,
 				concat(u2.Nome, ' ', u2.SobreNome) as NomeColaborador,
@@ -266,7 +287,7 @@ namespace AugustosFashion.Repositorios
 				inner join Clientes as c on p.IdCliente = c.IdCliente				
 				inner join Usuarios u on u.IdUsuario = c.IdUsuario
 				inner join Usuarios u2 on u2.IdUsuario = co.IdUsuario
-                where p.Eliminado = @eliminado
+                where Cast(p.DataEmissao as date) = @data and p.Eliminado = @eliminado
                 ";
 
             var strSqlRecuperaLucro = @"SELECT (SUM(Total) - SUM(PrecoCusto * Quantidade)) as Lucro
@@ -279,12 +300,12 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     var pedidos = sqlCon.Query<PedidoListagem>(
-                        strSqlPedido, new {eliminado}
+                        strSqlPedido, new {data, eliminado}
                      ).ToList();
 
                     foreach (var pedido in pedidos)
                     {
-                        pedido.Lucro = sqlCon.Query<decimal>(strSqlRecuperaLucro, new {IdPedido = pedido.IdPedido}).FirstOrDefault();
+                        pedido.Lucro = sqlCon.Query<decimal>(strSqlRecuperaLucro, new {pedido.IdPedido}).FirstOrDefault();
                     }
 
                     return pedidos;

@@ -53,14 +53,15 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CEPTestes.cs" />
+    <Compile Include="ServicosDeEmailTestes\ServicoDeEmailTestes.cs" />
+    <Compile Include="ValorObjetoTestes\CEPTestes.cs" />
     <Compile Include="ClienteModelTestes.cs" />
     <Compile Include="ColaboradorModelTestes.cs" />
-    <Compile Include="CPFTestes.cs" />
-    <Compile Include="DinheiroTestes.cs" />
-    <Compile Include="NomeCompletoTestes.cs" />
-    <Compile Include="PedidoModelTestes.cs" />
-    <Compile Include="PedidoProdutoModelTestes.cs" />
+    <Compile Include="ValorObjetoTestes\CPFTestes.cs" />
+    <Compile Include="ValorObjetoTestes\DinheiroTestes.cs" />
+    <Compile Include="ValorObjetoTestes\NomeCompletoTestes.cs" />
+    <Compile Include="PedidosTestes\PedidoModelTestes.cs" />
+    <Compile Include="PedidosTestes\PedidoProdutoModelTestes.cs" />
     <Compile Include="ProdutoCarrinhoTestes.cs" />
     <Compile Include="UsuarioModelTestes.cs" />
     <Compile Include="ValidadoresCadastroTestes.cs" />
@@ -75,6 +76,7 @@
       <Name>AugustosFashionModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

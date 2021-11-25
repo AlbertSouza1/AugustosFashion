@@ -21,5 +21,15 @@ namespace AugustosFashion.Controllers.Pedidos
                 throw new Exception(ex.Message);
             }
         }
+
+        public int RecuperarEstoqueDoProduto(int idProduto)
+        {
+            return ProdutoRepositorio.RecuperarEstoqueDoProduto(idProduto);
+        }
+
+        internal int RecuperarQuantidadePreviamenteVendida(int idProduto, int idPedido)
+        {
+            return PedidoRepositorio.RecuperarQuantidadePreviamenteVendida(idProduto, idPedido);
+        }
     }
 }

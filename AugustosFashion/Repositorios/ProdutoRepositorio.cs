@@ -31,6 +31,27 @@ namespace AugustosFashion.Repositorios
             }
         }
 
+        public static int RecuperarEstoqueDoProduto(int idProduto)
+        {
+            var strSqlProduto = @"select Estoque
+                from Produtos where idProduto = @idProduto
+                ";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<int>(strSqlProduto, new { idProduto }).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         internal static void AlterarProduto(ProdutoModel produto)
         {
             var strSqlProduto = @"Update Produtos SET Nome = @Nome, CodigoBarras = @CodigoBarras,
@@ -70,25 +91,6 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
-
-        //internal static void ExcluirProduto(int idProduto)
-        //{
-        //    var strSql = @"delete from Produtos where IdProduto = @idProduto";
-
-        //    try
-        //    {
-        //        using (SqlConnection sqlCon = SqlHelper.ObterConexao())
-        //        {
-        //            sqlCon.Open();
-
-        //            sqlCon.Execute(strSql, new {idProduto});
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
 
         public static List<ProdutoListagem> ListarTodosOsProdutos(StatusProduto status)
         {

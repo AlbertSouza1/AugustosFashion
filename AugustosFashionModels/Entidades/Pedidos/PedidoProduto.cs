@@ -15,7 +15,6 @@ namespace AugustosFashionModels.Entidades.Pedidos
         public string Fabricante { get; set; }
 
         [DisplayName("Preço de Custo")]
-        //[Browsable(false)]
         public Dinheiro PrecoCusto { get; set; }
 
         [DisplayName("Preço de Venda")]

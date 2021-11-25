@@ -16,11 +16,11 @@ namespace AugustosFashion.Controllers.Pedidos
             frmListaPedido.Show();
         }
 
-        public List<PedidoListagem> ListarPedidos(bool eliminado)
+        public List<PedidoListagem> ListarPedidos(DateTime data, bool eliminado)
         {
             try
             {
-                return PedidoRepositorio.ListarPedidos(eliminado);
+                return PedidoRepositorio.ListarPedidos(data, eliminado);
             }
             catch (Exception ex)
             {

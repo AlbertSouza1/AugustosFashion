@@ -18,6 +18,9 @@ namespace AugustosFashion.Views.Pedidos
         private PedidoProduto _produto = new PedidoProduto();
         private ColaboradorModel _colaborador = new ColaboradorModel();
         private ClienteModel _cliente = new ClienteModel();
+        private AlteraPedidoController _alteraPedidoController = new AlteraPedidoController();
+
+        private int _quantidadePreviamenteVendida = 0;
 
         public FrmCadastraPedido(CadastroPedidoController cadastroPedidoController, PedidoModel pedido)
         {
@@ -77,13 +80,29 @@ namespace AugustosFashion.Views.Pedidos
         {
             _produto = produto;
 
+            RecuperarEstoqueDoProdutoEmAlteracao();
+            RecuperarQuantidadePreviamenteVendida();
+          
             txtNome.Text = _produto.Nome;
             txtPreco.Text = _produto.PrecoVenda.ToString();
-            numQuantidade.Maximum = _produto.Estoque;
+            numQuantidade.Maximum = _produto.Estoque + _quantidadePreviamenteVendida;
             numQuantidade.Value = _produto.Quantidade;
             numDesconto.Value = _produto.Desconto.RetornaValor;
 
             CalcularPrecoLiquido();
+        }
+
+        private void RecuperarQuantidadePreviamenteVendida()
+        {
+            _quantidadePreviamenteVendida = _alteraPedidoController.RecuperarQuantidadePreviamenteVendida(_produto.IdProduto, _pedido.IdPedido);
+        }
+
+        private void RecuperarEstoqueDoProdutoEmAlteracao()
+        {
+            if (_produto.Estoque == 0)
+            {
+                _produto.Estoque = _alteraPedidoController.RecuperarEstoqueDoProduto(_produto.IdProduto);
+            }
         }
 
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
@@ -145,11 +164,6 @@ namespace AugustosFashion.Views.Pedidos
             if (numQuantidade.Value < 1)
             {
                 MessageBox.Show("Quantidade deve ser maior que 0");
-                return false;
-            }
-            if (_produto.Estoque < numQuantidade.Value)
-            {
-                MessageBox.Show($"O produto selecionado possui apenas {_produto.Estoque} itens disponíveis em estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
 
@@ -227,10 +241,6 @@ namespace AugustosFashion.Views.Pedidos
             {
                 MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
             }
-            //catch (EmailException ex)
-            //{
-            //    MessageBox.Show("Não foi possível enviar o e-mail de confirmação de compra. Erro: " + ex.Message);
-            //}
         }
 
         private void EnviarComprovantePorEmail()
@@ -317,7 +327,6 @@ namespace AugustosFashion.Views.Pedidos
             CalcularTotalProduto();
             CalcularTotalDesconto();
             CalcularPrecoLiquido();
-            AvisarSeLimiteNoEstoqueFoiAtingido();
         }
         private void numDesconto_KeyUp(object sender, KeyEventArgs e)
         {
@@ -387,14 +396,6 @@ namespace AugustosFashion.Views.Pedidos
                 EfeutarPedido();
         }
 
-        private void AvisarSeLimiteNoEstoqueFoiAtingido()
-        {
-            if (numQuantidade.Value >= numQuantidade.Maximum)
-            {
-                MessageBox.Show($"O produto selecionado possui apenas {_produto.Estoque} itens disponíveis em estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void AtualizarTituloParaAlteracao()
         {
             lblTitulo.Text = "Alterar Pedido";
@@ -406,9 +407,9 @@ namespace AugustosFashion.Views.Pedidos
         {
             int id = RecuperarIdProdutoDaGrid();
 
-            var produto = SelecionarProdutoDoPedido(id);
+            _produto = SelecionarProdutoDoPedido(id);
 
-            CarregarDadosDeProdutoSelecionado(produto);
+            CarregarDadosDeProdutoSelecionado(_produto);
         }
         private int RecuperarIdProdutoDaGrid()
         {
