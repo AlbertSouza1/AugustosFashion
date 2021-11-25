@@ -16,7 +16,7 @@ namespace AugustosFashion.Controllers.Pedidos
             frmListaPedido.Show();
         }
 
-        public List<PedidoListagem> ListarPedidos(DateTime data, bool eliminado)
+        public List<PedidoListagem> ListarPedidos(List<DateTime> data, bool eliminado)
         {
             try
             {

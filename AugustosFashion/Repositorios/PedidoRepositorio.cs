@@ -277,7 +277,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static List<PedidoListagem> ListarPedidos(DateTime data, bool eliminado)
+        public static List<PedidoListagem> ListarPedidos(List<DateTime> datas, bool eliminado)
         {
             var strSqlPedido = @"select  p.IdPedido, concat(u.Nome,' ',u.SobreNome) as NomeCliente,
 				concat(u2.Nome, ' ', u2.SobreNome) as NomeColaborador,
@@ -287,7 +287,8 @@ namespace AugustosFashion.Repositorios
 				inner join Clientes as c on p.IdCliente = c.IdCliente				
 				inner join Usuarios u on u.IdUsuario = c.IdUsuario
 				inner join Usuarios u2 on u2.IdUsuario = co.IdUsuario
-                where Cast(p.DataEmissao as date) = @data and p.Eliminado = @eliminado
+                where DataEmissao between @dataInicial and (@dataFinal + ' 23:59')
+                and p.Eliminado = @eliminado
                 ";
 
             var strSqlRecuperaLucro = @"SELECT (SUM(Total) - SUM(PrecoCusto * Quantidade)) as Lucro
@@ -300,7 +301,7 @@ namespace AugustosFashion.Repositorios
                     sqlCon.Open();
 
                     var pedidos = sqlCon.Query<PedidoListagem>(
-                        strSqlPedido, new {data, eliminado}
+                        strSqlPedido, new {dataInicial = datas[0], dataFinal = datas[1], eliminado}
                      ).ToList();
 
                     foreach (var pedido in pedidos)

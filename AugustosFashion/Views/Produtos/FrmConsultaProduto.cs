@@ -60,8 +60,8 @@ namespace AugustosFashion.Views.Produtos
             _produto.CodigoBarras = mtxtCodigoBarras.Text;
             _produto.Fabricante = txtFabricante.Text;
             _produto.Estoque = int.Parse(numEstoque.Text);
-            _produto.PrecoVenda = int.Parse(numPrecoVenda.Text);
-            _produto.PrecoCusto = int.Parse(numPrecoCusto.Text);
+            _produto.PrecoVenda = Convert.ToDouble(numPrecoVenda.Value);
+            _produto.PrecoCusto = Convert.ToDouble(numPrecoCusto.Value);
         }
         private bool ValidarCamposDeProduto()
         {

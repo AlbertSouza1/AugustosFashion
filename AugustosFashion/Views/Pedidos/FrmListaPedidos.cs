@@ -25,17 +25,17 @@ namespace AugustosFashion.Views.Pedidos
 
         private void btnBuscarPedidos_Click(object sender, EventArgs e)
         {
-            ListarPedidosPeloDia();
+            ListarPedidosPorData();
         }
 
-        private void ListarPedidosPeloDia()
+        private void ListarPedidosPorData()
         {
             var eliminado = RetornarFiltroDeStatusPedido();
-            var data = RetornarDataSelecionadaParaFiltro();
+            var datas = RetornarDatasParaFiltro();
 
             try
             {
-                var pedidos = _listaPedidoController.ListarPedidos(data, eliminado);
+                var pedidos = _listaPedidoController.ListarPedidos(datas, eliminado);
 
                 ListarPedidosNaGrid(pedidos);
             }
@@ -45,7 +45,15 @@ namespace AugustosFashion.Views.Pedidos
             }
         }
 
-        private DateTime RetornarDataSelecionadaParaFiltro() => dtpDataPedido.Value.Date;
+        private List<DateTime> RetornarDatasParaFiltro()
+        {
+            List<DateTime> lista = new List<DateTime>();
+
+            lista.Add(dtpDataInicial.Value.Date);
+            lista.Add(dtpDataFinal.Value.Date);
+
+            return lista;
+        }
 
         private bool RetornarFiltroDeStatusPedido() => Convert.ToBoolean(cbStatus.SelectedIndex);
             
