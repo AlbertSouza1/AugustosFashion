@@ -17,9 +17,9 @@ namespace AugustosFashion
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var resultadoLogin = new LoginController().RetornarFormLogin().ShowDialog();
+            //var resultadoLogin = new LoginController().RetornarFormLogin().ShowDialog();
 
-            if (resultadoLogin == DialogResult.OK)
+            //if (resultadoLogin == DialogResult.OK)
                 Application.Run(MDIParentSingleton.InstanciarFrmMdiParent());
         }
     }

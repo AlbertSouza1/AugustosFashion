@@ -65,7 +65,7 @@
             this.numPrecoVenda.DecimalPlaces = 2;
             this.numPrecoVenda.Location = new System.Drawing.Point(244, 537);
             this.numPrecoVenda.Maximum = new decimal(new int[] {
-            100000,
+            99999,
             0,
             0,
             0});
@@ -80,7 +80,7 @@
             this.numPrecoCusto.DecimalPlaces = 2;
             this.numPrecoCusto.Location = new System.Drawing.Point(244, 418);
             this.numPrecoCusto.Maximum = new decimal(new int[] {
-            100000,
+            99999,
             0,
             0,
             0});
@@ -94,6 +94,11 @@
             // 
             this.numEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numEstoque.Location = new System.Drawing.Point(244, 356);
+            this.numEstoque.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numEstoque.Name = "numEstoque";
             this.numEstoque.Size = new System.Drawing.Size(176, 23);
             this.numEstoque.TabIndex = 148;
@@ -231,7 +236,7 @@
             // btnExcluir
             // 
             this.btnExcluir.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnExcluir.BackColor = System.Drawing.Color.Red;
+            this.btnExcluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnExcluir.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnExcluir.ForeColor = System.Drawing.Color.White;
@@ -267,6 +272,11 @@
             // 
             this.numAddEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numAddEstoque.Location = new System.Drawing.Point(486, 356);
+            this.numAddEstoque.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numAddEstoque.Name = "numAddEstoque";
             this.numAddEstoque.Size = new System.Drawing.Size(156, 23);
             this.numAddEstoque.TabIndex = 154;
@@ -289,7 +299,7 @@
             // btnAtivarProduto
             // 
             this.btnAtivarProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAtivarProduto.BackColor = System.Drawing.Color.Lime;
+            this.btnAtivarProduto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAtivarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAtivarProduto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnAtivarProduto.Location = new System.Drawing.Point(536, 642);
@@ -321,7 +331,7 @@
             // 
             this.numPorcentagemLucro.Location = new System.Drawing.Point(244, 478);
             this.numPorcentagemLucro.Maximum = new decimal(new int[] {
-            100000,
+            1000,
             0,
             0,
             0});

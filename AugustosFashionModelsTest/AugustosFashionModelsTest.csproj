@@ -75,10 +75,6 @@
       <Project>{75623579-e6fc-466a-8154-be3c098d454a}</Project>
       <Name>AugustosFashionModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AugustosFashion\AugustosFashion.csproj">
-      <Project>{64e27033-1481-44d1-85e7-6ca31c258fff}</Project>
-      <Name>AugustosFashion</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

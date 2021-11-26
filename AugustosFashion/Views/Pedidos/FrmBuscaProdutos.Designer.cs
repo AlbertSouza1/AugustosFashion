@@ -38,6 +38,8 @@
             // 
             // dgvProdutos
             // 
+            this.dgvProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvProdutos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProdutos.Location = new System.Drawing.Point(12, 150);
             this.dgvProdutos.Name = "dgvProdutos";

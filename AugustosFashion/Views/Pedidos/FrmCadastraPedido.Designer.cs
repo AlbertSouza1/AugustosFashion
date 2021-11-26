@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastraPedido));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblSelecionarColaborador = new System.Windows.Forms.Label();
+            this.lblSelecionarCliente = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -102,27 +102,27 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Produto";
             // 
-            // label3
+            // lblSelecionarColaborador
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(618, 218);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Selecionar Colaborador";
+            this.lblSelecionarColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblSelecionarColaborador.AutoSize = true;
+            this.lblSelecionarColaborador.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblSelecionarColaborador.Location = new System.Drawing.Point(605, 204);
+            this.lblSelecionarColaborador.Name = "lblSelecionarColaborador";
+            this.lblSelecionarColaborador.Size = new System.Drawing.Size(150, 19);
+            this.lblSelecionarColaborador.TabIndex = 2;
+            this.lblSelecionarColaborador.Text = "Selecionar Colaborador";
             // 
-            // label4
+            // lblSelecionarCliente
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(618, 126);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 19);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Selecionar Cliente";
+            this.lblSelecionarCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblSelecionarCliente.AutoSize = true;
+            this.lblSelecionarCliente.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblSelecionarCliente.Location = new System.Drawing.Point(605, 129);
+            this.lblSelecionarCliente.Name = "lblSelecionarCliente";
+            this.lblSelecionarCliente.Size = new System.Drawing.Size(116, 19);
+            this.lblSelecionarCliente.TabIndex = 3;
+            this.lblSelecionarCliente.Text = "Selecionar Cliente";
             // 
             // label5
             // 
@@ -162,7 +162,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(618, 152);
+            this.label8.Location = new System.Drawing.Point(605, 165);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(127, 19);
             this.label8.TabIndex = 10;
@@ -173,7 +173,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(618, 249);
+            this.label9.Location = new System.Drawing.Point(605, 243);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(163, 19);
             this.label9.TabIndex = 11;
@@ -305,24 +305,25 @@
             0,
             0});
             this.numQuantidade.ValueChanged += new System.EventHandler(this.numQuantidade_ValueChanged);
+            this.numQuantidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numQuantidade_KeyPress);
             this.numQuantidade.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numQuantidade_KeyUp);
             // 
             // txtCliente
             // 
             this.txtCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtCliente.Location = new System.Drawing.Point(618, 174);
+            this.txtCliente.Location = new System.Drawing.Point(766, 163);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.ReadOnly = true;
-            this.txtCliente.Size = new System.Drawing.Size(304, 23);
+            this.txtCliente.Size = new System.Drawing.Size(156, 23);
             this.txtCliente.TabIndex = 26;
             // 
             // txtColaborador
             // 
             this.txtColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtColaborador.Location = new System.Drawing.Point(618, 271);
+            this.txtColaborador.Location = new System.Drawing.Point(766, 242);
             this.txtColaborador.Name = "txtColaborador";
             this.txtColaborador.ReadOnly = true;
-            this.txtColaborador.Size = new System.Drawing.Size(304, 23);
+            this.txtColaborador.Size = new System.Drawing.Size(156, 23);
             this.txtColaborador.TabIndex = 27;
             // 
             // txtTotalBruto
@@ -401,7 +402,7 @@
             // txtBuscarColaborador
             // 
             this.txtBuscarColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtBuscarColaborador.Location = new System.Drawing.Point(766, 218);
+            this.txtBuscarColaborador.Location = new System.Drawing.Point(766, 203);
             this.txtBuscarColaborador.Name = "txtBuscarColaborador";
             this.txtBuscarColaborador.Size = new System.Drawing.Size(117, 23);
             this.txtBuscarColaborador.TabIndex = 34;
@@ -409,16 +410,16 @@
             // txtBuscaCliente
             // 
             this.txtBuscaCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtBuscaCliente.Location = new System.Drawing.Point(770, 126);
+            this.txtBuscaCliente.Location = new System.Drawing.Point(766, 126);
             this.txtBuscaCliente.Name = "txtBuscaCliente";
-            this.txtBuscaCliente.Size = new System.Drawing.Size(113, 23);
+            this.txtBuscaCliente.Size = new System.Drawing.Size(117, 23);
             this.txtBuscaCliente.TabIndex = 35;
             // 
             // BtnBuscarColaborador
             // 
             this.BtnBuscarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnBuscarColaborador.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarColaborador.Location = new System.Drawing.Point(882, 218);
+            this.BtnBuscarColaborador.Location = new System.Drawing.Point(882, 203);
             this.BtnBuscarColaborador.Name = "BtnBuscarColaborador";
             this.BtnBuscarColaborador.Size = new System.Drawing.Size(40, 23);
             this.BtnBuscarColaborador.TabIndex = 36;
@@ -458,7 +459,7 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(614, 329);
+            this.label16.Location = new System.Drawing.Point(605, 292);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(141, 19);
             this.label16.TabIndex = 40;
@@ -475,9 +476,9 @@
             "Crédito",
             "Débito",
             "Pix"});
-            this.cbFormaPagamento.Location = new System.Drawing.Point(781, 325);
+            this.cbFormaPagamento.Location = new System.Drawing.Point(766, 291);
             this.cbFormaPagamento.Name = "cbFormaPagamento";
-            this.cbFormaPagamento.Size = new System.Drawing.Size(141, 23);
+            this.cbFormaPagamento.Size = new System.Drawing.Size(156, 23);
             this.cbFormaPagamento.TabIndex = 41;
             // 
             // numDesconto
@@ -638,8 +639,8 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblSelecionarCliente);
+            this.Controls.Add(this.lblSelecionarColaborador);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -659,8 +660,8 @@
 
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSelecionarColaborador;
+        private System.Windows.Forms.Label lblSelecionarCliente;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;

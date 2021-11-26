@@ -206,6 +206,11 @@ namespace AugustosFashion.Views.Produtos
             // 
             this.numEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numEstoque.Location = new System.Drawing.Point(274, 335);
+            this.numEstoque.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numEstoque.Name = "numEstoque";
             this.numEstoque.Size = new System.Drawing.Size(462, 23);
             this.numEstoque.TabIndex = 130;
@@ -216,7 +221,7 @@ namespace AugustosFashion.Views.Produtos
             this.numPrecoCusto.DecimalPlaces = 2;
             this.numPrecoCusto.Location = new System.Drawing.Point(274, 400);
             this.numPrecoCusto.Maximum = new decimal(new int[] {
-            100000,
+            99999,
             0,
             0,
             0});
@@ -232,7 +237,7 @@ namespace AugustosFashion.Views.Produtos
             this.numPrecoVenda.DecimalPlaces = 2;
             this.numPrecoVenda.Location = new System.Drawing.Point(274, 524);
             this.numPrecoVenda.Maximum = new decimal(new int[] {
-            100000,
+            99999,
             0,
             0,
             0});
@@ -262,7 +267,7 @@ namespace AugustosFashion.Views.Produtos
             // 
             this.numPorcentagemLucro.Location = new System.Drawing.Point(274, 460);
             this.numPorcentagemLucro.Maximum = new decimal(new int[] {
-            100000,
+            1000,
             0,
             0,
             0});

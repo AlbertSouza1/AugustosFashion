@@ -83,7 +83,7 @@ namespace AugustosFashion.Views
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(353, 68);
+            this.label1.Location = new System.Drawing.Point(365, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(233, 30);
             this.label1.TabIndex = 1;
@@ -97,7 +97,7 @@ namespace AugustosFashion.Views
             this.btnCadastrarColaborador.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCadastrarColaborador.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarColaborador.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarColaborador.Location = new System.Drawing.Point(416, 642);
+            this.btnCadastrarColaborador.Location = new System.Drawing.Point(428, 660);
             this.btnCadastrarColaborador.Name = "btnCadastrarColaborador";
             this.btnCadastrarColaborador.Size = new System.Drawing.Size(135, 37);
             this.btnCadastrarColaborador.TabIndex = 70;
@@ -110,7 +110,7 @@ namespace AugustosFashion.Views
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label18.Location = new System.Drawing.Point(257, 356);
+            this.label18.Location = new System.Drawing.Point(276, 354);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(58, 21);
             this.label18.TabIndex = 69;
@@ -119,9 +119,9 @@ namespace AugustosFashion.Views
             // txtSalario
             // 
             this.txtSalario.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSalario.Location = new System.Drawing.Point(321, 356);
+            this.txtSalario.Location = new System.Drawing.Point(276, 378);
             this.txtSalario.Name = "txtSalario";
-            this.txtSalario.Size = new System.Drawing.Size(134, 23);
+            this.txtSalario.Size = new System.Drawing.Size(191, 23);
             this.txtSalario.TabIndex = 67;
             // 
             // label16
@@ -129,7 +129,7 @@ namespace AugustosFashion.Views
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(321, 393);
+            this.label16.Location = new System.Drawing.Point(276, 411);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(99, 21);
             this.label16.TabIndex = 65;
@@ -140,7 +140,7 @@ namespace AugustosFashion.Views
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(107, 393);
+            this.label15.Location = new System.Drawing.Point(73, 411);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 21);
             this.label15.TabIndex = 64;
@@ -149,15 +149,15 @@ namespace AugustosFashion.Views
             // txtTelefoneFixo
             // 
             this.txtTelefoneFixo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTelefoneFixo.Location = new System.Drawing.Point(292, 417);
+            this.txtTelefoneFixo.Location = new System.Drawing.Point(276, 435);
             this.txtTelefoneFixo.Name = "txtTelefoneFixo";
-            this.txtTelefoneFixo.Size = new System.Drawing.Size(163, 23);
+            this.txtTelefoneFixo.Size = new System.Drawing.Size(191, 23);
             this.txtTelefoneFixo.TabIndex = 63;
             // 
             // txtCelular
             // 
             this.txtCelular.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtCelular.Location = new System.Drawing.Point(60, 417);
+            this.txtCelular.Location = new System.Drawing.Point(72, 435);
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(155, 23);
             this.txtCelular.TabIndex = 62;
@@ -196,15 +196,15 @@ namespace AugustosFashion.Views
             "SP",
             "SE",
             "TO"});
-            this.cbUf.Location = new System.Drawing.Point(763, 235);
+            this.cbUf.Location = new System.Drawing.Point(740, 257);
             this.cbUf.Name = "cbUf";
-            this.cbUf.Size = new System.Drawing.Size(121, 25);
+            this.cbUf.Size = new System.Drawing.Size(156, 25);
             this.cbUf.TabIndex = 61;
             // 
             // txtCidade
             // 
             this.txtCidade.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtCidade.Location = new System.Drawing.Point(549, 420);
+            this.txtCidade.Location = new System.Drawing.Point(561, 438);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(336, 23);
             this.txtCidade.TabIndex = 60;
@@ -212,7 +212,7 @@ namespace AugustosFashion.Views
             // txtComplemento
             // 
             this.txtComplemento.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtComplemento.Location = new System.Drawing.Point(549, 360);
+            this.txtComplemento.Location = new System.Drawing.Point(561, 378);
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(336, 23);
             this.txtComplemento.TabIndex = 59;
@@ -220,7 +220,7 @@ namespace AugustosFashion.Views
             // txtBairro
             // 
             this.txtBairro.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtBairro.Location = new System.Drawing.Point(549, 300);
+            this.txtBairro.Location = new System.Drawing.Point(561, 318);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(336, 23);
             this.txtBairro.TabIndex = 58;
@@ -228,15 +228,15 @@ namespace AugustosFashion.Views
             // txtNumero
             // 
             this.txtNumero.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtNumero.Location = new System.Drawing.Point(614, 237);
+            this.txtNumero.Location = new System.Drawing.Point(561, 257);
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(85, 23);
+            this.txtNumero.Size = new System.Drawing.Size(127, 23);
             this.txtNumero.TabIndex = 57;
             // 
             // txtLogradouro
             // 
             this.txtLogradouro.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtLogradouro.Location = new System.Drawing.Point(549, 179);
+            this.txtLogradouro.Location = new System.Drawing.Point(561, 197);
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(335, 23);
             this.txtLogradouro.TabIndex = 56;
@@ -244,16 +244,16 @@ namespace AugustosFashion.Views
             // mtxtCpf
             // 
             this.mtxtCpf.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mtxtCpf.Location = new System.Drawing.Point(92, 354);
+            this.mtxtCpf.Location = new System.Drawing.Point(73, 378);
             this.mtxtCpf.Mask = "000.000.000-00";
             this.mtxtCpf.Name = "mtxtCpf";
-            this.mtxtCpf.Size = new System.Drawing.Size(100, 23);
+            this.mtxtCpf.Size = new System.Drawing.Size(154, 23);
             this.mtxtCpf.TabIndex = 54;
             // 
             // txtEmail
             // 
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEmail.Location = new System.Drawing.Point(60, 309);
+            this.txtEmail.Location = new System.Drawing.Point(72, 318);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(395, 23);
             this.txtEmail.TabIndex = 53;
@@ -262,7 +262,7 @@ namespace AugustosFashion.Views
             // 
             this.dtpDataNascimento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtpDataNascimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataNascimento.Location = new System.Drawing.Point(214, 250);
+            this.dtpDataNascimento.Location = new System.Drawing.Point(226, 256);
             this.dtpDataNascimento.Name = "dtpDataNascimento";
             this.dtpDataNascimento.Size = new System.Drawing.Size(241, 23);
             this.dtpDataNascimento.TabIndex = 52;
@@ -275,7 +275,7 @@ namespace AugustosFashion.Views
             this.cbSexo.Items.AddRange(new object[] {
             "Masculino",
             "Feminino"});
-            this.cbSexo.Location = new System.Drawing.Point(60, 250);
+            this.cbSexo.Location = new System.Drawing.Point(72, 256);
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.Size = new System.Drawing.Size(121, 23);
             this.cbSexo.TabIndex = 51;
@@ -283,7 +283,7 @@ namespace AugustosFashion.Views
             // txtSobreNome
             // 
             this.txtSobreNome.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSobreNome.Location = new System.Drawing.Point(60, 179);
+            this.txtSobreNome.Location = new System.Drawing.Point(73, 197);
             this.txtSobreNome.Name = "txtSobreNome";
             this.txtSobreNome.Size = new System.Drawing.Size(395, 23);
             this.txtSobreNome.TabIndex = 50;
@@ -291,7 +291,7 @@ namespace AugustosFashion.Views
             // txtNome
             // 
             this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtNome.Location = new System.Drawing.Point(60, 124);
+            this.txtNome.Location = new System.Drawing.Point(72, 142);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(395, 23);
             this.txtNome.TabIndex = 49;
@@ -301,7 +301,7 @@ namespace AugustosFashion.Views
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(549, 276);
+            this.label14.Location = new System.Drawing.Point(561, 294);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 21);
             this.label14.TabIndex = 48;
@@ -312,7 +312,7 @@ namespace AugustosFashion.Views
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(549, 336);
+            this.label13.Location = new System.Drawing.Point(561, 354);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(109, 21);
             this.label13.TabIndex = 47;
@@ -323,7 +323,7 @@ namespace AugustosFashion.Views
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(728, 239);
+            this.label12.Location = new System.Drawing.Point(740, 232);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(29, 21);
             this.label12.TabIndex = 46;
@@ -334,7 +334,7 @@ namespace AugustosFashion.Views
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(549, 396);
+            this.label11.Location = new System.Drawing.Point(561, 414);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(58, 21);
             this.label11.TabIndex = 45;
@@ -345,7 +345,7 @@ namespace AugustosFashion.Views
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(549, 235);
+            this.label10.Location = new System.Drawing.Point(561, 232);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(68, 21);
             this.label10.TabIndex = 44;
@@ -356,7 +356,7 @@ namespace AugustosFashion.Views
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(549, 155);
+            this.label9.Location = new System.Drawing.Point(561, 173);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 21);
             this.label9.TabIndex = 43;
@@ -367,7 +367,7 @@ namespace AugustosFashion.Views
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(549, 124);
+            this.label8.Location = new System.Drawing.Point(561, 118);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 21);
             this.label8.TabIndex = 42;
@@ -378,7 +378,7 @@ namespace AugustosFashion.Views
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(60, 356);
+            this.label7.Location = new System.Drawing.Point(72, 354);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 21);
             this.label7.TabIndex = 41;
@@ -389,7 +389,7 @@ namespace AugustosFashion.Views
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(60, 285);
+            this.label6.Location = new System.Drawing.Point(72, 294);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 21);
             this.label6.TabIndex = 40;
@@ -400,7 +400,7 @@ namespace AugustosFashion.Views
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(214, 215);
+            this.label5.Location = new System.Drawing.Point(226, 232);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(150, 21);
             this.label5.TabIndex = 39;
@@ -411,7 +411,7 @@ namespace AugustosFashion.Views
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(60, 215);
+            this.label4.Location = new System.Drawing.Point(72, 232);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 21);
             this.label4.TabIndex = 38;
@@ -422,7 +422,7 @@ namespace AugustosFashion.Views
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(60, 155);
+            this.label3.Location = new System.Drawing.Point(72, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 21);
             this.label3.TabIndex = 37;
@@ -433,7 +433,7 @@ namespace AugustosFashion.Views
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(60, 100);
+            this.label2.Location = new System.Drawing.Point(72, 118);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 21);
             this.label2.TabIndex = 36;
@@ -444,7 +444,7 @@ namespace AugustosFashion.Views
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(416, 511);
+            this.label19.Location = new System.Drawing.Point(428, 524);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(144, 21);
             this.label19.TabIndex = 71;
@@ -455,7 +455,7 @@ namespace AugustosFashion.Views
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(61, 544);
+            this.label20.Location = new System.Drawing.Point(73, 562);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(52, 21);
             this.label20.TabIndex = 72;
@@ -466,7 +466,7 @@ namespace AugustosFashion.Views
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label21.Location = new System.Drawing.Point(60, 585);
+            this.label21.Location = new System.Drawing.Point(72, 603);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(65, 21);
             this.label21.TabIndex = 73;
@@ -477,7 +477,7 @@ namespace AugustosFashion.Views
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label22.Location = new System.Drawing.Point(549, 544);
+            this.label22.Location = new System.Drawing.Point(561, 562);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(51, 21);
             this.label22.TabIndex = 74;
@@ -488,7 +488,7 @@ namespace AugustosFashion.Views
             this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label23.Location = new System.Drawing.Point(549, 585);
+            this.label23.Location = new System.Drawing.Point(561, 603);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(106, 21);
             this.label23.TabIndex = 75;
@@ -497,25 +497,25 @@ namespace AugustosFashion.Views
             // txtBanco
             // 
             this.txtBanco.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtBanco.Location = new System.Drawing.Point(131, 542);
+            this.txtBanco.Location = new System.Drawing.Point(143, 560);
             this.txtBanco.Name = "txtBanco";
-            this.txtBanco.Size = new System.Drawing.Size(290, 23);
+            this.txtBanco.Size = new System.Drawing.Size(233, 23);
             this.txtBanco.TabIndex = 76;
             // 
             // txtAgencia
             // 
             this.txtAgencia.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtAgencia.Location = new System.Drawing.Point(131, 583);
+            this.txtAgencia.Location = new System.Drawing.Point(143, 601);
             this.txtAgencia.Name = "txtAgencia";
-            this.txtAgencia.Size = new System.Drawing.Size(290, 23);
+            this.txtAgencia.Size = new System.Drawing.Size(233, 23);
             this.txtAgencia.TabIndex = 77;
             // 
             // txtConta
             // 
             this.txtConta.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtConta.Location = new System.Drawing.Point(606, 542);
+            this.txtConta.Location = new System.Drawing.Point(673, 560);
             this.txtConta.Name = "txtConta";
-            this.txtConta.Size = new System.Drawing.Size(279, 23);
+            this.txtConta.Size = new System.Drawing.Size(224, 23);
             this.txtConta.TabIndex = 78;
             // 
             // cbTipoConta
@@ -528,7 +528,7 @@ namespace AugustosFashion.Views
             "Corrente",
             "Poupança",
             "Salário"});
-            this.cbTipoConta.Location = new System.Drawing.Point(661, 585);
+            this.cbTipoConta.Location = new System.Drawing.Point(673, 603);
             this.cbTipoConta.Name = "cbTipoConta";
             this.cbTipoConta.Size = new System.Drawing.Size(223, 23);
             this.cbTipoConta.TabIndex = 79;
@@ -538,7 +538,7 @@ namespace AugustosFashion.Views
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(63, 463);
+            this.label17.Location = new System.Drawing.Point(73, 481);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(194, 21);
             this.label17.TabIndex = 80;
@@ -547,18 +547,18 @@ namespace AugustosFashion.Views
             // txtComissao
             // 
             this.txtComissao.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtComissao.Location = new System.Drawing.Point(264, 461);
+            this.txtComissao.Location = new System.Drawing.Point(276, 479);
             this.txtComissao.Name = "txtComissao";
-            this.txtComissao.Size = new System.Drawing.Size(111, 23);
+            this.txtComissao.Size = new System.Drawing.Size(191, 23);
             this.txtComissao.TabIndex = 81;
             // 
             // mtxtCep
             // 
             this.mtxtCep.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mtxtCep.Location = new System.Drawing.Point(592, 124);
+            this.mtxtCep.Location = new System.Drawing.Point(561, 142);
             this.mtxtCep.Mask = "00000-000";
             this.mtxtCep.Name = "mtxtCep";
-            this.mtxtCep.Size = new System.Drawing.Size(292, 23);
+            this.mtxtCep.Size = new System.Drawing.Size(335, 23);
             this.mtxtCep.TabIndex = 82;
             // 
             // button1

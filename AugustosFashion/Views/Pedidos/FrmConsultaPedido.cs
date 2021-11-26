@@ -68,6 +68,7 @@ namespace AugustosFashion.Views.Pedidos
             lblTotalLiquido.Text = _pedido.TotalLiquido.ValorFormatado;
             lblFormaPagamento.Text = _pedido.FormaPagamento;
             lblLucro.Text = _pedido.Lucro.ValorFormatado;
+            lblNumeroPedido.Text = _pedido.IdPedido.ToString();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -81,7 +82,10 @@ namespace AugustosFashion.Views.Pedidos
             DialogResult result = MessageBox.Show("Tem certeza que deseja eliminar esta venda?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
+            {
                 EliminarPedido();
+                Close();
+            }              
         }
 
         private void EliminarPedido()

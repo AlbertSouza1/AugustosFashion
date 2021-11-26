@@ -69,6 +69,8 @@ namespace AugustosFashion.Views.Pedidos
             BtnBuscarColaborador.Visible = false;
             txtBuscaCliente.Visible = false;
             txtBuscarColaborador.Visible = false;
+            lblSelecionarCliente.Visible = false;
+            lblSelecionarColaborador.Visible = false;
         }
 
         private void BtnBuscarProdutos_Click_1(object sender, EventArgs e)
@@ -90,6 +92,7 @@ namespace AugustosFashion.Views.Pedidos
             numDesconto.Value = _produto.Desconto.RetornaValor;
 
             CalcularPrecoLiquido();
+            CalcularTotalProduto();
         }
 
         private void RecuperarQuantidadePreviamenteVendida()
@@ -313,7 +316,7 @@ namespace AugustosFashion.Views.Pedidos
         }
 
         private void numQuantidade_KeyUp(object sender, KeyEventArgs e)
-        {
+        {          
             CalcularTotalProduto();
             CalcularTotalDesconto();
             CalcularPrecoLiquido();
@@ -335,9 +338,13 @@ namespace AugustosFashion.Views.Pedidos
         }
         private void numQuantidade_ValueChanged(object sender, EventArgs e)
         {
-            CalcularTotalProduto();
-            CalcularTotalDesconto();
-            CalcularPrecoLiquido();
+            if(_produto == null)
+            {
+                CalcularTotalProduto();
+                CalcularTotalDesconto();
+                CalcularPrecoLiquido();
+            }
+            
         }
         private void numDesconto_KeyUp(object sender, KeyEventArgs e)
         {
@@ -350,8 +357,8 @@ namespace AugustosFashion.Views.Pedidos
             try
             {
                 double preco = double.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100;
-                double quantidade = int.Parse(numQuantidade.Text);
-                double desconto = double.Parse(numDesconto.Text);
+                double quantidade = Convert.ToInt32(numQuantidade.Value);
+                double desconto = Convert.ToDouble(numDesconto.Value);
 
                 lblTotalProduto.Text =
                     ((preco - desconto) * quantidade).ToString("c");
@@ -429,6 +436,12 @@ namespace AugustosFashion.Views.Pedidos
         private int RecuperarIdProdutoDaGrid()
         {
             return Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
+        }
+
+        private void numQuantidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+                e.Handled = true;
         }
     }
 }

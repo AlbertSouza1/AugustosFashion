@@ -225,6 +225,10 @@ namespace AugustosFashion.Views.Produtos
             var precocusto = numPrecoCusto.Value > 0 ? numPrecoCusto.Value : 1;
             var precoVenda = numPrecoVenda.Value;
             var porcentagemLucro = ((precoVenda - precocusto) / precocusto * 100);
+
+            if (porcentagemLucro > numPorcentagemLucro.Maximum)
+                porcentagemLucro = numPorcentagemLucro.Maximum;
+
             numPorcentagemLucro.Value = porcentagemLucro > 0 ? porcentagemLucro : 0;
         }
 
