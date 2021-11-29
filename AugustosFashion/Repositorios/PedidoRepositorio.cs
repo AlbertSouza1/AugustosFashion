@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Helpers;
+using AugustosFashionModels.Entidades.NomesCompletos;
 using AugustosFashionModels.Entidades.Pedidos;
 using Dapper;
 using System;
@@ -279,20 +280,20 @@ namespace AugustosFashion.Repositorios
 
         public static List<PedidoListagem> ListarPedidos(List<DateTime> datas, bool eliminado)
         {
-            var strSqlPedido = @"select  p.IdPedido, concat(u.Nome,' ',u.SobreNome) as NomeCliente,
-				concat(u2.Nome, ' ', u2.SobreNome) as NomeColaborador,
-				p.DataEmissao,p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido, p.Eliminado
+            var strSqlPedido = @"select  p.IdPedido, p.DataEmissao,p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido, p.Eliminado,
+                (SUM(pp.Total) - SUM(pp.PrecoCusto * pp.Quantidade)) as Lucro,
+                u.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, u2.Nome, u2.SobreNome                
 				from Pedidos p
+                inner join Pedido_Produto pp on p.IdPedido = pp.IdPedido
 				inner join Colaboradores as co on p.IdColaborador = co.IdColaborador
 				inner join Clientes as c on p.IdCliente = c.IdCliente				
 				inner join Usuarios u on u.IdUsuario = c.IdUsuario
 				inner join Usuarios u2 on u2.IdUsuario = co.IdUsuario
                 where DataEmissao between @dataInicial and (@dataFinal + ' 23:59')
                 and p.Eliminado = @eliminado
+                group by p.IdPedido, p.DataEmissao, p.FormaPagamento, p.TotalBruto, p.TotalDesconto, p.TotalLiquido, p.Eliminado,
+				u.IdUsuario, u.Nome, u.SobreNome, u.IdUsuario, u2.Nome, u2.SobreNome
                 ";
-
-            var strSqlRecuperaLucro = @"SELECT (SUM(Total) - SUM(PrecoCusto * Quantidade)) as Lucro
-                FROM Pedido_Produto WHERE IdPedido = @IdPedido group by IdPedido";
 
             try
             {
@@ -300,14 +301,12 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    var pedidos = sqlCon.Query<PedidoListagem>(
-                        strSqlPedido, new {dataInicial = datas[0], dataFinal = datas[1], eliminado}
+                    var pedidos = sqlCon.Query<PedidoListagem, NomeCompleto, NomeCompleto, PedidoListagem>(
+                        strSqlPedido,
+                        (pedido, nomeCliente, nomeColaborador) => MapearPedidoListagem(pedido, nomeCliente, nomeColaborador),
+                        new {dataInicial = datas[0], dataFinal = datas[1], eliminado},
+                        splitOn: "IdUsuario"
                      ).ToList();
-
-                    foreach (var pedido in pedidos)
-                    {
-                        pedido.Lucro = sqlCon.Query<decimal>(strSqlRecuperaLucro, new {pedido.IdPedido}).FirstOrDefault();
-                    }
 
                     return pedidos;
                 }
@@ -316,6 +315,14 @@ namespace AugustosFashion.Repositorios
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private static PedidoListagem MapearPedidoListagem(PedidoListagem pedido, NomeCompleto nomeCliente, NomeCompleto nomeColaborador)
+        {
+            pedido.NomeCliente = nomeCliente;
+            pedido.NomeColaborador = nomeColaborador;
+
+            return pedido;
         }
     }
 }

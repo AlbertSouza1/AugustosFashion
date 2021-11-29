@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AugustosFashionModels.Entidades.NomesCompletos
+﻿namespace AugustosFashionModels.Entidades.NomesCompletos
 {
     public class NomeCompleto
     {
