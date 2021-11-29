@@ -21,8 +21,17 @@ namespace AugustosFashion.Repositorios
                 using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
                     sqlCon.Open();
-                   
-                    sqlCon.Execute(strSqlProduto, produto);                      
+
+                    sqlCon.Execute(strSqlProduto,
+                   new
+                   {
+                       produto.Nome,
+                       produto.CodigoBarras,
+                       produto.Fabricante,
+                       PrecoCusto = produto.PrecoCusto.RetornaValor,
+                       PrecoVenda = produto.PrecoVenda.RetornaValor,
+                       produto.Estoque
+                   });                      
                 }
             }
             catch (Exception ex)
@@ -64,7 +73,17 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    sqlCon.Execute(strSqlProduto, produto);
+                    sqlCon.Execute(strSqlProduto,
+                    new
+                    {                      
+                        produto.Nome,
+                        produto.CodigoBarras,
+                        produto.Fabricante,
+                        PrecoCusto = produto.PrecoCusto.RetornaValor,
+                        PrecoVenda = produto.PrecoVenda.RetornaValor,
+                        produto.Estoque,
+                        produto.IdProduto
+                    });
                 }
             }
             catch (Exception ex)

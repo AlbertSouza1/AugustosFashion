@@ -28,32 +28,14 @@ namespace AugustosFashion.Controllers.Produtos
 
         internal void AlterarProduto(ProdutoModel produto)
         {
-            try
-            {
-                ProdutoRepositorio.AlterarProduto(produto);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            ProdutoRepositorio.AlterarProduto(produto);
         }
 
-        //internal void ExcluirProduto(int idProduto)
-        //{
-        //    try
-        //    {
-        //        ProdutoRepositorio.ExcluirProduto(idProduto);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
         internal void InativarProduto(int idProduto)
         {
             try
             {
-               ProdutoRepositorio.InativarProduto(idProduto);
+                ProdutoRepositorio.InativarProduto(idProduto);
             }
             catch (Exception ex)
             {

@@ -76,7 +76,7 @@ namespace AugustosFashion.Views.Produtos
             this.btnCadastrarProduto.Location = new System.Drawing.Point(425, 629);
             this.btnCadastrarProduto.Name = "btnCadastrarProduto";
             this.btnCadastrarProduto.Size = new System.Drawing.Size(135, 37);
-            this.btnCadastrarProduto.TabIndex = 112;
+            this.btnCadastrarProduto.TabIndex = 8;
             this.btnCadastrarProduto.Text = "Cadastrar";
             this.btnCadastrarProduto.UseVisualStyleBackColor = false;
             this.btnCadastrarProduto.Click += new System.EventHandler(this.btnCadastrarProduto_Click);
@@ -87,7 +87,7 @@ namespace AugustosFashion.Views.Produtos
             this.txtFabricante.Location = new System.Drawing.Point(274, 271);
             this.txtFabricante.Name = "txtFabricante";
             this.txtFabricante.Size = new System.Drawing.Size(462, 23);
-            this.txtFabricante.TabIndex = 103;
+            this.txtFabricante.TabIndex = 3;
             // 
             // txtLogradouro
             // 
@@ -102,7 +102,7 @@ namespace AugustosFashion.Views.Produtos
             this.txtNome.Location = new System.Drawing.Point(274, 153);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(462, 23);
-            this.txtNome.TabIndex = 94;
+            this.txtNome.TabIndex = 1;
             // 
             // label14
             // 
@@ -199,7 +199,7 @@ namespace AugustosFashion.Views.Produtos
             this.mtxtCodigoBarras.Mask = "000000000000";
             this.mtxtCodigoBarras.Name = "mtxtCodigoBarras";
             this.mtxtCodigoBarras.Size = new System.Drawing.Size(462, 23);
-            this.mtxtCodigoBarras.TabIndex = 125;
+            this.mtxtCodigoBarras.TabIndex = 2;
             this.mtxtCodigoBarras.ValidatingType = typeof(int);
             // 
             // numEstoque
@@ -213,7 +213,7 @@ namespace AugustosFashion.Views.Produtos
             0});
             this.numEstoque.Name = "numEstoque";
             this.numEstoque.Size = new System.Drawing.Size(462, 23);
-            this.numEstoque.TabIndex = 130;
+            this.numEstoque.TabIndex = 4;
             // 
             // numPrecoCusto
             // 
@@ -227,7 +227,7 @@ namespace AugustosFashion.Views.Produtos
             0});
             this.numPrecoCusto.Name = "numPrecoCusto";
             this.numPrecoCusto.Size = new System.Drawing.Size(462, 23);
-            this.numPrecoCusto.TabIndex = 131;
+            this.numPrecoCusto.TabIndex = 5;
             this.numPrecoCusto.ValueChanged += new System.EventHandler(this.numPrecoCusto_ValueChanged);
             this.numPrecoCusto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numPrecoCusto_KeyUp);
             // 
@@ -243,7 +243,7 @@ namespace AugustosFashion.Views.Produtos
             0});
             this.numPrecoVenda.Name = "numPrecoVenda";
             this.numPrecoVenda.Size = new System.Drawing.Size(462, 23);
-            this.numPrecoVenda.TabIndex = 132;
+            this.numPrecoVenda.TabIndex = 7;
             this.numPrecoVenda.ValueChanged += new System.EventHandler(this.numPrecoVenda_ValueChanged);
             this.numPrecoVenda.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numPrecoVenda_KeyUp);
             // 
@@ -273,7 +273,7 @@ namespace AugustosFashion.Views.Produtos
             0});
             this.numPorcentagemLucro.Name = "numPorcentagemLucro";
             this.numPorcentagemLucro.Size = new System.Drawing.Size(462, 23);
-            this.numPorcentagemLucro.TabIndex = 159;
+            this.numPorcentagemLucro.TabIndex = 6;
             this.numPorcentagemLucro.ValueChanged += new System.EventHandler(this.numPorcentagemLucro_ValueChanged);
             this.numPorcentagemLucro.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numPorcentagemLucro_KeyUp);
             // 

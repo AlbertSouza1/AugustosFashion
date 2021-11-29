@@ -40,8 +40,8 @@ namespace AugustosFashion.Views.Produtos
                 Nome = txtNome.Text,
                 CodigoBarras = RemoveNaoNumericos.RetornarApenasNumeros(mtxtCodigoBarras.Text),
                 Fabricante = txtFabricante.Text,
-                PrecoCusto = double.Parse(numPrecoCusto.Text),
-                PrecoVenda = double.Parse(numPrecoVenda.Text),
+                PrecoCusto = decimal.Parse(numPrecoCusto.Text),
+                PrecoVenda = decimal.Parse(numPrecoVenda.Text),
                 Estoque = int.Parse(numEstoque.Text)
             };
         }
@@ -113,11 +113,19 @@ namespace AugustosFashion.Views.Produtos
             numPorcentagemLucro.Value = lucro < numPorcentagemLucro.Maximum ? lucro : 0;
         }
 
+        private void ValidarPrecoVenda()
+        {
+            if (numPrecoVenda.Value < numPrecoCusto.Value)
+            {
+                numPrecoVenda.Value = numPrecoCusto.Value;
+            }
+        }
         private void numPrecoVenda_ValueChanged(object sender, EventArgs e)
         {
             if (!AtribuirZeroACamposNumericosVazios())
                 return;
 
+            ValidarPrecoVenda();
             AtualizarPorcentagemLucro();
         }
 

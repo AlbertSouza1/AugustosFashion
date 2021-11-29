@@ -9,23 +9,16 @@ namespace AugustosFashion.Controllers.Produtos
 {
     public class CadastroProdutoController
     {
-        internal void AbrirFormCadastroProduto()
+        public void AbrirFormCadastroProduto()
         {
             var frmCadastroProduto = new FrmCadastroProduto(this);
             frmCadastroProduto.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             frmCadastroProduto.Show();
         }
 
-        internal void CadastrarProduto(ProdutoModel produto)
+        public void CadastrarProduto(ProdutoModel produto)
         {
-            try
-            {
-                ProdutoRepositorio.CadastrarProduto(produto);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            ProdutoRepositorio.CadastrarProduto(produto);
         }
     }
 }

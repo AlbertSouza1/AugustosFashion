@@ -368,9 +368,7 @@ namespace AugustosFashion.Views.Pedidos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                //numDesconto.Value = 0;
-                //numQuantidade.Value = 0;
+                MessageBox.Show("Insira valores válidos");
             }
         }
 

@@ -25,8 +25,8 @@ namespace AugustosFashion.Views.Produtos
             txtFabricante.Text = _produto.Fabricante;
             mtxtCodigoBarras.Text = _produto.CodigoBarras;
             numEstoque.Text = _produto.Estoque.ToString();
-            numPrecoCusto.Text = _produto.PrecoCusto.ToString();
-            numPrecoVenda.Text = _produto.PrecoVenda.ToString();
+            numPrecoCusto.Text = _produto.PrecoCusto.RetornaValor.ToString();
+            numPrecoVenda.Text = _produto.PrecoVenda.RetornaValor.ToString();
         }
 
         public void CalcularPrecoVendaPorPorcentagemDeLucro()
@@ -60,8 +60,8 @@ namespace AugustosFashion.Views.Produtos
             _produto.CodigoBarras = mtxtCodigoBarras.Text;
             _produto.Fabricante = txtFabricante.Text;
             _produto.Estoque = int.Parse(numEstoque.Text);
-            _produto.PrecoVenda = Convert.ToDouble(numPrecoVenda.Value);
-            _produto.PrecoCusto = Convert.ToDouble(numPrecoCusto.Value);
+            _produto.PrecoVenda = Convert.ToDecimal(numPrecoVenda.Value);
+            _produto.PrecoCusto = Convert.ToDecimal(numPrecoCusto.Value);
         }
         private bool ValidarCamposDeProduto()
         {
@@ -210,6 +210,7 @@ namespace AugustosFashion.Views.Produtos
             if (!AtribuirZeroACamposNumericosVazios())
                 return;
 
+            ValidarPrecoVenda();
             AtualizarPorcentagemLucro();
         }
 
@@ -217,7 +218,6 @@ namespace AugustosFashion.Views.Produtos
         {
             if (!AtribuirZeroACamposNumericosVazios())
                 return;
-            AtualizarPorcentagemLucro();
         }
 
         private void AtualizarPorcentagemLucro()
@@ -246,6 +246,13 @@ namespace AugustosFashion.Views.Produtos
                 return;
 
             CalcularPrecoVendaPorPorcentagemDeLucro();
+        }
+        private void ValidarPrecoVenda()
+        {
+            if (numPrecoVenda.Value < numPrecoCusto.Value)
+            {
+                numPrecoVenda.Value = numPrecoCusto.Value;
+            }
         }
     }
 }

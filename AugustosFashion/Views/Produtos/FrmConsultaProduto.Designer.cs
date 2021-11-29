@@ -71,7 +71,7 @@
             0});
             this.numPrecoVenda.Name = "numPrecoVenda";
             this.numPrecoVenda.Size = new System.Drawing.Size(462, 23);
-            this.numPrecoVenda.TabIndex = 150;
+            this.numPrecoVenda.TabIndex = 8;
             this.numPrecoVenda.ValueChanged += new System.EventHandler(this.numPrecoVenda_ValueChanged);
             this.numPrecoVenda.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numPrecoVenda_KeyUp);
             // 
@@ -86,7 +86,7 @@
             0});
             this.numPrecoCusto.Name = "numPrecoCusto";
             this.numPrecoCusto.Size = new System.Drawing.Size(462, 23);
-            this.numPrecoCusto.TabIndex = 149;
+            this.numPrecoCusto.TabIndex = 6;
             this.numPrecoCusto.ValueChanged += new System.EventHandler(this.numPrecoCusto_ValueChanged);
             this.numPrecoCusto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numPrecoCusto_KeyUp);
             // 
@@ -101,7 +101,7 @@
             0});
             this.numEstoque.Name = "numEstoque";
             this.numEstoque.Size = new System.Drawing.Size(176, 23);
-            this.numEstoque.TabIndex = 148;
+            this.numEstoque.TabIndex = 4;
             // 
             // mtxtCodigoBarras
             // 
@@ -110,7 +110,7 @@
             this.mtxtCodigoBarras.Mask = "000000000000";
             this.mtxtCodigoBarras.Name = "mtxtCodigoBarras";
             this.mtxtCodigoBarras.Size = new System.Drawing.Size(462, 23);
-            this.mtxtCodigoBarras.TabIndex = 146;
+            this.mtxtCodigoBarras.TabIndex = 2;
             this.mtxtCodigoBarras.ValidatingType = typeof(int);
             // 
             // label5
@@ -146,7 +146,7 @@
             this.txtFabricante.Location = new System.Drawing.Point(244, 289);
             this.txtFabricante.Name = "txtFabricante";
             this.txtFabricante.Size = new System.Drawing.Size(462, 23);
-            this.txtFabricante.TabIndex = 141;
+            this.txtFabricante.TabIndex = 3;
             // 
             // txtNome
             // 
@@ -154,7 +154,7 @@
             this.txtNome.Location = new System.Drawing.Point(244, 171);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(462, 23);
-            this.txtNome.TabIndex = 140;
+            this.txtNome.TabIndex = 1;
             // 
             // label14
             // 
@@ -279,7 +279,7 @@
             0});
             this.numAddEstoque.Name = "numAddEstoque";
             this.numAddEstoque.Size = new System.Drawing.Size(156, 23);
-            this.numAddEstoque.TabIndex = 154;
+            this.numAddEstoque.TabIndex = 5;
             // 
             // btnAdicionarEstoque
             // 
@@ -337,7 +337,7 @@
             0});
             this.numPorcentagemLucro.Name = "numPorcentagemLucro";
             this.numPorcentagemLucro.Size = new System.Drawing.Size(462, 23);
-            this.numPorcentagemLucro.TabIndex = 158;
+            this.numPorcentagemLucro.TabIndex = 7;
             this.numPorcentagemLucro.ValueChanged += new System.EventHandler(this.numPorcentagemLucro_ValueChanged);
             this.numPorcentagemLucro.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numPorcentagemLucro_KeyUp);
             // 
