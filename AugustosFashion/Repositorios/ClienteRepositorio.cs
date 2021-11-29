@@ -52,10 +52,10 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static ClienteModel BuscarNomeDoCliente(int idCliente)
+        public static ClienteModel BuscarClienteDoPedido(int idCliente)
         {
             var strSqlBusca = @"
-                SELECT c.IdCliente, u.IdUsuario, u.Nome, u.Sobrenome FROM Clientes c
+                SELECT c.IdCliente, u.Email, u.IdUsuario, u.Nome, u.Sobrenome FROM Clientes c
                 INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario          
                 where IdCliente = @idCliente";
 
@@ -65,11 +65,12 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<ClienteModel, NomeCompleto, ClienteModel>(
+                    var a = sqlCon.Query<ClienteModel, NomeCompleto, ClienteModel>(
                         strSqlBusca,
                         (clienteModel, nomeCompleto) => MapearClienteParaRecuperarNome(clienteModel, nomeCompleto), new { idCliente },
                         splitOn: "IdUsuario"
                      ).FirstOrDefault();
+                    return a;
                 }
             }
             catch (Exception ex)

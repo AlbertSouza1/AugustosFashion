@@ -239,22 +239,7 @@ namespace AugustosFashion.Views.Pedidos
                 return false;
             }
         }
-
-        private void EnviarComprovantePorEmail()
-        {
-            if (checkEnviarEmail.Checked)
-            {
-                try
-                {
-                    _cadastroPedidoController.EnviarEmailParaCliente(_cliente, _pedido);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
+      
         private void AlterarPedido()
         {
             if (dgvCarrinho.RowCount == 0)
@@ -415,13 +400,44 @@ namespace AugustosFashion.Views.Pedidos
         private void BtnFinalizarPedido_Click(object sender, EventArgs e)
         {
             if (_pedido.IdPedido != 0)
+            {
                 AlterarPedido();
+                EnviarAlteracaoPedidoPorEmail();
+            }
+                
             else
             {
                 EfeutarPedido();
-                EnviarComprovantePorEmail();
+                EnviarNovoPedidoPorEmail();
             }
-
+        }
+        private void EnviarNovoPedidoPorEmail()
+        {
+            if (checkEnviarEmail.Checked)
+            {
+                try
+                {
+                    _cadastroPedidoController.EnviarEmailNovoPedido(_cliente, _pedido);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        private void EnviarAlteracaoPedidoPorEmail()
+        {
+            if (checkEnviarEmail.Checked)
+            {
+                try
+                {
+                    _cadastroPedidoController.EnviarEmailAlteracaoPedido(_cliente, _pedido);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void AtualizarTituloParaAlteracao()

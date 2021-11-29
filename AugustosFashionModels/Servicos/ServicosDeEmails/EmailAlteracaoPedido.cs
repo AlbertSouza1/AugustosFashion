@@ -8,21 +8,19 @@ using System.Text;
 
 namespace AugustosFashionModels.Servicos.ServicosDeEmails
 {
-    public class ServicoDeEmail : IServicoDeEmail
+    public class EmailAlteracaoPedido : IServicoDeEmail
     {
         private readonly UsuarioModel _destinatario;
         private readonly PedidoModel _pedido;
-        private readonly string _emailRemetente;
-        private readonly string _senhaRemetente;
-
-        public ServicoDeEmail(UsuarioModel destinatario, PedidoModel pedido, EmailLojaModel remetente)
+        private readonly EmailLojaModel _emailRemetente;
+        
+        public EmailAlteracaoPedido(UsuarioModel destinatario, PedidoModel pedido, EmailLojaModel remetente)
         {
             _destinatario = destinatario;
-            _emailRemetente = remetente.Email;
-            _senhaRemetente = remetente.RetornarSenhaDescriptografada();
+            _emailRemetente = remetente;
             _pedido = pedido;
         }
-       
+
         public string ConstruirCorpoDoEmail()
         {
             StringBuilder mensagem = new StringBuilder();
@@ -30,9 +28,9 @@ namespace AugustosFashionModels.Servicos.ServicosDeEmails
             mensagem.Append($"Olá, {_destinatario.NomeCompleto.Nome}!");
             mensagem.AppendLine();
             mensagem.AppendLine();
-            mensagem.Append($"Seu pedido na Agustu's Fashion foi efetuado com sucesso.");
+            mensagem.Append($"Seu pedido na Agustu's Fashion foi alterado com sucesso.");
             mensagem.AppendLine();
-            mensagem.Append($"Verifique se os itens listados abaixo estão de acordo com sua solicitação.");
+            mensagem.Append($"Verifique se os itens listados abaixo estão de acordo com a alteração feita.");
             mensagem.AppendLine();
             mensagem.AppendLine();
             foreach (var item in _pedido.Produtos)
@@ -51,6 +49,29 @@ namespace AugustosFashionModels.Servicos.ServicosDeEmails
             return mensagem.ToString();
         }
 
+        public MailMessage PrepararMensagemDeEmail()
+        {
+            MailMessage message = new MailMessage();
+            message.To.Add(_destinatario.Email.RetornaValor);
+            message.Body = ConstruirCorpoDoEmail();
+            message.Subject = "Alteração de pedido em Augustu's Fashion";
+            message.From = new MailAddress(_emailRemetente.Email);
+
+            return message;
+        }
+
+        public SmtpClient PrepararSmtp()
+        {
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.UseDefaultCredentials = false;
+            smtp.EnableSsl = true;
+            smtp.Port = 587;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Credentials = new NetworkCredential(_emailRemetente.Email, _emailRemetente.RetornarSenhaDescriptografada());
+
+            return smtp;
+        }
+
         public void EnviarEmail()
         {
             var mensagem = PrepararMensagemDeEmail();
@@ -64,29 +85,6 @@ namespace AugustosFashionModels.Servicos.ServicosDeEmails
             {
                 throw new Exception(ex.Message);
             }
-        }
-
-        public MailMessage PrepararMensagemDeEmail()
-        {
-            MailMessage message = new MailMessage();
-            message.To.Add(_destinatario.Email.RetornaValor);
-            message.Body = ConstruirCorpoDoEmail();
-            message.Subject = "Confirmação de Compra em Augustu's Fashion";
-            message.From = new MailAddress(_emailRemetente);
-
-            return message;
-        }
-
-        public SmtpClient PrepararSmtp()
-        {
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-            smtp.UseDefaultCredentials = false;
-            smtp.EnableSsl = true;
-            smtp.Port = 587;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Credentials = new NetworkCredential(_emailRemetente, _senhaRemetente);
-
-            return smtp;
         }
     }
 }

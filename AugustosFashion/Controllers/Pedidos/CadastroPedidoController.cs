@@ -30,7 +30,7 @@ namespace AugustosFashion.Controllers.Pedidos
         {
             try
             {
-                return ClienteRepositorio.BuscarNomeDoCliente(idCliente);
+                return ClienteRepositorio.BuscarClienteDoPedido(idCliente);
             }
             catch (Exception ex)
             {
@@ -98,9 +98,13 @@ namespace AugustosFashion.Controllers.Pedidos
             _frmCadastroPedido.CarregarDadosDeColaboradorSelecionado(colaborador);
         }
 
-        internal void EnviarEmailParaCliente(ClienteModel cliente, PedidoModel pedido)
+        public void EnviarEmailNovoPedido(ClienteModel cliente, PedidoModel pedido)
         {
-            new ServicoEmailController().PrepararServicoDeEmailDePedido(cliente, pedido);
+            new ServicoEmailController().PrepararEmailNovoPedido(cliente, pedido);
+        }
+        public void EnviarEmailAlteracaoPedido(ClienteModel cliente, PedidoModel pedido)
+        {
+            new ServicoEmailController().PrepararEmailAlteracaoPedido(cliente, pedido);
         }
     }
 }

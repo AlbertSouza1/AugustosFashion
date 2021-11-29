@@ -87,8 +87,9 @@
     <Compile Include="Helpers\ValidadoresCadastro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\Criptografias\Criptografia.cs" />
+    <Compile Include="Servicos\ServicosDeEmails\EmailAlteracaoPedido.cs" />
     <Compile Include="Servicos\ServicosDeEmails\IServicoDeEmail.cs" />
-    <Compile Include="Servicos\ServicosDeEmails\ServicoDeEmail.cs" />
+    <Compile Include="Servicos\ServicosDeEmails\EmailNovoPedido.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

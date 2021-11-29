@@ -21,11 +21,19 @@ namespace AugustosFashion.Controllers.ServicosEmail
             }
         }
 
-        public void PrepararServicoDeEmailDePedido(UsuarioModel destinatario, PedidoModel pedido)
+        public void PrepararEmailNovoPedido(UsuarioModel destinatario, PedidoModel pedido)
         {
             var email = RecuperarInformacoesDeEmail();
 
-            var servicoDeEmail = new ServicoDeEmail(destinatario, pedido, email);
+            var servicoDeEmail = new EmailNovoPedido(destinatario, pedido, email);
+
+            EnviarEmail(servicoDeEmail);
+        }
+        public void PrepararEmailAlteracaoPedido(UsuarioModel destinatario, PedidoModel pedido)
+        {
+            var email = RecuperarInformacoesDeEmail();
+
+            var servicoDeEmail = new EmailAlteracaoPedido(destinatario, pedido, email);
 
             EnviarEmail(servicoDeEmail);
         }
