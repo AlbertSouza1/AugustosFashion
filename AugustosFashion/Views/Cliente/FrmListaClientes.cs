@@ -111,9 +111,9 @@ namespace AugustosFashion.Views
             if (VerificarSeHaRegistroSelecionado())
             {
                 int id = RecuperarIdClienteSelecionado();
-
-                this.Close();
-                new AlteraClienteController().AbrirFormularioAlteracao(id);
+                
+                new AlteraClienteController().ConsultarCliente(id);
+                Close();
             }
             else
             {

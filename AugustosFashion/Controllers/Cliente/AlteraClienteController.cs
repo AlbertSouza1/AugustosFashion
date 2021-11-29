@@ -3,34 +3,23 @@ using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views;
 using System;
-using System.Windows.Forms;
 
 namespace AugustosFashion.Controllers.Cliente
 {
     public class AlteraClienteController
     {
-        public void AbrirFormularioAlteracao(int id)
+        public void AbrirFormularioAlteracao(ClienteModel cliente)
         {
-            var frmAlteracaoCliente = new FrmAlterarCliente(this);
+            var frmAlteracaoCliente = new FrmAlterarCliente(this, cliente);
             frmAlteracaoCliente.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
 
             frmAlteracaoCliente.Show();
 
-            try
-            {
-                ClienteModel cliente = RecuperarInfoCliente(id);
-
-                PreencherCamposParaAlteracao(frmAlteracaoCliente, cliente);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Não foi possível recuperar as informações do cliente. Erro: " + ex.Message);
-            }
         }
-
-        public void PreencherCamposParaAlteracao(FrmAlterarCliente frmAlterarCliente, ClienteModel cliente)
+        public void ConsultarCliente(int id)
         {
-            frmAlterarCliente.ObterDadosParaAlteracao(cliente);
+            var cliente = ClienteRepositorio.RecuperarInfoCliente(id);
+            AbrirFormularioAlteracao(cliente);
         }
 
         public string AlterarCliente(ClienteModel cliente)
@@ -63,21 +52,6 @@ namespace AugustosFashion.Controllers.Cliente
                 throw new Exception(ex.Message);
             }
         }
-
-        public ClienteModel RecuperarInfoCliente(int idCliente)
-        {
-            try
-            {
-                var cliente = ClienteRepositorio.RecuperarInfoCliente(idCliente);
-
-                return cliente;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         internal void InativarCliente(int idCliente)
         {
             try

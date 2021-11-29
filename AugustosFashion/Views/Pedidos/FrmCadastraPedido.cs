@@ -242,11 +242,9 @@ namespace AugustosFashion.Views.Pedidos
       
         private void AlterarPedido()
         {
-            if (dgvCarrinho.RowCount == 0)
-            {
-                MessageBox.Show("Não é possível salvar um pedido sem produtos.");
+            if (!VerificarSeNaoHaCamposInvalidos())
                 return;
-            }
+          
             try
             {
                 SetarInformacoesDoPedido();
@@ -402,16 +400,16 @@ namespace AugustosFashion.Views.Pedidos
             if (_pedido.IdPedido != 0)
             {
                 AlterarPedido();
-                EnviarAlteracaoPedidoPorEmail();
+                EnviarEmailAlteracaoPedido();
             }
                 
             else
             {
                 EfeutarPedido();
-                EnviarNovoPedidoPorEmail();
+                EnviarEmailNovoPedido();
             }
         }
-        private void EnviarNovoPedidoPorEmail()
+        private void EnviarEmailNovoPedido()
         {
             if (checkEnviarEmail.Checked)
             {
@@ -425,7 +423,7 @@ namespace AugustosFashion.Views.Pedidos
                 }
             }
         }
-        private void EnviarAlteracaoPedidoPorEmail()
+        private void EnviarEmailAlteracaoPedido()
         {
             if (checkEnviarEmail.Checked)
             {

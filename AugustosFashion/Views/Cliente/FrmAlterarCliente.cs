@@ -14,17 +14,19 @@ namespace AugustosFashion.Views
     {
         int idCelular;
         int idFixo;
+        private readonly ClienteModel _cliente;
 
         private readonly AlteraClienteController _alteraClienteController;
-        public FrmAlterarCliente(AlteraClienteController alteraClienteController)
+        public FrmAlterarCliente(AlteraClienteController alteraClienteController, ClienteModel cliente)
         {
             InitializeComponent();
             _alteraClienteController = alteraClienteController;
+            _cliente = cliente;
         }
 
-        public void ObterDadosParaAlteracao(ClienteModel cliente)
+        public void ObterDadosParaAlteracao()
         {
-            foreach (var tel in cliente.Telefones)
+            foreach (var tel in _cliente.Telefones)
             {
                 if (tel.Numero.ToString() == string.Empty)
                     continue;
@@ -45,26 +47,26 @@ namespace AugustosFashion.Views
                 }
             }
 
-            txtIdCliente.Text = cliente.IdCliente.ToString();
-            txtObservacoes.Text = cliente.Observacao;
-            txtLimiteCompraPrazo.Text = cliente.LimiteCompraAPrazo.ToString();
+            txtIdCliente.Text = _cliente.IdCliente.ToString();
+            txtObservacoes.Text = _cliente.Observacao;
+            txtLimiteCompraPrazo.Text = _cliente.LimiteCompraAPrazo.ToString();
 
-            txtNome.Text = cliente.NomeCompleto.Nome;
-            txtSobreNome.Text = cliente.NomeCompleto.SobreNome;
-            txtEmail.Text = cliente.Email.RetornaValor;
-            cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(cliente.Sexo);
-            dtpDataNascimento.Value = cliente.DataNascimento;
-            mtxtCpf.Text = cliente.CPF.ValorFormatado;
+            txtNome.Text = _cliente.NomeCompleto.Nome;
+            txtSobreNome.Text = _cliente.NomeCompleto.SobreNome;
+            txtEmail.Text = _cliente.Email.RetornaValor;
+            cbSexo.SelectedIndex = SexoIndexComboBoxHelper.RetornarIndexComboBoxSexoCadastrado(_cliente.Sexo);
+            dtpDataNascimento.Value = _cliente.DataNascimento;
+            mtxtCpf.Text = _cliente.CPF.ValorFormatado;
 
-            txtLogradouro.Text = cliente.Endereco.Logradouro;
-            txtCidade.Text = cliente.Endereco.Cidade;
-            txtComplemento.Text = cliente.Endereco.Complemento;
-            txtBairro.Text = cliente.Endereco.Bairro;
-            txtNumero.Text = cliente.Endereco.Numero.ToString();
-            mtxtCep.Text = cliente.Endereco.CEP.RetornaValor;
-            cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(cliente.Endereco.UF);
+            txtLogradouro.Text = _cliente.Endereco.Logradouro;
+            txtCidade.Text = _cliente.Endereco.Cidade;
+            txtComplemento.Text = _cliente.Endereco.Complemento;
+            txtBairro.Text = _cliente.Endereco.Bairro;
+            txtNumero.Text = _cliente.Endereco.Numero.ToString();
+            mtxtCep.Text = _cliente.Endereco.CEP.RetornaValor;
+            cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(_cliente.Endereco.UF);
 
-            var avisoDeAniversario = cliente.VerificarSeEhAniversarioDoCliente();
+            var avisoDeAniversario = _cliente.VerificarSeEhAniversarioDoCliente();
             if (avisoDeAniversario != string.Empty)
                 MessageBox.Show(avisoDeAniversario, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -73,13 +75,11 @@ namespace AugustosFashion.Views
         {
             if (VerificarValidacoesDeCliente())
             {
-                var cliente = InstanciarClienteParaCadastro();
-                cliente.Endereco.CEP.RemoverMascara();
-                cliente.CPF.RemoverMascara();
+                InstanciarClienteParaCadastro();
 
                 try
                 {
-                    var retorno = _alteraClienteController.AlterarCliente(cliente);
+                    var retorno = _alteraClienteController.AlterarCliente(_cliente);
 
                     if (string.IsNullOrEmpty(retorno))
                         MessageBox.Show("Cliente alterado com sucesso!");
@@ -92,25 +92,21 @@ namespace AugustosFashion.Views
                 }
             }
         }
-        public ClienteModel InstanciarClienteParaCadastro()
+        public void InstanciarClienteParaCadastro()
         {
-            ClienteModel cliente = new ClienteModel
-            (
-                nome: txtNome.Text,
-                sobreNome: txtSobreNome.Text,
-                sexo: cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f',
-                dataNascimento : dtpDataNascimento.Value,
-                email: txtEmail.Text,
-                cpf: mtxtCpf.Text,
-                limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
-                observacao: txtObservacoes.Text,
-                endereco: InstanciarEnderecoParaCadastro(),
-                telefones: InstanciarTelefonesParaCadastro()
-            );
-            cliente.IdCliente = int.Parse(txtIdCliente.Text);
-            cliente.Endereco.CEP.RemoverMascara();
+            _cliente.NomeCompleto.Nome = txtNome.Text;
+            _cliente.NomeCompleto.SobreNome = txtSobreNome.Text;
+            _cliente.Sexo = cbSexo.SelectedItem.ToString() == "Masculino" ? 'm' : 'f';
+            _cliente.DataNascimento = dtpDataNascimento.Value;
+            _cliente.Email = txtEmail.Text;
+            _cliente.CPF = mtxtCpf.Text;
+            _cliente.LimiteCompraAPrazo = double.Parse(txtLimiteCompraPrazo.Text);
+            _cliente.Observacao = txtObservacoes.Text;
+            _cliente.Endereco = InstanciarEnderecoParaCadastro();
+            _cliente.Telefones = InstanciarTelefonesParaCadastro();
 
-            return cliente;
+            _cliente.Endereco.CEP.RemoverMascara();
+            _cliente.CPF.RemoverMascara();
         }
 
         public EnderecoModel InstanciarEnderecoParaCadastro()
@@ -240,9 +236,7 @@ namespace AugustosFashion.Views
             {
                 try
                 {
-                    int id = int.Parse(txtIdCliente.Text);
-
-                    _alteraClienteController.ExcluirCliente(id);
+                    _alteraClienteController.ExcluirCliente(_cliente.IdCliente);
 
                     MessageBox.Show("Cliente excluído com sucesso!");
 
@@ -262,7 +256,7 @@ namespace AugustosFashion.Views
 
         private void FrmAlterarCliente_Load(object sender, EventArgs e)
         {
-
+            ObterDadosParaAlteracao();
         }
 
         private void btnInativar_Click(object sender, EventArgs e)

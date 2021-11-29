@@ -17,10 +17,6 @@ namespace AugustosFashion.Repositorios
                 output inserted.IdPedido 
                 values (@IdCliente, @IdColaborador, @FormaPagamento, @DataEmissao, @TotalBruto, @TotalDesconto, @TotalLiquido)";
 
-            var strSqlPedidoProduto = @"insert into Pedido_Produto (IdPedido, IdProduto, PrecoVenda, PrecoCusto, Quantidade, 
-                Desconto, PrecoLiquido, Total)
-                values (@IdPedido, @IdProduto, @PrecoVenda, @PrecoCusto, @Quantidade, @Desconto, @PrecoLiquido, @Total) ";
-
             try
             {
                 using (SqlConnection sqlCon = SqlHelper.ObterConexao())
@@ -45,22 +41,7 @@ namespace AugustosFashion.Repositorios
 
                         pedido.Produtos.ForEach(x => x.IdPedido = pedido.IdPedido);
 
-                        foreach (var x in pedido.Produtos)
-                        {
-                            sqlCon.Execute(strSqlPedidoProduto,
-                            new
-                            {
-                                x.IdPedido,
-                                x.IdProduto,
-                                PrecoVenda = x.PrecoVenda.RetornaValor,
-                                PrecoCusto = x.PrecoCusto.RetornaValor,
-                                x.Quantidade,
-                                Desconto = x.Desconto.RetornaValor,
-                                PrecoLiquido = x.PrecoLiquido.RetornaValor,
-                                Total = x.Total.RetornaValor
-
-                            }, transaction);
-                        }
+                        CadastrarProdutosDoPedido(sqlCon, transaction, pedido.Produtos);
 
                         SubtrairEstoqueDosProdutos(sqlCon, transaction, pedido.Produtos);
 
@@ -259,32 +240,25 @@ namespace AugustosFashion.Repositorios
 
         private static void CadastrarProdutosDoPedido(SqlConnection sqlCon, SqlTransaction transaction, List<PedidoProduto> produtos)
         {
-            try
-            {
-                var strInsereNovosProdutos = @"INSERT INTO Pedido_Produto (IdPedido, IdProduto, PrecoVenda, PrecoCusto, Quantidade, 
+            var strInsereNovosProdutos = @"INSERT INTO Pedido_Produto (IdPedido, IdProduto, PrecoVenda, PrecoCusto, Quantidade, 
                 Desconto, PrecoLiquido, Total)
                 VALUES (@IdPedido, @IdProduto, @PrecoVenda, @PrecoCusto, @Quantidade, @Desconto, @PrecoLiquido, @Total)";
 
-                foreach (var x in produtos)
-                {
-                    sqlCon.Execute(strInsereNovosProdutos,
-                    new
-                    {
-                        x.IdPedido,
-                        x.IdProduto,
-                        PrecoVenda = x.PrecoVenda.RetornaValor,
-                        PrecoCusto = x.PrecoCusto.RetornaValor,
-                        x.Quantidade,
-                        Desconto = x.Desconto.RetornaValor,
-                        PrecoLiquido = x.PrecoLiquido.RetornaValor,
-                        Total = x.Total.RetornaValor
-                    }, 
-                    transaction);
-                }
-            }
-            catch (Exception ex)
+            foreach (var x in produtos)
             {
-                throw new Exception(ex.Message);
+                sqlCon.Execute(strInsereNovosProdutos,
+                new
+                {
+                    x.IdPedido,
+                    x.IdProduto,
+                    PrecoVenda = x.PrecoVenda.RetornaValor,
+                    PrecoCusto = x.PrecoCusto.RetornaValor,
+                    x.Quantidade,
+                    Desconto = x.Desconto.RetornaValor,
+                    PrecoLiquido = x.PrecoLiquido.RetornaValor,
+                    Total = x.Total.RetornaValor
+                },
+                transaction);
             }
         }
 

@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entidades\Cliente\ClienteConsulta.cs" />
     <Compile Include="Entidades\Cliente\ClienteListagem.cs" />
     <Compile Include="Entidades\Cliente\ClienteModel.cs" />
     <Compile Include="Entidades\Cliente\ClienteValidator.cs" />
