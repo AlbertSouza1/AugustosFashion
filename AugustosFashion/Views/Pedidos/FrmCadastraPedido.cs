@@ -1,5 +1,4 @@
 ﻿using AugustosFashion.Controllers.Pedidos;
-using AugustosFashion.Controllers.ServicosEmail;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
@@ -89,9 +88,11 @@ namespace AugustosFashion.Views.Pedidos
             txtPreco.Text = _produto.PrecoVenda.ToString();
             numQuantidade.Maximum = _produto.Estoque + _quantidadePreviamenteVendida;
             numQuantidade.Value = _produto.Quantidade;
-            numDesconto.Value = _produto.Desconto.RetornaValor;
+            txtDesconto.Text = _produto.Desconto.RetornaValor.ToString();
 
             CalcularPrecoLiquido();
+            CalcularTotalProduto();
+            CalcularTotalDesconto();
             CalcularTotalProduto();
         }
 
@@ -144,16 +145,7 @@ namespace AugustosFashion.Views.Pedidos
 
             SetarDadosDoProdudoCarrinho();
 
-            var produtoJaInserido = _pedido.SelecionarProdutoDoPedido(_produto.IdProduto);
-
-            if (produtoJaInserido != null)
-            {
-                _pedido.AlterarProduto(produtoJaInserido, _produto);
-            }
-            else
-            {
-                _pedido.AdicionarProduto(_produto);
-            }
+            _pedido.AdicionarProdutoAoCarrinho(_produto);
 
             LimparCamposDeProduto();
 
@@ -175,14 +167,14 @@ namespace AugustosFashion.Views.Pedidos
         private void SetarDadosDoProdudoCarrinho()
         {
             _produto.Quantidade = int.Parse(numQuantidade.Text);
-            _produto.Desconto = decimal.Parse(numDesconto.Text);
+            _produto.Desconto = decimal.Parse(txtDesconto.Text);
         }
 
         private void LimparCamposDeProduto()
         {
             txtNome.Text = string.Empty;
             txtPreco.Text = "0";
-            numDesconto.Value = 0;
+            txtDesconto.Text = "0";
             numQuantidade.Value = 0;
             txtTotalDescontoProduto.Text = "0";
             txtPrecoLiquido.Text = "0";
@@ -316,96 +308,112 @@ namespace AugustosFashion.Views.Pedidos
         }
 
         private void numQuantidade_KeyUp(object sender, KeyEventArgs e)
-        {          
-            CalcularTotalProduto();
-            CalcularTotalDesconto();
-            CalcularPrecoLiquido();
-        }
-        private void numDesconto_ValueChanged(object sender, EventArgs e)
         {
-            if (numDesconto.Value == 0)
+            if (_produto.IdProduto == 0)
                 return;
-            if (numDesconto.Value > (decimal.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100))
-            {
-                MessageBox.Show("Desconto não pode ser maior que o preço do produto");
-                numDesconto.Value = 0;
-                txtTotalDesconto.Text = "0";
-            }
 
             CalcularTotalProduto();
             CalcularTotalDesconto();
             CalcularPrecoLiquido();
         }
+
+        private decimal RetornarValorPreco()
+        {
+            var precoSemFormatacao = RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text);
+
+            decimal preco = string.IsNullOrEmpty(precoSemFormatacao) ? 0 : decimal.Parse(precoSemFormatacao);
+
+            return preco;
+        }
+
+        private decimal RetornarValorDesconto()
+        {
+            decimal desconto = string.IsNullOrEmpty(txtDesconto.Text) ? 0 : decimal.Parse(txtDesconto.Text);
+
+            return desconto;
+        }
+
+        private bool ValidarDesconto(decimal preco)
+        {
+            if (RetornarValorDesconto() > (preco / 100))
+            {
+                MessageBox.Show("Desconto não pode ser maior que o preço do produto");
+                txtDesconto.Text = "0";
+                txtTotalDesconto.Text = "0";
+                return false;
+            }
+            return true;
+        }
+
         private void numQuantidade_ValueChanged(object sender, EventArgs e)
         {
-            if(_produto == null)
-            {
+            if (_produto.IdProduto == 0)
+                return;
+
                 CalcularTotalProduto();
                 CalcularTotalDesconto();
-                CalcularPrecoLiquido();
-            }
-            
+                CalcularPrecoLiquido();            
         }
-        private void numDesconto_KeyUp(object sender, KeyEventArgs e)
-        {
-            CalcularTotalProduto();
-            CalcularTotalDesconto();
-            CalcularPrecoLiquido();
-        }
+
         private void CalcularTotalProduto()
         {
             try
             {
-                double preco = double.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100;
-                double quantidade = Convert.ToInt32(numQuantidade.Value);
-                double desconto = Convert.ToDouble(numDesconto.Value);
+                decimal preco = RetornarValorPreco() / 100;
+                int quantidade = Convert.ToInt32(numQuantidade.Value);
+                decimal desconto = RetornarValorDesconto();
 
                 lblTotalProduto.Text =
                     ((preco - desconto) * quantidade).ToString("c");
             }
             catch (Exception ex)
             {
-                numDesconto.Value = 0;
-                numQuantidade.Value = 0;
+                MessageBox.Show(ex.Message);
+                //numDesconto.Value = 0;
+                //numQuantidade.Value = 0;
             }
         }
+
         private void CalcularTotalDesconto()
         {
             try
             {
-                double quantidade = int.Parse(numQuantidade.Text);
-                double desconto = double.Parse(numDesconto.Text);
+                int quantidade = Convert.ToInt32(numQuantidade.Value);
+                decimal desconto = RetornarValorDesconto();
 
                 txtTotalDescontoProduto.Text =
                     (desconto * quantidade).ToString("c");
             }
             catch (Exception ex)
             {
-                numDesconto.Value = 0;
+                txtDesconto.Text = "0";
                 numQuantidade.Value = 0;
             }
         }
+
         private void CalcularPrecoLiquido()
         {
             try
             {
-                double preco = double.Parse(RemoveNaoNumericos.RetornarApenasNumeros(txtPreco.Text)) / 100;
-                double desconto = double.Parse(numDesconto.Text);
+                decimal preco = RetornarValorPreco() / 100;
+                decimal desconto = RetornarValorDesconto();
 
                 txtPrecoLiquido.Text =
                     (preco - desconto).ToString("c");
             }
             catch (Exception ex)
             {
-                numDesconto.Value = 0;
+                txtDesconto.Text = "0";
                 numQuantidade.Value = 0;
                 txtPrecoLiquido.Text = "0";
             }
         }
+
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
         }
+
         private void BtnFinalizarPedido_Click(object sender, EventArgs e)
         {
             if (_pedido.IdPedido != 0)
@@ -433,15 +441,37 @@ namespace AugustosFashion.Views.Pedidos
 
             CarregarDadosDeProdutoSelecionado(_produto);
         }
+
         private int RecuperarIdProdutoDaGrid()
         {
             return Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
         }
 
         private void numQuantidade_KeyPress(object sender, KeyPressEventArgs e)
+        {          
+            //if (!char.IsDigit(e.KeyChar))
+            //    e.Handled = true;
+        }
+
+        private void txtDesconto_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar))
-                e.Handled = true;
+            if (_produto.IdProduto == 0)
+            {
+                txtDesconto.Text = "0";
+                return;
+            }             
+
+            if (!decimal.TryParse(txtDesconto.Text, out decimal desconto))
+            {
+                txtDesconto.Text = "0";
+            }    
+
+            if (!ValidarDesconto(RetornarValorPreco()))
+                return;
+
+            CalcularTotalProduto();
+            CalcularTotalDesconto();
+            CalcularPrecoLiquido();
         }
     }
 }

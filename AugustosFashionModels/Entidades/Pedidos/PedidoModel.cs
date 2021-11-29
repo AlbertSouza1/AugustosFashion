@@ -52,5 +52,19 @@ namespace AugustosFashionModels.Entidades.Pedidos
             Produtos[index].Quantidade = produtoComDadosNovos.Quantidade;
             Produtos[index].Desconto = produtoComDadosNovos.Desconto.RetornaValor;
         }
+
+        public void AdicionarProdutoAoCarrinho(PedidoProduto produto)
+        {
+            var produtoJaInserido = SelecionarProdutoDoPedido(produto.IdProduto);
+
+            if (produtoJaInserido != null)
+            {
+                AlterarProduto(produtoJaInserido, produto);
+            }
+            else
+            {
+                AdicionarProduto(produto);
+            }
+        }
     }
 }

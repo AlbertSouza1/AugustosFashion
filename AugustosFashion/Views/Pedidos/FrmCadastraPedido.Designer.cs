@@ -64,7 +64,6 @@
             this.BtnRemoverProdutoCarrinho = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.cbFormaPagamento = new System.Windows.Forms.ComboBox();
-            this.numDesconto = new System.Windows.Forms.NumericUpDown();
             this.btnFechar = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.lblTotalProduto = new System.Windows.Forms.Label();
@@ -74,9 +73,9 @@
             this.txtTotalDescontoProduto = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.checkEnviarEmail = new System.Windows.Forms.CheckBox();
+            this.txtDesconto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDesconto)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -481,17 +480,6 @@
             this.cbFormaPagamento.Size = new System.Drawing.Size(156, 23);
             this.cbFormaPagamento.TabIndex = 41;
             // 
-            // numDesconto
-            // 
-            this.numDesconto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.numDesconto.DecimalPlaces = 2;
-            this.numDesconto.Location = new System.Drawing.Point(458, 204);
-            this.numDesconto.Name = "numDesconto";
-            this.numDesconto.Size = new System.Drawing.Size(104, 23);
-            this.numDesconto.TabIndex = 42;
-            this.numDesconto.ValueChanged += new System.EventHandler(this.numDesconto_ValueChanged);
-            this.numDesconto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numDesconto_KeyUp);
-            // 
             // btnFechar
             // 
             this.btnFechar.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -592,12 +580,21 @@
             this.checkEnviarEmail.Text = "Enviar comprovante por e-mail";
             this.checkEnviarEmail.UseVisualStyleBackColor = true;
             // 
+            // txtDesconto
+            // 
+            this.txtDesconto.Location = new System.Drawing.Point(458, 204);
+            this.txtDesconto.Name = "txtDesconto";
+            this.txtDesconto.Size = new System.Drawing.Size(104, 23);
+            this.txtDesconto.TabIndex = 52;
+            this.txtDesconto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDesconto_KeyUp);
+            // 
             // FrmCadastraPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.txtDesconto);
             this.Controls.Add(this.checkEnviarEmail);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.txtTotalDescontoProduto);
@@ -607,7 +604,6 @@
             this.Controls.Add(this.lblTotalProduto);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.btnFechar);
-            this.Controls.Add(this.numDesconto);
             this.Controls.Add(this.cbFormaPagamento);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.BtnRemoverProdutoCarrinho);
@@ -650,7 +646,6 @@
             this.Load += new System.EventHandler(this.FrmCadastraPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarrinho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDesconto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,7 +688,6 @@
         private System.Windows.Forms.Button BtnRemoverProdutoCarrinho;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cbFormaPagamento;
-        private System.Windows.Forms.NumericUpDown numDesconto;
         private System.Windows.Forms.Button btnFechar;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblTotalProduto;
@@ -703,5 +697,6 @@
         private System.Windows.Forms.TextBox txtTotalDescontoProduto;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.CheckBox checkEnviarEmail;
+        private System.Windows.Forms.TextBox txtDesconto;
     }
 }

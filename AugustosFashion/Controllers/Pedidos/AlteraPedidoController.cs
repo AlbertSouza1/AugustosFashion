@@ -1,10 +1,6 @@
 ﻿using AugustosFashion.Repositorios;
 using AugustosFashionModels.Entidades.Pedidos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashion.Controllers.Pedidos
 {
