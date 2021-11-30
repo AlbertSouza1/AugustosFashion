@@ -60,7 +60,7 @@ namespace AugustosFashion.Views.Pedidos
             VerificarSeEhAniversarioCliente();
 
             txtCliente.Text = _pedido.Cliente.NomeCompleto.Nome + ' ' + _pedido.Cliente.NomeCompleto.SobreNome;
-        }
+        }          
 
         private void VerificarSeEhAniversarioCliente()
         {
@@ -409,8 +409,7 @@ namespace AugustosFashion.Views.Pedidos
             {
                 AlterarPedido();
                 EnviarEmailAlteracaoPedido();
-            }
-                
+            } 
             else
             {
                 EfeutarPedido();

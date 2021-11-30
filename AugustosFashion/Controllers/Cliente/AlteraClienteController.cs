@@ -23,7 +23,13 @@ namespace AugustosFashion.Controllers.Cliente
             AbrirFormularioAlteracao(cliente);
         }
 
-        public ClienteModel RecuperarInformacoesCliente(int id) => ClienteRepositorio.RecuperarInfoCliente(id);
+        public ClienteModel RecuperarInformacoesCliente(int id)
+        {
+            var cliente = ClienteRepositorio.RecuperarInfoCliente(id);
+            cliente.Contas = ContaClienteRepositorio.RecuperarContasDoCliente(cliente.IdCliente);
+
+            return cliente;
+        }
 
         public string AlterarCliente(ClienteModel cliente)
         {

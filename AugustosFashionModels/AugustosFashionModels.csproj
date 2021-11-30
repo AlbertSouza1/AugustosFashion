@@ -53,6 +53,7 @@
     <Compile Include="Entidades\Colaborador\ColaboradorValidator.cs" />
     <Compile Include="Entidades\ContaBancaria\ContaBancariaModel.cs" />
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
+    <Compile Include="Entidades\ContasClientes\ContaClienteModel.cs" />
     <Compile Include="Entidades\ValorObjeto\Cpfs\CPFValidator.cs" />
     <Compile Include="Entidades\ValorObjeto\Dinheiros\Dinheiro.cs" />
     <Compile Include="Entidades\ValorObjeto\Emails\EmailValidator.cs" />

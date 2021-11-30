@@ -1,6 +1,7 @@
 ﻿using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashionModels.Entidades.Cliente;
+using AugustosFashionModels.Entidades.ContasClientes;
 using System;
 using System.Collections.Generic;
 
@@ -11,6 +12,7 @@ namespace AugustosFashion.Entidades.Cliente
         public int IdCliente { get; set; }
         public double  LimiteCompraAPrazo { get; set; }
         public string  Observacao { get; set; }
+        public List<ContaClienteModel> Contas { get; set; }
         public ClienteModel(string nome, string sobreNome, char sexo, DateTime dataNascimento, string email, string cpf, double limiteCompraAPrazo, string observacao, EnderecoModel endereco, List<TelefoneModel> telefones)
         : base(nome, sobreNome)
         {          
@@ -21,9 +23,13 @@ namespace AugustosFashion.Entidades.Cliente
             LimiteCompraAPrazo = limiteCompraAPrazo;
             Observacao = observacao;
             Endereco = endereco;
-            Telefones = telefones;                    
+            Telefones = telefones;
+
+            Contas = new List<ContaClienteModel>();
         }
-        public ClienteModel(){ }
+        public ClienteModel(){
+            Contas = new List<ContaClienteModel>();
+        }
         public string VerificarSeEhAniversarioDoCliente()
         {
             var mensagem = string.Empty;
