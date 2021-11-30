@@ -1,26 +1,28 @@
 ﻿using AugustosFashion.Helpers;
-using AugustosFashionModels.Entidades.ServicoEmails;
+using AugustosFashionModels.Entidades.UsuariosSistema;
 using Dapper;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AugustosFashion.Repositorios
 {
-    public class EmailRepositorio
+    public static class UsuarioSistemaRepositorio
     {
-        public static void CadastrarEmail(EmailLojaModel email)
+        public static bool VerificarIdColaborador(int idColaborador)
         {
-            var strSqlEmail = "Insert into Emails_Da_Loja " +
-                "values (@Email, @Senha, @Chave)";
+            var strSqlBusca = @"select count(*) from Colaboradores where IdColaborador = @idColaborador";
 
             try
             {
                 using (SqlConnection sqlCon = SqlHelper.ObterConexao())
                 {
                     sqlCon.Open();
-                   
-                    sqlCon.Execute(strSqlEmail, email);                                        
+
+                    return sqlCon.Query<bool>(strSqlBusca, new { idColaborador }).FirstOrDefault();
                 }
             }
             catch (Exception ex)
@@ -29,9 +31,10 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        public static EmailLojaModel RecuperarEmail()
+        internal static void RegistrarUsuario(UsuarioSistemaModel usuarioSistemaModel)
         {
-            var strSqlEmail = "select * from Emails_Da_Loja";
+            var strSqlBusca = @"INSERT INTO Usuarios_Sistema (IdColaborador, NomeUsuario, Senha)
+                                VALUES (@IdColaborador, @NomeUsuario, @Senha)";
 
             try
             {
@@ -39,7 +42,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<EmailLojaModel>(strSqlEmail).FirstOrDefault();
+                    sqlCon.Execute(strSqlBusca, usuarioSistemaModel);
                 }
             }
             catch (Exception ex)

@@ -34,5 +34,10 @@ namespace AugustosFashion.Views.Logins
                 senha: txtSenha.Text
             );           
         }
+
+        private void lblRegistrar_Click(object sender, EventArgs e)
+        {
+            new RegistraUsuarioController().AbrirFormDeRegistro();
+        }
     }
 }

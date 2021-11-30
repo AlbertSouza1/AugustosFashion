@@ -447,6 +447,8 @@ namespace AugustosFashion.Views.Pedidos
 
         private void dgvCarrinho_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
             int id = RecuperarIdProdutoDaGrid();
 
             _produto = SelecionarProdutoDoPedido(id);
