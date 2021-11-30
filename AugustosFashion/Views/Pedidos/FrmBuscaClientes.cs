@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Controllers;
+using AugustosFashion.Controllers.Cliente;
 using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Entidades.Cliente;
 using System;
@@ -31,15 +32,9 @@ namespace AugustosFashion.Views.Pedidos
             dgvClientes.DataSource = clientes;
         }
 
-        private ClienteListagem InstanciarClienteSelecionado()
+        private ClienteModel InstanciarClienteSelecionado()
         {
-            var cliente = new ClienteListagem();
-
-            cliente.IdCliente = Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value);
-            cliente.NomeCompleto.Nome = dgvClientes.SelectedRows[0].Cells[1].Value.ToString();
-            cliente.Email = dgvClientes.SelectedRows[0].Cells[2].Value.ToString();
-            return cliente;
-           
+            return new AlteraClienteController().RecuperarInformacoesCliente(Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value));                     
         }
 
         private bool VerificarSeHaClienteSelecionado() =>

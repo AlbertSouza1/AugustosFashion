@@ -16,7 +16,6 @@ namespace AugustosFashion.Views.Pedidos
         private PedidoModel _pedido;
         private PedidoProduto _produto = new PedidoProduto();
         private ColaboradorModel _colaborador = new ColaboradorModel();
-        private ClienteModel _cliente = new ClienteModel();
         private AlteraPedidoController _alteraPedidoController = new AlteraPedidoController();
 
         private int _quantidadePreviamenteVendida = 0;
@@ -45,7 +44,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             AtualizarCarrinho();
             AtualizarTotaisDoPedido();
-            RecuperarClienteDoPedido();
+            ExibirInformacoesDoCliente();
             RecuperarColaboradorDoPedido();
             cbFormaPagamento.SelectedItem = _pedido.FormaPagamento;
         }
@@ -56,10 +55,9 @@ namespace AugustosFashion.Views.Pedidos
             txtColaborador.Text = _colaborador.NomeCompleto.Nome + ' ' + _colaborador.NomeCompleto.SobreNome;
         }
 
-        private void RecuperarClienteDoPedido()
-        {
-            _cliente = _cadastroPedidoController.RetornarClienteDoPedido(_pedido.IdCliente);
-            txtCliente.Text = _cliente.NomeCompleto.Nome + ' ' + _cliente.NomeCompleto.SobreNome;
+        private void ExibirInformacoesDoCliente()
+        {         
+            txtCliente.Text = _pedido.Cliente.NomeCompleto.Nome + ' ' + _pedido.Cliente.NomeCompleto.SobreNome;
         }
 
         private void EsconderSelecaoDeClienteEColaborador()
@@ -114,14 +112,11 @@ namespace AugustosFashion.Views.Pedidos
             _cadastroPedidoController.AbrirFormBuscaCliente(txtBuscaCliente.Text);
         }
 
-        public void CarregarDadosDeClienteSelecionado(ClienteListagem cliente)
+        public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
         {
-            _cliente.NomeCompleto.Nome = cliente.NomeCompleto.Nome;
-            _cliente.Email = cliente.Email;
-            _cliente.IdCliente = cliente.IdCliente;
+            _pedido.Cliente = cliente;
 
-            txtCliente.Text = _cliente.NomeCompleto.Nome;
-            _pedido.IdCliente = _cliente.IdCliente;
+            txtCliente.Text = _pedido.Cliente.NomeCompleto.Nome;          
         }
 
         public void CarregarDadosDeColaboradorSelecionado(ColaboradorListagem colaborador)
@@ -203,6 +198,9 @@ namespace AugustosFashion.Views.Pedidos
         private void RemoverProdutoDoCarrinho()
         {
             int id = RecuperarIdProdutoDaGrid();
+
+            if (id == 0)
+                return;
 
             _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
 
@@ -415,7 +413,7 @@ namespace AugustosFashion.Views.Pedidos
             {
                 try
                 {
-                    _cadastroPedidoController.EnviarEmailNovoPedido(_cliente, _pedido);
+                    _cadastroPedidoController.EnviarEmailNovoPedido(_pedido);
                 }
                 catch (Exception ex)
                 {
@@ -429,7 +427,7 @@ namespace AugustosFashion.Views.Pedidos
             {
                 try
                 {
-                    _cadastroPedidoController.EnviarEmailAlteracaoPedido(_cliente, _pedido);
+                    _cadastroPedidoController.EnviarEmailAlteracaoPedido(_pedido);
                 }
                 catch (Exception ex)
                 {
@@ -449,7 +447,11 @@ namespace AugustosFashion.Views.Pedidos
         {
             if (e.RowIndex == -1)
                 return;
+            
             int id = RecuperarIdProdutoDaGrid();
+           
+            if (id == 0)
+                return;
 
             _produto = SelecionarProdutoDoPedido(id);
 
@@ -458,7 +460,15 @@ namespace AugustosFashion.Views.Pedidos
 
         private int RecuperarIdProdutoDaGrid()
         {
-            return Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
+            try
+            {
+                return Convert.ToInt32(dgvCarrinho.SelectedRows[0].Cells[0].Value);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Não há produto selecionado");
+                return 0;
+            }
         }
 
         private void numQuantidade_KeyPress(object sender, KeyPressEventArgs e)

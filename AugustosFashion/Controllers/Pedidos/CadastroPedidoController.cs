@@ -26,17 +26,6 @@ namespace AugustosFashion.Controllers.Pedidos
             _frmCadastroPedido.Show();
         }
 
-        public ClienteModel RetornarClienteDoPedido(int idCliente)
-        {
-            try
-            {
-                return ClienteRepositorio.BuscarClienteDoPedido(idCliente);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
         public ColaboradorModel RetornarColaboradorDoPedido(int idColaborador)
         {
             try
@@ -81,7 +70,7 @@ namespace AugustosFashion.Controllers.Pedidos
             frmBuscaClientes.Show();
             frmBuscaClientes.BringToFront();
         }
-        public void RecuperarClienteSelecionado(ClienteListagem cliente)
+        public void RecuperarClienteSelecionado(ClienteModel cliente)
         {
             _frmCadastroPedido.CarregarDadosDeClienteSelecionado(cliente);
         }
@@ -98,13 +87,13 @@ namespace AugustosFashion.Controllers.Pedidos
             _frmCadastroPedido.CarregarDadosDeColaboradorSelecionado(colaborador);
         }
 
-        public void EnviarEmailNovoPedido(ClienteModel cliente, PedidoModel pedido)
+        public void EnviarEmailNovoPedido(PedidoModel pedido)
         {
-            new ServicoEmailController().PrepararEmailNovoPedido(cliente, pedido);
+            new ServicoEmailController().PrepararEmailNovoPedido(pedido.Cliente, pedido);
         }
-        public void EnviarEmailAlteracaoPedido(ClienteModel cliente, PedidoModel pedido)
+        public void EnviarEmailAlteracaoPedido(PedidoModel pedido)
         {
-            new ServicoEmailController().PrepararEmailAlteracaoPedido(cliente, pedido);
+            new ServicoEmailController().PrepararEmailAlteracaoPedido(pedido.Cliente, pedido);
         }
     }
 }

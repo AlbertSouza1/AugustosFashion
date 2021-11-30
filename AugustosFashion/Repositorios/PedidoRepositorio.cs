@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Helpers;
+﻿using AugustosFashion.Entidades.Cliente;
+using AugustosFashion.Helpers;
 using AugustosFashionModels.Entidades.NomesCompletos;
 using AugustosFashionModels.Entidades.Pedidos;
 using Dapper;
@@ -28,7 +29,7 @@ namespace AugustosFashion.Repositorios
                         pedido.IdPedido = sqlCon.ExecuteScalar<int>(strSqlPedido,
                         new
                         {
-                            pedido.IdCliente,
+                            pedido.Cliente.IdCliente,
                             pedido.IdColaborador,
                             pedido.FormaPagamento,
                             pedido.DataEmissao,
@@ -137,8 +138,8 @@ namespace AugustosFashion.Repositorios
 
         public static PedidoModel ConsultarPedido(int idPedido)
         {
-            var strSqlPedido = @"select IdPedido, IdCliente, IdColaborador,			
-				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido, Eliminado
+            var strSqlPedido = @"select IdPedido, IdColaborador,			
+				DataEmissao, FormaPagamento, TotalBruto, TotalDesconto, TotalLiquido, Eliminado, IdPedido, IdCliente
 				from Pedidos where IdPedido = @idPedido				
                 ";
 
@@ -148,8 +149,11 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<PedidoModel>(
-                        strSqlPedido, new { idPedido }
+                    return sqlCon.Query<PedidoModel, ClienteModel, PedidoModel>(
+                        strSqlPedido,
+                        (pedido, cliente) => MapearPedidoModel(pedido, cliente),
+                        new { idPedido },
+                        splitOn: "IdPedido"
                      ).FirstOrDefault();
                 }
             }
@@ -301,6 +305,12 @@ namespace AugustosFashion.Repositorios
             pedido.NomeCliente = nomeCliente;
             pedido.NomeColaborador = nomeColaborador;
 
+            return pedido;
+        }
+        private static PedidoModel MapearPedidoModel(PedidoModel pedido, ClienteModel cliente)
+        {
+            pedido.Cliente = cliente;
+            
             return pedido;
         }
     }

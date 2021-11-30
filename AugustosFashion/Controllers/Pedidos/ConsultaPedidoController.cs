@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Entidades;
+﻿using AugustosFashion.Controllers.Cliente;
+using AugustosFashion.Entidades;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos;
@@ -10,7 +11,9 @@ namespace AugustosFashion.Controllers.Pedidos
     {
         public void AbrirFormConsultaPedido(int idPedido)
         {
-            var frmConsultaPedido = new FrmConsultaPedido(this, ConsultarPedido(idPedido));
+            var pedido = ConsultarPedido(idPedido);
+
+            var frmConsultaPedido = new FrmConsultaPedido(this, pedido);
             frmConsultaPedido.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             frmConsultaPedido.Show();
         }
@@ -21,7 +24,7 @@ namespace AugustosFashion.Controllers.Pedidos
             {
                 var pedido = PedidoRepositorio.ConsultarPedido(id);
                 pedido.Produtos = PedidoRepositorio.ListarProdutosDoPedido(id);
-
+                pedido.Cliente = new AlteraClienteController().RecuperarInformacoesCliente(pedido.Cliente.IdCliente);
                 return pedido;
             }
             catch (Exception ex)
