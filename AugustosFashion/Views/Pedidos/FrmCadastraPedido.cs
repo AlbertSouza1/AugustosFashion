@@ -56,8 +56,18 @@ namespace AugustosFashion.Views.Pedidos
         }
 
         private void ExibirInformacoesDoCliente()
-        {         
+        {
+            VerificarSeEhAniversarioCliente();
+
             txtCliente.Text = _pedido.Cliente.NomeCompleto.Nome + ' ' + _pedido.Cliente.NomeCompleto.SobreNome;
+        }
+
+        private void VerificarSeEhAniversarioCliente()
+        {
+            var mensagem = _pedido.Cliente.VerificarSeEhAniversarioDoCliente();
+
+            if (!string.IsNullOrEmpty(mensagem))
+                MessageBox.Show(mensagem);
         }
 
         private void EsconderSelecaoDeClienteEColaborador()
@@ -116,7 +126,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             _pedido.Cliente = cliente;
 
-            txtCliente.Text = _pedido.Cliente.NomeCompleto.Nome;          
+            ExibirInformacoesDoCliente();        
         }
 
         public void CarregarDadosDeColaboradorSelecionado(ColaboradorListagem colaborador)
