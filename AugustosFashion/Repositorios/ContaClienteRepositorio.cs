@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Helpers;
 using AugustosFashionModels.Entidades.ContasClientes;
+using AugustosFashionModels.Entidades.Pedidos;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace AugustosFashion.Repositorios
     {
         public static List<ContaClienteModel> RecuperarContasDoCliente(int idCliente)
         {
-            string strSqlContaCliente = @"SELECT IdCliente, IdPedido, Pago FROM Contas_Clientes WHERE IdCliente = @idCliente";
+            string strSqlContaCliente = @"SELECT cc.IdConta, cc.IdCliente, cc.IdPedido, cc.Pago, p.TotalLiquido as Valor
+                                        FROM Contas_Clientes cc inner join Pedidos p on cc.IdPedido = p.IdPedido
+                                        WHERE cc.IdCliente = @idCliente and Pago = 0";
 
             try
             {
@@ -21,7 +24,7 @@ namespace AugustosFashion.Repositorios
 
                     sqlCon.Open();
 
-                    return  sqlCon.Query<ContaClienteModel>( strSqlContaCliente, new { idCliente }).ToList();
+                    return sqlCon.Query<ContaClienteModel>(strSqlContaCliente, new { idCliente }).ToList();
                 }
             }
             catch (Exception ex)
@@ -29,5 +32,14 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
+        public static void CadastrarContaDeCliente(SqlConnection sqlCon, SqlTransaction transaction, PedidoModel pedido)
+        {
+            var strInsereConta = @"INSERT INTO Contas_Clientes (IdCliente, IdPedido)
+                VALUES (@IdCliente, @IdPedido)";
+
+            sqlCon.Execute(strInsereConta, new { pedido.Cliente.IdCliente, pedido.IdPedido }, transaction);
+        }
     }
 }
+

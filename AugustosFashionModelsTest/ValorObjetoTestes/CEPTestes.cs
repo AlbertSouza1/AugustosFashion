@@ -29,6 +29,7 @@ namespace AugustosFashionModelsTest
             cliente.NomeCompleto.SobreNome = "Aldo";
             cliente.Email = "email@email.com";
             cliente.Endereco.CEP = cep;
+            cliente.LimiteCompraAPrazo = 10m;
 
             var retorno = cliente.ValidarCliente();
 

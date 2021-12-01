@@ -471,7 +471,7 @@
             this.cbFormaPagamento.FormattingEnabled = true;
             this.cbFormaPagamento.Items.AddRange(new object[] {
             "À vista no dinheiro",
-            "Á prazo",
+            "A prazo",
             "Crédito",
             "Débito",
             "Pix"});

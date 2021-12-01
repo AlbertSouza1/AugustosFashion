@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Controllers.ServicosEmail;
+﻿using AugustosFashion.Controllers.Cliente;
+using AugustosFashion.Controllers.ServicosEmail;
 using AugustosFashion.Entidades;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;

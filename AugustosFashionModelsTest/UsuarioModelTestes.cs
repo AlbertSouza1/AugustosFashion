@@ -18,6 +18,7 @@ namespace AugustosFashionModelsTest
             cliente.NomeCompleto.Nome = "José";
             cliente.NomeCompleto.SobreNome = "Aldo";
             cliente.Email = email;
+            cliente.LimiteCompraAPrazo = 10m;
 
             //act
             var mensagem = cliente.ValidarCliente();
@@ -39,6 +40,7 @@ namespace AugustosFashionModelsTest
             cliente.NomeCompleto.SobreNome = "Aldo";
             cliente.Email = "email@teste.com";
             cliente.CPF = cpf;
+            cliente.LimiteCompraAPrazo = 10m;
 
             //act
             var mensagem = cliente.ValidarCliente();
@@ -61,6 +63,7 @@ namespace AugustosFashionModelsTest
             cliente.NomeCompleto.SobreNome = "Aldo";
             cliente.Email = "email@teste.com";
             cliente.CPF = cpf;
+            cliente.LimiteCompraAPrazo = 10m;
 
             //act
             var mensagem = cliente.ValidarCliente();

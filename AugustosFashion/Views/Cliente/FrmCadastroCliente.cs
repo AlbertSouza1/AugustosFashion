@@ -70,7 +70,7 @@ namespace AugustosFashion.Views
                     dataNascimento: dtpDataNascimento.Value,
                     email: txtEmail.Text,
                     cpf: mtxtCpf.Text,
-                    limiteCompraAPrazo: double.Parse(txtLimiteCompraPrazo.Text),
+                    limiteCompraAPrazo: decimal.Parse(txtLimiteCompraPrazo.Text),
                     observacao: txtObservacoes.Text,
                     endereco: InstanciarEnderecoParaCadastro(),
                     telefones: InstanciarTelefonesParaCadastro()

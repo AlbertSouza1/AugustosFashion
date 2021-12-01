@@ -2,6 +2,7 @@
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views;
+using AugustosFashionModels.Entidades.Pedidos;
 using System;
 
 namespace AugustosFashion.Controllers.Cliente

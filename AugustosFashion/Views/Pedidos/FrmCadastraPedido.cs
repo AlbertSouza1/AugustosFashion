@@ -47,7 +47,7 @@ namespace AugustosFashion.Views.Pedidos
             ExibirInformacoesDoCliente();
             RecuperarColaboradorDoPedido();
             cbFormaPagamento.SelectedItem = _pedido.FormaPagamento;
-        }
+        } 
 
         private void RecuperarColaboradorDoPedido()
         {
@@ -229,8 +229,7 @@ namespace AugustosFashion.Views.Pedidos
             try
             {
                 if (VerificarSeNaoHaCamposInvalidos())
-                {
-                    SetarInformacoesDoPedido();
+                {                    
                     _cadastroPedidoController.CadastrarPedido(_pedido);
 
                     MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -405,17 +404,47 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnFinalizarPedido_Click(object sender, EventArgs e)
         {
+            SetarInformacoesDoPedido();
+
+            if (VerificarSePagamentoEhAPrazo())
+                if (!VerificarSeClientePossuiLimite())
+                    return;
+
+            FinalizarPedido();
+        }
+
+        private void FinalizarPedido()
+        {
             if (_pedido.IdPedido != 0)
             {
                 AlterarPedido();
                 EnviarEmailAlteracaoPedido();
-            } 
+            }
             else
             {
                 EfeutarPedido();
                 EnviarEmailNovoPedido();
             }
         }
+
+        private bool VerificarSePagamentoEhAPrazo() => _pedido.FormaPagamento == "A prazo";
+
+        private bool VerificarSeClientePossuiLimite()
+        {
+            var limiteAtual = _pedido.Cliente.RetornarLimiteParaCompraAtual();
+
+            limiteAtual -= _pedido.TotalLiquido.RetornaValor;
+
+            if (limiteAtual < _pedido.TotalLiquido.RetornaValor)
+            {
+                MessageBox.Show("O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n"+
+                    "Selecione uma nova forma de pagamento.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
         private void EnviarEmailNovoPedido()
         {
             if (checkEnviarEmail.Checked)

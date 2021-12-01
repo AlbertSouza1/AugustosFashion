@@ -2,20 +2,18 @@
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashionModels.Entidades.Cliente;
 using AugustosFashionModels.Entidades.ContasClientes;
+using AugustosFashionModels.Entidades.Dinheiros;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AugustosFashion.Entidades.Cliente
 {
     public class ClienteModel : UsuarioModel
     {
-        public int IdCliente { get; set; }
-        public double  LimiteCompraAPrazo { get; set; }
-        public string  Observacao { get; set; }
-        public List<ContaClienteModel> Contas { get; set; }
-        public ClienteModel(string nome, string sobreNome, char sexo, DateTime dataNascimento, string email, string cpf, double limiteCompraAPrazo, string observacao, EnderecoModel endereco, List<TelefoneModel> telefones)
+        public ClienteModel(string nome, string sobreNome, char sexo, DateTime dataNascimento, string email, string cpf, decimal limiteCompraAPrazo, string observacao, EnderecoModel endereco, List<TelefoneModel> telefones)
         : base(nome, sobreNome)
-        {          
+        {
             Sexo = sexo;
             DataNascimento = dataNascimento;
             Email = email;
@@ -27,6 +25,10 @@ namespace AugustosFashion.Entidades.Cliente
 
             Contas = new List<ContaClienteModel>();
         }
+        public int IdCliente { get; set; }
+        public Dinheiro LimiteCompraAPrazo { get; set; }
+        public string  Observacao { get; set; }
+        public List<ContaClienteModel> Contas { get; set; }       
         public ClienteModel(){
             Contas = new List<ContaClienteModel>();
         }
@@ -41,6 +43,12 @@ namespace AugustosFashion.Entidades.Cliente
 
             return mensagem;
         }           
+
+        public decimal RetornarLimiteParaCompraAtual()
+        {
+            var divida = Contas.Sum(x => x.Valor.RetornaValor);
+            return LimiteCompraAPrazo.RetornaValor - divida;
+        }
         
         public string ValidarCliente()
         {

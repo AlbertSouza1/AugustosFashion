@@ -3,6 +3,7 @@ using AugustosFashion.Entidades.Endereco;
 using AugustosFashion.Entidades.Telefone;
 using AugustosFashion.Helpers;
 using AugustosFashionModels.Entidades.NomesCompletos;
+using AugustosFashionModels.Entidades.Pedidos;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,15 @@ namespace AugustosFashion.Repositorios
                         cliente.Endereco.IdUsuario = insertedId;
                         cliente.Telefones.ForEach(x => x.IdUsuario = insertedId);
 
-                        sqlCon.Execute(strSqlCliente, cliente, transaction);
+                        sqlCon.Execute(strSqlCliente,
+                            new
+                            {
+                                cliente.IdUsuario,
+                                LimiteCompraAPrazo = cliente.LimiteCompraAPrazo.RetornaValor,
+                                cliente.Observacao
+                            },
+                            transaction);
+
                         sqlCon.Execute(strSqlEndereco, EnderecoSql.MapearPropriedadesDeEndereco(cliente.Endereco) ,transaction);
 
                         sqlCon.Execute(strSqlTelefones, cliente.Telefones, transaction);
@@ -71,6 +80,28 @@ namespace AugustosFashion.Repositorios
                         splitOn: "IdUsuario"
                      ).FirstOrDefault();
                     return a;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static decimal RecuperarLimiteCliente(PedidoModel pedido)
+        {
+            var strSql = @"SELECT @LimiteCompraAPrazo - (sum(p.TotalLiquido) + @TotalLiquido ) as LimiteAtual                    
+                        from Pedidos p
+                        inner join Contas_Clientes cc on p.IdCliente = cc.IdCliente and p.IdPedido = cc.IdPedido
+                        where cc.IdCliente = 1 and p.FormaPagamento = 'A prazo' and cc.Pago = 0;";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<decimal>(strSql, new { pedido.Cliente.LimiteCompraAPrazo, pedido.TotalLiquido}).FirstOrDefault();
                 }
             }
             catch (Exception ex)

@@ -49,7 +49,7 @@ namespace AugustosFashion.Views
 
             txtIdCliente.Text = _cliente.IdCliente.ToString();
             txtObservacoes.Text = _cliente.Observacao;
-            txtLimiteCompraPrazo.Text = _cliente.LimiteCompraAPrazo.ToString();
+            txtLimiteCompraPrazo.Text = _cliente.LimiteCompraAPrazo.RetornaValor.ToString();
 
             txtNome.Text = _cliente.NomeCompleto.Nome;
             txtSobreNome.Text = _cliente.NomeCompleto.SobreNome;
@@ -100,7 +100,7 @@ namespace AugustosFashion.Views
             _cliente.DataNascimento = dtpDataNascimento.Value;
             _cliente.Email = txtEmail.Text;
             _cliente.CPF = mtxtCpf.Text;
-            _cliente.LimiteCompraAPrazo = double.Parse(txtLimiteCompraPrazo.Text);
+            _cliente.LimiteCompraAPrazo = decimal.Parse(txtLimiteCompraPrazo.Text);
             _cliente.Observacao = txtObservacoes.Text;
             _cliente.Endereco = InstanciarEnderecoParaCadastro();
             _cliente.Telefones = InstanciarTelefonesParaCadastro();
