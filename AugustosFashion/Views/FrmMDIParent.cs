@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using AugustosFashion.Views;
+using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 
 namespace AugustosFashion
 {
@@ -132,6 +133,11 @@ namespace AugustosFashion
         private void visualizarVendasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ListaPedidoController().AbrirFormListaPedidos();
+        }
+
+        private void vendasPorProdutoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new RelatorioVendaProdutoController().AbrirFormRelatorioVendaProduto();
         }
     }
 }
