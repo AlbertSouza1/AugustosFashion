@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Entidades;
+using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Pedidos;
 using AugustosFashion.Views.Pedidos.Relatorios;
@@ -36,6 +37,19 @@ namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
         internal void RecuperarProdutoSelecionado(PedidoProduto produto)
         {
             _frmRelatorioVendaProduto.CarregarDadosDeProdutoSelecionado(produto);
+        }
+
+        public void AbrirFormBuscaClientes(string busca)
+        {
+            var frmBuscaProdutos = new FrmBuscaClientes(this, busca);
+            frmBuscaProdutos.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
+            frmBuscaProdutos.Show();
+            frmBuscaProdutos.BringToFront();
+        }
+
+        internal void RecuperarClienteSelecionado(ClienteModel cliente)
+        {
+            _frmRelatorioVendaProduto.CarregarDadosDeClienteSelecionado(cliente);
         }
     }
 }

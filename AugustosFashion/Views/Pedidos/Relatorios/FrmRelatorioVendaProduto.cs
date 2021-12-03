@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
+using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System;
@@ -65,6 +66,16 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             _filtroRelatorio.IdProduto = produto.IdProduto;
             txtBuscaProduto.Text = produto.Nome;
+        }
+
+        private void BtnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            _relatorioVendaProdutoController.AbrirFormBuscaClientes(txtBuscaCliente.Text);
+        }
+        public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
+        {
+            _filtroRelatorio.IdCliente = cliente.IdCliente;
+            txtBuscaCliente.Text = cliente.NomeCompleto.ToString();
         }
     }
 }

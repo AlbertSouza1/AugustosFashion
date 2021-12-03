@@ -113,6 +113,7 @@
             this.BtnBuscarCliente.TabIndex = 39;
             this.BtnBuscarCliente.Text = "🔍";
             this.BtnBuscarCliente.UseVisualStyleBackColor = false;
+            this.BtnBuscarCliente.Click += new System.EventHandler(this.BtnBuscarCliente_Click);
             // 
             // BtnBuscarProduto
             // 

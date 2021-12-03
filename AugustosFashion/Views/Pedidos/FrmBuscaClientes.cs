@@ -1,6 +1,7 @@
 ﻿using AugustosFashion.Controllers;
 using AugustosFashion.Controllers.Cliente;
 using AugustosFashion.Controllers.Pedidos;
+using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace AugustosFashion.Views.Pedidos
     public partial class FrmBuscaClientes : Form
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
+        private readonly RelatorioVendaProdutoController _relatorioVendaProdutoController;
 
         public FrmBuscaClientes(CadastroPedidoController cadastroPedidoController, string busca)
         {
@@ -19,10 +21,17 @@ namespace AugustosFashion.Views.Pedidos
             txtBuscar.Text = busca;
         }
 
+        public FrmBuscaClientes(RelatorioVendaProdutoController relatorioVendaProdutoController, string busca)
+        {
+            InitializeComponent();
+            _relatorioVendaProdutoController = relatorioVendaProdutoController;
+            txtBuscar.Text = busca;
+        }
+
         private void FrmBuscaClientes_Load(object sender, EventArgs e)
         {
-                var clientes = BuscarClientes(true);
-                ListarClientesBuscados(clientes);
+            var clientes = BuscarClientes(true);
+            ListarClientesBuscados(clientes);
         }
 
         private List<ClienteListagem> BuscarClientes(bool ativo) => new ListaClienteController().BuscarClientesPorNome(txtBuscar.Text, ativo);
@@ -34,7 +43,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private ClienteModel InstanciarClienteSelecionado()
         {
-            return new AlteraClienteController().RecuperarInformacoesCliente(Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value));                     
+            return new AlteraClienteController().RecuperarInformacoesCliente(Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value));
         }
 
         private bool VerificarSeHaClienteSelecionado() =>
@@ -44,9 +53,21 @@ namespace AugustosFashion.Views.Pedidos
         {
             if (VerificarSeHaClienteSelecionado())
             {
-                var cliente = InstanciarClienteSelecionado();
-                _cadastroPedidoController.RecuperarClienteSelecionado(cliente);
-                Close();
+                try
+                {
+                    var cliente = InstanciarClienteSelecionado();
+
+                    if (_cadastroPedidoController != null)
+                        _cadastroPedidoController.RecuperarClienteSelecionado(cliente);
+                    else
+                        _relatorioVendaProdutoController.RecuperarClienteSelecionado(cliente);
+
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Não foi possível recuperar o cliente selecionado. Erro: "+ ex.Message);
+                }
             }
             else
                 MessageBox.Show("Selecione um produto na lista antes de confirmar.");
