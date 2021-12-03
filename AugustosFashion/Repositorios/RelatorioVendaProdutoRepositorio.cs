@@ -1,13 +1,11 @@
-﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+﻿using AugustosFashion.Helpers;
+using AugustosFashion.Repositorios.QueryHelpers;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+using Dapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
 using System.Data.SqlClient;
-using AugustosFashion.Helpers;
-using AugustosFashion.Repositorios.QueryHelpers;
+using System.Linq;
 
 namespace AugustosFashion.Repositorios
 {
@@ -15,7 +13,9 @@ namespace AugustosFashion.Repositorios
     {
         public static List<RelatorioVendaProduto> ConsultarRelatorio(FiltroRelatorioVendaProduto filtroRelatorio)
         {
-            var strConsultaRelatorio = RelatorioVendaProdutoHelper.GerarQueryRelatorio(filtroRelatorio);
+            var relatorioVendaHelper = new RelatorioVendaProdutoHelper(filtroRelatorio);
+
+            var strConsultaRelatorio = relatorioVendaHelper.GerarQueryRelatorio();
 
             try
             {
@@ -25,11 +25,7 @@ namespace AugustosFashion.Repositorios
 
                     return sqlCon.Query<RelatorioVendaProduto>(
                         strConsultaRelatorio,
-                        new 
-                        {
-                            filtroRelatorio.DataInicial,
-                            filtroRelatorio.DataFinal
-                        }
+                        relatorioVendaHelper.RecuperarParametros()
                      ).ToList();
                 }
             }

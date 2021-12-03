@@ -1,11 +1,18 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+using Dapper;
 using System.Text;
 
 namespace AugustosFashion.Repositorios.QueryHelpers
 {
-    public static class RelatorioVendaProdutoHelper
+    public class RelatorioVendaProdutoHelper
    {
-        public static string GerarQueryRelatorio(FiltroRelatorioVendaProduto filtroRelatorio)
+        private readonly FiltroRelatorioVendaProduto _filtroRelatorio;
+
+        public RelatorioVendaProdutoHelper(FiltroRelatorioVendaProduto filtroRelatorio)
+        {
+            _filtroRelatorio = filtroRelatorio;
+        }
+        public string GerarQueryRelatorio()
         {
             var query = new StringBuilder();
 
@@ -34,16 +41,16 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             var groupBy = $"GROUP BY {pedidoProdutoAlias}.IdProduto, {produtoAlias}.Nome ";
 
 
-            if(filtroRelatorio.IdCliente != 0)
+            if(_filtroRelatorio.IdCliente != 0)
             {
-                where.AppendLine($"{pedidoAlias}.IdCliente = @IdCliente and ");
+                where.Append($"{pedidoAlias}.IdCliente = @IdCliente and ");
             }
-            if(filtroRelatorio.IdProduto != 0)
+            if(_filtroRelatorio.IdProduto != 0)
             {
-                where.AppendLine($"{pedidoProdutoAlias}.IdProduto = @IdProduto and ");
+                where.Append($"{pedidoProdutoAlias}.IdProduto = @IdProduto and ");
             }
-
-            where.Remove(where.Length - 4, 4);
+                
+            where = where.Remove(where.Length - 4, 4);
 
             query.AppendLine(select);
             query.AppendLine(from);
@@ -52,6 +59,23 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             query.AppendLine(groupBy);
 
             return query.ToString();
+        }
+
+        public DynamicParameters RecuperarParametros()
+        {
+            var parameters = new DynamicParameters();
+
+            parameters.AddDynamicParams(
+                new
+                {
+                    _filtroRelatorio.DataInicial,
+                    _filtroRelatorio.DataFinal,
+                    _filtroRelatorio.IdProduto,
+                    _filtroRelatorio.IdCliente
+                }
+                );
+
+            return parameters;
         }
     }
 }

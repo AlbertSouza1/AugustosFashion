@@ -1,4 +1,6 @@
-﻿using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
+﻿using AugustosFashion.Controllers.Pedidos;
+using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
+using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System;
 using System.Windows.Forms;
@@ -44,28 +46,25 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             dtpInicial.Value = primeiroDiaDoMes;
         }
 
-
-        bool visivel = false;
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-            if (visivel)
-            {
-                
-            }
-
-        }
-
         private void BtnMostrarFiltros_Click(object sender, EventArgs e)
         {
             groupBox1.Left = 741;
-            //VISIBLE NO OUTRO
         }
 
         private void BtnFecharFiltro_Click(object sender, EventArgs e)
         {
             groupBox1.Left = 1000;
+        }
 
+        private void BtnBuscarProduto_Click(object sender, EventArgs e)
+        {
+            _relatorioVendaProdutoController.AbrirFormBuscaProdutos(txtBuscaProduto.Text);
+        }
+
+        public void CarregarDadosDeProdutoSelecionado(PedidoProduto produto)
+        {
+            _filtroRelatorio.IdProduto = produto.IdProduto;
+            txtBuscaProduto.Text = produto.Nome;
         }
     }
 }

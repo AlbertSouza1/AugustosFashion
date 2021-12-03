@@ -34,8 +34,8 @@
             this.BtnFiltrar = new System.Windows.Forms.Button();
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
             this.BtnBuscarProduto = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBuscaCliente = new System.Windows.Forms.TextBox();
+            this.txtBuscaProduto = new System.Windows.Forms.TextBox();
             this.dtpFinal = new System.Windows.Forms.DateTimePicker();
             this.dtpInicial = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,8 +58,8 @@
             this.groupBox1.Controls.Add(this.BtnFiltrar);
             this.groupBox1.Controls.Add(this.BtnBuscarCliente);
             this.groupBox1.Controls.Add(this.BtnBuscarProduto);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtBuscaCliente);
+            this.groupBox1.Controls.Add(this.txtBuscaProduto);
             this.groupBox1.Controls.Add(this.dtpFinal);
             this.groupBox1.Controls.Add(this.dtpInicial);
             this.groupBox1.Controls.Add(this.label3);
@@ -125,20 +125,21 @@
             this.BtnBuscarProduto.TabIndex = 38;
             this.BtnBuscarProduto.Text = "🔍";
             this.BtnBuscarProduto.UseVisualStyleBackColor = false;
+            this.BtnBuscarProduto.Click += new System.EventHandler(this.BtnBuscarProduto_Click);
             // 
-            // textBox2
+            // txtBuscaCliente
             // 
-            this.textBox2.Location = new System.Drawing.Point(20, 352);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(163, 23);
-            this.textBox2.TabIndex = 5;
+            this.txtBuscaCliente.Location = new System.Drawing.Point(20, 352);
+            this.txtBuscaCliente.Name = "txtBuscaCliente";
+            this.txtBuscaCliente.Size = new System.Drawing.Size(163, 23);
+            this.txtBuscaCliente.TabIndex = 5;
             // 
-            // textBox1
+            // txtBuscaProduto
             // 
-            this.textBox1.Location = new System.Drawing.Point(20, 292);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(163, 23);
-            this.textBox1.TabIndex = 4;
+            this.txtBuscaProduto.Location = new System.Drawing.Point(20, 292);
+            this.txtBuscaProduto.Name = "txtBuscaProduto";
+            this.txtBuscaProduto.Size = new System.Drawing.Size(163, 23);
+            this.txtBuscaProduto.TabIndex = 4;
             // 
             // dtpFinal
             // 
@@ -280,8 +281,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBuscaCliente;
+        private System.Windows.Forms.TextBox txtBuscaProduto;
         private System.Windows.Forms.DateTimePicker dtpFinal;
         private System.Windows.Forms.DateTimePicker dtpInicial;
         private System.Windows.Forms.Label label3;

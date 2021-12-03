@@ -6,18 +6,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 
 namespace AugustosFashion.Views.Pedidos
 {
     public partial class FrmBuscaProdutos : Form
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
+        private readonly RelatorioVendaProdutoController _relatorioVendaProdutoController;
         private List<ProdutoListagem> _produtos;
-
+    
         public FrmBuscaProdutos(CadastroPedidoController cadastroPedidoController, string busca)
         {
             InitializeComponent();
             _cadastroPedidoController = cadastroPedidoController;
+            txtBuscarProdutos.Text = busca;
+        }
+
+        public FrmBuscaProdutos(RelatorioVendaProdutoController relatorioVendaProdutoController, string busca)
+        {
+            InitializeComponent();
+            _relatorioVendaProdutoController = relatorioVendaProdutoController;
             txtBuscarProdutos.Text = busca;
         }
 
@@ -42,7 +51,10 @@ namespace AugustosFashion.Views.Pedidos
 
                 var produto = SelecionarProdutoDaLista(id);
 
-                _cadastroPedidoController.RecuperarProdutoSelecionado(InstanciarProdutoSelecionado(produto));
+                if (_cadastroPedidoController != null)
+                    _cadastroPedidoController.RecuperarProdutoSelecionado(InstanciarProdutoSelecionado(produto));
+                else
+                    _relatorioVendaProdutoController.RecuperarProdutoSelecionado(InstanciarProdutoSelecionado(produto));
                 Close();
             }
             else

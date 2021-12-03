@@ -1,5 +1,4 @@
-﻿using AugustosFashion.Controllers.Cliente;
-using AugustosFashion.Controllers.ServicosEmail;
+﻿using AugustosFashion.Controllers.ServicosEmail;
 using AugustosFashion.Entidades;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
@@ -61,7 +60,7 @@ namespace AugustosFashion.Controllers.Pedidos
 
         public void RecuperarProdutoSelecionado(PedidoProduto produto)
         {
-            _frmCadastroPedido.CarregarDadosDeProdutoSelecionado(produto);
+            _frmCadastroPedido.CarregarDadosDeProdutoSelecionado(produto);              
         }
 
         public void AbrirFormBuscaCliente(string busca)
