@@ -181,6 +181,7 @@ namespace AugustosFashion
             this.vendasPorClienteToolStripMenuItem.Name = "vendasPorClienteToolStripMenuItem";
             this.vendasPorClienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.vendasPorClienteToolStripMenuItem.Text = "Vendas por Cliente";
+            this.vendasPorClienteToolStripMenuItem.Click += new System.EventHandler(this.vendasPorClienteToolStripMenuItem_Click);
             // 
             // FrmMDIParent
             // 

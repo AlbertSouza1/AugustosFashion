@@ -4,6 +4,8 @@ using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos.Relatorios
@@ -22,14 +24,31 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private void BtnFiltrar_Click(object sender, EventArgs e)
         {
             AdicionarFiltros();
-            var relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
-            dgvRelatorioProdutos.DataSource = relatorio;
+
+            ExibirRelatorio();
+            
         }
 
         private void AdicionarFiltros()
         {
             _filtroRelatorio.DataInicial = dtpInicial.Value;
             _filtroRelatorio.DataFinal = dtpFinal.Value;
+        }
+
+        private void ExibirRelatorio()
+        {
+            var relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
+            dgvRelatorioProdutos.DataSource = relatorio;
+
+            AtualizarTotalizadores(relatorio);
+        }
+
+        private void AtualizarTotalizadores(List<RelatorioVendaProduto> relatorio)
+        {
+            lblTotalBruto.Text = relatorio.Sum(x => x.TotalBruto.RetornaValor).ToString("c"); 
+            lblTotalLiquido.Text = relatorio.Sum(x => x.TotalLiquido.RetornaValor).ToString("c"); 
+            lblTotalDesconto.Text = relatorio.Sum(x => x.TotalDesconto.RetornaValor).ToString("c"); 
+            lblLucroTotal.Text = relatorio.Sum(x => x.LucroReais.RetornaValor).ToString("c"); 
         }
 
         private void FrmRelatorioVendaProduto_Load(object sender, EventArgs e)
@@ -76,6 +95,11 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             _filtroRelatorio.IdCliente = cliente.IdCliente;
             txtBuscaCliente.Text = cliente.NomeCompleto.ToString();
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

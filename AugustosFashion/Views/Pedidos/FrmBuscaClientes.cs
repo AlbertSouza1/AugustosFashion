@@ -13,6 +13,7 @@ namespace AugustosFashion.Views.Pedidos
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
         private readonly RelatorioVendaProdutoController _relatorioVendaProdutoController;
+        private readonly RelatorioVendaClienteController _relatorioVendaClienteController;
 
         public FrmBuscaClientes(CadastroPedidoController cadastroPedidoController, string busca)
         {
@@ -25,6 +26,13 @@ namespace AugustosFashion.Views.Pedidos
         {
             InitializeComponent();
             _relatorioVendaProdutoController = relatorioVendaProdutoController;
+            txtBuscar.Text = busca;
+        }
+
+        public FrmBuscaClientes(RelatorioVendaClienteController relatorioVendaClienteController, string busca)
+        {
+            InitializeComponent();
+            _relatorioVendaClienteController = relatorioVendaClienteController;
             txtBuscar.Text = busca;
         }
 
@@ -59,8 +67,10 @@ namespace AugustosFashion.Views.Pedidos
 
                     if (_cadastroPedidoController != null)
                         _cadastroPedidoController.RecuperarClienteSelecionado(cliente);
-                    else
+                    else if (_relatorioVendaProdutoController != null)
                         _relatorioVendaProdutoController.RecuperarClienteSelecionado(cliente);
+                    else
+                        _relatorioVendaClienteController.RecuperarClienteSelecionado(cliente);
 
                     Close();
                 }

@@ -54,7 +54,10 @@
     <Compile Include="Entidades\ContaBancaria\ContaBancariaModel.cs" />
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
     <Compile Include="Entidades\ContasClientes\ContaClienteModel.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\EOrdenacaoVendaCliente.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\FiltroRelatorioVendaCliente.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\FiltroRelatorioVendaProduto.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\RelatorioVendaCliente.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\RelatorioVendaProduto.cs" />
     <Compile Include="Entidades\ValorObjeto\Cpfs\CPFValidator.cs" />
     <Compile Include="Entidades\ValorObjeto\Dinheiros\Dinheiro.cs" />
