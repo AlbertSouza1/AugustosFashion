@@ -1,54 +1,57 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashion.Repositorios.QueryHelpers
 {
-    public  class RelatorioVendaProdutoHelper
-    {
-        private readonly FiltroRelatorioVendaProduto _filtroRelatorio;
-
-        private readonly string queryFiltroProduto = " pp.IdProduto = @IdProduto";
-        private readonly string queryFiltroCliente = " pp.IdProduto = @IdProduto";
-
-        private string query = @"
-				SELECT
-				pr.Nome, SUM(pp.Quantidade) as QuantidadeVendida, SUM(pp.Quantidade * pp.PrecoCusto) as TotalCusto,
-				SUM(pp.PrecoVenda * pp.Quantidade) as TotalBruto,
-				SUM(pp.Quantidade * pp.Desconto) as TotalDesconto, SUM(pp.Total) as TotalLiquido,
-				SUM(pp.Total) - sum(pp.Quantidade * pp.PrecoCusto) as LucroReais				
-				FROM 
-				Pedido_Produto pp INNER JOIN Pedidos pe on pe.IdPedido = pp.IdPedido
-				INNER JOIN Produtos pr on pp.IdProduto = pr.IdProduto
-				INNER JOIN Clientes c on c.IdCliente = pe.IdCliente
-
-                WHERE pe.DataEmissao BETWEEN @DataInicial and @DataFinal + ' 23:59'
-
-				GROUP BY pr.Nome--, pe.IdCliente, pp.PrecoCusto, pp.PrecoVenda
-                ORDER BY SUM(pp.Quantidade) DESC";
-
-        public RelatorioVendaProdutoHelper(FiltroRelatorioVendaProduto filtroRelatorio)
+    public static class RelatorioVendaProdutoHelper
+   {
+        public static string GerarQueryRelatorio(FiltroRelatorioVendaProduto filtroRelatorio)
         {
-            _filtroRelatorio = filtroRelatorio;
-        }
+            var query = new StringBuilder();
 
-        public string RetornarFiltroProduto()
-        {
-            if (_filtroRelatorio.IdProduto == 0)
-                return "";
-            else
-                return queryFiltroProduto;
-        }
+            var pedidoProdutoAlias = "pp";
+            var pedidoAlias = "pe";
+            var clienteAlias = "c";
+            var produtoAlias = "pr";
 
-        public string RetornarFiltroCliente()
-        {
-            if (_filtroRelatorio.IdCliente == 0)
-                return "";
-            else
-                return queryFiltroCliente;
+            var totalCusto = $" SUM({pedidoProdutoAlias}.Quantidade * {pedidoProdutoAlias}.PrecoCusto) ";
+            var totalLiquido = $" SUM({pedidoProdutoAlias}.Total) ";
+
+            var select = $@" SELECT
+                        {produtoAlias}.Nome, SUM({pedidoProdutoAlias}.Quantidade) as QuantidadeVendida,
+                        {totalCusto} as TotalCusto, SUM({pedidoProdutoAlias}.PrecoVenda * {pedidoProdutoAlias}.Quantidade) as TotalBruto,
+                        SUM({pedidoProdutoAlias}.Quantidade * {pedidoProdutoAlias}.Desconto) as TotalDesconto,
+                        {totalLiquido} as TotalLiquido, {totalLiquido} - {totalCusto} as LucroReais ";
+
+            var from = $" FROM Pedido_Produto {pedidoProdutoAlias} ";
+
+            var joins = $@" INNER JOIN Pedidos {pedidoAlias} on {pedidoAlias}.IdPedido = {pedidoProdutoAlias}.IdPedido
+				INNER JOIN Produtos {produtoAlias} on {pedidoProdutoAlias}.IdProduto = {produtoAlias}.IdProduto
+				INNER JOIN Clientes {clienteAlias} on {clienteAlias}.IdCliente = {pedidoAlias}.IdCliente ";
+
+            var where = new StringBuilder($"WHERE {pedidoAlias}.DataEmissao BETWEEN @DataInicial and @DataFinal + ' 23:59' and ");
+
+            var groupBy = $"GROUP BY {pedidoProdutoAlias}.IdProduto, {produtoAlias}.Nome ";
+
+
+            if(filtroRelatorio.IdCliente != 0)
+            {
+                where.AppendLine($"{pedidoAlias}.IdCliente = @IdCliente and ");
+            }
+            if(filtroRelatorio.IdProduto != 0)
+            {
+                where.AppendLine($"{pedidoProdutoAlias}.IdProduto = @IdProduto and ");
+            }
+
+            where.Remove(where.Length - 4, 4);
+
+            query.AppendLine(select);
+            query.AppendLine(from);
+            query.AppendLine(joins);
+            query.AppendLine(where.ToString());
+            query.AppendLine(groupBy);
+
+            return query.ToString();
         }
     }
 }

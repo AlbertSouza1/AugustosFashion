@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 using Dapper;
 using System.Data.SqlClient;
 using AugustosFashion.Helpers;
+using AugustosFashion.Repositorios.QueryHelpers;
 
 namespace AugustosFashion.Repositorios
 {
     public static class RelatorioVendaProdutoRepositorio
     {
-        static string a = "a";
-
         public static List<RelatorioVendaProduto> ConsultarRelatorio(FiltroRelatorioVendaProduto filtroRelatorio)
-        {           
-            var strConsultaRelatorio = ;
+        {
+            var strConsultaRelatorio = RelatorioVendaProdutoHelper.GerarQueryRelatorio(filtroRelatorio);
 
             try
             {
