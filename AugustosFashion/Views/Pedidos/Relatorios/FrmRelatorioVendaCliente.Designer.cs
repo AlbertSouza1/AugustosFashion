@@ -32,7 +32,9 @@
             this.btnFechar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtValorComprado = new System.Windows.Forms.TextBox();
             this.cbOrdenacao = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.BtnFecharFiltro = new System.Windows.Forms.Button();
             this.BtnFiltrar = new System.Windows.Forms.Button();
@@ -56,8 +58,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lblLucroTotal = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtValorComprado = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
             this.SuspendLayout();
@@ -114,8 +114,18 @@
             this.groupBox1.TabIndex = 110;
             this.groupBox1.TabStop = false;
             // 
+            // txtValorComprado
+            // 
+            this.txtValorComprado.Location = new System.Drawing.Point(20, 360);
+            this.txtValorComprado.Name = "txtValorComprado";
+            this.txtValorComprado.Size = new System.Drawing.Size(199, 23);
+            this.txtValorComprado.TabIndex = 113;
+            this.txtValorComprado.Text = "0";
+            // 
             // cbOrdenacao
             // 
+            this.cbOrdenacao.BackColor = System.Drawing.Color.White;
+            this.cbOrdenacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbOrdenacao.FormattingEnabled = true;
             this.cbOrdenacao.Items.AddRange(new object[] {
             "Nenhum Filtro",
@@ -129,6 +139,16 @@
             this.cbOrdenacao.Name = "cbOrdenacao";
             this.cbOrdenacao.Size = new System.Drawing.Size(200, 23);
             this.cbOrdenacao.TabIndex = 112;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(20, 340);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(113, 17);
+            this.label12.TabIndex = 111;
+            this.label12.Text = "Comprou mais de";
             // 
             // label11
             // 
@@ -363,23 +383,6 @@
             this.label9.Size = new System.Drawing.Size(91, 20);
             this.label9.TabIndex = 123;
             this.label9.Text = "Total Lucro:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(20, 340);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(113, 17);
-            this.label12.TabIndex = 111;
-            this.label12.Text = "Comprou mais de";
-            // 
-            // txtValorComprado
-            // 
-            this.txtValorComprado.Location = new System.Drawing.Point(20, 360);
-            this.txtValorComprado.Name = "txtValorComprado";
-            this.txtValorComprado.Size = new System.Drawing.Size(199, 23);
-            this.txtValorComprado.TabIndex = 113;
             // 
             // FrmRelatorioVendaCliente
             // 

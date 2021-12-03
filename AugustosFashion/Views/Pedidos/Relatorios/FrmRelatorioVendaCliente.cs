@@ -53,13 +53,15 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             _filtroRelatorio.DataInicial = dtpInicial.Value;
             _filtroRelatorio.DataFinal = dtpFinal.Value;
-            _filtroRelatorio.ValorComprado = decimal.Parse(txtValorComprado.Text);
-            _filtroRelatorio.QuantidadeResultados = int.Parse(txtQuantidadeResultados.Text);
+            _filtroRelatorio.ValorComprado = decimal.TryParse(txtValorComprado.Text, out decimal valorCompra) ? valorCompra : 0;
+            _filtroRelatorio.QuantidadeResultados = int.TryParse(txtQuantidadeResultados.Text, out int qtd) ? qtd : 0;
+            _filtroRelatorio.Ordenacao = (EOrdenacaoVendaCliente)cbOrdenacao.SelectedIndex;
         }
 
         private void FrmRelatorioVendaCliente_Load(object sender, EventArgs e)
         {
-            groupBox1.Left = 1000;
+            groupBox1.Left = 1000;  
+            cbOrdenacao.SelectedIndex = 0;
             SetarDataInicialParaPrimeiroDiaDoMes();
         }
         private void SetarDataInicialParaPrimeiroDiaDoMes()

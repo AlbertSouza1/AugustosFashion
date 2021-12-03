@@ -18,7 +18,6 @@ namespace AugustosFashion.Repositorios.QueryHelpers
 
             var pedidoProdutoAlias = "pp";
             var pedidoAlias = "pe";
-            var clienteAlias = "c";
             var produtoAlias = "pr";
 
             var totalCusto = $" SUM({pedidoProdutoAlias}.Quantidade * {pedidoProdutoAlias}.PrecoCusto) ";
@@ -33,8 +32,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             var from = $" FROM Pedido_Produto {pedidoProdutoAlias} ";
 
             var joins = $@" INNER JOIN Pedidos {pedidoAlias} on {pedidoAlias}.IdPedido = {pedidoProdutoAlias}.IdPedido
-				INNER JOIN Produtos {produtoAlias} on {pedidoProdutoAlias}.IdProduto = {produtoAlias}.IdProduto
-				INNER JOIN Clientes {clienteAlias} on {clienteAlias}.IdCliente = {pedidoAlias}.IdCliente ";
+				INNER JOIN Produtos {produtoAlias} on {pedidoProdutoAlias}.IdProduto = {produtoAlias}.IdProduto	";
 
             var where = new StringBuilder($"WHERE {pedidoAlias}.DataEmissao BETWEEN @DataInicial and @DataFinal + ' 23:59' and ");
 
