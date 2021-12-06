@@ -3,12 +3,7 @@ using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos.Relatorios
@@ -32,15 +27,15 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnFecharFiltro_Click(object sender, EventArgs e)
         {
-            OcultarFiltros();
+            OcultarAbaDeFiltros();
         }
 
         private void BtnMostrarFiltros_Click(object sender, EventArgs e)
         {
-            MostrarFiltros();
+            MostrarAbaDeFiltros();
         }
 
-        internal void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
+        public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
         {
             _filtroRelatorio.IdCliente = cliente.IdCliente;
             txtBuscaCliente.Text = cliente.NomeCompleto.ToString();
@@ -48,7 +43,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnFiltrar_Click(object sender, EventArgs e)
         {
-            OcultarFiltros();
+            OcultarAbaDeFiltros();
 
             SetarFiltros();
 
@@ -89,7 +84,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void FrmRelatorioVendaCliente_Load(object sender, EventArgs e)
         {
-            groupBox1.Left = 1000;  
+            OcultarAbaDeFiltros(); 
             cbOrdenacao.SelectedIndex = 0;
             SetarDataInicialParaPrimeiroDiaDoMes();
         }
@@ -113,7 +108,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             txtBuscaCliente.Text = string.Empty;
         }
 
-        private void OcultarFiltros() => groupBox1.Left = 1000;
-        private void MostrarFiltros() => groupBox1.Left = 741;
+        private void OcultarAbaDeFiltros() => groupBox1.Left = 1000;
+        private void MostrarAbaDeFiltros() => groupBox1.Left = 741;
     }
 }

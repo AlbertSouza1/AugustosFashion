@@ -13,6 +13,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
     public partial class FrmRelatorioVendaProduto : Form
     {
         private readonly RelatorioVendaProdutoController _relatorioVendaProdutoController;
+        private List<RelatorioVendaProduto> _relatorio;
         private FiltroRelatorioVendaProduto _filtroRelatorio = new FiltroRelatorioVendaProduto();
 
         public FrmRelatorioVendaProduto(RelatorioVendaProdutoController relatorioVendaProdutoController)
@@ -37,10 +38,10 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void ExibirRelatorio()
         {
-            var relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
-            dgvRelatorioProdutos.DataSource = relatorio;
+            _relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
+            dgvRelatorioProdutos.DataSource = _relatorio;
 
-            AtualizarTotalizadores(relatorio);
+            AtualizarTotalizadores(_relatorio);
         }
 
         private void AtualizarTotalizadores(List<RelatorioVendaProduto> relatorio)
@@ -53,7 +54,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void FrmRelatorioVendaProduto_Load(object sender, EventArgs e)
         {
-            groupBox1.Left = 1000;
+            gbFiltros.Left = 1000;
             SetarDataInicialParaPrimeiroDiaDoMes();
         }
 
@@ -68,12 +69,12 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnMostrarFiltros_Click(object sender, EventArgs e)
         {
-            groupBox1.Left = 741;
+            gbFiltros.Left = 741;
         }
 
         private void BtnFecharFiltro_Click(object sender, EventArgs e)
         {
-            groupBox1.Left = 1000;
+            gbFiltros.Left = 1000;
         }
 
         private void BtnBuscarProduto_Click(object sender, EventArgs e)

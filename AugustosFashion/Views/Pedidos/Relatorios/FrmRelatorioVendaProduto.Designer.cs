@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaProduto));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbFiltros = new System.Windows.Forms.GroupBox();
             this.BtnFecharFiltro = new System.Windows.Forms.Button();
             this.BtnFiltrar = new System.Windows.Forms.Button();
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
@@ -55,32 +55,32 @@
             this.lblTotalBruto = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblLucroTotal = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.gbFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioProdutos)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbFiltros
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.LightGray;
-            this.groupBox1.Controls.Add(this.BtnFecharFiltro);
-            this.groupBox1.Controls.Add(this.BtnFiltrar);
-            this.groupBox1.Controls.Add(this.BtnBuscarCliente);
-            this.groupBox1.Controls.Add(this.BtnBuscarProduto);
-            this.groupBox1.Controls.Add(this.txtBuscaCliente);
-            this.groupBox1.Controls.Add(this.txtBuscaProduto);
-            this.groupBox1.Controls.Add(this.dtpFinal);
-            this.groupBox1.Controls.Add(this.dtpInicial);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(741, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(242, 741);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
+            this.gbFiltros.BackColor = System.Drawing.Color.LightGray;
+            this.gbFiltros.Controls.Add(this.BtnFecharFiltro);
+            this.gbFiltros.Controls.Add(this.BtnFiltrar);
+            this.gbFiltros.Controls.Add(this.BtnBuscarCliente);
+            this.gbFiltros.Controls.Add(this.BtnBuscarProduto);
+            this.gbFiltros.Controls.Add(this.txtBuscaCliente);
+            this.gbFiltros.Controls.Add(this.txtBuscaProduto);
+            this.gbFiltros.Controls.Add(this.dtpFinal);
+            this.gbFiltros.Controls.Add(this.dtpInicial);
+            this.gbFiltros.Controls.Add(this.label3);
+            this.gbFiltros.Controls.Add(this.label5);
+            this.gbFiltros.Controls.Add(this.label4);
+            this.gbFiltros.Controls.Add(this.label2);
+            this.gbFiltros.Controls.Add(this.label1);
+            this.gbFiltros.ForeColor = System.Drawing.Color.Black;
+            this.gbFiltros.Location = new System.Drawing.Point(741, 0);
+            this.gbFiltros.Name = "gbFiltros";
+            this.gbFiltros.Size = new System.Drawing.Size(242, 741);
+            this.gbFiltros.TabIndex = 0;
+            this.gbFiltros.TabStop = false;
             // 
             // BtnFecharFiltro
             // 
@@ -351,7 +351,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 740);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbFiltros);
             this.Controls.Add(this.lblTotalLiquido);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblTotalDesconto);
@@ -369,8 +369,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmRelatorioVendaProduto";
             this.Load += new System.EventHandler(this.FrmRelatorioVendaProduto_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbFiltros.ResumeLayout(false);
+            this.gbFiltros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioProdutos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -379,7 +379,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbFiltros;
         private System.Windows.Forms.TextBox txtBuscaCliente;
         private System.Windows.Forms.TextBox txtBuscaProduto;
         private System.Windows.Forms.DateTimePicker dtpFinal;
