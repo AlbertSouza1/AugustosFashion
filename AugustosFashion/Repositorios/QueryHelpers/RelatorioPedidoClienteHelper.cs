@@ -8,24 +8,22 @@ using System.Threading.Tasks;
 
 namespace AugustosFashion.Repositorios.QueryHelpers
 {
-    public class RelatorioVendaClienteHelper
+    public class RelatorioPedidoClienteHelper
     {
-        private readonly FiltroRelatorioVendaCliente _filtroRelatorio;
+        private readonly FiltroRelatorioPedidoCliente _filtroRelatorio;
 
-        public RelatorioVendaClienteHelper(FiltroRelatorioVendaCliente filtroRelatorioVendaCliente)
+        public RelatorioPedidoClienteHelper(FiltroRelatorioPedidoCliente filtroRelatorioVendaCliente)
         {
             _filtroRelatorio = filtroRelatorioVendaCliente;
         }
         public string GerarFiltrosWhere()
         {
-            var where = new StringBuilder($"WHERE p.DataEmissao BETWEEN @DataInicial and @DataFinal + ' 23:59' ");
+            var where = new StringBuilder($" WHERE p.DataEmissao BETWEEN @DataInicial and @DataFinal + ' 23:59' ");
 
             if (_filtroRelatorio.IdCliente != 0)
             {
                 where.Append($"and p.IdCliente = @IdCliente");
             }
-
-            //where = where.Remove(where.Length - 4, 4);
 
             return where.ToString();
         }
@@ -74,22 +72,22 @@ namespace AugustosFashion.Repositorios.QueryHelpers
 
             switch(_filtroRelatorio.Ordenacao)
             {
-                case EOrdenacaoVendaCliente.MaisComprou:
+                case EOrdenacaoPedidoCliente.MaisComprou:
                     orderBy = " order by count(p.IdPedido) desc ";
                     break;
-                case EOrdenacaoVendaCliente.MenosComprou:
+                case EOrdenacaoPedidoCliente.MenosComprou:
                     orderBy = " order by count(p.IdPedido) ";
                     break;
-                case EOrdenacaoVendaCliente.MaiorDesconto:
+                case EOrdenacaoPedidoCliente.MaiorDesconto:
                     orderBy = " order by sum(p.TotalDesconto) desc";
                     break;
-                case EOrdenacaoVendaCliente.MenorDesconto:
+                case EOrdenacaoPedidoCliente.MenorDesconto:
                     orderBy = " order by sum(p.TotalDesconto) ";
                     break;
-                case EOrdenacaoVendaCliente.MaiorValor:
+                case EOrdenacaoPedidoCliente.MaiorValor:
                     orderBy = " order by sum(p.TotalLiquido) desc ";
                     break;
-                case EOrdenacaoVendaCliente.MenorValor:
+                case EOrdenacaoPedidoCliente.MenorValor:
                     orderBy = " order by sum(p.TotalLiquido) ";
                     break;
             }

@@ -12,11 +12,11 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 {
     public partial class FrmRelatorioVendaProduto : Form
     {
-        private readonly RelatorioVendaProdutoController _relatorioVendaProdutoController;
-        private List<RelatorioVendaProduto> _relatorio;
-        private FiltroRelatorioVendaProduto _filtroRelatorio = new FiltroRelatorioVendaProduto();
+        private readonly RelatorioPedidoProdutoController _relatorioVendaProdutoController;
+        private List<RelatorioPedidoProduto> _relatorio;
+        private FiltroRelatorioPedidoProduto _filtroRelatorio = new FiltroRelatorioPedidoProduto();
 
-        public FrmRelatorioVendaProduto(RelatorioVendaProdutoController relatorioVendaProdutoController)
+        public FrmRelatorioVendaProduto(RelatorioPedidoProdutoController relatorioVendaProdutoController)
         {
             InitializeComponent();
             _relatorioVendaProdutoController = relatorioVendaProdutoController;
@@ -27,7 +27,8 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             AdicionarFiltros();
 
             ExibirRelatorio();
-            
+
+            gbFiltros.Left = 1000;
         }
 
         private void AdicionarFiltros()
@@ -44,7 +45,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             AtualizarTotalizadores(_relatorio);
         }
 
-        private void AtualizarTotalizadores(List<RelatorioVendaProduto> relatorio)
+        private void AtualizarTotalizadores(List<RelatorioPedidoProduto> relatorio)
         {
             lblTotalBruto.Text = relatorio.Sum(x => x.TotalBruto.RetornaValor).ToString("c"); 
             lblTotalLiquido.Text = relatorio.Sum(x => x.TotalLiquido.RetornaValor).ToString("c"); 
@@ -101,6 +102,18 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void BtnLimparProduto_Click(object sender, EventArgs e)
+        {
+            _filtroRelatorio.IdProduto = 0;
+            txtBuscaProduto.Text = string.Empty;
+        }
+
+        private void BtnLimparCliente_Click(object sender, EventArgs e)
+        {
+            _filtroRelatorio.IdCliente = 0;
+            txtBuscaCliente.Text = string.Empty;
         }
     }
 }

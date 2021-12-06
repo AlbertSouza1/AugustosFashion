@@ -136,6 +136,7 @@
             this.txtValorComprado.Size = new System.Drawing.Size(199, 23);
             this.txtValorComprado.TabIndex = 113;
             this.txtValorComprado.Text = "0";
+            this.txtValorComprado.Leave += new System.EventHandler(this.txtValorComprado_Leave);
             // 
             // cbOrdenacao
             // 
@@ -229,6 +230,7 @@
             this.txtQuantidadeResultados.Name = "txtQuantidadeResultados";
             this.txtQuantidadeResultados.Size = new System.Drawing.Size(200, 23);
             this.txtQuantidadeResultados.TabIndex = 4;
+            this.txtQuantidadeResultados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantidadeResultados_KeyPress);
             // 
             // dtpFinal
             // 

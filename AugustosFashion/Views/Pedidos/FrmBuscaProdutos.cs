@@ -13,7 +13,7 @@ namespace AugustosFashion.Views.Pedidos
     public partial class FrmBuscaProdutos : Form
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
-        private readonly RelatorioVendaProdutoController _relatorioVendaProdutoController;
+        private readonly RelatorioPedidoProdutoController _relatorioVendaProdutoController;
         private List<ProdutoListagem> _produtos;
     
         public FrmBuscaProdutos(CadastroPedidoController cadastroPedidoController, string busca)
@@ -23,7 +23,7 @@ namespace AugustosFashion.Views.Pedidos
             txtBuscarProdutos.Text = busca;
         }
 
-        public FrmBuscaProdutos(RelatorioVendaProdutoController relatorioVendaProdutoController, string busca)
+        public FrmBuscaProdutos(RelatorioPedidoProdutoController relatorioVendaProdutoController, string busca)
         {
             InitializeComponent();
             _relatorioVendaProdutoController = relatorioVendaProdutoController;

@@ -1,6 +1,6 @@
 ﻿namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
 {
-    public enum EOrdenacaoVendaCliente
+    public enum EOrdenacaoPedidoCliente
     {
         Nenhuma,
         MaisComprou,

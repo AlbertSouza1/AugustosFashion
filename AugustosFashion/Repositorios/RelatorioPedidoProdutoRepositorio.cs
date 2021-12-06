@@ -9,11 +9,11 @@ using System.Linq;
 
 namespace AugustosFashion.Repositorios
 {
-    public static class RelatorioVendaProdutoRepositorio
+    public static class RelatorioPedidoProdutoRepositorio
     {
-        public static List<RelatorioVendaProduto> ConsultarRelatorio(FiltroRelatorioVendaProduto filtroRelatorio)
+        public static List<RelatorioPedidoProduto> ConsultarRelatorio(FiltroRelatorioPedidoProduto filtroRelatorio)
         {
-            var relatorioVendaHelper = new RelatorioVendaProdutoHelper(filtroRelatorio);
+            var relatorioVendaHelper = new RelatorioPedidoProdutoHelper(filtroRelatorio);
 
             var strConsultaRelatorio = relatorioVendaHelper.GerarQueryRelatorio();
 
@@ -23,7 +23,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<RelatorioVendaProduto>(
+                    return sqlCon.Query<RelatorioPedidoProduto>(
                         strConsultaRelatorio,
                         relatorioVendaHelper.RecuperarParametros()
                      ).ToList();

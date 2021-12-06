@@ -137,12 +137,12 @@ namespace AugustosFashion
 
         private void vendasPorProdutoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new RelatorioVendaProdutoController().AbrirFormRelatorioVendaProduto();
+            new RelatorioPedidoProdutoController().AbrirFormRelatorioVendaProduto();
         }
 
         private void vendasPorClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new RelatorioVendaClienteController().AbrirFormRelatorioVendaCliente();
+            new RelatorioPedidoClienteController().AbrirFormRelatorioVendaCliente();
         }
     }
 }

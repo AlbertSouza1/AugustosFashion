@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
 {
-    public class RelatorioVendaClienteController
+    public class RelatorioPedidoClienteController
     {
         private FrmRelatorioVendaCliente _frmRelatorioVendaCliente;
 
@@ -23,9 +23,9 @@ namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
             _frmRelatorioVendaCliente.Show();
         }
 
-        public List<RelatorioVendaCliente> ConsultarRelatorio(FiltroRelatorioVendaCliente filtroRelatorio)
+        public List<RelatorioPedidoCliente> ConsultarRelatorio(FiltroRelatorioPedidoCliente filtroRelatorio)
         {
-            return RelatorioVendaClienteRepositorio.ConsultarRelatorio(filtroRelatorio);
+            return RelatorioPedidoClienteRepositorio.ConsultarRelatorio(filtroRelatorio);
         }
 
         public void AbrirFormBuscaClientes(string busca)

@@ -5,12 +5,11 @@ using AugustosFashion.Views.Pedidos;
 using AugustosFashion.Views.Pedidos.Relatorios;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
-using System;
 using System.Collections.Generic;
 
 namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
 {
-    public class RelatorioVendaProdutoController
+    public class RelatorioPedidoProdutoController
     {
         private FrmRelatorioVendaProduto _frmRelatorioVendaProduto;
 
@@ -21,9 +20,9 @@ namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
             _frmRelatorioVendaProduto.Show();
         }
 
-        public List<RelatorioVendaProduto> ConsultarRelatorio(FiltroRelatorioVendaProduto filtroRelatorio)
+        public List<RelatorioPedidoProduto> ConsultarRelatorio(FiltroRelatorioPedidoProduto filtroRelatorio)
         {
-            return RelatorioVendaProdutoRepositorio.ConsultarRelatorio(filtroRelatorio);
+            return RelatorioPedidoProdutoRepositorio.ConsultarRelatorio(filtroRelatorio);
         }
 
         public void AbrirFormBuscaProdutos(string busca)

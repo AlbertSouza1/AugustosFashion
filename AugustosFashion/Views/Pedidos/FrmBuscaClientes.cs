@@ -12,8 +12,8 @@ namespace AugustosFashion.Views.Pedidos
     public partial class FrmBuscaClientes : Form
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
-        private readonly RelatorioVendaProdutoController _relatorioVendaProdutoController;
-        private readonly RelatorioVendaClienteController _relatorioVendaClienteController;
+        private readonly RelatorioPedidoProdutoController _relatorioVendaProdutoController;
+        private readonly RelatorioPedidoClienteController _relatorioVendaClienteController;
 
         public FrmBuscaClientes(CadastroPedidoController cadastroPedidoController, string busca)
         {
@@ -22,14 +22,14 @@ namespace AugustosFashion.Views.Pedidos
             txtBuscar.Text = busca;
         }
 
-        public FrmBuscaClientes(RelatorioVendaProdutoController relatorioVendaProdutoController, string busca)
+        public FrmBuscaClientes(RelatorioPedidoProdutoController relatorioVendaProdutoController, string busca)
         {
             InitializeComponent();
             _relatorioVendaProdutoController = relatorioVendaProdutoController;
             txtBuscar.Text = busca;
         }
 
-        public FrmBuscaClientes(RelatorioVendaClienteController relatorioVendaClienteController, string busca)
+        public FrmBuscaClientes(RelatorioPedidoClienteController relatorioVendaClienteController, string busca)
         {
             InitializeComponent();
             _relatorioVendaClienteController = relatorioVendaClienteController;

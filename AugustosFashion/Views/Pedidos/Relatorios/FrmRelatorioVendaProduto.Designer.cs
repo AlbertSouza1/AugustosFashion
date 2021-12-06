@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaProduto));
             this.gbFiltros = new System.Windows.Forms.GroupBox();
+            this.BtnLimparCliente = new System.Windows.Forms.Button();
+            this.BtnLimparProduto = new System.Windows.Forms.Button();
             this.BtnFecharFiltro = new System.Windows.Forms.Button();
             this.BtnFiltrar = new System.Windows.Forms.Button();
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
@@ -62,6 +64,8 @@
             // gbFiltros
             // 
             this.gbFiltros.BackColor = System.Drawing.Color.LightGray;
+            this.gbFiltros.Controls.Add(this.BtnLimparCliente);
+            this.gbFiltros.Controls.Add(this.BtnLimparProduto);
             this.gbFiltros.Controls.Add(this.BtnFecharFiltro);
             this.gbFiltros.Controls.Add(this.BtnFiltrar);
             this.gbFiltros.Controls.Add(this.BtnBuscarCliente);
@@ -81,6 +85,31 @@
             this.gbFiltros.Size = new System.Drawing.Size(242, 741);
             this.gbFiltros.TabIndex = 0;
             this.gbFiltros.TabStop = false;
+            // 
+            // BtnLimparCliente
+            // 
+            this.BtnLimparCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BtnLimparCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimparCliente.Location = new System.Drawing.Point(169, 352);
+            this.BtnLimparCliente.Name = "BtnLimparCliente";
+            this.BtnLimparCliente.Size = new System.Drawing.Size(14, 23);
+            this.BtnLimparCliente.TabIndex = 116;
+            this.BtnLimparCliente.Text = "X";
+            this.BtnLimparCliente.UseVisualStyleBackColor = false;
+            this.BtnLimparCliente.Click += new System.EventHandler(this.BtnLimparCliente_Click);
+            // 
+            // BtnLimparProduto
+            // 
+            this.BtnLimparProduto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BtnLimparProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimparProduto.ForeColor = System.Drawing.Color.Black;
+            this.BtnLimparProduto.Location = new System.Drawing.Point(169, 292);
+            this.BtnLimparProduto.Name = "BtnLimparProduto";
+            this.BtnLimparProduto.Size = new System.Drawing.Size(14, 23);
+            this.BtnLimparProduto.TabIndex = 115;
+            this.BtnLimparProduto.Text = "X";
+            this.BtnLimparProduto.UseVisualStyleBackColor = false;
+            this.BtnLimparProduto.Click += new System.EventHandler(this.BtnLimparProduto_Click);
             // 
             // BtnFecharFiltro
             // 
@@ -405,5 +434,7 @@
         private System.Windows.Forms.Label lblTotalBruto;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblLucroTotal;
+        private System.Windows.Forms.Button BtnLimparProduto;
+        private System.Windows.Forms.Button BtnLimparCliente;
     }
 }

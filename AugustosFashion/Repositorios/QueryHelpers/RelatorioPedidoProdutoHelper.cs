@@ -3,11 +3,11 @@ using Dapper;
 
 namespace AugustosFashion.Repositorios.QueryHelpers
 {
-    public class RelatorioVendaProdutoHelper
+    public class RelatorioPedidoProdutoHelper
    {
-        private readonly FiltroRelatorioVendaProduto _filtroRelatorio;
+        private readonly FiltroRelatorioPedidoProduto _filtroRelatorio;
 
-        public RelatorioVendaProdutoHelper(FiltroRelatorioVendaProduto filtroRelatorio)
+        public RelatorioPedidoProdutoHelper(FiltroRelatorioPedidoProduto filtroRelatorio)
         {
             _filtroRelatorio = filtroRelatorio;
         }
@@ -33,7 +33,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             }
             if(_filtroRelatorio.IdProduto != 0)
             {
-                where += $" and pp.IdProduto = @IdProduto and ";
+                where += $" and pp.IdProduto = @IdProduto ";
             }
 
             query += where;

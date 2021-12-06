@@ -10,11 +10,11 @@ using System.Linq;
 
 namespace AugustosFashion.Repositorios
 {
-    public class RelatorioVendaClienteRepositorio
+    public class RelatorioPedidoClienteRepositorio
     {
-        public static List<RelatorioVendaCliente> ConsultarRelatorio(FiltroRelatorioVendaCliente filtroRelatorio)
+        public static List<RelatorioPedidoCliente> ConsultarRelatorio(FiltroRelatorioPedidoCliente filtroRelatorio)
         {
-            var relatorioVendaHelper = new RelatorioVendaClienteHelper(filtroRelatorio);
+            var relatorioVendaHelper = new RelatorioPedidoClienteHelper(filtroRelatorio);
 
             var querySelect = @"SELECT ";
 
@@ -40,7 +40,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<RelatorioVendaCliente, NomeCompleto, RelatorioVendaCliente>(
+                    return sqlCon.Query<RelatorioPedidoCliente, NomeCompleto, RelatorioPedidoCliente>(
                         querySelect,
                         (relatorioVendaCliente, nomeCompleto) => MapearRelatorioVendaCliente(relatorioVendaCliente, nomeCompleto),
                         relatorioVendaHelper.RecuperarParametros(),
@@ -54,7 +54,7 @@ namespace AugustosFashion.Repositorios
             }
         }
 
-        private static RelatorioVendaCliente MapearRelatorioVendaCliente(RelatorioVendaCliente relatorioVendaCliente, NomeCompleto nomeCompleto)
+        private static RelatorioPedidoCliente MapearRelatorioVendaCliente(RelatorioPedidoCliente relatorioVendaCliente, NomeCompleto nomeCompleto)
         {
             relatorioVendaCliente.NomeCompleto = nomeCompleto;
 

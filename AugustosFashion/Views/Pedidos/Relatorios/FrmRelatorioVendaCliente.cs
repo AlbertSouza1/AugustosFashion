@@ -10,11 +10,11 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 {
     public partial class FrmRelatorioVendaCliente : Form
     {
-        private readonly RelatorioVendaClienteController _relatorioVendaClienteController;
-        private List<RelatorioVendaCliente> _relatorioVendaCliente;
-        private FiltroRelatorioVendaCliente _filtroRelatorio = new FiltroRelatorioVendaCliente();
+        private readonly RelatorioPedidoClienteController _relatorioVendaClienteController;
+        private List<RelatorioPedidoCliente> _relatorioVendaCliente;
+        private FiltroRelatorioPedidoCliente _filtroRelatorio = new FiltroRelatorioPedidoCliente();
 
-        public FrmRelatorioVendaCliente(RelatorioVendaClienteController relatorioVendaClienteController)
+        public FrmRelatorioVendaCliente(RelatorioPedidoClienteController relatorioVendaClienteController)
         {
             InitializeComponent();
             _relatorioVendaClienteController = relatorioVendaClienteController;
@@ -79,7 +79,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             _filtroRelatorio.DataFinal = dtpFinal.Value;
             _filtroRelatorio.ValorComprado = decimal.TryParse(txtValorComprado.Text, out decimal valorCompra) ? valorCompra : 0;
             _filtroRelatorio.QuantidadeResultados = int.TryParse(txtQuantidadeResultados.Text, out int qtd) ? qtd : 0;
-            _filtroRelatorio.Ordenacao = (EOrdenacaoVendaCliente)cbOrdenacao.SelectedIndex;
+            _filtroRelatorio.Ordenacao = (EOrdenacaoPedidoCliente)cbOrdenacao.SelectedIndex;
         }
 
         private void FrmRelatorioVendaCliente_Load(object sender, EventArgs e)
@@ -110,5 +110,16 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void OcultarAbaDeFiltros() => groupBox1.Left = 1000;
         private void MostrarAbaDeFiltros() => groupBox1.Left = 741;
+
+        private void txtQuantidadeResultados_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)              
+                    e.Handled = true;
+        }
+
+        private void txtValorComprado_Leave(object sender, EventArgs e)
+        {
+            txtValorComprado.Text = (decimal.TryParse(txtValorComprado.Text, out decimal valorCompra) ? valorCompra : 0).ToString();
+        }
     }
 }
