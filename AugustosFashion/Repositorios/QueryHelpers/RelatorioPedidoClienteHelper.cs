@@ -1,10 +1,7 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashion.Repositorios.QueryHelpers
 {
@@ -18,11 +15,11 @@ namespace AugustosFashion.Repositorios.QueryHelpers
         }
         public string GerarFiltrosWhere()
         {
-            var where = new StringBuilder($" WHERE p.DataEmissao BETWEEN @DataInicial and @DataFinal + ' 23:59' ");
+            var where = new StringBuilder($" WHERE p.DataEmissao BETWEEN @DataInicial and @DataFinal ");
 
-            if (_filtroRelatorio.IdCliente != 0)
+            if (_filtroRelatorio.Clientes.Count > 0)
             {
-                where.Append($"and p.IdCliente = @IdCliente");
+                where.Append($" AND p.IdCliente IN @IdsClientes");
             }
 
             return where.ToString();
@@ -42,7 +39,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
         {
             var having = "";
 
-            if(_filtroRelatorio.ValorComprado > 0)
+            if (_filtroRelatorio.ValorComprado > 0)
                 having = $" having sum(p.TotalLiquido) > @ValorComprado ";
 
             return having;
@@ -55,9 +52,10 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             parameters.AddDynamicParams(
                 new
                 {
+                    IdsClientes = _filtroRelatorio.Clientes.Select(x => x.Id).ToList(),
                     _filtroRelatorio.DataInicial,
-                    _filtroRelatorio.DataFinal,
-                    _filtroRelatorio.IdCliente,
+                    DataFinal = _filtroRelatorio.DataFinalFormatada,
+                    _filtroRelatorio.Clientes,
                     _filtroRelatorio.ValorComprado,
                     _filtroRelatorio.QuantidadeResultados
                 }
@@ -70,7 +68,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
         {
             var orderBy = "";
 
-            switch(_filtroRelatorio.Ordenacao)
+            switch (_filtroRelatorio.Ordenacao)
             {
                 case EOrdenacaoPedidoCliente.MaisComprou:
                     orderBy = " order by count(p.IdPedido) desc ";

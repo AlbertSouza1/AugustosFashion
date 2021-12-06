@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
+﻿using AugustosFashion.Controllers.Controls;
+using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System;
@@ -37,7 +38,13 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
         {
-            _filtroRelatorio.IdCliente = cliente.IdCliente;
+
+            _filtroRelatorio.Clientes.Add(new ListaGenericaModel() {
+                Nome = $"{cliente.NomeCompleto.Nome} {cliente.NomeCompleto.SobreNome}",
+                Id = cliente.IdCliente 
+            });
+
+           // _filtroRelatorio.Clientes[0].IdCliente = cliente.IdCliente;
             txtBuscaCliente.Text = cliente.NomeCompleto.ToString();
         }
 
@@ -67,6 +74,9 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void CalcularTotais()
         {
+            if (_relatorioVendaCliente == null)
+                return;
+
             lblTotalCompras.Text = _relatorioVendaCliente.Sum(x => x.QuantidadeCompras).ToString();
             lblTotalBruto.Text = _relatorioVendaCliente.Sum(x => x.TotalBruto.RetornaValor).ToString("c");
             lblTotalDesconto.Text = _relatorioVendaCliente.Sum(x => x.TotalDesconto.RetornaValor).ToString("c");
@@ -104,7 +114,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnLimparCliente_Click(object sender, EventArgs e)
         {
-            _filtroRelatorio.IdCliente = 0;
+           // _filtroRelatorio.Clientes[0].IdCliente = 0; //////////////////////////MEXER AQ
             txtBuscaCliente.Text = string.Empty;
         }
 
@@ -120,6 +130,14 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private void txtValorComprado_Leave(object sender, EventArgs e)
         {
             txtValorComprado.Text = (decimal.TryParse(txtValorComprado.Text, out decimal valorCompra) ? valorCompra : 0).ToString();
+        }
+
+        private void BtnMostrarClientes_Click(object sender, EventArgs e)
+        {
+            var controller = new UcDgvListaController();
+
+            controller.AbrirControl(panelListaClientes);
+            controller.AtualizarGrid(_filtroRelatorio.Clientes);
         }
     }
 }

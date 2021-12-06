@@ -59,6 +59,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lblTotalCompras = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.panelListaClientes = new System.Windows.Forms.Panel();
+            this.BtnMostrarClientes = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
             this.SuspendLayout();
@@ -72,7 +74,7 @@
             this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFechar.ForeColor = System.Drawing.Color.White;
-            this.btnFechar.Location = new System.Drawing.Point(52, 67);
+            this.btnFechar.Location = new System.Drawing.Point(31, 67);
             this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(43, 36);
             this.btnFechar.TabIndex = 108;
@@ -92,6 +94,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightGray;
+            this.groupBox1.Controls.Add(this.BtnMostrarClientes);
+            this.groupBox1.Controls.Add(this.panelListaClientes);
             this.groupBox1.Controls.Add(this.BtnLimparCliente);
             this.groupBox1.Controls.Add(this.txtValorComprado);
             this.groupBox1.Controls.Add(this.cbOrdenacao);
@@ -121,7 +125,7 @@
             this.BtnLimparCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.BtnLimparCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLimparCliente.ForeColor = System.Drawing.Color.Black;
-            this.BtnLimparCliente.Location = new System.Drawing.Point(169, 298);
+            this.BtnLimparCliente.Location = new System.Drawing.Point(179, 298);
             this.BtnLimparCliente.Name = "BtnLimparCliente";
             this.BtnLimparCliente.Size = new System.Drawing.Size(14, 23);
             this.BtnLimparCliente.TabIndex = 114;
@@ -209,9 +213,9 @@
             this.BtnBuscarCliente.BackColor = System.Drawing.SystemColors.Control;
             this.BtnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarCliente.Location = new System.Drawing.Point(180, 298);
+            this.BtnBuscarCliente.Location = new System.Drawing.Point(189, 298);
             this.BtnBuscarCliente.Name = "BtnBuscarCliente";
-            this.BtnBuscarCliente.Size = new System.Drawing.Size(40, 23);
+            this.BtnBuscarCliente.Size = new System.Drawing.Size(31, 23);
             this.BtnBuscarCliente.TabIndex = 39;
             this.BtnBuscarCliente.Text = "🔍";
             this.BtnBuscarCliente.UseVisualStyleBackColor = false;
@@ -402,6 +406,25 @@
             this.label9.TabIndex = 123;
             this.label9.Text = "Total  de Compras:";
             // 
+            // panelListaClientes
+            // 
+            this.panelListaClientes.Location = new System.Drawing.Point(20, 320);
+            this.panelListaClientes.Name = "panelListaClientes";
+            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
+            this.panelListaClientes.TabIndex = 115;
+            this.panelListaClientes.Visible = false;
+            // 
+            // BtnMostrarClientes
+            // 
+            this.BtnMostrarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMostrarClientes.Location = new System.Drawing.Point(165, 298);
+            this.BtnMostrarClientes.Name = "BtnMostrarClientes";
+            this.BtnMostrarClientes.Size = new System.Drawing.Size(14, 23);
+            this.BtnMostrarClientes.TabIndex = 116;
+            this.BtnMostrarClientes.Text = "button1";
+            this.BtnMostrarClientes.UseVisualStyleBackColor = true;
+            this.BtnMostrarClientes.Click += new System.EventHandler(this.BtnMostrarClientes_Click);
+            // 
             // FrmRelatorioVendaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -465,5 +488,7 @@
         private System.Windows.Forms.TextBox txtValorComprado;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button BtnLimparCliente;
+        private System.Windows.Forms.Panel panelListaClientes;
+        private System.Windows.Forms.Button BtnMostrarClientes;
     }
 }
