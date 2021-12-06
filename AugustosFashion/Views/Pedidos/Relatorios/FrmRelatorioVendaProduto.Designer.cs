@@ -234,6 +234,7 @@
             this.dgvRelatorioProdutos.Location = new System.Drawing.Point(30, 172);
             this.dgvRelatorioProdutos.Name = "dgvRelatorioProdutos";
             this.dgvRelatorioProdutos.RowTemplate.Height = 25;
+            this.dgvRelatorioProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRelatorioProdutos.Size = new System.Drawing.Size(921, 323);
             this.dgvRelatorioProdutos.TabIndex = 1;
             // 
@@ -350,6 +351,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblTotalLiquido);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblTotalDesconto);
@@ -362,7 +364,6 @@
             this.Controls.Add(this.BtnMostrarFiltros);
             this.Controls.Add(this.lblLucroTotal);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmRelatorioVendaProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

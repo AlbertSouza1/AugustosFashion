@@ -32,6 +32,7 @@
             this.btnFechar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnLimparCliente = new System.Windows.Forms.Button();
             this.txtValorComprado = new System.Windows.Forms.TextBox();
             this.cbOrdenacao = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -56,7 +57,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lblTotalBruto = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.lblLucroTotal = new System.Windows.Forms.Label();
+            this.lblTotalCompras = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
@@ -91,6 +92,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightGray;
+            this.groupBox1.Controls.Add(this.BtnLimparCliente);
             this.groupBox1.Controls.Add(this.txtValorComprado);
             this.groupBox1.Controls.Add(this.cbOrdenacao);
             this.groupBox1.Controls.Add(this.label12);
@@ -113,6 +115,19 @@
             this.groupBox1.Size = new System.Drawing.Size(242, 741);
             this.groupBox1.TabIndex = 110;
             this.groupBox1.TabStop = false;
+            // 
+            // BtnLimparCliente
+            // 
+            this.BtnLimparCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BtnLimparCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimparCliente.ForeColor = System.Drawing.Color.Black;
+            this.BtnLimparCliente.Location = new System.Drawing.Point(169, 298);
+            this.BtnLimparCliente.Name = "BtnLimparCliente";
+            this.BtnLimparCliente.Size = new System.Drawing.Size(14, 23);
+            this.BtnLimparCliente.TabIndex = 114;
+            this.BtnLimparCliente.Text = "X";
+            this.BtnLimparCliente.UseVisualStyleBackColor = false;
+            this.BtnLimparCliente.Click += new System.EventHandler(this.BtnLimparCliente_Click);
             // 
             // txtValorComprado
             // 
@@ -289,6 +304,7 @@
             this.dgvRelatorioClientes.Location = new System.Drawing.Point(31, 171);
             this.dgvRelatorioClientes.Name = "dgvRelatorioClientes";
             this.dgvRelatorioClientes.RowTemplate.Height = 25;
+            this.dgvRelatorioClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRelatorioClientes.Size = new System.Drawing.Size(921, 368);
             this.dgvRelatorioClientes.TabIndex = 111;
             // 
@@ -308,7 +324,7 @@
             // 
             this.lblTotalLiquido.AutoSize = true;
             this.lblTotalLiquido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalLiquido.Location = new System.Drawing.Point(555, 589);
+            this.lblTotalLiquido.Location = new System.Drawing.Point(805, 615);
             this.lblTotalLiquido.Name = "lblTotalLiquido";
             this.lblTotalLiquido.Size = new System.Drawing.Size(27, 20);
             this.lblTotalLiquido.TabIndex = 117;
@@ -318,7 +334,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(455, 589);
+            this.label7.Location = new System.Drawing.Point(705, 615);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(104, 20);
             this.label7.TabIndex = 118;
@@ -328,7 +344,7 @@
             // 
             this.lblTotalDesconto.AutoSize = true;
             this.lblTotalDesconto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalDesconto.Location = new System.Drawing.Point(345, 589);
+            this.lblTotalDesconto.Location = new System.Drawing.Point(583, 615);
             this.lblTotalDesconto.Name = "lblTotalDesconto";
             this.lblTotalDesconto.Size = new System.Drawing.Size(27, 20);
             this.lblTotalDesconto.TabIndex = 119;
@@ -338,7 +354,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(234, 589);
+            this.label8.Location = new System.Drawing.Point(472, 615);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(118, 20);
             this.label8.TabIndex = 120;
@@ -348,7 +364,7 @@
             // 
             this.lblTotalBruto.AutoSize = true;
             this.lblTotalBruto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalBruto.Location = new System.Drawing.Point(119, 589);
+            this.lblTotalBruto.Location = new System.Drawing.Point(357, 615);
             this.lblTotalBruto.Name = "lblTotalBruto";
             this.lblTotalBruto.Size = new System.Drawing.Size(27, 20);
             this.lblTotalBruto.TabIndex = 121;
@@ -358,31 +374,31 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(31, 589);
+            this.label10.Location = new System.Drawing.Point(269, 615);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(92, 20);
             this.label10.TabIndex = 122;
             this.label10.Text = "Total Bruto:";
             // 
-            // lblLucroTotal
+            // lblTotalCompras
             // 
-            this.lblLucroTotal.AutoSize = true;
-            this.lblLucroTotal.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblLucroTotal.Location = new System.Drawing.Point(752, 589);
-            this.lblLucroTotal.Name = "lblLucroTotal";
-            this.lblLucroTotal.Size = new System.Drawing.Size(27, 20);
-            this.lblLucroTotal.TabIndex = 124;
-            this.lblLucroTotal.Text = "RS";
+            this.lblTotalCompras.AutoSize = true;
+            this.lblTotalCompras.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalCompras.Location = new System.Drawing.Point(166, 615);
+            this.lblTotalCompras.Name = "lblTotalCompras";
+            this.lblTotalCompras.Size = new System.Drawing.Size(27, 20);
+            this.lblTotalCompras.TabIndex = 124;
+            this.lblTotalCompras.Text = "RS";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(665, 589);
+            this.label9.Location = new System.Drawing.Point(30, 615);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 20);
+            this.label9.Size = new System.Drawing.Size(139, 20);
             this.label9.TabIndex = 123;
-            this.label9.Text = "Total Lucro:";
+            this.label9.Text = "Total  de Compras:";
             // 
             // FrmRelatorioVendaCliente
             // 
@@ -390,7 +406,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblLucroTotal);
+            this.Controls.Add(this.lblTotalCompras);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblTotalLiquido);
             this.Controls.Add(this.label7);
@@ -440,11 +456,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblTotalBruto;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblLucroTotal;
+        private System.Windows.Forms.Label lblTotalCompras;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbOrdenacao;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtValorComprado;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button BtnLimparCliente;
     }
 }

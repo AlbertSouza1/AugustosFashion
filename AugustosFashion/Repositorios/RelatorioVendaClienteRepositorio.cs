@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Helpers;
 using AugustosFashion.Repositorios.QueryHelpers;
+using AugustosFashionModels.Entidades.NomesCompletos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using Dapper;
 using System;
@@ -15,10 +16,12 @@ namespace AugustosFashion.Repositorios
         {
             var relatorioVendaHelper = new RelatorioVendaClienteHelper(filtroRelatorio);
 
-            var querySelect = @" 
-            SELECT
-            c.IdCliente, u.Nome, u.SobreNome, count(p.IdPedido) as QuantidadeCompras, sum(p.TotalBruto) as TotalBruto,
-	        sum(p.TotalDesconto) as TotalDesconto, sum(p.TotalLiquido) as TotalLiquido
+            var querySelect = @"SELECT ";
+
+            querySelect += relatorioVendaHelper.GerarFiltroTop();
+
+            querySelect += @" c.IdCliente, count(p.IdPedido) as QuantidadeCompras, sum(p.TotalBruto) as TotalBruto,
+	        sum(p.TotalDesconto) as TotalDesconto, sum(p.TotalLiquido) as TotalLiquido, c.IdCliente, u.Nome, u.SobreNome
             FROM
             Clientes c inner join Usuarios u on c.IdUsuario = u.IdUsuario
 	        inner join Pedidos p on c.IdCliente = p.IdCliente ";
@@ -37,9 +40,11 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<RelatorioVendaCliente>(
+                    return sqlCon.Query<RelatorioVendaCliente, NomeCompleto, RelatorioVendaCliente>(
                         querySelect,
-                        relatorioVendaHelper.RecuperarParametros()
+                        (relatorioVendaCliente, nomeCompleto) => MapearRelatorioVendaCliente(relatorioVendaCliente, nomeCompleto),
+                        relatorioVendaHelper.RecuperarParametros(),
+                        splitOn:"IdCliente"
                      ).ToList();
                 }
             }
@@ -47,6 +52,13 @@ namespace AugustosFashion.Repositorios
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private static RelatorioVendaCliente MapearRelatorioVendaCliente(RelatorioVendaCliente relatorioVendaCliente, NomeCompleto nomeCompleto)
+        {
+            relatorioVendaCliente.NomeCompleto = nomeCompleto;
+
+            return relatorioVendaCliente;
         }
     }
 }

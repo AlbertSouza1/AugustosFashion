@@ -30,7 +30,17 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             return where.ToString();
         }
 
-        internal string GerarFiltrosHaving()
+        public string GerarFiltroTop()
+        {
+            var top = "";
+
+            if (_filtroRelatorio.QuantidadeResultados > 0)
+                top = " top(@QuantidadeResultados)";
+
+            return top;
+        }
+
+        public string GerarFiltrosHaving()
         {
             var having = "";
 
@@ -49,7 +59,9 @@ namespace AugustosFashion.Repositorios.QueryHelpers
                 {
                     _filtroRelatorio.DataInicial,
                     _filtroRelatorio.DataFinal,
-                    _filtroRelatorio.IdCliente
+                    _filtroRelatorio.IdCliente,
+                    _filtroRelatorio.ValorComprado,
+                    _filtroRelatorio.QuantidadeResultados
                 }
                 );
 
@@ -63,9 +75,25 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             switch(_filtroRelatorio.Ordenacao)
             {
                 case EOrdenacaoVendaCliente.MaisComprou:
-                    orderBy = " order by count(p.IdPedido) desc";
+                    orderBy = " order by count(p.IdPedido) desc ";
+                    break;
+                case EOrdenacaoVendaCliente.MenosComprou:
+                    orderBy = " order by count(p.IdPedido) ";
+                    break;
+                case EOrdenacaoVendaCliente.MaiorDesconto:
+                    orderBy = " order by sum(p.TotalDesconto) desc";
+                    break;
+                case EOrdenacaoVendaCliente.MenorDesconto:
+                    orderBy = " order by sum(p.TotalDesconto) ";
+                    break;
+                case EOrdenacaoVendaCliente.MaiorValor:
+                    orderBy = " order by sum(p.TotalLiquido) desc ";
+                    break;
+                case EOrdenacaoVendaCliente.MenorValor:
+                    orderBy = " order by sum(p.TotalLiquido) ";
                     break;
             }
+            return orderBy;
         }
     }
 }
