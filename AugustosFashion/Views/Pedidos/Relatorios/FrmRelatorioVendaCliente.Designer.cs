@@ -32,6 +32,8 @@
             this.btnFechar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnMostrarClientes = new System.Windows.Forms.Button();
+            this.panelListaClientes = new System.Windows.Forms.Panel();
             this.BtnLimparCliente = new System.Windows.Forms.Button();
             this.txtValorComprado = new System.Windows.Forms.TextBox();
             this.cbOrdenacao = new System.Windows.Forms.ComboBox();
@@ -40,7 +42,6 @@
             this.BtnFecharFiltro = new System.Windows.Forms.Button();
             this.BtnFiltrar = new System.Windows.Forms.Button();
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
-            this.txtBuscaCliente = new System.Windows.Forms.TextBox();
             this.txtQuantidadeResultados = new System.Windows.Forms.TextBox();
             this.dtpFinal = new System.Windows.Forms.DateTimePicker();
             this.dtpInicial = new System.Windows.Forms.DateTimePicker();
@@ -59,8 +60,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lblTotalCompras = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.panelListaClientes = new System.Windows.Forms.Panel();
-            this.BtnMostrarClientes = new System.Windows.Forms.Button();
+            this.lblCliente = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +104,6 @@
             this.groupBox1.Controls.Add(this.BtnFecharFiltro);
             this.groupBox1.Controls.Add(this.BtnFiltrar);
             this.groupBox1.Controls.Add(this.BtnBuscarCliente);
-            this.groupBox1.Controls.Add(this.txtBuscaCliente);
             this.groupBox1.Controls.Add(this.txtQuantidadeResultados);
             this.groupBox1.Controls.Add(this.dtpFinal);
             this.groupBox1.Controls.Add(this.dtpInicial);
@@ -113,6 +112,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblCliente);
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(742, -1);
             this.groupBox1.Name = "groupBox1";
@@ -120,16 +120,39 @@
             this.groupBox1.TabIndex = 110;
             this.groupBox1.TabStop = false;
             // 
+            // BtnMostrarClientes
+            // 
+            this.BtnMostrarClientes.BackColor = System.Drawing.Color.White;
+            this.BtnMostrarClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMostrarClientes.BackgroundImage")));
+            this.BtnMostrarClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnMostrarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMostrarClientes.ForeColor = System.Drawing.Color.White;
+            this.BtnMostrarClientes.Location = new System.Drawing.Point(165, 298);
+            this.BtnMostrarClientes.Name = "BtnMostrarClientes";
+            this.BtnMostrarClientes.Size = new System.Drawing.Size(18, 19);
+            this.BtnMostrarClientes.TabIndex = 116;
+            this.BtnMostrarClientes.UseVisualStyleBackColor = false;
+            this.BtnMostrarClientes.Click += new System.EventHandler(this.BtnMostrarClientes_Click);
+            // 
+            // panelListaClientes
+            // 
+            this.panelListaClientes.Location = new System.Drawing.Point(20, 320);
+            this.panelListaClientes.Name = "panelListaClientes";
+            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
+            this.panelListaClientes.TabIndex = 115;
+            this.panelListaClientes.Visible = false;
+            // 
             // BtnLimparCliente
             // 
-            this.BtnLimparCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BtnLimparCliente.BackColor = System.Drawing.Color.White;
+            this.BtnLimparCliente.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnLimparCliente.BackgroundImage")));
+            this.BtnLimparCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnLimparCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLimparCliente.ForeColor = System.Drawing.Color.Black;
-            this.BtnLimparCliente.Location = new System.Drawing.Point(179, 298);
+            this.BtnLimparCliente.ForeColor = System.Drawing.Color.White;
+            this.BtnLimparCliente.Location = new System.Drawing.Point(201, 300);
             this.BtnLimparCliente.Name = "BtnLimparCliente";
-            this.BtnLimparCliente.Size = new System.Drawing.Size(14, 23);
+            this.BtnLimparCliente.Size = new System.Drawing.Size(16, 16);
             this.BtnLimparCliente.TabIndex = 114;
-            this.BtnLimparCliente.Text = "X";
             this.BtnLimparCliente.UseVisualStyleBackColor = false;
             this.BtnLimparCliente.Click += new System.EventHandler(this.BtnLimparCliente_Click);
             // 
@@ -210,23 +233,18 @@
             // 
             // BtnBuscarCliente
             // 
-            this.BtnBuscarCliente.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnBuscarCliente.BackColor = System.Drawing.Color.White;
+            this.BtnBuscarCliente.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnBuscarCliente.BackgroundImage")));
+            this.BtnBuscarCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarCliente.Location = new System.Drawing.Point(189, 298);
+            this.BtnBuscarCliente.ForeColor = System.Drawing.Color.White;
+            this.BtnBuscarCliente.Location = new System.Drawing.Point(183, 298);
             this.BtnBuscarCliente.Name = "BtnBuscarCliente";
-            this.BtnBuscarCliente.Size = new System.Drawing.Size(31, 23);
+            this.BtnBuscarCliente.Size = new System.Drawing.Size(18, 19);
             this.BtnBuscarCliente.TabIndex = 39;
-            this.BtnBuscarCliente.Text = "🔍";
             this.BtnBuscarCliente.UseVisualStyleBackColor = false;
             this.BtnBuscarCliente.Click += new System.EventHandler(this.BtnBuscarCliente_Click);
-            // 
-            // txtBuscaCliente
-            // 
-            this.txtBuscaCliente.Location = new System.Drawing.Point(20, 298);
-            this.txtBuscaCliente.Name = "txtBuscaCliente";
-            this.txtBuscaCliente.Size = new System.Drawing.Size(163, 23);
-            this.txtBuscaCliente.TabIndex = 5;
             // 
             // txtQuantidadeResultados
             // 
@@ -309,6 +327,7 @@
             this.dgvRelatorioClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelatorioClientes.Location = new System.Drawing.Point(31, 171);
             this.dgvRelatorioClientes.Name = "dgvRelatorioClientes";
+            this.dgvRelatorioClientes.ReadOnly = true;
             this.dgvRelatorioClientes.RowTemplate.Height = 25;
             this.dgvRelatorioClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRelatorioClientes.Size = new System.Drawing.Size(921, 368);
@@ -406,24 +425,14 @@
             this.label9.TabIndex = 123;
             this.label9.Text = "Total  de Compras:";
             // 
-            // panelListaClientes
+            // lblCliente
             // 
-            this.panelListaClientes.Location = new System.Drawing.Point(20, 320);
-            this.panelListaClientes.Name = "panelListaClientes";
-            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
-            this.panelListaClientes.TabIndex = 115;
-            this.panelListaClientes.Visible = false;
-            // 
-            // BtnMostrarClientes
-            // 
-            this.BtnMostrarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnMostrarClientes.Location = new System.Drawing.Point(165, 298);
-            this.BtnMostrarClientes.Name = "BtnMostrarClientes";
-            this.BtnMostrarClientes.Size = new System.Drawing.Size(14, 23);
-            this.BtnMostrarClientes.TabIndex = 116;
-            this.BtnMostrarClientes.Text = "button1";
-            this.BtnMostrarClientes.UseVisualStyleBackColor = true;
-            this.BtnMostrarClientes.Click += new System.EventHandler(this.BtnMostrarClientes_Click);
+            this.lblCliente.BackColor = System.Drawing.Color.White;
+            this.lblCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCliente.Location = new System.Drawing.Point(20, 297);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(200, 22);
+            this.lblCliente.TabIndex = 117;
             // 
             // FrmRelatorioVendaCliente
             // 
@@ -464,7 +473,6 @@
         private System.Windows.Forms.Button BtnFecharFiltro;
         private System.Windows.Forms.Button BtnFiltrar;
         private System.Windows.Forms.Button BtnBuscarCliente;
-        private System.Windows.Forms.TextBox txtBuscaCliente;
         private System.Windows.Forms.TextBox txtQuantidadeResultados;
         private System.Windows.Forms.DateTimePicker dtpFinal;
         private System.Windows.Forms.DateTimePicker dtpInicial;
@@ -490,5 +498,6 @@
         private System.Windows.Forms.Button BtnLimparCliente;
         private System.Windows.Forms.Panel panelListaClientes;
         private System.Windows.Forms.Button BtnMostrarClientes;
+        private System.Windows.Forms.Label lblCliente;
     }
 }

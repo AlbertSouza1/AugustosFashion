@@ -1,4 +1,6 @@
-﻿namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
+﻿using System.ComponentModel;
+
+namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
 {
     public class ListaGenericaModel
     {

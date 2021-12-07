@@ -4,11 +4,7 @@ using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Pedidos;
 using AugustosFashion.Views.Pedidos.Relatorios;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
 {

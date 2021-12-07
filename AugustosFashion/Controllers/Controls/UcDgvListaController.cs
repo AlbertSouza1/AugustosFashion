@@ -1,5 +1,4 @@
-﻿using AugustosFashion.Entidades.Cliente;
-using AugustosFashion.Views.Pedidos.Relatorios;
+﻿using AugustosFashion.Views.Pedidos.Relatorios;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,7 +7,13 @@ namespace AugustosFashion.Controllers.Controls
 {
     public class UcDgvListaController
     {
-        private UcDgvLista _control = new UcDgvLista();
+        private UcDgvLista _control;
+
+        public UcDgvListaController()
+        {
+            _control = new UcDgvLista(this);
+        }
+
         public void AbrirControl(Panel panelListaClientes)
         {
             panelListaClientes.Controls.Add(_control);
@@ -19,5 +24,7 @@ namespace AugustosFashion.Controllers.Controls
         }
 
         public void AtualizarGrid(List<ListaGenericaModel> lista) => _control.AtualizarLista(lista);
+
+        public UcDgvLista RetornarUserControl() => _control;
     }
 }
