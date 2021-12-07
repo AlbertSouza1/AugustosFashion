@@ -26,7 +26,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void FrmRelatorioVendaCliente_SelectedGrid(int id)
         {
-            _indexClienteSelecionado = _filtroRelatorio.Clientes.FindIndex(x => x.Id == id);
+            _indexClienteSelecionado = _filtroRelatorio.EncontrarIndexDoCliente(id);
 
             lblCliente.Text = _filtroRelatorio.Clientes[_indexClienteSelecionado].Nome;
         }
@@ -49,11 +49,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
         {
 
-            _filtroRelatorio.Clientes.Add(new ListaGenericaModel()
-            {
-                Nome = $"{cliente.NomeCompleto.Nome} {cliente.NomeCompleto.SobreNome}",
-                Id = cliente.IdCliente
-            });
+            _filtroRelatorio.AdicionarCliente(cliente);
 
             lblCliente.Text = cliente.NomeCompleto.ToString();
         }
@@ -95,11 +91,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void SetarFiltros()
         {
-            _filtroRelatorio.DataInicial = dtpInicial.Value;
-            _filtroRelatorio.DataFinal = dtpFinal.Value;
-            _filtroRelatorio.ValorComprado = decimal.TryParse(txtValorComprado.Text, out decimal valorCompra) ? valorCompra : 0;
-            _filtroRelatorio.QuantidadeResultados = int.TryParse(txtQuantidadeResultados.Text, out int qtd) ? qtd : 0;
-            _filtroRelatorio.Ordenacao = (EOrdenacaoPedidoCliente)cbOrdenacao.SelectedIndex;
+            _filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, txtValorComprado.Text, txtQuantidadeResultados.Text, cbOrdenacao.SelectedIndex);           
         }
 
         private void FrmRelatorioVendaCliente_Load(object sender, EventArgs e)
@@ -124,17 +116,16 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnLimparCliente_Click(object sender, EventArgs e)
         {
-            if(_indexClienteSelecionado == -1) return;
+            _filtroRelatorio.RemoverCliente(_indexClienteSelecionado);
+            _ucDgvListaController.AtualizarGrid(_filtroRelatorio.Clientes);
 
-            RemoverClienteDaListaDeFiltro();           
+            LimparDadosDeFiltroCliente();
         }
 
-        private void RemoverClienteDaListaDeFiltro()
+        private void LimparDadosDeFiltroCliente()
         {
-            _filtroRelatorio.Clientes.RemoveAt(_indexClienteSelecionado);
-            
-            _ucDgvListaController.AtualizarGrid(_filtroRelatorio.Clientes);
             lblCliente.Text = string.Empty;
+            _indexClienteSelecionado = -1;
         }
 
         private void OcultarAbaDeFiltros() => groupBox1.Left = 1000;
