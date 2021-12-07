@@ -15,7 +15,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private List<RelatorioPedidoCliente> _relatorioVendaCliente;
         private FiltroRelatorioPedidoCliente _filtroRelatorio = new FiltroRelatorioPedidoCliente();
         private UcDgvListaController _ucDgvListaController = new UcDgvListaController();
-        private int _indexOfSelected = -1;
+        private int _indexClienteSelecionado = -1;
 
         public FrmRelatorioVendaCliente(RelatorioPedidoClienteController relatorioVendaClienteController)
         {
@@ -26,9 +26,9 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void FrmRelatorioVendaCliente_SelectedGrid(int id)
         {
-            _indexOfSelected = _filtroRelatorio.Clientes.FindIndex(x => x.Id == id);
+            _indexClienteSelecionado = _filtroRelatorio.Clientes.FindIndex(x => x.Id == id);
 
-            lblCliente.Text = _filtroRelatorio.Clientes[_indexOfSelected].Nome;
+            lblCliente.Text = _filtroRelatorio.Clientes[_indexClienteSelecionado].Nome;
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -124,14 +124,15 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnLimparCliente_Click(object sender, EventArgs e)
         {
-            if(_indexOfSelected == -1) return;
+            if(_indexClienteSelecionado == -1) return;
 
             RemoverClienteDaListaDeFiltro();           
         }
 
         private void RemoverClienteDaListaDeFiltro()
         {
-            _filtroRelatorio.Clientes.RemoveAt(_indexOfSelected);
+            _filtroRelatorio.Clientes.RemoveAt(_indexClienteSelecionado);
+            
             _ucDgvListaController.AtualizarGrid(_filtroRelatorio.Clientes);
             lblCliente.Text = string.Empty;
         }

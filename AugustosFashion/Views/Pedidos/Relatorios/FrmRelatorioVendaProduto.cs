@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Controllers.Pedidos;
+﻿using AugustosFashion.Controllers.Controls;
+using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos;
@@ -15,34 +16,52 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private readonly RelatorioPedidoProdutoController _relatorioVendaProdutoController;
         private List<RelatorioPedidoProduto> _relatorio;
         private FiltroRelatorioPedidoProduto _filtroRelatorio = new FiltroRelatorioPedidoProduto();
+        private UcDgvListaController _ucDgvListaControllerClientes = new UcDgvListaController();
+        private int _indexClienteSelecionado = -1;
 
         public FrmRelatorioVendaProduto(RelatorioPedidoProdutoController relatorioVendaProdutoController)
         {
             InitializeComponent();
             _relatorioVendaProdutoController = relatorioVendaProdutoController;
+            _ucDgvListaControllerClientes.RetornarUserControl().SelectedGrid += FrmRelatorioVendaCliente_SelectedGrid;
+        }
+
+        private void FrmRelatorioVendaCliente_SelectedGrid(int id)
+        {
+            _indexClienteSelecionado = _filtroRelatorio.Clientes.FindIndex(x => x.Id == id);
+
+            lblCliente.Text = _filtroRelatorio.Clientes[_indexClienteSelecionado].Nome;
         }
 
         private void BtnFiltrar_Click(object sender, EventArgs e)
         {
-            AdicionarFiltros();
+            SetarFiltros();
 
-            ExibirRelatorio();
+            ConsultarRelatorio();
 
             gbFiltros.Left = 1000;
         }
 
-        private void AdicionarFiltros()
+        private void SetarFiltros()
         {
             _filtroRelatorio.DataInicial = dtpInicial.Value;
             _filtroRelatorio.DataFinal = dtpFinal.Value;
         }
 
-        private void ExibirRelatorio()
+        private void ConsultarRelatorio()
         {
-            _relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
-            dgvRelatorioProdutos.DataSource = _relatorio;
+            try
+            {
+                _relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
+                
+                dgvRelatorioProdutos.DataSource = _relatorio;
 
-            AtualizarTotalizadores(_relatorio);
+                AtualizarTotalizadores(_relatorio);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao exibir relatório. Erro: " + ex.Message);
+            }
         }
 
         private void AtualizarTotalizadores(List<RelatorioPedidoProduto> relatorio)
@@ -80,23 +99,28 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnBuscarProduto_Click(object sender, EventArgs e)
         {
-            _relatorioVendaProdutoController.AbrirFormBuscaProdutos(txtBuscaProduto.Text);
+            _relatorioVendaProdutoController.AbrirFormBuscaProdutos(string.Empty);
         }
 
         public void CarregarDadosDeProdutoSelecionado(PedidoProduto produto)
         {
             _filtroRelatorio.IdProduto = produto.IdProduto;
-            txtBuscaProduto.Text = produto.Nome;
+            lblProduto.Text = produto.Nome;
         }
 
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
         {
-            _relatorioVendaProdutoController.AbrirFormBuscaClientes(txtBuscaCliente.Text);
+            _relatorioVendaProdutoController.AbrirFormBuscaClientes(string.Empty);
         }
         public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
         {
-            _filtroRelatorio.IdCliente = cliente.IdCliente;
-            txtBuscaCliente.Text = cliente.NomeCompleto.ToString();
+            _filtroRelatorio.Clientes.Add(new ListaGenericaModel()
+            {
+                Nome = $"{cliente.NomeCompleto.Nome} {cliente.NomeCompleto.SobreNome}",
+                Id = cliente.IdCliente
+            });
+
+            lblCliente.Text = cliente.NomeCompleto.ToString();
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -107,13 +131,35 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private void BtnLimparProduto_Click(object sender, EventArgs e)
         {
             _filtroRelatorio.IdProduto = 0;
-            txtBuscaProduto.Text = string.Empty;
+            lblProduto.Text = string.Empty;
         }
 
         private void BtnLimparCliente_Click(object sender, EventArgs e)
         {
-            _filtroRelatorio.IdCliente = 0;
-            txtBuscaCliente.Text = string.Empty;
+            if (_indexClienteSelecionado == -1) 
+                return;
+
+            RemoverClienteDaListaDeFiltro();
+        }
+
+        private void RemoverClienteDaListaDeFiltro()
+        {
+            _filtroRelatorio.Clientes.RemoveAt(_indexClienteSelecionado);
+
+            _ucDgvListaControllerClientes.AtualizarGrid(_filtroRelatorio.Clientes);
+            lblCliente.Text = string.Empty;
+            _indexClienteSelecionado = -1;
+        }
+
+        private void BtnMostrarClientes_Click(object sender, EventArgs e)
+        {
+            if (panelListaClientes.Visible)
+                panelListaClientes.Visible = false;
+            else
+            {
+                 _ucDgvListaControllerClientes.AbrirControl(panelListaClientes);
+                _ucDgvListaControllerClientes.AtualizarGrid(_filtroRelatorio.Clientes);
+            }
         }
     }
 }

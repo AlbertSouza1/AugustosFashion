@@ -36,8 +36,6 @@
             this.BtnFiltrar = new System.Windows.Forms.Button();
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
             this.BtnBuscarProduto = new System.Windows.Forms.Button();
-            this.txtBuscaCliente = new System.Windows.Forms.TextBox();
-            this.txtBuscaProduto = new System.Windows.Forms.TextBox();
             this.dtpFinal = new System.Windows.Forms.DateTimePicker();
             this.dtpInicial = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,6 +55,11 @@
             this.lblTotalBruto = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblLucroTotal = new System.Windows.Forms.Label();
+            this.BtnMostrarProdutos = new System.Windows.Forms.Button();
+            this.lblProduto = new System.Windows.Forms.Label();
+            this.lblCliente = new System.Windows.Forms.Label();
+            this.BtnMostrarClientes = new System.Windows.Forms.Button();
+            this.panelListaClientes = new System.Windows.Forms.Panel();
             this.gbFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioProdutos)).BeginInit();
             this.SuspendLayout();
@@ -64,14 +67,15 @@
             // gbFiltros
             // 
             this.gbFiltros.BackColor = System.Drawing.Color.LightGray;
+            this.gbFiltros.Controls.Add(this.panelListaClientes);
+            this.gbFiltros.Controls.Add(this.BtnMostrarClientes);
+            this.gbFiltros.Controls.Add(this.BtnMostrarProdutos);
             this.gbFiltros.Controls.Add(this.BtnLimparCliente);
             this.gbFiltros.Controls.Add(this.BtnLimparProduto);
             this.gbFiltros.Controls.Add(this.BtnFecharFiltro);
             this.gbFiltros.Controls.Add(this.BtnFiltrar);
             this.gbFiltros.Controls.Add(this.BtnBuscarCliente);
             this.gbFiltros.Controls.Add(this.BtnBuscarProduto);
-            this.gbFiltros.Controls.Add(this.txtBuscaCliente);
-            this.gbFiltros.Controls.Add(this.txtBuscaProduto);
             this.gbFiltros.Controls.Add(this.dtpFinal);
             this.gbFiltros.Controls.Add(this.dtpInicial);
             this.gbFiltros.Controls.Add(this.label3);
@@ -79,6 +83,8 @@
             this.gbFiltros.Controls.Add(this.label4);
             this.gbFiltros.Controls.Add(this.label2);
             this.gbFiltros.Controls.Add(this.label1);
+            this.gbFiltros.Controls.Add(this.lblProduto);
+            this.gbFiltros.Controls.Add(this.lblCliente);
             this.gbFiltros.ForeColor = System.Drawing.Color.Black;
             this.gbFiltros.Location = new System.Drawing.Point(741, 0);
             this.gbFiltros.Name = "gbFiltros";
@@ -88,26 +94,29 @@
             // 
             // BtnLimparCliente
             // 
-            this.BtnLimparCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BtnLimparCliente.BackColor = System.Drawing.Color.White;
+            this.BtnLimparCliente.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnLimparCliente.BackgroundImage")));
+            this.BtnLimparCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnLimparCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLimparCliente.Location = new System.Drawing.Point(169, 352);
+            this.BtnLimparCliente.ForeColor = System.Drawing.Color.White;
+            this.BtnLimparCliente.Location = new System.Drawing.Point(203, 352);
             this.BtnLimparCliente.Name = "BtnLimparCliente";
-            this.BtnLimparCliente.Size = new System.Drawing.Size(14, 23);
+            this.BtnLimparCliente.Size = new System.Drawing.Size(16, 16);
             this.BtnLimparCliente.TabIndex = 116;
-            this.BtnLimparCliente.Text = "X";
             this.BtnLimparCliente.UseVisualStyleBackColor = false;
             this.BtnLimparCliente.Click += new System.EventHandler(this.BtnLimparCliente_Click);
             // 
             // BtnLimparProduto
             // 
-            this.BtnLimparProduto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BtnLimparProduto.BackColor = System.Drawing.Color.White;
+            this.BtnLimparProduto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnLimparProduto.BackgroundImage")));
+            this.BtnLimparProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnLimparProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLimparProduto.ForeColor = System.Drawing.Color.Black;
-            this.BtnLimparProduto.Location = new System.Drawing.Point(169, 292);
+            this.BtnLimparProduto.ForeColor = System.Drawing.Color.White;
+            this.BtnLimparProduto.Location = new System.Drawing.Point(203, 292);
             this.BtnLimparProduto.Name = "BtnLimparProduto";
-            this.BtnLimparProduto.Size = new System.Drawing.Size(14, 23);
+            this.BtnLimparProduto.Size = new System.Drawing.Size(16, 16);
             this.BtnLimparProduto.TabIndex = 115;
-            this.BtnLimparProduto.Text = "X";
             this.BtnLimparProduto.UseVisualStyleBackColor = false;
             this.BtnLimparProduto.Click += new System.EventHandler(this.BtnLimparProduto_Click);
             // 
@@ -142,42 +151,32 @@
             // BtnBuscarCliente
             // 
             this.BtnBuscarCliente.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnBuscarCliente.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnBuscarCliente.BackgroundImage")));
+            this.BtnBuscarCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarCliente.Location = new System.Drawing.Point(180, 352);
+            this.BtnBuscarCliente.ForeColor = System.Drawing.Color.White;
+            this.BtnBuscarCliente.Location = new System.Drawing.Point(185, 350);
             this.BtnBuscarCliente.Name = "BtnBuscarCliente";
-            this.BtnBuscarCliente.Size = new System.Drawing.Size(40, 23);
+            this.BtnBuscarCliente.Size = new System.Drawing.Size(18, 19);
             this.BtnBuscarCliente.TabIndex = 39;
-            this.BtnBuscarCliente.Text = "🔍";
             this.BtnBuscarCliente.UseVisualStyleBackColor = false;
             this.BtnBuscarCliente.Click += new System.EventHandler(this.BtnBuscarCliente_Click);
             // 
             // BtnBuscarProduto
             // 
             this.BtnBuscarProduto.BackColor = System.Drawing.SystemColors.Control;
-            this.BtnBuscarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnBuscarProduto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnBuscarProduto.BackgroundImage")));
+            this.BtnBuscarProduto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnBuscarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBuscarProduto.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnBuscarProduto.Location = new System.Drawing.Point(180, 292);
+            this.BtnBuscarProduto.ForeColor = System.Drawing.Color.White;
+            this.BtnBuscarProduto.Location = new System.Drawing.Point(185, 290);
             this.BtnBuscarProduto.Name = "BtnBuscarProduto";
-            this.BtnBuscarProduto.Size = new System.Drawing.Size(40, 23);
+            this.BtnBuscarProduto.Size = new System.Drawing.Size(18, 19);
             this.BtnBuscarProduto.TabIndex = 38;
-            this.BtnBuscarProduto.Text = "🔍";
             this.BtnBuscarProduto.UseVisualStyleBackColor = false;
             this.BtnBuscarProduto.Click += new System.EventHandler(this.BtnBuscarProduto_Click);
-            // 
-            // txtBuscaCliente
-            // 
-            this.txtBuscaCliente.Location = new System.Drawing.Point(20, 352);
-            this.txtBuscaCliente.Name = "txtBuscaCliente";
-            this.txtBuscaCliente.Size = new System.Drawing.Size(163, 23);
-            this.txtBuscaCliente.TabIndex = 5;
-            // 
-            // txtBuscaProduto
-            // 
-            this.txtBuscaProduto.Location = new System.Drawing.Point(20, 292);
-            this.txtBuscaProduto.Name = "txtBuscaProduto";
-            this.txtBuscaProduto.Size = new System.Drawing.Size(163, 23);
-            this.txtBuscaProduto.TabIndex = 4;
             // 
             // dtpFinal
             // 
@@ -375,6 +374,59 @@
             this.lblLucroTotal.TabIndex = 117;
             this.lblLucroTotal.Text = "RS";
             // 
+            // BtnMostrarProdutos
+            // 
+            this.BtnMostrarProdutos.BackColor = System.Drawing.Color.White;
+            this.BtnMostrarProdutos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMostrarProdutos.BackgroundImage")));
+            this.BtnMostrarProdutos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnMostrarProdutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMostrarProdutos.ForeColor = System.Drawing.Color.White;
+            this.BtnMostrarProdutos.Location = new System.Drawing.Point(169, 290);
+            this.BtnMostrarProdutos.Name = "BtnMostrarProdutos";
+            this.BtnMostrarProdutos.Size = new System.Drawing.Size(18, 19);
+            this.BtnMostrarProdutos.TabIndex = 117;
+            this.BtnMostrarProdutos.UseVisualStyleBackColor = false;
+            // 
+            // lblProduto
+            // 
+            this.lblProduto.BackColor = System.Drawing.Color.White;
+            this.lblProduto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblProduto.Location = new System.Drawing.Point(20, 289);
+            this.lblProduto.Name = "lblProduto";
+            this.lblProduto.Size = new System.Drawing.Size(200, 22);
+            this.lblProduto.TabIndex = 118;
+            // 
+            // lblCliente
+            // 
+            this.lblCliente.BackColor = System.Drawing.Color.White;
+            this.lblCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCliente.Location = new System.Drawing.Point(20, 349);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(200, 22);
+            this.lblCliente.TabIndex = 119;
+            // 
+            // BtnMostrarClientes
+            // 
+            this.BtnMostrarClientes.BackColor = System.Drawing.Color.White;
+            this.BtnMostrarClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMostrarClientes.BackgroundImage")));
+            this.BtnMostrarClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnMostrarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMostrarClientes.ForeColor = System.Drawing.Color.White;
+            this.BtnMostrarClientes.Location = new System.Drawing.Point(169, 350);
+            this.BtnMostrarClientes.Name = "BtnMostrarClientes";
+            this.BtnMostrarClientes.Size = new System.Drawing.Size(18, 19);
+            this.BtnMostrarClientes.TabIndex = 120;
+            this.BtnMostrarClientes.UseVisualStyleBackColor = false;
+            this.BtnMostrarClientes.Click += new System.EventHandler(this.BtnMostrarClientes_Click);
+            // 
+            // panelListaClientes
+            // 
+            this.panelListaClientes.Location = new System.Drawing.Point(20, 372);
+            this.panelListaClientes.Name = "panelListaClientes";
+            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
+            this.panelListaClientes.TabIndex = 121;
+            this.panelListaClientes.Visible = false;
+            // 
             // FrmRelatorioVendaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -409,8 +461,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbFiltros;
-        private System.Windows.Forms.TextBox txtBuscaCliente;
-        private System.Windows.Forms.TextBox txtBuscaProduto;
         private System.Windows.Forms.DateTimePicker dtpFinal;
         private System.Windows.Forms.DateTimePicker dtpInicial;
         private System.Windows.Forms.Label label3;
@@ -436,5 +486,10 @@
         private System.Windows.Forms.Label lblLucroTotal;
         private System.Windows.Forms.Button BtnLimparProduto;
         private System.Windows.Forms.Button BtnLimparCliente;
+        private System.Windows.Forms.Button BtnMostrarProdutos;
+        private System.Windows.Forms.Label lblProduto;
+        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.Button BtnMostrarClientes;
+        private System.Windows.Forms.Panel panelListaClientes;
     }
 }

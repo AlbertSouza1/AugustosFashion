@@ -1,5 +1,6 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using Dapper;
+using System.Linq;
 
 namespace AugustosFashion.Repositorios.QueryHelpers
 {
@@ -27,9 +28,9 @@ namespace AugustosFashion.Repositorios.QueryHelpers
 
             var where = $" WHERE pe.DataEmissao BETWEEN @DataInicial and @DataFinal ";
 
-            if(_filtroRelatorio.IdCliente != 0)
+            if(_filtroRelatorio.Clientes.Count > 0)
             {
-                where +=$" and pe.IdCliente = @IdCliente ";
+                where +=$" and pe.IdCliente in @IdClientes ";
             }
             if(_filtroRelatorio.IdProduto != 0)
             {
@@ -53,7 +54,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
                     _filtroRelatorio.DataInicial,
                     DataFinal = _filtroRelatorio.DataFinalFormatada,
                     _filtroRelatorio.IdProduto,
-                    _filtroRelatorio.IdCliente
+                    IdClientes = _filtroRelatorio.Clientes.Select(x=>x.Id)
                 }
                 );
 
