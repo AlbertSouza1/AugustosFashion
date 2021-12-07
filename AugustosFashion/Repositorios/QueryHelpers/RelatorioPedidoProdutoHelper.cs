@@ -32,9 +32,9 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             {
                 where +=$" and pe.IdCliente in @IdClientes ";
             }
-            if(_filtroRelatorio.IdProduto != 0)
+            if(_filtroRelatorio.Produtos.Count > 0)
             {
-                where += $" and pp.IdProduto = @IdProduto ";
+                where += $" and pp.IdProduto in @IdProdutos ";
             }
 
             query += where;
@@ -53,7 +53,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
                 {
                     _filtroRelatorio.DataInicial,
                     DataFinal = _filtroRelatorio.DataFinalFormatada,
-                    _filtroRelatorio.IdProduto,
+                    IdProdutos = _filtroRelatorio.Produtos.Select(x => x.Id),
                     IdClientes = _filtroRelatorio.Clientes.Select(x=>x.Id)
                 }
                 );

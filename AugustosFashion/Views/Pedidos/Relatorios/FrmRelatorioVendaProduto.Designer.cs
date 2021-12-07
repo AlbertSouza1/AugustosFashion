@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaProduto));
             this.gbFiltros = new System.Windows.Forms.GroupBox();
+            this.panelListaClientes = new System.Windows.Forms.Panel();
+            this.BtnMostrarClientes = new System.Windows.Forms.Button();
+            this.BtnMostrarProdutos = new System.Windows.Forms.Button();
             this.BtnLimparCliente = new System.Windows.Forms.Button();
             this.BtnLimparProduto = new System.Windows.Forms.Button();
             this.BtnFecharFiltro = new System.Windows.Forms.Button();
@@ -43,6 +46,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblProduto = new System.Windows.Forms.Label();
+            this.lblCliente = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvRelatorioProdutos = new System.Windows.Forms.DataGridView();
             this.btnFechar = new System.Windows.Forms.Button();
@@ -55,11 +60,7 @@
             this.lblTotalBruto = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblLucroTotal = new System.Windows.Forms.Label();
-            this.BtnMostrarProdutos = new System.Windows.Forms.Button();
-            this.lblProduto = new System.Windows.Forms.Label();
-            this.lblCliente = new System.Windows.Forms.Label();
-            this.BtnMostrarClientes = new System.Windows.Forms.Button();
-            this.panelListaClientes = new System.Windows.Forms.Panel();
+            this.panelListaProdutos = new System.Windows.Forms.Panel();
             this.gbFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioProdutos)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +68,7 @@
             // gbFiltros
             // 
             this.gbFiltros.BackColor = System.Drawing.Color.LightGray;
+            this.gbFiltros.Controls.Add(this.panelListaProdutos);
             this.gbFiltros.Controls.Add(this.panelListaClientes);
             this.gbFiltros.Controls.Add(this.BtnMostrarClientes);
             this.gbFiltros.Controls.Add(this.BtnMostrarProdutos);
@@ -91,6 +93,42 @@
             this.gbFiltros.Size = new System.Drawing.Size(242, 741);
             this.gbFiltros.TabIndex = 0;
             this.gbFiltros.TabStop = false;
+            // 
+            // panelListaClientes
+            // 
+            this.panelListaClientes.Location = new System.Drawing.Point(20, 372);
+            this.panelListaClientes.Name = "panelListaClientes";
+            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
+            this.panelListaClientes.TabIndex = 121;
+            this.panelListaClientes.Visible = false;
+            // 
+            // BtnMostrarClientes
+            // 
+            this.BtnMostrarClientes.BackColor = System.Drawing.Color.White;
+            this.BtnMostrarClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMostrarClientes.BackgroundImage")));
+            this.BtnMostrarClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnMostrarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMostrarClientes.ForeColor = System.Drawing.Color.White;
+            this.BtnMostrarClientes.Location = new System.Drawing.Point(169, 350);
+            this.BtnMostrarClientes.Name = "BtnMostrarClientes";
+            this.BtnMostrarClientes.Size = new System.Drawing.Size(18, 19);
+            this.BtnMostrarClientes.TabIndex = 120;
+            this.BtnMostrarClientes.UseVisualStyleBackColor = false;
+            this.BtnMostrarClientes.Click += new System.EventHandler(this.BtnMostrarClientes_Click);
+            // 
+            // BtnMostrarProdutos
+            // 
+            this.BtnMostrarProdutos.BackColor = System.Drawing.Color.White;
+            this.BtnMostrarProdutos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMostrarProdutos.BackgroundImage")));
+            this.BtnMostrarProdutos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnMostrarProdutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMostrarProdutos.ForeColor = System.Drawing.Color.White;
+            this.BtnMostrarProdutos.Location = new System.Drawing.Point(169, 290);
+            this.BtnMostrarProdutos.Name = "BtnMostrarProdutos";
+            this.BtnMostrarProdutos.Size = new System.Drawing.Size(18, 19);
+            this.BtnMostrarProdutos.TabIndex = 117;
+            this.BtnMostrarProdutos.UseVisualStyleBackColor = false;
+            this.BtnMostrarProdutos.Click += new System.EventHandler(this.BtnMostrarProdutos_Click);
             // 
             // BtnLimparCliente
             // 
@@ -244,6 +282,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Filtros";
             // 
+            // lblProduto
+            // 
+            this.lblProduto.BackColor = System.Drawing.Color.White;
+            this.lblProduto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblProduto.Location = new System.Drawing.Point(20, 289);
+            this.lblProduto.Name = "lblProduto";
+            this.lblProduto.Size = new System.Drawing.Size(200, 22);
+            this.lblProduto.TabIndex = 118;
+            // 
+            // lblCliente
+            // 
+            this.lblCliente.BackColor = System.Drawing.Color.White;
+            this.lblCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCliente.Location = new System.Drawing.Point(20, 349);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(200, 22);
+            this.lblCliente.TabIndex = 119;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -374,58 +430,13 @@
             this.lblLucroTotal.TabIndex = 117;
             this.lblLucroTotal.Text = "RS";
             // 
-            // BtnMostrarProdutos
+            // panelListaProdutos
             // 
-            this.BtnMostrarProdutos.BackColor = System.Drawing.Color.White;
-            this.BtnMostrarProdutos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMostrarProdutos.BackgroundImage")));
-            this.BtnMostrarProdutos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BtnMostrarProdutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnMostrarProdutos.ForeColor = System.Drawing.Color.White;
-            this.BtnMostrarProdutos.Location = new System.Drawing.Point(169, 290);
-            this.BtnMostrarProdutos.Name = "BtnMostrarProdutos";
-            this.BtnMostrarProdutos.Size = new System.Drawing.Size(18, 19);
-            this.BtnMostrarProdutos.TabIndex = 117;
-            this.BtnMostrarProdutos.UseVisualStyleBackColor = false;
-            // 
-            // lblProduto
-            // 
-            this.lblProduto.BackColor = System.Drawing.Color.White;
-            this.lblProduto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblProduto.Location = new System.Drawing.Point(20, 289);
-            this.lblProduto.Name = "lblProduto";
-            this.lblProduto.Size = new System.Drawing.Size(200, 22);
-            this.lblProduto.TabIndex = 118;
-            // 
-            // lblCliente
-            // 
-            this.lblCliente.BackColor = System.Drawing.Color.White;
-            this.lblCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCliente.Location = new System.Drawing.Point(20, 349);
-            this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(200, 22);
-            this.lblCliente.TabIndex = 119;
-            // 
-            // BtnMostrarClientes
-            // 
-            this.BtnMostrarClientes.BackColor = System.Drawing.Color.White;
-            this.BtnMostrarClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMostrarClientes.BackgroundImage")));
-            this.BtnMostrarClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BtnMostrarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnMostrarClientes.ForeColor = System.Drawing.Color.White;
-            this.BtnMostrarClientes.Location = new System.Drawing.Point(169, 350);
-            this.BtnMostrarClientes.Name = "BtnMostrarClientes";
-            this.BtnMostrarClientes.Size = new System.Drawing.Size(18, 19);
-            this.BtnMostrarClientes.TabIndex = 120;
-            this.BtnMostrarClientes.UseVisualStyleBackColor = false;
-            this.BtnMostrarClientes.Click += new System.EventHandler(this.BtnMostrarClientes_Click);
-            // 
-            // panelListaClientes
-            // 
-            this.panelListaClientes.Location = new System.Drawing.Point(20, 372);
-            this.panelListaClientes.Name = "panelListaClientes";
-            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
-            this.panelListaClientes.TabIndex = 121;
-            this.panelListaClientes.Visible = false;
+            this.panelListaProdutos.Location = new System.Drawing.Point(20, 312);
+            this.panelListaProdutos.Name = "panelListaProdutos";
+            this.panelListaProdutos.Size = new System.Drawing.Size(200, 198);
+            this.panelListaProdutos.TabIndex = 118;
+            this.panelListaProdutos.Visible = false;
             // 
             // FrmRelatorioVendaProduto
             // 
@@ -491,5 +502,6 @@
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.Button BtnMostrarClientes;
         private System.Windows.Forms.Panel panelListaClientes;
+        private System.Windows.Forms.Panel panelListaProdutos;
     }
 }

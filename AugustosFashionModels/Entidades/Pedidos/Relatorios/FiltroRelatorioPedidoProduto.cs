@@ -5,8 +5,7 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
 {
     public class FiltroRelatorioPedidoProduto
     {
-        //public List<ListaGenericaModel> Produtos { get; set; }
-        public int IdProduto { get; set; }
+        public List<ListaGenericaModel> Produtos { get; set; }
         public List<ListaGenericaModel> Clientes { get; set; }
         public DateTime DataInicial { get; set; }
         public DateTime DataFinal { get; set; }
@@ -14,6 +13,7 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
         public FiltroRelatorioPedidoProduto()
         {
             Clientes = new List<ListaGenericaModel>();
+            Produtos = new List<ListaGenericaModel>();
         }
     }
 }
