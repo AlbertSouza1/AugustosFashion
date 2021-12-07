@@ -23,7 +23,8 @@ namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
         public void DataFinalFormatada_deve_retornar_data_junto_ao_ultimo_momento_do_dia()
         {
             var filtro = new FiltroRelatorioPedidoProduto();
-            filtro.DataFinal = new DateTime(1999,12,30);
+
+            filtro.SetarFiltros(new DateTime(2021,11,01), new DateTime(1999, 12, 30), 1);
 
             var retorno = filtro.DataFinalFormatada;
 

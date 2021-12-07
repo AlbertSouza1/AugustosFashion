@@ -41,7 +41,37 @@ namespace AugustosFashion.Repositorios.QueryHelpers
 
             query += $" GROUP BY pp.IdProduto, pr.Nome ";
 
+            query += GerarOrderBys();
+
             return query;
+        }
+
+        private string GerarOrderBys()
+        {
+            var orderBy = " order by ";
+
+            switch (_filtroRelatorio.Ordenacao)
+            {
+                case EOrdenacaoPedidoProduto.MenosComprado:
+                    orderBy += " QuantidadeVendida ";
+                    break;
+                case EOrdenacaoPedidoProduto.MaisDesconto:
+                    orderBy += " TotalDesconto desc";
+                    break;
+                case EOrdenacaoPedidoProduto.MenosDesconto:
+                    orderBy += " TotalDesconto ";
+                    break;
+                case EOrdenacaoPedidoProduto.MaisReaisVendido:
+                    orderBy += " TotalLiquido desc ";
+                    break;
+                case EOrdenacaoPedidoProduto.MenosReaisVendido:
+                    orderBy += " TotalLiquido ";
+                    break;
+                default:
+                    orderBy += " QuantidadeVendida desc ";
+                    break;
+            }
+            return orderBy;
         }
 
         public DynamicParameters RecuperarParametros()

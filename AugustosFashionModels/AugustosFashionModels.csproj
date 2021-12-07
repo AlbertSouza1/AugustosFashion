@@ -55,6 +55,7 @@
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
     <Compile Include="Entidades\ContasClientes\ContaClienteModel.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\EOrdenacaoPedidoCliente.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\EOrdenacaoPedidoProduto.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\FiltroRelatorioPedidoCliente.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\FiltroRelatorioPedidoProduto.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\ListaGenericaModel.cs" />

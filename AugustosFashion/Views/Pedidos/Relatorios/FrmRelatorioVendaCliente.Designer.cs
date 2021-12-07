@@ -32,8 +32,8 @@
             this.btnFechar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BtnMostrarClientes = new System.Windows.Forms.Button();
             this.panelListaClientes = new System.Windows.Forms.Panel();
+            this.BtnMostrarClientes = new System.Windows.Forms.Button();
             this.BtnLimparCliente = new System.Windows.Forms.Button();
             this.txtValorComprado = new System.Windows.Forms.TextBox();
             this.cbOrdenacao = new System.Windows.Forms.ComboBox();
@@ -50,6 +50,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblCliente = new System.Windows.Forms.Label();
             this.dgvRelatorioClientes = new System.Windows.Forms.DataGridView();
             this.BtnMostrarFiltros = new System.Windows.Forms.Button();
             this.lblTotalLiquido = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lblTotalCompras = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblCliente = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
             this.SuspendLayout();
@@ -94,8 +94,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightGray;
-            this.groupBox1.Controls.Add(this.BtnMostrarClientes);
             this.groupBox1.Controls.Add(this.panelListaClientes);
+            this.groupBox1.Controls.Add(this.BtnMostrarClientes);
             this.groupBox1.Controls.Add(this.BtnLimparCliente);
             this.groupBox1.Controls.Add(this.txtValorComprado);
             this.groupBox1.Controls.Add(this.cbOrdenacao);
@@ -120,6 +120,14 @@
             this.groupBox1.TabIndex = 110;
             this.groupBox1.TabStop = false;
             // 
+            // panelListaClientes
+            // 
+            this.panelListaClientes.Location = new System.Drawing.Point(20, 320);
+            this.panelListaClientes.Name = "panelListaClientes";
+            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
+            this.panelListaClientes.TabIndex = 115;
+            this.panelListaClientes.Visible = false;
+            // 
             // BtnMostrarClientes
             // 
             this.BtnMostrarClientes.BackColor = System.Drawing.Color.White;
@@ -133,14 +141,6 @@
             this.BtnMostrarClientes.TabIndex = 116;
             this.BtnMostrarClientes.UseVisualStyleBackColor = false;
             this.BtnMostrarClientes.Click += new System.EventHandler(this.BtnMostrarClientes_Click);
-            // 
-            // panelListaClientes
-            // 
-            this.panelListaClientes.Location = new System.Drawing.Point(20, 320);
-            this.panelListaClientes.Name = "panelListaClientes";
-            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
-            this.panelListaClientes.TabIndex = 115;
-            this.panelListaClientes.Visible = false;
             // 
             // BtnLimparCliente
             // 
@@ -320,6 +320,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Filtros";
             // 
+            // lblCliente
+            // 
+            this.lblCliente.BackColor = System.Drawing.Color.White;
+            this.lblCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCliente.Location = new System.Drawing.Point(20, 297);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(200, 22);
+            this.lblCliente.TabIndex = 117;
+            // 
             // dgvRelatorioClientes
             // 
             this.dgvRelatorioClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -424,15 +433,6 @@
             this.label9.Size = new System.Drawing.Size(139, 20);
             this.label9.TabIndex = 123;
             this.label9.Text = "Total  de Compras:";
-            // 
-            // lblCliente
-            // 
-            this.lblCliente.BackColor = System.Drawing.Color.White;
-            this.lblCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCliente.Location = new System.Drawing.Point(20, 297);
-            this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(200, 22);
-            this.lblCliente.TabIndex = 117;
             // 
             // FrmRelatorioVendaCliente
             // 

@@ -45,7 +45,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnFiltrar_Click(object sender, EventArgs e)
         {
-            _filtroRelatorio.AdicionarFiltrosData(dtpInicial.Value, dtpFinal.Value);
+            _filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, cbOrdenacao.SelectedIndex);
 
             ConsultarRelatorio();
 
@@ -78,6 +78,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void FrmRelatorioVendaProduto_Load(object sender, EventArgs e)
         {
+            cbOrdenacao.SelectedIndex = 0;
             gbFiltros.Left = 1000;
             SetarDataInicialParaPrimeiroDiaDoMes();
         }

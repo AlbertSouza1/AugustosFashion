@@ -30,7 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaProduto));
             this.gbFiltros = new System.Windows.Forms.GroupBox();
+            this.panelListaProdutos = new System.Windows.Forms.Panel();
             this.panelListaClientes = new System.Windows.Forms.Panel();
+            this.cbOrdenacao = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.BtnMostrarClientes = new System.Windows.Forms.Button();
             this.BtnMostrarProdutos = new System.Windows.Forms.Button();
             this.BtnLimparCliente = new System.Windows.Forms.Button();
@@ -60,7 +63,6 @@
             this.lblTotalBruto = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblLucroTotal = new System.Windows.Forms.Label();
-            this.panelListaProdutos = new System.Windows.Forms.Panel();
             this.gbFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioProdutos)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +72,8 @@
             this.gbFiltros.BackColor = System.Drawing.Color.LightGray;
             this.gbFiltros.Controls.Add(this.panelListaProdutos);
             this.gbFiltros.Controls.Add(this.panelListaClientes);
+            this.gbFiltros.Controls.Add(this.cbOrdenacao);
+            this.gbFiltros.Controls.Add(this.label11);
             this.gbFiltros.Controls.Add(this.BtnMostrarClientes);
             this.gbFiltros.Controls.Add(this.BtnMostrarProdutos);
             this.gbFiltros.Controls.Add(this.BtnLimparCliente);
@@ -94,13 +98,49 @@
             this.gbFiltros.TabIndex = 0;
             this.gbFiltros.TabStop = false;
             // 
+            // panelListaProdutos
+            // 
+            this.panelListaProdutos.Location = new System.Drawing.Point(20, 311);
+            this.panelListaProdutos.Name = "panelListaProdutos";
+            this.panelListaProdutos.Size = new System.Drawing.Size(200, 198);
+            this.panelListaProdutos.TabIndex = 118;
+            this.panelListaProdutos.Visible = false;
+            // 
             // panelListaClientes
             // 
-            this.panelListaClientes.Location = new System.Drawing.Point(20, 372);
+            this.panelListaClientes.Location = new System.Drawing.Point(20, 371);
             this.panelListaClientes.Name = "panelListaClientes";
             this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
             this.panelListaClientes.TabIndex = 121;
             this.panelListaClientes.Visible = false;
+            // 
+            // cbOrdenacao
+            // 
+            this.cbOrdenacao.BackColor = System.Drawing.Color.White;
+            this.cbOrdenacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOrdenacao.FormattingEnabled = true;
+            this.cbOrdenacao.Items.AddRange(new object[] {
+            "Nenhum Filtro",
+            "Mais vezes vendido",
+            "Menos vezes vendido",
+            "Mais desconto",
+            "Menos desconto",
+            "Mais vendido (R$)",
+            "Menos vendido (R$)"});
+            this.cbOrdenacao.Location = new System.Drawing.Point(20, 415);
+            this.cbOrdenacao.Name = "cbOrdenacao";
+            this.cbOrdenacao.Size = new System.Drawing.Size(200, 23);
+            this.cbOrdenacao.TabIndex = 119;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(20, 395);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(81, 17);
+            this.label11.TabIndex = 118;
+            this.label11.Text = "Ordenar Por";
             // 
             // BtnMostrarClientes
             // 
@@ -178,7 +218,7 @@
             this.BtnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFiltrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnFiltrar.ForeColor = System.Drawing.Color.White;
-            this.BtnFiltrar.Location = new System.Drawing.Point(72, 400);
+            this.BtnFiltrar.Location = new System.Drawing.Point(72, 463);
             this.BtnFiltrar.Name = "BtnFiltrar";
             this.BtnFiltrar.Size = new System.Drawing.Size(94, 29);
             this.BtnFiltrar.TabIndex = 40;
@@ -430,14 +470,6 @@
             this.lblLucroTotal.TabIndex = 117;
             this.lblLucroTotal.Text = "RS";
             // 
-            // panelListaProdutos
-            // 
-            this.panelListaProdutos.Location = new System.Drawing.Point(20, 312);
-            this.panelListaProdutos.Name = "panelListaProdutos";
-            this.panelListaProdutos.Size = new System.Drawing.Size(200, 198);
-            this.panelListaProdutos.TabIndex = 118;
-            this.panelListaProdutos.Visible = false;
-            // 
             // FrmRelatorioVendaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -503,5 +535,7 @@
         private System.Windows.Forms.Button BtnMostrarClientes;
         private System.Windows.Forms.Panel panelListaClientes;
         private System.Windows.Forms.Panel panelListaProdutos;
+        private System.Windows.Forms.ComboBox cbOrdenacao;
+        private System.Windows.Forms.Label label11;
     }
 }

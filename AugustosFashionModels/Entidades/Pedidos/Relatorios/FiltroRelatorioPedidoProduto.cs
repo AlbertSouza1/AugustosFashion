@@ -10,6 +10,7 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
         public List<ListaGenericaModel> Clientes { get; private set; }
         public DateTime DataInicial { get; private set; }
         public DateTime DataFinal { get; private set; }
+        public EOrdenacaoPedidoProduto Ordenacao { get; private set; }
         public DateTime DataFinalFormatada { get => new DateTime(DataFinal.Year, DataFinal.Month, DataFinal.Day, 23, 59, 59); }
         public FiltroRelatorioPedidoProduto()
         {
@@ -55,10 +56,11 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
 
         public int EncontrarIndexDoCliente(int id) => Clientes.FindIndex(x => x.Id == id);
 
-        public void AdicionarFiltrosData(DateTime dataInicial, DateTime dataFinal)
+        public void SetarFiltros(DateTime dataInicial, DateTime dataFinal, int ordenacao)
         {
             DataInicial = dataInicial;
             DataFinal = dataFinal;
+            Ordenacao = (EOrdenacaoPedidoProduto)ordenacao;
         }
     }
 }
