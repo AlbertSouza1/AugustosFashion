@@ -66,27 +66,27 @@ namespace AugustosFashion.Repositorios.QueryHelpers
 
         public string GerarOrderBys()
         {
-            var orderBy = "";
+            var orderBy = " order by ";
 
             switch (_filtroRelatorio.Ordenacao)
             {
-                case EOrdenacaoPedidoCliente.MaisComprou:
-                    orderBy = " order by count(p.IdPedido) desc ";
-                    break;
                 case EOrdenacaoPedidoCliente.MenosComprou:
-                    orderBy = " order by count(p.IdPedido) ";
+                    orderBy += " count(p.IdPedido) ";
                     break;
                 case EOrdenacaoPedidoCliente.MaiorDesconto:
-                    orderBy = " order by sum(p.TotalDesconto) desc";
+                    orderBy += " sum(p.TotalDesconto) desc";
                     break;
                 case EOrdenacaoPedidoCliente.MenorDesconto:
-                    orderBy = " order by sum(p.TotalDesconto) ";
+                    orderBy += " sum(p.TotalDesconto) ";
                     break;
                 case EOrdenacaoPedidoCliente.MaiorValor:
-                    orderBy = " order by sum(p.TotalLiquido) desc ";
+                    orderBy += " sum(p.TotalLiquido) desc ";
                     break;
                 case EOrdenacaoPedidoCliente.MenorValor:
-                    orderBy = " order by sum(p.TotalLiquido) ";
+                    orderBy += " sum(p.TotalLiquido) ";
+                    break;
+                default:
+                    orderBy += " count(p.IdPedido) desc ";
                     break;
             }
             return orderBy;

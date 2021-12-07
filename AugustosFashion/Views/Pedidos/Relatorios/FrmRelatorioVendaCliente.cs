@@ -55,7 +55,6 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 Id = cliente.IdCliente
             });
 
-            // _filtroRelatorio.Clientes[0].IdCliente = cliente.IdCliente;
             lblCliente.Text = cliente.NomeCompleto.ToString();
         }
 
