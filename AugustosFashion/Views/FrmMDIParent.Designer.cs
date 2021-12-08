@@ -46,6 +46,8 @@ namespace AugustosFashion
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasPorProdutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasPorClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contasClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +58,8 @@ namespace AugustosFashion
             this.colaboradoresToolStripMenuItem,
             this.produtosToolStripMenuItem,
             this.vendasToolStripMenuItem,
-            this.relatóriosToolStripMenuItem});
+            this.relatóriosToolStripMenuItem,
+            this.financeiroToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -172,16 +175,31 @@ namespace AugustosFashion
             // vendasPorProdutoToolStripMenuItem
             // 
             this.vendasPorProdutoToolStripMenuItem.Name = "vendasPorProdutoToolStripMenuItem";
-            this.vendasPorProdutoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vendasPorProdutoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.vendasPorProdutoToolStripMenuItem.Text = "Vendas por Produto";
             this.vendasPorProdutoToolStripMenuItem.Click += new System.EventHandler(this.vendasPorProdutoToolStripMenuItem_Click);
             // 
             // vendasPorClienteToolStripMenuItem
             // 
             this.vendasPorClienteToolStripMenuItem.Name = "vendasPorClienteToolStripMenuItem";
-            this.vendasPorClienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vendasPorClienteToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.vendasPorClienteToolStripMenuItem.Text = "Vendas por Cliente";
             this.vendasPorClienteToolStripMenuItem.Click += new System.EventHandler(this.vendasPorClienteToolStripMenuItem_Click);
+            // 
+            // financeiroToolStripMenuItem
+            // 
+            this.financeiroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contasClientesToolStripMenuItem});
+            this.financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
+            this.financeiroToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.financeiroToolStripMenuItem.Text = "Financeiro";
+            // 
+            // contasClientesToolStripMenuItem
+            // 
+            this.contasClientesToolStripMenuItem.Name = "contasClientesToolStripMenuItem";
+            this.contasClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contasClientesToolStripMenuItem.Text = "Contas Clientes";
+            this.contasClientesToolStripMenuItem.Click += new System.EventHandler(this.contasClientesToolStripMenuItem_Click);
             // 
             // FrmMDIParent
             // 
@@ -224,6 +242,8 @@ namespace AugustosFashion
         private System.Windows.Forms.ToolStripMenuItem relatóriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vendasPorProdutoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vendasPorClienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem financeiroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contasClientesToolStripMenuItem;
     }
 }
 

@@ -15,6 +15,13 @@ namespace AugustosFashion.Views.Pedidos
         private readonly RelatorioPedidoProdutoController _relatorioVendaProdutoController;
         private readonly RelatorioPedidoClienteController _relatorioVendaClienteController;
 
+        public delegate void SelectedHandler(ClienteModel cliente);
+        public event SelectedHandler SelectedClient;
+
+        public FrmBuscaClientes()
+        {
+            InitializeComponent();
+        }
         public FrmBuscaClientes(CadastroPedidoController cadastroPedidoController, string busca)
         {
             InitializeComponent();
@@ -76,7 +83,7 @@ namespace AugustosFashion.Views.Pedidos
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Não foi possível recuperar o cliente selecionado. Erro: "+ ex.Message);
+                    MessageBox.Show("Não foi possível recuperar o cliente selecionado. Erro: " + ex.Message);
                 }
             }
             else
@@ -87,6 +94,23 @@ namespace AugustosFashion.Views.Pedidos
         {
             var clientes = BuscarClientes(true);
             ListarClientesBuscados(clientes);
+        }
+
+        private void dgvClientes_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1)
+                return;
+
+            try
+            {
+                var cliente = InstanciarClienteSelecionado();
+
+                SelectedClient?.Invoke(cliente);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao selecionar cliente. Erro: " + ex.Message);
+            }
         }
     }
 }

@@ -26,10 +26,10 @@ namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
 
         public void AbrirFormBuscaClientes(string busca)
         {
-            var frmBuscaProdutos = new FrmBuscaClientes(this, busca);
-            frmBuscaProdutos.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
-            frmBuscaProdutos.Show();
-            frmBuscaProdutos.BringToFront();
+            var frmBuscaClientes = new FrmBuscaClientes(this, busca);
+            frmBuscaClientes.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
+            frmBuscaClientes.Show();
+            frmBuscaClientes.BringToFront();
         }
 
         internal void RecuperarClienteSelecionado(ClienteModel cliente)
