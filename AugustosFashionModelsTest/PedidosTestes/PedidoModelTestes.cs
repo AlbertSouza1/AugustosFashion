@@ -74,25 +74,28 @@ namespace AugustosFashionModelsTest
         {
             var pedido = new PedidoModel();
             pedido.Produtos = _produtosNoPedido;
+            int idProdutoBuscado = 1;
 
-            var idProcurado = 1;
+            var indice = pedido.RetornarIndiceDoProduto(idProdutoBuscado);
 
             var esperado = pedido.Produtos[0];
 
-            Assert.AreEqual(esperado, pedido.SelecionarProdutoDoPedido(idProcurado));
+            Assert.AreEqual(esperado, pedido.SelecionarProdutoDoPedido(indice));
         }
 
         [TestMethod]
-        public void Selecionar_produto_do_pedido_deve_retornar_null_se_produto_nao_esta_na_lista()
+        public void Selecionar_produto_do_pedido_deve_retornar_null_se_indice_nao_for_encontrado()
         {
             var pedido = new PedidoModel();
             pedido.Produtos = _produtosNoPedido;
 
-            var idProcurado = 99;
+            int idProdutoBuscado = 55;
+
+            var indice = pedido.RetornarIndiceDoProduto(idProdutoBuscado);
 
             PedidoProduto esperado = null;
 
-            Assert.AreEqual(esperado, pedido.SelecionarProdutoDoPedido(idProcurado));
+            Assert.AreEqual(esperado, pedido.SelecionarProdutoDoPedido(indice));
         }
 
         [TestMethod]

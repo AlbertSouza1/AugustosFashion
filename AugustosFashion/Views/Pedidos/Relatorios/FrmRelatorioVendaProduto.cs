@@ -28,7 +28,6 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             _ucDgvListaControllerClientes.RetornarUserControl().SelectedGrid += FrmRelatorioVendaCliente_SelectedGrid;
             _ucDgvListaControllerProdutos.RetornarUserControl().SelectedGrid += FrmRelatorioVendaProduto_SelectedGrid;
         }
-
         private void FrmRelatorioVendaProduto_SelectedGrid(int id)
         {
             _indexProdutoSelecionado = _filtroRelatorio.EncontrarIndexDoProduto(id);

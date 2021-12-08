@@ -4,7 +4,6 @@ using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Helpers;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos
@@ -47,7 +46,7 @@ namespace AugustosFashion.Views.Pedidos
             ExibirInformacoesDoCliente();
             RecuperarColaboradorDoPedido();
             cbFormaPagamento.SelectedItem = _pedido.FormaPagamento;
-        } 
+        }
 
         private void RecuperarColaboradorDoPedido()
         {
@@ -60,7 +59,7 @@ namespace AugustosFashion.Views.Pedidos
             VerificarSeEhAniversarioCliente();
 
             txtCliente.Text = _pedido.Cliente.NomeCompleto.Nome + ' ' + _pedido.Cliente.NomeCompleto.SobreNome;
-        }          
+        }
 
         private void VerificarSeEhAniversarioCliente()
         {
@@ -126,7 +125,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             _pedido.Cliente = cliente;
 
-            ExibirInformacoesDoCliente();        
+            ExibirInformacoesDoCliente();
         }
 
         public void CarregarDadosDeColaboradorSelecionado(ColaboradorListagem colaborador)
@@ -212,49 +211,32 @@ namespace AugustosFashion.Views.Pedidos
             if (id == 0)
                 return;
 
-            _pedido.Produtos.Remove(SelecionarProdutoDoPedido(id));
+            _pedido.RemoverProduto(id);
 
             AtualizarTotaisDoPedido();
             AtualizarCarrinho();
         }
-        private PedidoProduto SelecionarProdutoDoPedido(int id)
-        {
-            return (from x in _pedido.Produtos
-                    where x.IdProduto == id
-                    select x).FirstOrDefault();
-        }
 
-        private bool EfeutarPedido()
+        private void EfeutarPedido()
         {
             try
             {
-                if (VerificarSeNaoHaCamposInvalidos())
-                {                    
-                    _cadastroPedidoController.CadastrarPedido(_pedido);
+                _cadastroPedidoController.CadastrarPedido(_pedido);
 
-                    MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    Close();
-                    return true;
-                }
-                else
-                    return false;
+                Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
-                return false;
+                MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);               
             }
         }
-      
+
         private void AlterarPedido()
         {
-            if (!VerificarSeNaoHaCamposInvalidos())
-                return;
-          
             try
-            {
-                SetarInformacoesDoPedido();
+            {              
                 new AlteraPedidoController().AlterarPedido(_pedido);
 
                 MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -264,12 +246,6 @@ namespace AugustosFashion.Views.Pedidos
             {
                 MessageBox.Show("Falha ao atualizar pedido. Erro: " + ex.Message);
             }
-        }
-
-        private void SetarInformacoesDoPedido()
-        {
-            _pedido.FormaPagamento = cbFormaPagamento.SelectedItem.ToString();
-            _pedido.DataEmissao = DateTime.Now;
         }
 
         private bool VerificarSeNaoHaCamposInvalidos()
@@ -340,9 +316,9 @@ namespace AugustosFashion.Views.Pedidos
             if (_produto.IdProduto == 0)
                 return;
 
-                CalcularTotalProduto();
-                CalcularTotalDesconto();
-                CalcularPrecoLiquido();            
+            CalcularTotalProduto();
+            CalcularTotalDesconto();
+            CalcularPrecoLiquido();
         }
 
         private void CalcularTotalProduto()
@@ -404,17 +380,21 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnFinalizarPedido_Click(object sender, EventArgs e)
         {
-            SetarInformacoesDoPedido();
+            _pedido.SetarInformacoes(cbFormaPagamento.Text);
 
-            if (VerificarSePagamentoEhAPrazo())
-                if (!VerificarSeClientePossuiLimite())
-                    return;
-
-            FinalizarPedido();
+            if (_pedido.ValidarFormaPagamento())
+                FinalizarPedido();
+            else
+                MessageBox.Show("O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n" +
+                        "Selecione uma nova forma de pagamento.",
+                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void FinalizarPedido()
         {
+            if (!VerificarSeNaoHaCamposInvalidos())
+                return;
+
             if (_pedido.IdPedido != 0)
             {
                 AlterarPedido();
@@ -425,24 +405,6 @@ namespace AugustosFashion.Views.Pedidos
                 EfeutarPedido();
                 EnviarEmailNovoPedido();
             }
-        }
-
-        private bool VerificarSePagamentoEhAPrazo() => _pedido.FormaPagamento == "A prazo";
-
-        private bool VerificarSeClientePossuiLimite()
-        {
-            var limiteAtual = _pedido.Cliente.RetornarLimiteParaCompraAtual();
-
-            limiteAtual -= _pedido.TotalLiquido.RetornaValor;
-
-            if (limiteAtual < _pedido.TotalLiquido.RetornaValor)
-            {
-                MessageBox.Show("O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n"+
-                    "Selecione uma nova forma de pagamento.",
-                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
         }
 
         private void EnviarEmailNovoPedido()
@@ -485,13 +447,13 @@ namespace AugustosFashion.Views.Pedidos
         {
             if (e.RowIndex == -1)
                 return;
-            
+
             int id = RecuperarIdProdutoDaGrid();
-           
+
             if (id == 0)
                 return;
 
-            _produto = SelecionarProdutoDoPedido(id);
+            _produto = _pedido.SelecionarProdutoDoPedido(_pedido.RetornarIndiceDoProduto(id));
 
             CarregarDadosDeProdutoSelecionado(_produto);
         }
@@ -510,7 +472,7 @@ namespace AugustosFashion.Views.Pedidos
         }
 
         private void numQuantidade_KeyPress(object sender, KeyPressEventArgs e)
-        {          
+        {
             //if (!char.IsDigit(e.KeyChar))
             //    e.Handled = true;
         }
@@ -521,12 +483,12 @@ namespace AugustosFashion.Views.Pedidos
             {
                 txtDesconto.Text = "0";
                 return;
-            }             
+            }
 
             if (!decimal.TryParse(txtDesconto.Text, out decimal desconto))
             {
                 txtDesconto.Text = "0";
-            }    
+            }
 
             if (!ValidarDesconto(RetornarValorPreco()))
                 return;

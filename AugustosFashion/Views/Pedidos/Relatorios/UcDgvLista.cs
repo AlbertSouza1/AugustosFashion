@@ -9,16 +9,14 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
     public partial class UcDgvLista : UserControl
     {
         private List<ListaGenericaModel> _lista;
-        private readonly UcDgvListaController _controller;
 
         public delegate void SelectedGridHandler(int id);
 
         public event SelectedGridHandler SelectedGrid;
 
-        public UcDgvLista(UcDgvListaController controller)
+        public UcDgvLista()
         {
             InitializeComponent();
-            _controller = controller;
         }
 
         public void AtualizarLista(List<ListaGenericaModel> lista)
@@ -27,11 +25,6 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
             dgvLista.DataSource = null;
             dgvLista.DataSource = _lista;
-        }
-
-        private void UcDgvLista_Load(object sender, EventArgs e)
-        {
-            
         }
 
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)

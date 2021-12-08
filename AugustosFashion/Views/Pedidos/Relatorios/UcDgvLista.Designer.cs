@@ -66,7 +66,6 @@
             this.Controls.Add(this.dgvLista);
             this.Name = "UcDgvLista";
             this.Size = new System.Drawing.Size(200, 193);
-            this.Load += new System.EventHandler(this.UcDgvLista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).EndInit();
             this.ResumeLayout(false);
 

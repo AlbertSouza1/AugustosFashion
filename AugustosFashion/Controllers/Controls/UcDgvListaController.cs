@@ -11,7 +11,7 @@ namespace AugustosFashion.Controllers.Controls
 
         public UcDgvListaController()
         {
-            _control = new UcDgvLista(this);
+            _control = new UcDgvLista();
         }
 
         public void AbrirControl(Panel panelListaClientes)

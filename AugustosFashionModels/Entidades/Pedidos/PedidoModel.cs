@@ -40,11 +40,12 @@ namespace AugustosFashionModels.Entidades.Pedidos
        
         public void AdicionarProduto(PedidoProduto produto) => Produtos.Add(produto);
 
-        public PedidoProduto SelecionarProdutoDoPedido(int id)
+        public PedidoProduto SelecionarProdutoDoPedido(int indice)
         {
-            return (from x in Produtos
-                    where x.IdProduto == id
-                    select x).FirstOrDefault();
+            if(indice == -1)
+                return null;
+
+            return Produtos[indice];
         }
 
         public void AlterarProduto(PedidoProduto produtoEncontrado, PedidoProduto produtoComDadosNovos)
@@ -57,16 +58,49 @@ namespace AugustosFashionModels.Entidades.Pedidos
 
         public void AdicionarProdutoAoCarrinho(PedidoProduto produto)
         {
-            var produtoJaInserido = SelecionarProdutoDoPedido(produto.IdProduto);
+            var indice = RetornarIndiceDoProduto(produto.IdProduto);
 
-            if (produtoJaInserido != null)
+            if (indice != -1)
             {
+                var produtoJaInserido = SelecionarProdutoDoPedido(indice);
                 AlterarProduto(produtoJaInserido, produto);
             }
-            else
-            {
+            else   
                 AdicionarProduto(produto);
+        }
+
+        public void RemoverProduto(int id) => Produtos.RemoveAt(RetornarIndiceDoProduto(id));
+
+        public int RetornarIndiceDoProduto(int id) => Produtos.FindIndex(x => x.IdProduto == id);
+
+        public void SetarInformacoes(string formaPagamento)
+        {
+            FormaPagamento = formaPagamento;
+            DataEmissao = DateTime.Now;
+        }
+
+        public bool ValidarFormaPagamento()
+        {
+            if (FormaPagamento == "A prazo")
+                if (!VerificarSeClientePossuiLimite())
+                    return false;
+            return true;
+        }
+
+        private bool VerificarSeClientePossuiLimite()
+        {
+            var limiteAtual = Cliente.RetornarLimiteParaCompraAtual();
+
+            limiteAtual -= TotalLiquido.RetornaValor;
+
+            if (limiteAtual < TotalLiquido.RetornaValor)
+            {
+                //MessageBox.Show("O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n" +
+                //    "Selecione uma nova forma de pagamento.",
+                //    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
+            return true;
         }
     }
 }
