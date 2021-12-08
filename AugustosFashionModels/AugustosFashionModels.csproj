@@ -59,7 +59,9 @@
     <Compile Include="Entidades\Pedidos\Relatorios\FiltroRelatorioPedidoCliente.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\FiltroRelatorioPedidoProduto.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\ListaGenericaModel.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\RelatorioPedidoProdutoViewModel.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\RelatorioPedidoCliente.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\RelatorioPedidoClienteViewModel.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\RelatorioPedidoProduto.cs" />
     <Compile Include="Entidades\ValorObjeto\Cpfs\CPFValidator.cs" />
     <Compile Include="Entidades\ValorObjeto\Dinheiros\Dinheiro.cs" />

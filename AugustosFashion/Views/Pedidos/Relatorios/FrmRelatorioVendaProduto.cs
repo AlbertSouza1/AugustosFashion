@@ -14,7 +14,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
     public partial class FrmRelatorioVendaProduto : Form
     {
         private readonly RelatorioPedidoProdutoController _relatorioVendaProdutoController;
-        private List<RelatorioPedidoProduto> _relatorio;
+        private RelatorioPedidoProdutoViewModel _relatorio;
         private FiltroRelatorioPedidoProduto _filtroRelatorio = new FiltroRelatorioPedidoProduto();
         private UcDgvListaController _ucDgvListaControllerClientes = new UcDgvListaController();
         private UcDgvListaController _ucDgvListaControllerProdutos = new UcDgvListaController();
@@ -24,6 +24,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         public FrmRelatorioVendaProduto(RelatorioPedidoProdutoController relatorioVendaProdutoController)
         {
             InitializeComponent();
+            _relatorio = new RelatorioPedidoProdutoViewModel();
             _relatorioVendaProdutoController = relatorioVendaProdutoController;
             _ucDgvListaControllerClientes.RetornarUserControl().SelectedGrid += FrmRelatorioVendaCliente_SelectedGrid;
             _ucDgvListaControllerProdutos.RetornarUserControl().SelectedGrid += FrmRelatorioVendaProduto_SelectedGrid;
@@ -55,11 +56,11 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             try
             {
-                _relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
+                _relatorio.Relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
                 
-                dgvRelatorioProdutos.DataSource = _relatorio;
+                dgvRelatorioProdutos.DataSource = _relatorio.Relatorio;
 
-                AtualizarTotalizadores(_relatorio);
+                CalcularTotais();
             }
             catch (Exception ex)
             {
@@ -67,12 +68,12 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             }
         }
 
-        private void AtualizarTotalizadores(List<RelatorioPedidoProduto> relatorio)
+        private void CalcularTotais()
         {
-            lblTotalBruto.Text = relatorio.Sum(x => x.TotalBruto.RetornaValor).ToString("c"); 
-            lblTotalLiquido.Text = relatorio.Sum(x => x.TotalLiquido.RetornaValor).ToString("c"); 
-            lblTotalDesconto.Text = relatorio.Sum(x => x.TotalDesconto.RetornaValor).ToString("c"); 
-            lblLucroTotal.Text = relatorio.Sum(x => x.LucroReais.RetornaValor).ToString("c"); 
+            lblTotalBruto.Text = _relatorio.TotalBruto.ToString();
+            lblTotalLiquido.Text = _relatorio.TotalLiquido.ToString();
+            lblTotalDesconto.Text = _relatorio.TotalDesconto.ToString();
+            lblLucroTotal.Text = _relatorio.TotalLucro.ToString();
         }
 
         private void FrmRelatorioVendaProduto_Load(object sender, EventArgs e)

@@ -3,8 +3,6 @@ using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos.Relatorios
@@ -12,7 +10,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
     public partial class FrmRelatorioVendaCliente : Form
     {
         private readonly RelatorioPedidoClienteController _relatorioVendaClienteController;
-        private List<RelatorioPedidoCliente> _relatorioVendaCliente;
+        private RelatorioPedidoClienteViewModel _relatorioPedidoCliente;
         private FiltroRelatorioPedidoCliente _filtroRelatorio = new FiltroRelatorioPedidoCliente();
         private UcDgvListaController _ucDgvListaController = new UcDgvListaController();
         private int _indexClienteSelecionado = -1;
@@ -20,6 +18,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         public FrmRelatorioVendaCliente(RelatorioPedidoClienteController relatorioVendaClienteController)
         {
             InitializeComponent();
+            _relatorioPedidoCliente = new RelatorioPedidoClienteViewModel();
             _relatorioVendaClienteController = relatorioVendaClienteController;
             _ucDgvListaController.RetornarUserControl().SelectedGrid += FrmRelatorioVendaCliente_SelectedGrid;
         }
@@ -67,8 +66,8 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             try
             {
-                _relatorioVendaCliente = _relatorioVendaClienteController.ConsultarRelatorio(_filtroRelatorio);
-                dgvRelatorioClientes.DataSource = _relatorioVendaCliente;
+                _relatorioPedidoCliente.Relatorio = _relatorioVendaClienteController.ConsultarRelatorio(_filtroRelatorio);
+                dgvRelatorioClientes.DataSource = _relatorioPedidoCliente.Relatorio;
             }
             catch (Exception ex)
             {
@@ -80,13 +79,13 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void CalcularTotais()
         {
-            if (_relatorioVendaCliente == null)
+            if (_relatorioPedidoCliente == null)
                 return;
 
-            lblTotalCompras.Text = _relatorioVendaCliente.Sum(x => x.QuantidadeCompras).ToString();
-            lblTotalBruto.Text = _relatorioVendaCliente.Sum(x => x.TotalBruto.RetornaValor).ToString("c");
-            lblTotalDesconto.Text = _relatorioVendaCliente.Sum(x => x.TotalDesconto.RetornaValor).ToString("c");
-            lblTotalLiquido.Text = _relatorioVendaCliente.Sum(x => x.TotalLiquido.RetornaValor).ToString("c");
+            lblTotalCompras.Text = _relatorioPedidoCliente.TotalCompras.ToString();
+            lblTotalBruto.Text = _relatorioPedidoCliente.TotalBruto.ToString();
+            lblTotalDesconto.Text = _relatorioPedidoCliente.TotalDesconto.ToString();
+            lblTotalLiquido.Text = _relatorioPedidoCliente.TotalLiquido.ToString();
         }
 
         private void SetarFiltros()
