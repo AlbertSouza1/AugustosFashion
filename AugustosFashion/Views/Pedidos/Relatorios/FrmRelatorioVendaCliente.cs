@@ -90,7 +90,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void SetarFiltros()
         {
-            _filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, txtValorComprado.Text, txtQuantidadeResultados.Text, cbOrdenacao.SelectedIndex);           
+            _filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, cbAcimaDe.SelectedIndex,txtValorAcima.Text, txtQuantidadeResultados.Text, cbOrdenacao.SelectedIndex);           
         }
 
         private void FrmRelatorioVendaCliente_Load(object sender, EventArgs e)
@@ -138,7 +138,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void txtValorComprado_Leave(object sender, EventArgs e)
         {
-            txtValorComprado.Text = (decimal.TryParse(txtValorComprado.Text, out decimal valorCompra) ? valorCompra : 0).ToString();
+            txtValorAcima.Text = (decimal.TryParse(txtValorAcima.Text, out decimal valorCompra) ? valorCompra : 0).ToString();
         }
 
         private void BtnMostrarClientes_Click(object sender, EventArgs e)

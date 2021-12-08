@@ -37,10 +37,26 @@ namespace AugustosFashion.Repositorios.QueryHelpers
 
         public string GerarFiltrosHaving()
         {
-            var having = "";
+            var having = "having ";
 
-            if (_filtroRelatorio.ValorComprado > 0)
-                having = $" having sum(p.TotalLiquido) > @ValorComprado ";
+            switch (_filtroRelatorio.TipoValorBase)
+            {
+                case ETipoValorBasePedidoCliente.TotalDesconto:
+                    having += "sum(p.TotalDesconto) > @ValorBase ";
+                    break;
+                case ETipoValorBasePedidoCliente.TotalBruto:
+                    having += "sum(p.TotalBruto) > @ValorBase ";
+                    break;
+                case ETipoValorBasePedidoCliente.TotalLíquido:
+                    having += "sum(p.TotalLiquido) > @ValorBase ";
+                    break;
+                case ETipoValorBasePedidoCliente.TotalCompras:
+                    having += "count(p.IdPedido) > @ValorBase ";
+                    break;
+                default:
+                    having = "";
+                    break;
+            }
 
             return having;
         }
@@ -56,7 +72,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
                     _filtroRelatorio.DataInicial,
                     DataFinal = _filtroRelatorio.DataFinalFormatada,
                     _filtroRelatorio.Clientes,
-                    _filtroRelatorio.ValorComprado,
+                    _filtroRelatorio.ValorBase,
                     _filtroRelatorio.QuantidadeResultados
                 }
                 );

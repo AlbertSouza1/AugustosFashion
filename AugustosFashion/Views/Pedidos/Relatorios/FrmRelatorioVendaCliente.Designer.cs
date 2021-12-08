@@ -32,11 +32,12 @@
             this.btnFechar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panelListaClientes = new System.Windows.Forms.Panel();
+            this.cbAcimaDe = new System.Windows.Forms.ComboBox();
             this.BtnMostrarClientes = new System.Windows.Forms.Button();
             this.BtnLimparCliente = new System.Windows.Forms.Button();
-            this.txtValorComprado = new System.Windows.Forms.TextBox();
+            this.txtValorAcima = new System.Windows.Forms.TextBox();
             this.cbOrdenacao = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.BtnFecharFiltro = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
+            this.panelListaClientes = new System.Windows.Forms.Panel();
             this.dgvRelatorioClientes = new System.Windows.Forms.DataGridView();
             this.BtnMostrarFiltros = new System.Windows.Forms.Button();
             this.lblTotalLiquido = new System.Windows.Forms.Label();
@@ -93,12 +95,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.LightGray;
-            this.groupBox1.Controls.Add(this.panelListaClientes);
+            this.groupBox1.BackColor = System.Drawing.Color.LightSlateGray;
+            this.groupBox1.Controls.Add(this.cbAcimaDe);
             this.groupBox1.Controls.Add(this.BtnMostrarClientes);
             this.groupBox1.Controls.Add(this.BtnLimparCliente);
-            this.groupBox1.Controls.Add(this.txtValorComprado);
+            this.groupBox1.Controls.Add(this.txtValorAcima);
             this.groupBox1.Controls.Add(this.cbOrdenacao);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.BtnFecharFiltro);
@@ -120,13 +123,19 @@
             this.groupBox1.TabIndex = 110;
             this.groupBox1.TabStop = false;
             // 
-            // panelListaClientes
+            // cbAcimaDe
             // 
-            this.panelListaClientes.Location = new System.Drawing.Point(20, 320);
-            this.panelListaClientes.Name = "panelListaClientes";
-            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
-            this.panelListaClientes.TabIndex = 115;
-            this.panelListaClientes.Visible = false;
+            this.cbAcimaDe.FormattingEnabled = true;
+            this.cbAcimaDe.Items.AddRange(new object[] {
+            "Nenhum Filtro",
+            "Total Compras",
+            "Total Bruto",
+            "Total Líquido",
+            "Total Desconto"});
+            this.cbAcimaDe.Location = new System.Drawing.Point(21, 359);
+            this.cbAcimaDe.Name = "cbAcimaDe";
+            this.cbAcimaDe.Size = new System.Drawing.Size(200, 23);
+            this.cbAcimaDe.TabIndex = 118;
             // 
             // BtnMostrarClientes
             // 
@@ -135,7 +144,7 @@
             this.BtnMostrarClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnMostrarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnMostrarClientes.ForeColor = System.Drawing.Color.White;
-            this.BtnMostrarClientes.Location = new System.Drawing.Point(165, 298);
+            this.BtnMostrarClientes.Location = new System.Drawing.Point(165, 295);
             this.BtnMostrarClientes.Name = "BtnMostrarClientes";
             this.BtnMostrarClientes.Size = new System.Drawing.Size(18, 19);
             this.BtnMostrarClientes.TabIndex = 116;
@@ -149,21 +158,21 @@
             this.BtnLimparCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnLimparCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLimparCliente.ForeColor = System.Drawing.Color.White;
-            this.BtnLimparCliente.Location = new System.Drawing.Point(201, 300);
+            this.BtnLimparCliente.Location = new System.Drawing.Point(201, 297);
             this.BtnLimparCliente.Name = "BtnLimparCliente";
             this.BtnLimparCliente.Size = new System.Drawing.Size(16, 16);
             this.BtnLimparCliente.TabIndex = 114;
             this.BtnLimparCliente.UseVisualStyleBackColor = false;
             this.BtnLimparCliente.Click += new System.EventHandler(this.BtnLimparCliente_Click);
             // 
-            // txtValorComprado
+            // txtValorAcima
             // 
-            this.txtValorComprado.Location = new System.Drawing.Point(20, 360);
-            this.txtValorComprado.Name = "txtValorComprado";
-            this.txtValorComprado.Size = new System.Drawing.Size(199, 23);
-            this.txtValorComprado.TabIndex = 113;
-            this.txtValorComprado.Text = "0";
-            this.txtValorComprado.Leave += new System.EventHandler(this.txtValorComprado_Leave);
+            this.txtValorAcima.Location = new System.Drawing.Point(21, 405);
+            this.txtValorAcima.Name = "txtValorAcima";
+            this.txtValorAcima.Size = new System.Drawing.Size(199, 23);
+            this.txtValorAcima.TabIndex = 113;
+            this.txtValorAcima.Text = "0";
+            this.txtValorAcima.Leave += new System.EventHandler(this.txtValorComprado_Leave);
             // 
             // cbOrdenacao
             // 
@@ -178,26 +187,36 @@
             "Menor desconto",
             "Maior valor líquido",
             "Menor valor líquido"});
-            this.cbOrdenacao.Location = new System.Drawing.Point(20, 426);
+            this.cbOrdenacao.Location = new System.Drawing.Point(20, 468);
             this.cbOrdenacao.Name = "cbOrdenacao";
             this.cbOrdenacao.Size = new System.Drawing.Size(200, 23);
             this.cbOrdenacao.TabIndex = 112;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label13.Location = new System.Drawing.Point(21, 385);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(66, 17);
+            this.label13.TabIndex = 111;
+            this.label13.Text = "Acima de ";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(20, 340);
+            this.label12.Location = new System.Drawing.Point(21, 339);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(113, 17);
+            this.label12.Size = new System.Drawing.Size(145, 17);
             this.label12.TabIndex = 111;
-            this.label12.Text = "Comprou mais de";
+            this.label12.Text = "Apenas resultados com";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(20, 406);
+            this.label11.Location = new System.Drawing.Point(20, 448);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(81, 17);
             this.label11.TabIndex = 111;
@@ -223,7 +242,7 @@
             this.BtnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFiltrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnFiltrar.ForeColor = System.Drawing.Color.White;
-            this.BtnFiltrar.Location = new System.Drawing.Point(76, 550);
+            this.BtnFiltrar.Location = new System.Drawing.Point(76, 612);
             this.BtnFiltrar.Name = "BtnFiltrar";
             this.BtnFiltrar.Size = new System.Drawing.Size(94, 29);
             this.BtnFiltrar.TabIndex = 40;
@@ -239,7 +258,7 @@
             this.BtnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 9.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.BtnBuscarCliente.ForeColor = System.Drawing.Color.White;
-            this.BtnBuscarCliente.Location = new System.Drawing.Point(183, 298);
+            this.BtnBuscarCliente.Location = new System.Drawing.Point(183, 295);
             this.BtnBuscarCliente.Name = "BtnBuscarCliente";
             this.BtnBuscarCliente.Size = new System.Drawing.Size(18, 19);
             this.BtnBuscarCliente.TabIndex = 39;
@@ -248,7 +267,7 @@
             // 
             // txtQuantidadeResultados
             // 
-            this.txtQuantidadeResultados.Location = new System.Drawing.Point(20, 490);
+            this.txtQuantidadeResultados.Location = new System.Drawing.Point(20, 531);
             this.txtQuantidadeResultados.Name = "txtQuantidadeResultados";
             this.txtQuantidadeResultados.Size = new System.Drawing.Size(200, 23);
             this.txtQuantidadeResultados.TabIndex = 4;
@@ -274,7 +293,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(20, 278);
+            this.label3.Location = new System.Drawing.Point(20, 275);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 17);
             this.label3.TabIndex = 1;
@@ -304,7 +323,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(20, 470);
+            this.label2.Location = new System.Drawing.Point(20, 511);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(163, 17);
             this.label2.TabIndex = 1;
@@ -324,10 +343,18 @@
             // 
             this.lblCliente.BackColor = System.Drawing.Color.White;
             this.lblCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCliente.Location = new System.Drawing.Point(20, 297);
+            this.lblCliente.Location = new System.Drawing.Point(20, 294);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(200, 22);
             this.lblCliente.TabIndex = 117;
+            // 
+            // panelListaClientes
+            // 
+            this.panelListaClientes.Location = new System.Drawing.Point(525, 277);
+            this.panelListaClientes.Name = "panelListaClientes";
+            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
+            this.panelListaClientes.TabIndex = 115;
+            this.panelListaClientes.Visible = false;
             // 
             // dgvRelatorioClientes
             // 
@@ -439,6 +466,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.panelListaClientes);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblTotalCompras);
             this.Controls.Add(this.label9);
@@ -493,11 +521,13 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbOrdenacao;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtValorComprado;
+        private System.Windows.Forms.TextBox txtValorAcima;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button BtnLimparCliente;
         private System.Windows.Forms.Panel panelListaClientes;
         private System.Windows.Forms.Button BtnMostrarClientes;
         private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.ComboBox cbAcimaDe;
+        private System.Windows.Forms.Label label13;
     }
 }
