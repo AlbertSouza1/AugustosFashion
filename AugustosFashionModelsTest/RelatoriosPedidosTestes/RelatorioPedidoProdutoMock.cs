@@ -44,5 +44,28 @@ namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
                 TotalDesconto = 10
             };
         }
+
+        public static List<ListaGenericaModel> RetornarListaGenerica()
+        {
+            var lista = new List<ListaGenericaModel>();
+
+            lista.Add(new ListaGenericaModel()
+            {
+                Id = 1,
+                Nome = "um"
+            });
+            lista.Add(new ListaGenericaModel()
+            {
+                Id = 2,
+                Nome = "dois"
+            });
+            lista.Add(new ListaGenericaModel()
+            {
+                Id = 3,
+                Nome = "tres"
+            });
+
+            return lista;
+        }      
     }
 }

@@ -53,6 +53,9 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RelatoriosPedidosTestes\FiltroRelatorioPedidoProdutoTeste.cs" />
+    <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoClienteMock.cs" />
+    <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoClienteTestes.cs" />
     <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoProdutoMock.cs" />
     <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoProdutoTestes.cs" />
     <Compile Include="ServicosDeEmailTestes\ServicoDeEmailTestes.cs" />

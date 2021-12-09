@@ -8,6 +8,20 @@ namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
     public class RelatorioPedidoProdutoTestes
     {
         [TestMethod]
+        public void TotalLiquido_deve_calcular_corretamente_com_base_em_bruto_e_desconto()
+        {
+            var sut = RelatorioPedidoProdutoMock.RetornarItemDeRelatorio();
+
+            Assert.AreEqual(50, sut.TotalLiquido.RetornaValor);
+        }
+        [TestMethod]
+        public void LucroReais_deve_calcular_corretamente_com_base_em_liquido_e_custo()
+        {
+            var sut = RelatorioPedidoProdutoMock.RetornarItemDeRelatorio();
+
+            Assert.AreEqual(30, sut.LucroReais.RetornaValor);
+        }
+        [TestMethod]
         public void LucroPorcentagem_deve_calcular_corretamente_com_base_em_custo_e_lucro_reais()
         {
             var sut = RelatorioPedidoProdutoMock.RetornarItemDeRelatorio();            
