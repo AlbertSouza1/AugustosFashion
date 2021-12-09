@@ -12,7 +12,6 @@ namespace AugustosFashion.Views.Pedidos
     public partial class FrmBuscaClientes : Form
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
-        private readonly RelatorioPedidoProdutoController _relatorioVendaProdutoController;
         private readonly RelatorioPedidoClienteController _relatorioVendaClienteController;
 
         public delegate void SelectedHandler(ClienteModel cliente);
@@ -26,13 +25,6 @@ namespace AugustosFashion.Views.Pedidos
         {
             InitializeComponent();
             _cadastroPedidoController = cadastroPedidoController;
-            txtBuscar.Text = busca;
-        }
-
-        public FrmBuscaClientes(RelatorioPedidoProdutoController relatorioVendaProdutoController, string busca)
-        {
-            InitializeComponent();
-            _relatorioVendaProdutoController = relatorioVendaProdutoController;
             txtBuscar.Text = busca;
         }
 
@@ -77,13 +69,7 @@ namespace AugustosFashion.Views.Pedidos
                         _cadastroPedidoController.RecuperarClienteSelecionado(cliente);
                         Close();
                         return;
-                    }                        
-                    if (_relatorioVendaProdutoController != null)
-                    {
-                        _relatorioVendaProdutoController.RecuperarClienteSelecionado(cliente);
-                        Close();
-                        return;
-                    }                       
+                    }                                              
                     if (_relatorioVendaClienteController != null)
                     {
                         _relatorioVendaClienteController.RecuperarClienteSelecionado(cliente);
@@ -91,8 +77,7 @@ namespace AugustosFashion.Views.Pedidos
                         return;
                     }
 
-                    RetornarCliente();
-                    Close();
+                    RetornarCliente();                   
                 }
                 catch (Exception ex)
                 {
@@ -124,6 +109,7 @@ namespace AugustosFashion.Views.Pedidos
                 var cliente = InstanciarClienteSelecionado();
 
                 SelectedClient?.Invoke(cliente);
+                Close();
             }
             catch (Exception ex)
             {

@@ -49,7 +49,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
             ConsultarRelatorio();
 
-            gbFiltros.Left = 1000;
+            OcultarAbaDeFiltros();
         }
 
         private void ConsultarRelatorio()
@@ -60,7 +60,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 
                 dgvRelatorioProdutos.DataSource = _relatorio.Relatorio;
 
-                CalcularTotais();
+                ExibirTotais();
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             }
         }
 
-        private void CalcularTotais()
+        private void ExibirTotais()
         {
             lblTotalBruto.Text = _relatorio.TotalBruto.ToString();
             lblTotalLiquido.Text = _relatorio.TotalLiquido.ToString();
@@ -79,7 +79,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private void FrmRelatorioVendaProduto_Load(object sender, EventArgs e)
         {
             cbOrdenacao.SelectedIndex = 0;
-            gbFiltros.Left = 1000;
+            OcultarAbaDeFiltros();
             SetarDataInicialParaPrimeiroDiaDoMes();
         }
 
@@ -94,13 +94,16 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnMostrarFiltros_Click(object sender, EventArgs e)
         {
-            gbFiltros.Left = 741;
+            MostrarAbaDeFiltros();
         }
 
         private void BtnFecharFiltro_Click(object sender, EventArgs e)
         {
-            gbFiltros.Left = 1000;
+            OcultarAbaDeFiltros();
         }
+
+        private void OcultarAbaDeFiltros() => gbFiltros.Left = 1000;
+        private void MostrarAbaDeFiltros() => gbFiltros.Left = 741;
 
         private void BtnBuscarProduto_Click(object sender, EventArgs e)
         {
@@ -117,8 +120,10 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
         {
             _relatorioVendaProdutoController.AbrirFormBuscaClientes(string.Empty);
+            _relatorioVendaProdutoController.RetornarFrmBuscaClientes().SelectedClient += FrmRelatorio_SelectClient;
         }
-        public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
+
+        private void FrmRelatorio_SelectClient(ClienteModel cliente)
         {
             _filtroRelatorio.AdicionarCliente(cliente);
 

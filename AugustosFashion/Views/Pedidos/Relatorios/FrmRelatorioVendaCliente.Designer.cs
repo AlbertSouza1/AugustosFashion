@@ -96,6 +96,7 @@
             // groupFiltros
             // 
             this.groupFiltros.BackColor = System.Drawing.Color.LightSlateGray;
+            this.groupFiltros.Controls.Add(this.panelListaClientes);
             this.groupFiltros.Controls.Add(this.cbAcimaDe);
             this.groupFiltros.Controls.Add(this.BtnMostrarClientes);
             this.groupFiltros.Controls.Add(this.BtnLimparCliente);
@@ -358,7 +359,7 @@
             // 
             // panelListaClientes
             // 
-            this.panelListaClientes.Location = new System.Drawing.Point(461, 224);
+            this.panelListaClientes.Location = new System.Drawing.Point(21, 316);
             this.panelListaClientes.Name = "panelListaClientes";
             this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
             this.panelListaClientes.TabIndex = 115;
@@ -474,7 +475,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 740);
-            this.Controls.Add(this.panelListaClientes);
             this.Controls.Add(this.groupFiltros);
             this.Controls.Add(this.lblTotalCompras);
             this.Controls.Add(this.label9);

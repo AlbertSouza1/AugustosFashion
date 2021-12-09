@@ -92,9 +92,9 @@
             this.gbFiltros.Controls.Add(this.lblProduto);
             this.gbFiltros.Controls.Add(this.lblCliente);
             this.gbFiltros.ForeColor = System.Drawing.Color.Black;
-            this.gbFiltros.Location = new System.Drawing.Point(741, 0);
+            this.gbFiltros.Location = new System.Drawing.Point(741, -8);
             this.gbFiltros.Name = "gbFiltros";
-            this.gbFiltros.Size = new System.Drawing.Size(242, 741);
+            this.gbFiltros.Size = new System.Drawing.Size(242, 749);
             this.gbFiltros.TabIndex = 0;
             this.gbFiltros.TabStop = false;
             // 

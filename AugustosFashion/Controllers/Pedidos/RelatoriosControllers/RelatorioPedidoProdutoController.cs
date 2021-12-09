@@ -12,6 +12,7 @@ namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
     public class RelatorioPedidoProdutoController
     {
         private FrmRelatorioVendaProduto _frmRelatorioVendaProduto;
+        private FrmBuscaClientes _frmBuscaClientes;
 
         public void AbrirFormRelatorioVendaProduto()
         {
@@ -40,15 +41,13 @@ namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers
 
         public void AbrirFormBuscaClientes(string busca)
         {
-            var frmBuscaProdutos = new FrmBuscaClientes(this, busca);
-            frmBuscaProdutos.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
-            frmBuscaProdutos.Show();
-            frmBuscaProdutos.BringToFront();
+            _frmBuscaClientes = new FrmBuscaClientes();
+            _frmBuscaClientes.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
+            _frmBuscaClientes.Show();
+            _frmBuscaClientes.BringToFront();
         }
 
-        internal void RecuperarClienteSelecionado(ClienteModel cliente)
-        {
-            _frmRelatorioVendaProduto.CarregarDadosDeClienteSelecionado(cliente);
-        }
+        public FrmBuscaClientes RetornarFrmBuscaClientes() => _frmBuscaClientes;
+     
     }
 }
