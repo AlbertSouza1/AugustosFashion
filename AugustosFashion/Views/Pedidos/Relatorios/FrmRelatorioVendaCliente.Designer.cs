@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaCliente));
             this.btnFechar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupFiltros = new System.Windows.Forms.GroupBox();
             this.cbAcimaDe = new System.Windows.Forms.ComboBox();
             this.BtnMostrarClientes = new System.Windows.Forms.Button();
             this.BtnLimparCliente = new System.Windows.Forms.Button();
@@ -63,7 +63,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lblTotalCompras = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.groupFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,38 +93,39 @@
             this.label6.TabIndex = 107;
             this.label6.Text = "Relatório de Vendas por Clientes";
             // 
-            // groupBox1
+            // groupFiltros
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.LightSlateGray;
-            this.groupBox1.Controls.Add(this.cbAcimaDe);
-            this.groupBox1.Controls.Add(this.BtnMostrarClientes);
-            this.groupBox1.Controls.Add(this.BtnLimparCliente);
-            this.groupBox1.Controls.Add(this.txtValorAcima);
-            this.groupBox1.Controls.Add(this.cbOrdenacao);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.BtnFecharFiltro);
-            this.groupBox1.Controls.Add(this.BtnFiltrar);
-            this.groupBox1.Controls.Add(this.BtnBuscarCliente);
-            this.groupBox1.Controls.Add(this.txtQuantidadeResultados);
-            this.groupBox1.Controls.Add(this.dtpFinal);
-            this.groupBox1.Controls.Add(this.dtpInicial);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.lblCliente);
-            this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(742, -1);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(242, 741);
-            this.groupBox1.TabIndex = 110;
-            this.groupBox1.TabStop = false;
+            this.groupFiltros.BackColor = System.Drawing.Color.LightSlateGray;
+            this.groupFiltros.Controls.Add(this.cbAcimaDe);
+            this.groupFiltros.Controls.Add(this.BtnMostrarClientes);
+            this.groupFiltros.Controls.Add(this.BtnLimparCliente);
+            this.groupFiltros.Controls.Add(this.txtValorAcima);
+            this.groupFiltros.Controls.Add(this.cbOrdenacao);
+            this.groupFiltros.Controls.Add(this.label13);
+            this.groupFiltros.Controls.Add(this.label12);
+            this.groupFiltros.Controls.Add(this.label11);
+            this.groupFiltros.Controls.Add(this.BtnFecharFiltro);
+            this.groupFiltros.Controls.Add(this.BtnFiltrar);
+            this.groupFiltros.Controls.Add(this.BtnBuscarCliente);
+            this.groupFiltros.Controls.Add(this.txtQuantidadeResultados);
+            this.groupFiltros.Controls.Add(this.dtpFinal);
+            this.groupFiltros.Controls.Add(this.dtpInicial);
+            this.groupFiltros.Controls.Add(this.label3);
+            this.groupFiltros.Controls.Add(this.label5);
+            this.groupFiltros.Controls.Add(this.label4);
+            this.groupFiltros.Controls.Add(this.label2);
+            this.groupFiltros.Controls.Add(this.label1);
+            this.groupFiltros.Controls.Add(this.lblCliente);
+            this.groupFiltros.ForeColor = System.Drawing.Color.Black;
+            this.groupFiltros.Location = new System.Drawing.Point(742, -6);
+            this.groupFiltros.Name = "groupFiltros";
+            this.groupFiltros.Size = new System.Drawing.Size(242, 748);
+            this.groupFiltros.TabIndex = 110;
+            this.groupFiltros.TabStop = false;
             // 
             // cbAcimaDe
             // 
+            this.cbAcimaDe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAcimaDe.FormattingEnabled = true;
             this.cbAcimaDe.Items.AddRange(new object[] {
             "Nenhum Filtro",
@@ -167,7 +168,7 @@
             // 
             // txtValorAcima
             // 
-            this.txtValorAcima.Location = new System.Drawing.Point(21, 405);
+            this.txtValorAcima.Location = new System.Drawing.Point(21, 410);
             this.txtValorAcima.Name = "txtValorAcima";
             this.txtValorAcima.Size = new System.Drawing.Size(199, 23);
             this.txtValorAcima.TabIndex = 113;
@@ -187,7 +188,7 @@
             "Menor desconto",
             "Maior valor líquido",
             "Menor valor líquido"});
-            this.cbOrdenacao.Location = new System.Drawing.Point(20, 468);
+            this.cbOrdenacao.Location = new System.Drawing.Point(20, 475);
             this.cbOrdenacao.Name = "cbOrdenacao";
             this.cbOrdenacao.Size = new System.Drawing.Size(200, 23);
             this.cbOrdenacao.TabIndex = 112;
@@ -195,30 +196,33 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(21, 385);
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label13.Location = new System.Drawing.Point(21, 390);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(66, 17);
+            this.label13.Size = new System.Drawing.Size(69, 17);
             this.label13.TabIndex = 111;
             this.label13.Text = "Acima de ";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label12.Location = new System.Drawing.Point(21, 339);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(145, 17);
+            this.label12.Size = new System.Drawing.Size(151, 17);
             this.label12.TabIndex = 111;
             this.label12.Text = "Apenas resultados com";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(20, 448);
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label11.Location = new System.Drawing.Point(20, 455);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(81, 17);
+            this.label11.Size = new System.Drawing.Size(83, 17);
             this.label11.TabIndex = 111;
             this.label11.Text = "Ordenar Por";
             // 
@@ -228,7 +232,7 @@
             this.BtnFecharFiltro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFecharFiltro.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnFecharFiltro.ForeColor = System.Drawing.Color.White;
-            this.BtnFecharFiltro.Location = new System.Drawing.Point(188, 12);
+            this.BtnFecharFiltro.Location = new System.Drawing.Point(190, 12);
             this.BtnFecharFiltro.Name = "BtnFecharFiltro";
             this.BtnFecharFiltro.Size = new System.Drawing.Size(31, 26);
             this.BtnFecharFiltro.TabIndex = 110;
@@ -267,7 +271,7 @@
             // 
             // txtQuantidadeResultados
             // 
-            this.txtQuantidadeResultados.Location = new System.Drawing.Point(20, 531);
+            this.txtQuantidadeResultados.Location = new System.Drawing.Point(20, 538);
             this.txtQuantidadeResultados.Name = "txtQuantidadeResultados";
             this.txtQuantidadeResultados.Size = new System.Drawing.Size(200, 23);
             this.txtQuantidadeResultados.TabIndex = 4;
@@ -292,40 +296,44 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Location = new System.Drawing.Point(20, 275);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 17);
+            this.label3.Size = new System.Drawing.Size(51, 17);
             this.label3.TabIndex = 1;
             this.label3.Text = "Cliente";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label5.Location = new System.Drawing.Point(20, 152);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 17);
+            this.label5.Size = new System.Drawing.Size(78, 17);
             this.label5.TabIndex = 1;
             this.label5.Text = "Data Inicial";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label4.Location = new System.Drawing.Point(20, 212);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 17);
+            this.label4.Size = new System.Drawing.Size(71, 17);
             this.label4.TabIndex = 1;
             this.label4.Text = "Data Final";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(20, 511);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label2.Location = new System.Drawing.Point(20, 518);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(163, 17);
+            this.label2.Size = new System.Drawing.Size(170, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Quantidade de Resultados";
             // 
@@ -350,7 +358,7 @@
             // 
             // panelListaClientes
             // 
-            this.panelListaClientes.Location = new System.Drawing.Point(525, 277);
+            this.panelListaClientes.Location = new System.Drawing.Point(461, 224);
             this.panelListaClientes.Name = "panelListaClientes";
             this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
             this.panelListaClientes.TabIndex = 115;
@@ -467,7 +475,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.panelListaClientes);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupFiltros);
             this.Controls.Add(this.lblTotalCompras);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblTotalLiquido);
@@ -485,8 +493,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmRelatorioVendaCliente";
             this.Load += new System.EventHandler(this.FrmRelatorioVendaCliente_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupFiltros.ResumeLayout(false);
+            this.groupFiltros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -497,7 +505,7 @@
 
         private System.Windows.Forms.Button btnFechar;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupFiltros;
         private System.Windows.Forms.Button BtnFecharFiltro;
         private System.Windows.Forms.Button BtnFiltrar;
         private System.Windows.Forms.Button BtnBuscarCliente;

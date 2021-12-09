@@ -1,5 +1,6 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using Dapper;
+using EnumsNET;
 using System.Linq;
 using System.Text;
 
@@ -39,24 +40,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
         {
             var having = "having ";
 
-            switch (_filtroRelatorio.TipoValorBase)
-            {
-                case ETipoValorBasePedidoCliente.TotalDesconto:
-                    having += "sum(p.TotalDesconto) > @ValorBase ";
-                    break;
-                case ETipoValorBasePedidoCliente.TotalBruto:
-                    having += "sum(p.TotalBruto) > @ValorBase ";
-                    break;
-                case ETipoValorBasePedidoCliente.TotalLíquido:
-                    having += "sum(p.TotalLiquido) > @ValorBase ";
-                    break;
-                case ETipoValorBasePedidoCliente.TotalCompras:
-                    having += "count(p.IdPedido) > @ValorBase ";
-                    break;
-                default:
-                    having = "";
-                    break;
-            }
+            having += _filtroRelatorio.TipoValorBase.AsString(EnumFormat.Description);
 
             return having;
         }
@@ -80,32 +64,6 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             return parameters;
         }
 
-        public string GerarOrderBys()
-        {
-            var orderBy = " order by ";
-
-            switch (_filtroRelatorio.Ordenacao)
-            {
-                case EOrdenacaoPedidoCliente.MenosComprou:
-                    orderBy += " count(p.IdPedido) ";
-                    break;
-                case EOrdenacaoPedidoCliente.MaiorDesconto:
-                    orderBy += " sum(p.TotalDesconto) desc";
-                    break;
-                case EOrdenacaoPedidoCliente.MenorDesconto:
-                    orderBy += " sum(p.TotalDesconto) ";
-                    break;
-                case EOrdenacaoPedidoCliente.MaiorValor:
-                    orderBy += " sum(p.TotalLiquido) desc ";
-                    break;
-                case EOrdenacaoPedidoCliente.MenorValor:
-                    orderBy += " sum(p.TotalLiquido) ";
-                    break;
-                default:
-                    orderBy += " count(p.IdPedido) desc ";
-                    break;
-            }
-            return orderBy;
-        }
+        public string GerarOrderBys() => _filtroRelatorio.Ordenacao.AsString(EnumFormat.Description);
     }
 }

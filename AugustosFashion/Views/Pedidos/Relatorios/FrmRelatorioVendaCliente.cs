@@ -97,6 +97,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             OcultarAbaDeFiltros();
             cbOrdenacao.SelectedIndex = 0;
+            cbAcimaDe.SelectedIndex = 0;
             SetarDataInicialParaPrimeiroDiaDoMes();
         }
         private void SetarDataInicialParaPrimeiroDiaDoMes()
@@ -127,8 +128,8 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             _indexClienteSelecionado = -1;
         }
 
-        private void OcultarAbaDeFiltros() => groupBox1.Left = 1000;
-        private void MostrarAbaDeFiltros() => groupBox1.Left = 741;
+        private void OcultarAbaDeFiltros() => groupFiltros.Left = 1000;
+        private void MostrarAbaDeFiltros() => groupFiltros.Left = 741;
 
         private void txtQuantidadeResultados_KeyPress(object sender, KeyPressEventArgs e)
         {
