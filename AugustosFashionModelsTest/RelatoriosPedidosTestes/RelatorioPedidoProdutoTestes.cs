@@ -10,25 +10,62 @@ namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
         [TestMethod]
         public void LucroPorcentagem_deve_calcular_corretamente_com_base_em_custo_e_lucro_reais()
         {
-            var relatorio = new RelatorioPedidoProduto();
-            relatorio.TotalCusto = 50;
-            relatorio.LucroReais = 100;
+            var sut = RelatorioPedidoProdutoMock.RetornarItemDeRelatorio();            
 
-            var retorno = relatorio.LucroPorcentagem;
-
-            Assert.AreEqual("200,00 %", retorno);
+            Assert.AreEqual("150,00 %", sut.LucroPorcentagem);
         }
 
         [TestMethod]
         public void DataFinalFormatada_deve_retornar_data_junto_ao_ultimo_momento_do_dia()
         {
-            var filtro = new FiltroRelatorioPedidoProduto();
+            var sut = new FiltroRelatorioPedidoProduto();
 
-            filtro.SetarFiltros(new DateTime(2021,11,01), new DateTime(1999, 12, 30), 1);
+            sut.SetarFiltros(new DateTime(2021,11,01), new DateTime(1999, 12, 30), 1);
 
-            var retorno = filtro.DataFinalFormatada;
+            Assert.AreEqual(new DateTime(1999,12,30,23,59,59), sut.DataFinalFormatada);
+        }
 
-            Assert.AreEqual(new DateTime(1999,12,30,23,59,59), retorno);
+        [TestMethod]
+        public void TotalBruto_deve_calcular_total_de_todos_os_itens_do_relatorio()
+        {
+            var sut = new RelatorioPedidoProdutoViewModel();
+            var listaRelatorio = RelatorioPedidoProdutoMock.RetornarListaDeItensRelatorio();
+            
+            sut.Relatorio.AddRange(listaRelatorio);
+
+            Assert.AreEqual(120, sut.TotalBruto.RetornaValor);
+        }
+
+        [TestMethod]
+        public void TotalLiquido_deve_calcular_total_de_todos_os_itens_do_relatorio()
+        {
+            var sut = new RelatorioPedidoProdutoViewModel();
+            var listaRelatorio = RelatorioPedidoProdutoMock.RetornarListaDeItensRelatorio();        
+            
+            sut.Relatorio.AddRange(listaRelatorio);
+
+            Assert.AreEqual(104, sut.TotalLiquido.RetornaValor);
+        }
+
+        [TestMethod]
+        public void TotalDesconto_deve_calcular_total_de_todos_os_itens_do_relatorio()
+        {
+            var sut = new RelatorioPedidoProdutoViewModel();
+            var listaRelatorio = RelatorioPedidoProdutoMock.RetornarListaDeItensRelatorio();
+            
+            sut.Relatorio.AddRange(listaRelatorio);
+
+            Assert.AreEqual(16, sut.TotalDesconto.RetornaValor);
+        }
+        [TestMethod]
+        public void TotalLucro_deve_calcular_total_de_todos_os_itens_do_relatorio()
+        {
+            var sut = new RelatorioPedidoProdutoViewModel();
+            var listaRelatorio = RelatorioPedidoProdutoMock.RetornarListaDeItensRelatorio();
+            
+            sut.Relatorio.AddRange(listaRelatorio);
+
+            Assert.AreEqual(79, sut.TotalLucro.RetornaValor);
         }
     }
 }

@@ -53,6 +53,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoProdutoMock.cs" />
     <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoProdutoTestes.cs" />
     <Compile Include="ServicosDeEmailTestes\ServicoDeEmailTestes.cs" />
     <Compile Include="ValorObjetoTestes\CEPTestes.cs" />
