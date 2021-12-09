@@ -13,9 +13,12 @@ namespace AugustosFashion.Repositorios
     {
         public static List<ContaClienteModel> RecuperarContasDoCliente(int idCliente)
         {
-            string strSqlContaCliente = @"SELECT cc.IdConta, cc.IdCliente, cc.IdPedido, cc.Pago, p.TotalLiquido as Valor
-                                        FROM Contas_Clientes cc inner join Pedidos p on cc.IdPedido = p.IdPedido
-                                        WHERE cc.IdCliente = @idCliente and Pago = 0";
+            string strSqlContaCliente = @"select 
+	        cc.IdCliente, cc.IdConta, cc.IdPedido, cc.Pago, p.TotalLiquido as Valor, p.DataEmissao
+            from Contas_Clientes cc
+            inner join Pedidos p
+            on p.IdCliente = cc.IdCliente and p.IdPedido = cc.IdPedido
+            where cc.IdCliente = @idCliente and cc.Pago = 0";
 
             try
             {
@@ -39,6 +42,26 @@ namespace AugustosFashion.Repositorios
                 VALUES (@IdCliente, @IdPedido)";
 
             sqlCon.Execute(strInsereConta, new { pedido.Cliente.IdCliente, pedido.IdPedido }, transaction);
+        }
+
+        public static void PagarContaDoCliente(int idConta)
+        {
+            string strSqlContaCliente = @"UPDATE Contas_Clientes
+            SET Pago = 1 WHERE IdConta = @idConta";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    sqlCon.Execute(strSqlContaCliente, new { idConta });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

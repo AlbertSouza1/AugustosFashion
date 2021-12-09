@@ -5,9 +5,6 @@ using AugustosFashion.Views.Pedidos;
 using AugustosFashionModels.Entidades.ContasClientes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashion.Controllers.Financeiro
 {
@@ -15,10 +12,6 @@ namespace AugustosFashion.Controllers.Financeiro
     {
         private FrmBuscaClientes _frmBuscaCliente;
 
-        public ContasClientesController()
-        {
-            _frmBuscaCliente = new FrmBuscaClientes();
-        }
         internal void AbrirFormContasCliente()
         {
             var frmContasClientes = new FrmContasClientes(this);
@@ -26,8 +19,10 @@ namespace AugustosFashion.Controllers.Financeiro
             frmContasClientes.Show();
         }
 
-        internal void AbrirFormBuscaClientes(string busca)
+        internal void AbrirFormBuscaClientes()
         {
+            _frmBuscaCliente = new FrmBuscaClientes();
+
             _frmBuscaCliente.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
             _frmBuscaCliente.Show();
             _frmBuscaCliente.BringToFront();
@@ -35,9 +30,12 @@ namespace AugustosFashion.Controllers.Financeiro
 
         public FrmBuscaClientes RetornarFrmBuscaClientes() => _frmBuscaCliente;
 
-        internal List<ContaClienteModel> RecuperarContasDoCliente(int idCliente)
+        internal List<ContaClienteModel> RecuperarContasDoCliente(int idCliente) =>
+            ContaClienteRepositorio.RecuperarContasDoCliente(idCliente);
+
+        internal void PagarContaDoCliente(int idConta)
         {
-            return ContasClientesRepositorio.RecuperarContasDoCliente(idCliente);
+            ContaClienteRepositorio.PagarContaDoCliente(idConta);
         }
     }
 }

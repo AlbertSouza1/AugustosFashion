@@ -28,35 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFundoHome));
             this.panelCentral = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tituloPrincipal = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelCentral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelCentral
             // 
-            this.panelCentral.Controls.Add(this.label1);
+            this.panelCentral.Controls.Add(this.tituloPrincipal);
             this.panelCentral.Controls.Add(this.pictureBox1);
             this.panelCentral.Controls.Add(this.panel1);
             this.panelCentral.Location = new System.Drawing.Point(2, -1);
             this.panelCentral.Name = "panelCentral";
             this.panelCentral.Size = new System.Drawing.Size(982, 742);
             this.panelCentral.TabIndex = 4;
+            this.panelCentral.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCentral_Paint);
             // 
-            // label1
+            // tituloPrincipal
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(104)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(301, 88);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(419, 42);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "AUGUSTU\'s FASHION";
+            this.tituloPrincipal.AutoSize = true;
+            this.tituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tituloPrincipal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(104)))), ((int)(((byte)(224)))));
+            this.tituloPrincipal.Location = new System.Drawing.Point(301, 88);
+            this.tituloPrincipal.Name = "tituloPrincipal";
+            this.tituloPrincipal.Size = new System.Drawing.Size(419, 42);
+            this.tituloPrincipal.TabIndex = 1;
+            this.tituloPrincipal.Text = "AUGUSTU\'s FASHION";
             // 
             // pictureBox1
             // 
@@ -75,6 +78,11 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(982, 150);
             this.panel1.TabIndex = 2;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmFundoHome
             // 
@@ -95,8 +103,9 @@
         #endregion
 
         public System.Windows.Forms.Panel panelCentral;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label tituloPrincipal;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

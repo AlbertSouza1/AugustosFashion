@@ -73,12 +73,25 @@ namespace AugustosFashion.Views.Pedidos
                     var cliente = InstanciarClienteSelecionado();
 
                     if (_cadastroPedidoController != null)
+                    {
                         _cadastroPedidoController.RecuperarClienteSelecionado(cliente);
-                    else if (_relatorioVendaProdutoController != null)
+                        Close();
+                        return;
+                    }                        
+                    if (_relatorioVendaProdutoController != null)
+                    {
                         _relatorioVendaProdutoController.RecuperarClienteSelecionado(cliente);
-                    else
+                        Close();
+                        return;
+                    }                       
+                    if (_relatorioVendaClienteController != null)
+                    {
                         _relatorioVendaClienteController.RecuperarClienteSelecionado(cliente);
+                        Close();
+                        return;
+                    }
 
+                    RetornarCliente();
                     Close();
                 }
                 catch (Exception ex)
@@ -101,6 +114,11 @@ namespace AugustosFashion.Views.Pedidos
             if (e.RowIndex == -1)
                 return;
 
+            RetornarCliente();
+        }
+
+        private void RetornarCliente()
+        {
             try
             {
                 var cliente = InstanciarClienteSelecionado();
