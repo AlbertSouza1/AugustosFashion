@@ -1,5 +1,6 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using Dapper;
+using EnumsNET;
 using System.Linq;
 
 namespace AugustosFashion.Repositorios.QueryHelpers
@@ -14,14 +15,11 @@ namespace AugustosFashion.Repositorios.QueryHelpers
         }
         public string GerarQueryRelatorio()
         {
-            var totalCusto = $" SUM(pp.Quantidade * pp.PrecoCusto) ";
-            var totalLiquido = $" SUM(pp.Total) ";
-
             var query = $@" SELECT
                         pr.Nome, SUM(pp.Quantidade) as QuantidadeVendida,
-                        {totalCusto} as TotalCusto, SUM(pp.PrecoVenda * pp.Quantidade) as TotalBruto,
-                        SUM(pp.Quantidade * pp.Desconto) as TotalDesconto,
-                        {totalLiquido} as TotalLiquido, {totalLiquido} - {totalCusto} as LucroReais
+                        SUM(pp.Quantidade * pp.PrecoCusto) as TotalCusto,
+                        SUM(pp.PrecoVenda * pp.Quantidade) as TotalBruto,
+                        SUM(pp.Quantidade * pp.Desconto) as TotalDesconto
                         FROM Pedido_Produto pp 
                         INNER JOIN Pedidos pe on pe.IdPedido = pp.IdPedido
 				        INNER JOIN Produtos pr on pp.IdProduto = pr.IdProduto	";
@@ -46,33 +44,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
             return query;
         }
 
-        private string GerarOrderBys()
-        {
-            var orderBy = " order by ";
-
-            switch (_filtroRelatorio.Ordenacao)
-            {
-                case EOrdenacaoPedidoProduto.MenosComprado:
-                    orderBy += " QuantidadeVendida ";
-                    break;
-                case EOrdenacaoPedidoProduto.MaisDesconto:
-                    orderBy += " TotalDesconto desc";
-                    break;
-                case EOrdenacaoPedidoProduto.MenosDesconto:
-                    orderBy += " TotalDesconto ";
-                    break;
-                case EOrdenacaoPedidoProduto.MaisReaisVendido:
-                    orderBy += " TotalLiquido desc ";
-                    break;
-                case EOrdenacaoPedidoProduto.MenosReaisVendido:
-                    orderBy += " TotalLiquido ";
-                    break;
-                default:
-                    orderBy += " QuantidadeVendida desc ";
-                    break;
-            }
-            return orderBy;
-        }
+        private string GerarOrderBys() => _filtroRelatorio.Ordenacao.AsString(EnumFormat.Description);    
 
         public DynamicParameters RecuperarParametros()
         {

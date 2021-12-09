@@ -19,6 +19,6 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
         public Dinheiro TotalDesconto { get; set; }
 
         [DisplayName("Total Líquido")]
-        public Dinheiro TotalLiquido { get; set; }
+        public Dinheiro TotalLiquido { get => TotalBruto.RetornaValor - TotalDesconto.RetornaValor; }
     }
 }
