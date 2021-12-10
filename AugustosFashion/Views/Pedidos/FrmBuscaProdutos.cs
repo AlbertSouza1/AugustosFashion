@@ -36,7 +36,7 @@ namespace AugustosFashion.Views.Pedidos
             ListarProdutosBuscados(_produtos);
         }
 
-        private List<ProdutoListagem> BuscarProdutos() => new ListaProdutoController().BuscarProdutosPorNome(txtBuscarProdutos.Text, StatusProduto.Ativo);
+        private List<ProdutoListagem> BuscarProdutos() => new ListaProdutoController().BuscarProdutosPorNome(txtBuscarProdutos.Text, EStatusProduto.Ativo);
 
         private void ListarProdutosBuscados(List<ProdutoListagem> produtos)
         {

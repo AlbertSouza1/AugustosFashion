@@ -147,7 +147,7 @@ namespace AugustosFashion.Views.Produtos
 
         private void FrmConsultaProduto_Load(object sender, EventArgs e)
         {
-            if(_produto.Status == StatusProduto.Inativo)
+            if(_produto.Status == EStatusProduto.Inativo)
             {   
                 btnExcluir.Visible = false;
                 btnAtivarProduto.Visible = true;

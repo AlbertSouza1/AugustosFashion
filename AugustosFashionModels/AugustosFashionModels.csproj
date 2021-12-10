@@ -84,7 +84,7 @@
     <Compile Include="Entidades\Pedidos\PedidoProduto.cs" />
     <Compile Include="Entidades\Produtos\ProdutoListagem.cs" />
     <Compile Include="Entidades\Produtos\ProdutoModel.cs" />
-    <Compile Include="Entidades\Produtos\StatusProduto.cs" />
+    <Compile Include="Entidades\Produtos\EStatusProduto.cs" />
     <Compile Include="Entidades\ServicoEmails\EmailLojaModel.cs" />
     <Compile Include="Entidades\Telefone\TelefoneModel.cs" />
     <Compile Include="Entidades\Telefone\TelefoneValidator.cs" />

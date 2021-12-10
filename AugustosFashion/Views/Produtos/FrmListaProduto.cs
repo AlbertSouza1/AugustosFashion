@@ -13,14 +13,14 @@ namespace AugustosFashion.Views.Produtos
     {
         private readonly ListaProdutoController _listaProdutoController;
         private readonly ConsultaProdutoController _consultaProdutoController = new ConsultaProdutoController();
-        private StatusProduto _statusProduto;
+        private EStatusProduto _statusProduto;
 
         public FrmListaProduto(ListaProdutoController listaProdutoController)
         {
             InitializeComponent();
             _listaProdutoController = listaProdutoController;
             cbStatus.SelectedItem = cbStatus.Items[0];
-            _statusProduto = StatusProduto.Ativo;
+            _statusProduto = EStatusProduto.Ativo;
         }
 
         private void btnBuscarProdutos_Click(object sender, System.EventArgs e)
@@ -89,9 +89,9 @@ namespace AugustosFashion.Views.Produtos
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbStatus.SelectedItem == cbStatus.Items[0])
-                _statusProduto = StatusProduto.Ativo;
+                _statusProduto = EStatusProduto.Ativo;
             else
-                _statusProduto = StatusProduto.Inativo;
+                _statusProduto = EStatusProduto.Inativo;
         }
 
         private void btnFechar_Click(object sender, EventArgs e)

@@ -88,15 +88,15 @@ namespace AugustosFashionModelsTest
             var pedido = new PedidoModel();
             pedido.Produtos = PedidoModelMock.RetornarPedidoProdutos();
 
-            var produtoEncontrado = pedido.SelecionarProdutoDoPedido(pedido.Produtos[0].IdProduto);
+            var indice = pedido.RetornarIndiceDoProduto(pedido.Produtos[0].IdProduto);
             var produtoComDadosNovos = new PedidoProduto() {Quantidade = 6, Desconto = 0 };
 
             //act
-            pedido.AlterarProduto(produtoEncontrado, produtoComDadosNovos);
+            pedido.AlterarProduto(indice, produtoComDadosNovos);
 
             //assert
-            Assert.AreEqual(produtoComDadosNovos.Quantidade, pedido.SelecionarProdutoDoPedido(pedido.Produtos[0].IdProduto).Quantidade);
-            Assert.AreEqual(produtoComDadosNovos.Desconto.RetornaValor, pedido.SelecionarProdutoDoPedido(pedido.Produtos[0].IdProduto).Desconto.RetornaValor);
+            Assert.AreEqual(produtoComDadosNovos.Quantidade, pedido.SelecionarProdutoDoPedido(indice).Quantidade);
+            Assert.AreEqual(produtoComDadosNovos.Desconto.RetornaValor, pedido.SelecionarProdutoDoPedido(indice).Desconto.RetornaValor);
         }
 
         [TestMethod]
@@ -121,6 +121,41 @@ namespace AugustosFashionModelsTest
 
             //act assert
             Assert.IsTrue(pedido.VerificarSeClientePossuiLimite());
+        }
+
+        [TestMethod]
+        public void AdicionarProdutoAoCarrinho_deve_verificar_se_produto_ja_esta_inserido_e_alteralo()
+        {
+            //arrange
+            var pedido = new PedidoModel();
+            pedido.Produtos = PedidoModelMock.RetornarPedidoProdutos();//haviam 2
+
+            //act
+            pedido.AdicionarProdutoAoCarrinho(PedidoModelMock.RetornarPedidoProduto());
+
+            //assert
+            Assert.AreEqual(2, pedido.Produtos.Count);
+        }
+
+        [TestMethod]
+        public void AdicionarProdutoAoCarrinho_deve_verificar_se_produto_nao_esta_inserido_e_inserilo()
+        {
+            //arrange
+            var pedido = new PedidoModel();
+            pedido.Produtos = PedidoModelMock.RetornarPedidoProdutos();//haviam 2
+
+            //act
+            pedido.AdicionarProdutoAoCarrinho(new PedidoProduto()
+            {
+                IdProduto = 66,
+                PrecoVenda = 5000,
+                PrecoCusto = 500,
+                Quantidade = 5,
+                Desconto = 50
+            });
+
+            //assert
+            Assert.AreEqual(3, pedido.Produtos.Count);
         }
     }
 }

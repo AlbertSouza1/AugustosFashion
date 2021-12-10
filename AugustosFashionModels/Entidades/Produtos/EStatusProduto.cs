@@ -1,6 +1,6 @@
 ﻿namespace AugustosFashionModels.Entidades.Produtos
 {
-    public enum StatusProduto
+    public enum EStatusProduto
     {
         Inativo,
         Ativo

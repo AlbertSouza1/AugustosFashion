@@ -1,4 +1,5 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos;
+using System;
 using System.Collections.Generic;
 
 namespace AugustosFashionModelsTest.PedidosTestes
@@ -45,6 +46,18 @@ namespace AugustosFashionModelsTest.PedidosTestes
                 Desconto = 50
             },
         };
+        }
+
+        public static PedidoProduto RetornarPedidoProduto()
+        {
+            return new PedidoProduto()
+            {
+                IdProduto = 2,
+                PrecoVenda = 2000,
+                PrecoCusto = 500,
+                Quantidade = 5,
+                Desconto = 50
+            };
         }
     }
 }

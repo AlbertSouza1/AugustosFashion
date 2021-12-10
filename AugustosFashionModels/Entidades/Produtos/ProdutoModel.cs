@@ -11,6 +11,6 @@ namespace AugustosFashionModels.Entidades.Produtos
         public Dinheiro PrecoCusto { get; set; }
         public Dinheiro PrecoVenda { get; set; }
         public int Estoque { get; set; }
-        public StatusProduto Status { get; set; }      
+        public EStatusProduto Status { get; set; }      
     }
 }

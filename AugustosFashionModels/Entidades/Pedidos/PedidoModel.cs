@@ -37,8 +37,6 @@ namespace AugustosFashionModels.Entidades.Pedidos
             get => Produtos.Sum(p => p.Total.RetornaValor) - Produtos.Sum(p => p.PrecoCusto.RetornaValor * p.Quantidade);
         }      
         public bool Eliminado { get; set; }
-       
-        public void AdicionarProduto(PedidoProduto produto) => Produtos.Add(produto);
 
         public PedidoProduto SelecionarProdutoDoPedido(int indice)
         {
@@ -48,10 +46,8 @@ namespace AugustosFashionModels.Entidades.Pedidos
             return Produtos[indice];
         }
 
-        public void AlterarProduto(PedidoProduto produtoEncontrado, PedidoProduto produtoComDadosNovos)
+        public void AlterarProduto(int index, PedidoProduto produtoComDadosNovos)
         {
-            var index = Produtos.IndexOf(produtoEncontrado);
-
             Produtos[index].Quantidade = produtoComDadosNovos.Quantidade;
             Produtos[index].Desconto = produtoComDadosNovos.Desconto.RetornaValor;
         }
@@ -61,12 +57,9 @@ namespace AugustosFashionModels.Entidades.Pedidos
             var indice = RetornarIndiceDoProduto(produto.IdProduto);
 
             if (indice != -1)
-            {
-                var produtoJaInserido = SelecionarProdutoDoPedido(indice);
-                AlterarProduto(produtoJaInserido, produto);
-            }
-            else   
-                AdicionarProduto(produto);
+                AlterarProduto(indice, produto);
+            else
+                Produtos.Add(produto);
         }
 
         public void RemoverProduto(int id) => Produtos.RemoveAt(RetornarIndiceDoProduto(id));

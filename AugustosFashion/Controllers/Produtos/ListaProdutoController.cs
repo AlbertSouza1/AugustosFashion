@@ -16,7 +16,7 @@ namespace AugustosFashion.Controllers.Produtos
             frmListaProduto.Show();
         }
 
-        internal List<ProdutoListagem> ListarProdutos(StatusProduto status)
+        internal List<ProdutoListagem> ListarProdutos(EStatusProduto status)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace AugustosFashion.Controllers.Produtos
             }
         }
 
-        internal List<ProdutoListagem> BuscarProdutosPorNome(string busca, StatusProduto status)
+        internal List<ProdutoListagem> BuscarProdutosPorNome(string busca, EStatusProduto status)
         {
             try
             {

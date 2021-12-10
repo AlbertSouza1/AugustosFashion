@@ -51,7 +51,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private void CarregarComboFormaPagamento()
         {
-            var formasPagamento  = Enum.GetValues(typeof(EFormaPagamento))
+            var formasPagamento = Enum.GetValues(typeof(EFormaPagamento))
             .Cast<EFormaPagamento>()
             .Select(v => v)
             .ToList();
@@ -59,7 +59,7 @@ namespace AugustosFashion.Views.Pedidos
             foreach (var item in formasPagamento)
             {
                 cbFormaPagamento.Items.Add(item.AsString(EnumFormat.Description));
-            }            
+            }
         }
 
         private void RecuperarInformacoesDePedidoExistente()
@@ -68,7 +68,7 @@ namespace AugustosFashion.Views.Pedidos
             AtualizarTotaisDoPedido();
             ExibirInformacoesDoCliente();
             RecuperarColaboradorDoPedido();
-            cbFormaPagamento.SelectedItem = _pedido.FormaPagamento;
+            cbFormaPagamento.SelectedIndex = (int)_pedido.FormaPagamento;
         }
 
         private void RecuperarColaboradorDoPedido()
@@ -245,26 +245,35 @@ namespace AugustosFashion.Views.Pedidos
         {
             try
             {
-                _cadastroPedidoController.CadastrarPedido(_pedido);
+                var mensagemRetorno =  _cadastroPedidoController.CadastrarPedido(_pedido);
 
-                MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                Close();
+                if (string.IsNullOrEmpty(mensagemRetorno))
+                {
+                    MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                }
+                else
+                    MessageBox.Show(mensagemRetorno, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);               
+                MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
             }
         }
 
         private void AlterarPedido()
         {
             try
-            {              
-                new AlteraPedidoController().AlterarPedido(_pedido);
-
-                MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
+            {
+                var mensagemRetorno = new AlteraPedidoController().AlterarPedido(_pedido);
+                if (string.IsNullOrEmpty(mensagemRetorno))
+                {
+                    MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                }
+                else
+                    MessageBox.Show(mensagemRetorno, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
@@ -406,14 +415,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             _pedido.SetarInformacoes(cbFormaPagamento.SelectedIndex);
 
-            if (_pedido.FormaPagamento == EFormaPagamento.Aprazo && _pedido.VerificarSeClientePossuiLimite())
-            {
-                FinalizarPedido();
-            }            
-             else   
-                MessageBox.Show("O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n" +
-                        "Selecione uma nova forma de pagamento.",
-                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            FinalizarPedido();           
         }
 
         private void FinalizarPedido()
