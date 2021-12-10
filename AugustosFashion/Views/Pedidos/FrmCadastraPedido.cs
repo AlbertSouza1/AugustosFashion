@@ -3,8 +3,12 @@ using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using AugustosFashionModels.Helpers;
+using EnumsNET;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos
@@ -31,6 +35,8 @@ namespace AugustosFashion.Views.Pedidos
 
         private void FrmCadastraPedido_Load(object sender, EventArgs e)
         {
+            CarregarComboFormaPagamento();
+
             if (_pedido.IdPedido != 0)
             {
                 RecuperarInformacoesDePedidoExistente();
@@ -42,6 +48,20 @@ namespace AugustosFashion.Views.Pedidos
 
             CalcularTotalProduto();
         }
+
+        private void CarregarComboFormaPagamento()
+        {
+            var formasPagamento  = Enum.GetValues(typeof(EFormaPagamento))
+            .Cast<EFormaPagamento>()
+            .Select(v => v)
+            .ToList();
+
+            foreach (var item in formasPagamento)
+            {
+                cbFormaPagamento.Items.Add(item.AsString(EnumFormat.Description));
+            }            
+        }
+
         private void RecuperarInformacoesDePedidoExistente()
         {
             AtualizarCarrinho();
@@ -384,9 +404,9 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnFinalizarPedido_Click(object sender, EventArgs e)
         {
-            _pedido.SetarInformacoes(cbFormaPagamento.Text);
+            _pedido.SetarInformacoes(cbFormaPagamento.SelectedIndex);
 
-            if (_pedido.FormaPagamento == "A prazo" && _pedido.VerificarSeClientePossuiLimite())
+            if (_pedido.FormaPagamento == EFormaPagamento.Aprazo && _pedido.VerificarSeClientePossuiLimite())
             {
                 FinalizarPedido();
             }            

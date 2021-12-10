@@ -1,5 +1,6 @@
 ﻿using AugustosFashion.Controllers.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos;
+using EnumsNET;
 using System;
 using System.Windows.Forms;
 
@@ -56,7 +57,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private void AtualizarGridProdutosDoPedido()
         {
-            dgvPedidos.DataSource = _pedido.Produtos;
+            dgvPedidos.DataSource = _pedido.Produtos;          
         }
 
         private void ExibirInformacoesDoPedido()
@@ -65,7 +66,7 @@ namespace AugustosFashion.Views.Pedidos
             lblTotalBruto.Text = _pedido.TotalBruto.ValorFormatado;
             lblTotalDesconto.Text = _pedido.TotalDesconto.ValorFormatado;
             lblTotalLiquido.Text = _pedido.TotalLiquido.ValorFormatado;
-            lblFormaPagamento.Text = _pedido.FormaPagamento;
+            lblFormaPagamento.Text = _pedido.FormaPagamento.AsString(EnumFormat.Description);
             lblLucro.Text = _pedido.Lucro.ValorFormatado;
             lblNumeroPedido.Text = _pedido.IdPedido.ToString();
         }

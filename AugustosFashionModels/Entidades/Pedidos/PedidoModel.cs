@@ -16,8 +16,8 @@ namespace AugustosFashionModels.Entidades.Pedidos
 
         public int IdPedido { get; set; }
         public ClienteModel Cliente { get; set; }
-        public int IdColaborador { get; set; }
-        public string FormaPagamento { get; set; }
+        public int IdColaborador { get; set; }       
+        public EFormaPagamento FormaPagamento { get; set; }        
         public DateTime DataEmissao { get; set; }
         public Dinheiro TotalBruto 
         {
@@ -73,9 +73,9 @@ namespace AugustosFashionModels.Entidades.Pedidos
 
         public int RetornarIndiceDoProduto(int id) => Produtos.FindIndex(x => x.IdProduto == id);
 
-        public void SetarInformacoes(string formaPagamento)
+        public void SetarInformacoes(int formaPagamento)
         {
-            FormaPagamento = formaPagamento;
+            FormaPagamento = (EFormaPagamento)formaPagamento;
             DataEmissao = DateTime.Now;
         }
      

@@ -31,12 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Enums.NET, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>..\packages\Enums.NET.4.0.0\lib\net45\Enums.NET.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.10.3.4\lib\netstandard2.0\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +60,7 @@
     <Compile Include="Entidades\ContaBancaria\ContaBancariaModel.cs" />
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
     <Compile Include="Entidades\ContasClientes\ContaClienteModel.cs" />
+    <Compile Include="Entidades\Pedidos\EFormaPagamento.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\EOrdenacaoPedidoCliente.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\EOrdenacaoPedidoProduto.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\ETipoValorBasePedidoCliente.cs" />

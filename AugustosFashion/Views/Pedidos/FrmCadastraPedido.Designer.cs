@@ -468,12 +468,6 @@
             this.cbFormaPagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbFormaPagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFormaPagamento.FormattingEnabled = true;
-            this.cbFormaPagamento.Items.AddRange(new object[] {
-            "À vista no dinheiro",
-            "A prazo",
-            "Crédito",
-            "Débito",
-            "Pix"});
             this.cbFormaPagamento.Location = new System.Drawing.Point(766, 291);
             this.cbFormaPagamento.Name = "cbFormaPagamento";
             this.cbFormaPagamento.Size = new System.Drawing.Size(156, 23);

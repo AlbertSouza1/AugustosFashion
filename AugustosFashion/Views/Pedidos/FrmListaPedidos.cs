@@ -53,7 +53,7 @@ namespace AugustosFashion.Views.Pedidos
             
         private void ListarPedidosNaGrid(List<PedidoListagem> pedidos)
         {
-            dgvPedidos.DataSource = pedidos;
+            dgvPedidos.DataSource = pedidos;                
         }
 
         private void btnFechar_Click(object sender, EventArgs e)

@@ -46,7 +46,7 @@ namespace AugustosFashion.Repositorios
 
                         SubtrairEstoqueDosProdutos(sqlCon, transaction, pedido.Produtos);
 
-                        if (pedido.FormaPagamento == "A prazo")
+                        if (pedido.FormaPagamento == EFormaPagamento.Aprazo)
                             ContaClienteRepositorio.CadastrarContaDeCliente(sqlCon, transaction, pedido);
 
                         transaction.Commit();
