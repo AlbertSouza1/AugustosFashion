@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace AugustosFashionModelsTest
+namespace AugustosFashionModelsTest.ClientesTestes
 {
     [TestClass]
     public class ClienteModelTestes
@@ -15,11 +15,8 @@ namespace AugustosFashionModelsTest
             cliente.NomeCompleto.Nome = "Carlos";
             cliente.DataNascimento = DateTime.Now;
 
-            //act
-            string mensagemRetorno = cliente.VerificarSeEhAniversarioDoCliente();
-
-            //assert
-            Assert.AreEqual("Carlos está fazendo aniversário hoje.", mensagemRetorno);
+            //act assert
+            Assert.AreEqual("Carlos está fazendo aniversário hoje.", cliente.VerificarSeEhAniversarioDoCliente());
         }
 
         [TestMethod]
@@ -30,28 +27,28 @@ namespace AugustosFashionModelsTest
             cliente.NomeCompleto.Nome = "Carlos";
             cliente.DataNascimento = DateTime.Now.AddDays(-1);
 
-            //act
-            string mensagemRetorno = cliente.VerificarSeEhAniversarioDoCliente();
-
-            //assert
-            Assert.AreEqual(string.Empty, mensagemRetorno);
+            //act assert
+            Assert.AreEqual(string.Empty, cliente.VerificarSeEhAniversarioDoCliente());
         }
 
         [TestMethod]
         public void Se_limite_compra_a_prazo_for_maior_que_10000_deve_retornar_mensagem_erro()
         {
             //arrange
-            ClienteModel cliente = new ClienteModel();
-            cliente.Email = "email@email.com";
-            cliente.NomeCompleto.Nome = "José";
-            cliente.NomeCompleto.SobreNome = "Aldo";
-            cliente.LimiteCompraAPrazo = 11000;
+            var sut = ClienteModelMock.RetornarClienteComLimiteCompraInvalido();
 
-            //act
-            var mensagem = cliente.ValidarCliente();
+            //act assert
+            Assert.AreEqual("O limite de compra a prazo deve ser menor que R$ 10.000", sut.ValidarCliente());
+        }
 
-            //assert
-            Assert.AreEqual("O limite de compra a prazo deve ser menor que R$ 10.000", mensagem);
+        [TestMethod]
+        public void RetornarLimiteCompraAtual_deve_retornar_limite_cadastrado_menos_total_da_divida()
+        {
+            //arrange
+            var sut = ClienteModelMock.RetornarCliente();
+
+            //act assert
+            Assert.AreEqual(820m, sut.RetornarLimiteParaCompraAtual());
         }
     }
 }

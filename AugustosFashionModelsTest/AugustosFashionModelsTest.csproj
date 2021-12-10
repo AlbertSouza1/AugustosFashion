@@ -53,6 +53,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientesTestes\ClienteModelMock.cs" />
+    <Compile Include="PedidosTestes\PedidoModelMock.cs" />
     <Compile Include="RelatoriosPedidosTestes\FiltroRelatorioPedidoProdutoTeste.cs" />
     <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoClienteMock.cs" />
     <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoClienteTestes.cs" />
@@ -60,7 +62,7 @@
     <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoProdutoTestes.cs" />
     <Compile Include="ServicosDeEmailTestes\ServicoDeEmailTestes.cs" />
     <Compile Include="ValorObjetoTestes\CEPTestes.cs" />
-    <Compile Include="ClienteModelTestes.cs" />
+    <Compile Include="ClientesTestes\ClienteModelTestes.cs" />
     <Compile Include="ColaboradorModelTestes.cs" />
     <Compile Include="ValorObjetoTestes\CPFTestes.cs" />
     <Compile Include="ValorObjetoTestes\DinheiroTestes.cs" />

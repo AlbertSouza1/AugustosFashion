@@ -386,9 +386,11 @@ namespace AugustosFashion.Views.Pedidos
         {
             _pedido.SetarInformacoes(cbFormaPagamento.Text);
 
-            if (_pedido.ValidarFormaPagamento())
+            if (_pedido.FormaPagamento == "A prazo" && _pedido.VerificarSeClientePossuiLimite())
+            {
                 FinalizarPedido();
-            else
+            }            
+             else   
                 MessageBox.Show("O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n" +
                         "Selecione uma nova forma de pagamento.",
                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);

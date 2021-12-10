@@ -78,16 +78,8 @@ namespace AugustosFashionModels.Entidades.Pedidos
             FormaPagamento = formaPagamento;
             DataEmissao = DateTime.Now;
         }
-
-        public bool ValidarFormaPagamento()
-        {
-            if (FormaPagamento == "A prazo")
-                if (!VerificarSeClientePossuiLimite())
-                    return false;
-            return true;
-        }
-
-        private bool VerificarSeClientePossuiLimite()
+     
+        public bool VerificarSeClientePossuiLimite()
         {
             var limiteAtual = Cliente.RetornarLimiteParaCompraAtual();
 
