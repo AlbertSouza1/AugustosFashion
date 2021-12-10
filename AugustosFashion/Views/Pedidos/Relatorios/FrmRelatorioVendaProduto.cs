@@ -1,12 +1,9 @@
 ﻿using AugustosFashion.Controllers.Controls;
-using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos.Relatorios

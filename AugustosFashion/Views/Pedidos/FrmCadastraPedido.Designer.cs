@@ -304,7 +304,6 @@
             0,
             0});
             this.numQuantidade.ValueChanged += new System.EventHandler(this.numQuantidade_ValueChanged);
-            this.numQuantidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numQuantidade_KeyPress);
             this.numQuantidade.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numQuantidade_KeyUp);
             // 
             // txtCliente

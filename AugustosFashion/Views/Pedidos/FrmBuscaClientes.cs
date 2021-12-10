@@ -1,7 +1,5 @@
 ﻿using AugustosFashion.Controllers;
 using AugustosFashion.Controllers.Cliente;
-using AugustosFashion.Controllers.Pedidos;
-using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using System;
 using System.Collections.Generic;
@@ -11,8 +9,6 @@ namespace AugustosFashion.Views.Pedidos
 {
     public partial class FrmBuscaClientes : Form
     {
-        private readonly CadastroPedidoController _cadastroPedidoController;
-        private readonly RelatorioPedidoClienteController _relatorioVendaClienteController;
 
         public delegate void SelectedHandler(ClienteModel cliente);
         public event SelectedHandler SelectedClient;
@@ -20,19 +16,6 @@ namespace AugustosFashion.Views.Pedidos
         public FrmBuscaClientes()
         {
             InitializeComponent();
-        }
-        public FrmBuscaClientes(CadastroPedidoController cadastroPedidoController, string busca)
-        {
-            InitializeComponent();
-            _cadastroPedidoController = cadastroPedidoController;
-            txtBuscar.Text = busca;
-        }
-
-        public FrmBuscaClientes(RelatorioPedidoClienteController relatorioVendaClienteController, string busca)
-        {
-            InitializeComponent();
-            _relatorioVendaClienteController = relatorioVendaClienteController;
-            txtBuscar.Text = busca;
         }
 
         private void FrmBuscaClientes_Load(object sender, EventArgs e)
@@ -62,21 +45,6 @@ namespace AugustosFashion.Views.Pedidos
             {
                 try
                 {
-                    var cliente = InstanciarClienteSelecionado();
-
-                    if (_cadastroPedidoController != null)
-                    {
-                        _cadastroPedidoController.RecuperarClienteSelecionado(cliente);
-                        Close();
-                        return;
-                    }                                              
-                    if (_relatorioVendaClienteController != null)
-                    {
-                        _relatorioVendaClienteController.RecuperarClienteSelecionado(cliente);
-                        Close();
-                        return;
-                    }
-
                     RetornarCliente();                   
                 }
                 catch (Exception ex)

@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Controllers.Pedidos;
+﻿using AugustosFashion.Controllers.Cliente;
+using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
@@ -11,6 +12,7 @@ namespace AugustosFashion.Views.Pedidos
     public partial class FrmCadastraPedido : Form
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
+        private readonly BuscaClienteController _buscaClienteController;
 
         private PedidoModel _pedido;
         private PedidoProduto _produto = new PedidoProduto();
@@ -23,6 +25,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             InitializeComponent();
             _cadastroPedidoController = cadastroPedidoController;
+            _buscaClienteController = new BuscaClienteController();
             _pedido = pedido;
         }
 
@@ -118,10 +121,11 @@ namespace AugustosFashion.Views.Pedidos
 
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
         {
-            _cadastroPedidoController.AbrirFormBuscaCliente(txtBuscaCliente.Text);
+            _buscaClienteController.AbrirFormBuscaCliente();
+            _buscaClienteController.RetornarFrmBuscaCliente().SelectedClient += FrmCadastroPedido_RecuperarCliente;
         }
 
-        public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
+        private void FrmCadastroPedido_RecuperarCliente(ClienteModel cliente)
         {
             _pedido.Cliente = cliente;
 
@@ -170,7 +174,7 @@ namespace AugustosFashion.Views.Pedidos
         }
         private void SetarDadosDoProdudoCarrinho()
         {
-            _produto.Quantidade = int.Parse(numQuantidade.Text);
+            _produto.Quantidade = int.TryParse(numQuantidade.Text, out int value) ? value : 0;
             _produto.Desconto = decimal.Parse(txtDesconto.Text);
         }
 
@@ -469,12 +473,6 @@ namespace AugustosFashion.Views.Pedidos
                 MessageBox.Show("Não há produto selecionado");
                 return 0;
             }
-        }
-
-        private void numQuantidade_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if (!char.IsDigit(e.KeyChar))
-            //    e.Handled = true;
         }
 
         private void txtDesconto_KeyUp(object sender, KeyEventArgs e)

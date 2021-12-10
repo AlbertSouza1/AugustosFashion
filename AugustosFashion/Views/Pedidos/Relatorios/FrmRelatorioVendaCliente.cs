@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Controllers.Controls;
+﻿using AugustosFashion.Controllers.Cliente;
+using AugustosFashion.Controllers.Controls;
 using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
@@ -10,6 +11,8 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
     public partial class FrmRelatorioVendaCliente : Form
     {
         private readonly RelatorioPedidoClienteController _relatorioVendaClienteController;
+        private readonly BuscaClienteController _buscaClienteController;
+
         private RelatorioPedidoClienteViewModel _relatorioPedidoCliente;
         private FiltroRelatorioPedidoCliente _filtroRelatorio = new FiltroRelatorioPedidoCliente();
         private UcDgvListaController _ucDgvListaController = new UcDgvListaController();
@@ -20,6 +23,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             InitializeComponent();
             _relatorioPedidoCliente = new RelatorioPedidoClienteViewModel();
             _relatorioVendaClienteController = relatorioVendaClienteController;
+            _buscaClienteController = new BuscaClienteController();
             _ucDgvListaController.RetornarUserControl().SelectedGrid += FrmRelatorioVendaCliente_SelectedGrid;
         }
 
@@ -43,14 +47,6 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private void BtnMostrarFiltros_Click(object sender, EventArgs e)
         {
             MostrarAbaDeFiltros();
-        }
-
-        public void CarregarDadosDeClienteSelecionado(ClienteModel cliente)
-        {
-
-            _filtroRelatorio.AdicionarCliente(cliente);
-
-            lblCliente.Text = cliente.NomeCompleto.ToString();
         }
 
         private void BtnFiltrar_Click(object sender, EventArgs e)
@@ -111,7 +107,15 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
         {
-            _relatorioVendaClienteController.AbrirFormBuscaClientes(string.Empty);
+            _buscaClienteController.AbrirFormBuscaCliente();
+            _buscaClienteController.RetornarFrmBuscaCliente().SelectedClient += FrmRelatorioVendaCliente_RecuperarCliente;
+        }
+
+        private void FrmRelatorioVendaCliente_RecuperarCliente(ClienteModel cliente)
+        {
+            _filtroRelatorio.AdicionarCliente(cliente);
+
+            lblCliente.Text = cliente.NomeCompleto.ToString();
         }
 
         private void BtnLimparCliente_Click(object sender, EventArgs e)
