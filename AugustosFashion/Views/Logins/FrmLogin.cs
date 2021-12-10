@@ -24,7 +24,13 @@ namespace AugustosFashion.Views.Logins
         {
             var usuarioSistemaModel = InstanciarUsuarioParaLogar();
 
-            _loginController.LogarUsuario(usuarioSistemaModel);             
+            try
+            {
+                _loginController.LogarUsuario(usuarioSistemaModel);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private UsuarioSistemaModel InstanciarUsuarioParaLogar()

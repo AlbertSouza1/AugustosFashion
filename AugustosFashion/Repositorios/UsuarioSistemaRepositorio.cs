@@ -50,5 +50,25 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
+        public static int VerificarLogin(UsuarioSistemaModel usuarioSistema)
+        {
+            var strSqlBusca = @"SELECT count(*) FROM Usuarios_Sistema
+                                WHERE NomeUsuario = @NomeUsuario and Senha = @Senha";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+                    sqlCon.Open();
+
+                    return sqlCon.Query<int>(strSqlBusca, new { usuarioSistema.NomeUsuario, usuarioSistema.Senha }).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

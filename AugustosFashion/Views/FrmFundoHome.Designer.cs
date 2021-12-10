@@ -46,9 +46,8 @@
             this.panelCentral.Controls.Add(this.panel1);
             this.panelCentral.Location = new System.Drawing.Point(2, -1);
             this.panelCentral.Name = "panelCentral";
-            this.panelCentral.Size = new System.Drawing.Size(982, 742);
+            this.panelCentral.Size = new System.Drawing.Size(981, 742);
             this.panelCentral.TabIndex = 4;
-            this.panelCentral.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCentral_Paint);
             // 
             // tituloPrincipal
             // 
@@ -81,7 +80,8 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1500;
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmFundoHome

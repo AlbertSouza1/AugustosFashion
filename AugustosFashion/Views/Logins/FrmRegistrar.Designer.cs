@@ -85,6 +85,7 @@
             // txtNomeUsuario
             // 
             this.txtNomeUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtNomeUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNomeUsuario.Location = new System.Drawing.Point(220, 242);
             this.txtNomeUsuario.Name = "txtNomeUsuario";
             this.txtNomeUsuario.Size = new System.Drawing.Size(471, 23);
@@ -145,6 +146,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmRegistrar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmRegistrar";
             this.ResumeLayout(false);
             this.PerformLayout();
