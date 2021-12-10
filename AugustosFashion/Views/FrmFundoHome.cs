@@ -14,15 +14,15 @@ namespace AugustosFashion.Views
 
         private void timer1_Tick(object sender, System.EventArgs e)
         {
-            tituloPrincipal.ForeColor = color;
+            //tituloPrincipal.ForeColor = color;
 
-            color = color == Color.Red ? Color.RoyalBlue : Color.Red;
+            //color = color == Color.Red ? Color.RoyalBlue : Color.Red;
         }
 
         private void FrmFundoHome_Load(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
-            timer1.Interval = 1000;
+            //timer1.Enabled = false;
+            //timer1.Interval = 1000;
             //timer1.Start();            
         }
     }

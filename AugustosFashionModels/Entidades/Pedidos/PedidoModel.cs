@@ -93,13 +93,9 @@ namespace AugustosFashionModels.Entidades.Pedidos
 
             limiteAtual -= TotalLiquido.RetornaValor;
 
-            if (limiteAtual < TotalLiquido.RetornaValor)
-            {
-                //MessageBox.Show("O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n" +
-                //    "Selecione uma nova forma de pagamento.",
-                //    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (limiteAtual < 0)
                 return false;
-            }
+            
             return true;
         }
     }
