@@ -44,12 +44,8 @@ namespace AugustosFashion.Controllers.Pedidos
             {
                 if (pedido.FormaPagamento == EFormaPagamento.Aprazo)
                 {
-                    if (pedido.VerificarSeClientePossuiLimite())
-                    {
-                        PedidoRepositorio.CadastrarPedido(pedido);
-                        return string.Empty;
-                    }
-                    return "O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n" +
+                    if (!pedido.VerificarSeClientePossuiLimite())
+                        return $"O limite de compra a prazo disponível do cliente é de {pedido.Cliente.RetornarLimiteParaNovaCompra():c}.\n\n" +
                       "Selecione uma nova forma de pagamento.";
                 }
 
@@ -72,7 +68,7 @@ namespace AugustosFashion.Controllers.Pedidos
 
         public void RecuperarProdutoSelecionado(PedidoProduto produto)
         {
-            _frmCadastroPedido.CarregarDadosDeProdutoSelecionado(produto);              
+            _frmCadastroPedido.CarregarDadosDeProdutoSelecionado(produto);
         }
 
         public void AbrirFormBuscaColaborador(string busca)

@@ -29,6 +29,7 @@ namespace AugustosFashion.Entidades.Cliente
         public Dinheiro LimiteCompraAPrazo { get; set; }
         public string  Observacao { get; set; }
         public List<ContaClienteModel> Contas { get; set; }       
+        public Dinheiro Divida { get => Contas.Sum(x => x.Valor.RetornaValor);}       
         public ClienteModel(){
             Contas = new List<ContaClienteModel>();
         }
@@ -44,12 +45,13 @@ namespace AugustosFashion.Entidades.Cliente
             return mensagem;
         }           
 
-        public decimal RetornarLimiteParaCompraAtual()
-        {
-            var divida = Contas.Sum(x => x.Valor.RetornaValor);
-            return LimiteCompraAPrazo.RetornaValor - divida;
-        }
+        public decimal RetornarLimiteParaNovaCompra() =>        
+           LimiteCompraAPrazo.RetornaValor - Divida.RetornaValor;
+
+        public decimal RetornarLimiteParaAlteracaoDeCompra(decimal valorPreviamenteComprado)
+            => LimiteCompraAPrazo.RetornaValor - (Divida.RetornaValor - valorPreviamenteComprado);
         
+
         public string ValidarCliente()
         {
             var retorno = new ClienteValidator().Validate(this);

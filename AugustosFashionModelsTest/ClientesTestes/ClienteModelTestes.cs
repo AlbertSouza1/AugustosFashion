@@ -1,4 +1,6 @@
 ﻿using AugustosFashion.Entidades.Cliente;
+using AugustosFashionModels.Entidades.Pedidos;
+using AugustosFashionModelsTest.PedidosTestes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -42,13 +44,25 @@ namespace AugustosFashionModelsTest.ClientesTestes
         }
 
         [TestMethod]
-        public void RetornarLimiteCompraAtual_deve_retornar_limite_cadastrado_menos_total_da_divida()
+        public void RetornarLimiteParaNovaCompra_deve_retornar_limite_cadastrado_menos_total_da_divida()
         {
             //arrange
             var sut = ClienteModelMock.RetornarCliente();
 
             //act assert
-            Assert.AreEqual(820m, sut.RetornarLimiteParaCompraAtual());
+            Assert.AreEqual(820m, sut.RetornarLimiteParaNovaCompra());
+        }
+
+        [TestMethod]
+        public void RetornarLimiteParaAlteracaoDeCompra_deve_retornar_limite_cadastrado_menos_divida_sem_valor_pre_alteracao()
+        {
+            //arrange
+            var sut = ClienteModelMock.RetornarCliente();
+            var pedido = new PedidoModel();
+            pedido.SetarTotalLiquidoPreAlteracao(50);           
+
+            //act assert
+            Assert.AreEqual(870m, sut.RetornarLimiteParaAlteracaoDeCompra(pedido.TotalLiquidoPreAlteracao.RetornaValor));
         }
     }
 }

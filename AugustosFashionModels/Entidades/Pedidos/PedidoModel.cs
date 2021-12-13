@@ -37,6 +37,7 @@ namespace AugustosFashionModels.Entidades.Pedidos
             get => Produtos.Sum(p => p.Total.RetornaValor) - Produtos.Sum(p => p.PrecoCusto.RetornaValor * p.Quantidade);
         }      
         public bool Eliminado { get; set; }
+        public Dinheiro TotalLiquidoPreAlteracao { get; private set; }
 
         public PedidoProduto SelecionarProdutoDoPedido(int indice)
         {
@@ -45,6 +46,8 @@ namespace AugustosFashionModels.Entidades.Pedidos
 
             return Produtos[indice];
         }
+
+        public void SetarTotalLiquidoPreAlteracao(decimal valor) => TotalLiquidoPreAlteracao = valor;
 
         public void AlterarProduto(int index, PedidoProduto produtoComDadosNovos)
         {
@@ -74,7 +77,12 @@ namespace AugustosFashionModels.Entidades.Pedidos
      
         public bool VerificarSeClientePossuiLimite()
         {
-            var limiteAtual = Cliente.RetornarLimiteParaCompraAtual();
+            decimal limiteAtual;
+
+            if (IdPedido == 0)
+                limiteAtual = Cliente.RetornarLimiteParaNovaCompra();
+            else
+                limiteAtual = Cliente.RetornarLimiteParaAlteracaoDeCompra(TotalLiquidoPreAlteracao.RetornaValor);
 
             limiteAtual -= TotalLiquido.RetornaValor;
 

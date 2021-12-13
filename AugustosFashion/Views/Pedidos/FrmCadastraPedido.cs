@@ -41,7 +41,7 @@ namespace AugustosFashion.Views.Pedidos
             {
                 RecuperarInformacoesDePedidoExistente();
                 EsconderSelecaoDeClienteEColaborador();
-
+                _pedido.SetarTotalLiquidoPreAlteracao(_pedido.TotalLiquido.RetornaValor);
                 AtualizarTituloParaAlteracao();
                 BtnFinalizarPedido.Text = "Salvar Alterações";
             }
@@ -245,15 +245,15 @@ namespace AugustosFashion.Views.Pedidos
         {
             try
             {
-                var mensagemRetorno =  _cadastroPedidoController.CadastrarPedido(_pedido);
+                var mensagem =  _cadastroPedidoController.CadastrarPedido(_pedido);
 
-                if (string.IsNullOrEmpty(mensagemRetorno))
+                if (string.IsNullOrEmpty(mensagem))
                 {
                     MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }
                 else
-                    MessageBox.Show(mensagemRetorno, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                
             }
             catch (Exception ex)

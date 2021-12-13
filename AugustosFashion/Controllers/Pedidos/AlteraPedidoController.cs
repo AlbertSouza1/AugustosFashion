@@ -12,13 +12,9 @@ namespace AugustosFashion.Controllers.Pedidos
             {
                 if (pedido.FormaPagamento == EFormaPagamento.Aprazo)
                 {
-                    if (pedido.VerificarSeClientePossuiLimite())
-                    {
-                        PedidoRepositorio.AlterarPedido(pedido);
-                        return string.Empty;
-                    }
-                    return "O limite de compra a prazo do cliente será ultrapassado com esta compra.\n\n" +
-                       "Selecione uma nova forma de pagamento.";
+                    if (!pedido.VerificarSeClientePossuiLimite())
+                        return $"O limite de compra a prazo disponível do cliente é de {pedido.Cliente.RetornarLimiteParaNovaCompra():c}.\n\n" +
+                          "Selecione uma nova forma de pagamento.";
                 }
 
                 PedidoRepositorio.AlterarPedido(pedido);
