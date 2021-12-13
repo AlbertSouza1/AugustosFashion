@@ -16,7 +16,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
         }
         public string GerarFiltrosWhere()
         {
-            var where = new StringBuilder($" WHERE p.DataEmissao BETWEEN @DataInicial and @DataFinal ");
+            var where = new StringBuilder($" WHERE p.DataEmissao BETWEEN @DataInicial and @DataFinal and p.Eliminado = 0");
 
             if (_filtroRelatorio.Clientes.Count > 0)
             {

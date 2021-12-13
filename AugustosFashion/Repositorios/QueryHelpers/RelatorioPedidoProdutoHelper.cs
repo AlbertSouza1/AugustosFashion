@@ -24,7 +24,7 @@ namespace AugustosFashion.Repositorios.QueryHelpers
                         INNER JOIN Pedidos pe on pe.IdPedido = pp.IdPedido
 				        INNER JOIN Produtos pr on pp.IdProduto = pr.IdProduto	";
 
-            var where = $" WHERE pe.DataEmissao BETWEEN @DataInicial and @DataFinal ";
+            var where = $" WHERE pe.DataEmissao BETWEEN @DataInicial and @DataFinal and pe.Eliminado = 0";
 
             if(_filtroRelatorio.Clientes.Count > 0)
             {
