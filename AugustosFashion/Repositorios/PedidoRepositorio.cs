@@ -62,9 +62,8 @@ namespace AugustosFashion.Repositorios
         public static void AlterarPedido(PedidoModel pedido)
         {
             var strSelectQuantidadeAntigaProdutos = @"SELECT IdProduto, Quantidade from Pedido_Produto where IdPedido = @IdPedido";
-
+            var strSelectAntigaFormaDePagamento = @"SELECT FormaPagamento FROM Pedidos where IdPedido = @IdPedido";
             var strDeleteProdutosDoPedido = @"DELETE FROM Pedido_Produto WHERE IdPedido = @IdPedido";
-
             var strAtualizaPedido = @"UPDATE Pedidos SET FormaPagamento = @FormaPagamento,
                 DataEmissao = @DataEmissao, TotalBruto = @TotalBruto, TotalDesconto = @TotalDesconto, TotalLiquido = @TotalLiquido
                 WHERE IdPedido = @IdPedido";
@@ -82,6 +81,23 @@ namespace AugustosFashion.Repositorios
                         List<PedidoProduto> produtosPreAlteracao = sqlCon.Query<PedidoProduto>(
                         strSelectQuantidadeAntigaProdutos, new { pedido.IdPedido }, transaction
                         ).ToList();
+
+                        var antigaFormaPagamento = sqlCon.Query<int>(
+                            strSelectAntigaFormaDePagamento, new { pedido.IdPedido }, transaction
+                            ).FirstOrDefault();
+
+                        if (pedido.FormaPagamento == EFormaPagamento.Aprazo)
+                        {                            
+                            if (antigaFormaPagamento != (int)EFormaPagamento.Aprazo)
+                                ContaClienteRepositorio.CadastrarContaDeCliente(sqlCon, transaction, pedido);
+                        }
+
+                        //if(antigaFormaPagamento == (int)EFormaPagamento.Aprazo && pedido.FormaPagamento != EFormaPagamento.Aprazo)
+                        //{
+                        //    var conta = ContaClienteRepositorio.RecuperarContaDoCliente(pedido.IdPedido);
+
+                        //    ContaClienteRepositorio.PagarContaDoCliente(conta.IdConta);
+                        //}
 
                         VoltarEstoqueDosProdutos(sqlCon, transaction, produtosPreAlteracao);
 
@@ -102,7 +118,7 @@ namespace AugustosFashion.Repositorios
                                 pedido.IdPedido
                             },
                             transaction);
-
+                        
                         transaction.Commit();
                     }
                 }
@@ -313,7 +329,7 @@ namespace AugustosFashion.Repositorios
         private static PedidoModel MapearPedidoModel(PedidoModel pedido, ClienteModel cliente)
         {
             pedido.Cliente = cliente;
-            
+
             return pedido;
         }
     }

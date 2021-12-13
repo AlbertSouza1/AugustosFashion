@@ -63,6 +63,31 @@ namespace AugustosFashion.Repositorios
                 throw new Exception(ex.Message);
             }
         }
+
+        public static ContaClienteModel RecuperarContaDoCliente(int idPedido)
+        {
+            string strSqlContaCliente = @"select 
+	        cc.IdCliente, cc.IdConta, cc.IdPedido, cc.Pago, p.TotalLiquido as Valor, p.DataEmissao
+            from Contas_Clientes cc
+            inner join Pedidos p
+            on p.IdCliente = cc.IdCliente and p.IdPedido = cc.IdPedido
+            where cc.IdPedido = @idPedido";
+
+            try
+            {
+                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+                {
+
+                    sqlCon.Open();
+
+                    return sqlCon.Query<ContaClienteModel>(strSqlContaCliente, new { idPedido }).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
 

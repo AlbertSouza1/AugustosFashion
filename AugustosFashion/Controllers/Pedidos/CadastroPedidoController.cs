@@ -40,22 +40,15 @@ namespace AugustosFashion.Controllers.Pedidos
 
         public string CadastrarPedido(PedidoModel pedido)
         {
-            try
+            if (pedido.FormaPagamento == EFormaPagamento.Aprazo)
             {
-                if (pedido.FormaPagamento == EFormaPagamento.Aprazo)
-                {
-                    if (!pedido.VerificarSeClientePossuiLimite())
-                        return $"O limite de compra a prazo disponível do cliente é de {pedido.Cliente.RetornarLimiteParaNovaCompra():c}.\n\n" +
-                      "Selecione uma nova forma de pagamento.";
-                }
+                if (!pedido.VerificarSeClientePossuiLimite())
+                    return $"O limite de compra a prazo disponível do cliente é de {pedido.Cliente.RetornarLimiteParaNovaCompra():c}.\n\n" +
+                  "Selecione uma nova forma de pagamento.";
+            }
 
-                PedidoRepositorio.CadastrarPedido(pedido);
-                return string.Empty;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            PedidoRepositorio.CadastrarPedido(pedido);
+            return string.Empty;
         }
 
         public void AbrirFormBuscaProdutos(string busca)
