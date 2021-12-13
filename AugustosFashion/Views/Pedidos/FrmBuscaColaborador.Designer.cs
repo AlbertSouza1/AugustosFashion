@@ -38,12 +38,15 @@
             // 
             // btnSelecionarColaborador
             // 
+            this.btnSelecionarColaborador.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnSelecionarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelecionarColaborador.ForeColor = System.Drawing.Color.White;
             this.btnSelecionarColaborador.Location = new System.Drawing.Point(200, 343);
             this.btnSelecionarColaborador.Name = "btnSelecionarColaborador";
             this.btnSelecionarColaborador.Size = new System.Drawing.Size(131, 23);
             this.btnSelecionarColaborador.TabIndex = 13;
             this.btnSelecionarColaborador.Text = "Selecionar";
-            this.btnSelecionarColaborador.UseVisualStyleBackColor = true;
+            this.btnSelecionarColaborador.UseVisualStyleBackColor = false;
             this.btnSelecionarColaborador.Click += new System.EventHandler(this.btnSelecionarColaborador_Click);
             // 
             // txtBuscar
@@ -92,6 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(532, 416);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.btnSelecionarColaborador);

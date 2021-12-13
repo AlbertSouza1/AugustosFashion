@@ -32,6 +32,7 @@
             this.btnFechar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupFiltros = new System.Windows.Forms.GroupBox();
+            this.panelListaClientes = new System.Windows.Forms.Panel();
             this.cbAcimaDe = new System.Windows.Forms.ComboBox();
             this.BtnMostrarClientes = new System.Windows.Forms.Button();
             this.BtnLimparCliente = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
-            this.panelListaClientes = new System.Windows.Forms.Panel();
             this.dgvRelatorioClientes = new System.Windows.Forms.DataGridView();
             this.BtnMostrarFiltros = new System.Windows.Forms.Button();
             this.lblTotalLiquido = new System.Windows.Forms.Label();
@@ -73,6 +73,8 @@
             this.btnFechar.BackColor = System.Drawing.Color.Transparent;
             this.btnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFechar.BackgroundImage")));
             this.btnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFechar.ForeColor = System.Drawing.Color.White;
@@ -123,6 +125,14 @@
             this.groupFiltros.Size = new System.Drawing.Size(242, 748);
             this.groupFiltros.TabIndex = 110;
             this.groupFiltros.TabStop = false;
+            // 
+            // panelListaClientes
+            // 
+            this.panelListaClientes.Location = new System.Drawing.Point(21, 316);
+            this.panelListaClientes.Name = "panelListaClientes";
+            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
+            this.panelListaClientes.TabIndex = 115;
+            this.panelListaClientes.Visible = false;
             // 
             // cbAcimaDe
             // 
@@ -243,7 +253,8 @@
             // 
             // BtnFiltrar
             // 
-            this.BtnFiltrar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BtnFiltrar.BackColor = System.Drawing.Color.SteelBlue;
+            this.BtnFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFiltrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnFiltrar.ForeColor = System.Drawing.Color.White;
@@ -357,14 +368,6 @@
             this.lblCliente.Size = new System.Drawing.Size(200, 22);
             this.lblCliente.TabIndex = 117;
             // 
-            // panelListaClientes
-            // 
-            this.panelListaClientes.Location = new System.Drawing.Point(21, 316);
-            this.panelListaClientes.Name = "panelListaClientes";
-            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
-            this.panelListaClientes.TabIndex = 115;
-            this.panelListaClientes.Visible = false;
-            // 
             // dgvRelatorioClientes
             // 
             this.dgvRelatorioClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -474,6 +477,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.groupFiltros);
             this.Controls.Add(this.lblTotalCompras);

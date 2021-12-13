@@ -68,7 +68,7 @@ namespace AugustosFashion.Views.Produtos
             // btnCadastrarProduto
             // 
             this.btnCadastrarProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCadastrarProduto.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnCadastrarProduto.BackColor = System.Drawing.Color.SteelBlue;
             this.btnCadastrarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCadastrarProduto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCadastrarProduto.ForeColor = System.Drawing.Color.White;
@@ -281,6 +281,7 @@ namespace AugustosFashion.Views.Produtos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.numPorcentagemLucro);
             this.Controls.Add(this.btnFechar);

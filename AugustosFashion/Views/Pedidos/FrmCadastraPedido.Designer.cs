@@ -370,7 +370,7 @@
             // BtnAdicionarAoCarrinho
             // 
             this.BtnAdicionarAoCarrinho.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAdicionarAoCarrinho.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BtnAdicionarAoCarrinho.BackColor = System.Drawing.Color.SteelBlue;
             this.BtnAdicionarAoCarrinho.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnAdicionarAoCarrinho.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnAdicionarAoCarrinho.ForeColor = System.Drawing.Color.White;
@@ -479,6 +479,8 @@
             this.btnFechar.BackColor = System.Drawing.Color.Transparent;
             this.btnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFechar.BackgroundImage")));
             this.btnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFechar.ForeColor = System.Drawing.Color.White;

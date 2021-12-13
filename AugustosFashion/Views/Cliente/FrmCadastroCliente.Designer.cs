@@ -438,7 +438,7 @@ namespace AugustosFashion.Views
             // btnCadastrarCliente
             // 
             this.btnCadastrarCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCadastrarCliente.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnCadastrarCliente.BackColor = System.Drawing.Color.SteelBlue;
             this.btnCadastrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCadastrarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCadastrarCliente.ForeColor = System.Drawing.Color.White;
@@ -479,7 +479,7 @@ namespace AugustosFashion.Views
             // FrmCadastroCliente
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.mtxtCep);

@@ -552,10 +552,10 @@ namespace AugustosFashion.Views.Colaborador
             // btnAlterarColaborador
             // 
             this.btnAlterarColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAlterarColaborador.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAlterarColaborador.BackColor = System.Drawing.Color.SteelBlue;
             this.btnAlterarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAlterarColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAlterarColaborador.ForeColor = System.Drawing.Color.Black;
+            this.btnAlterarColaborador.ForeColor = System.Drawing.Color.White;
             this.btnAlterarColaborador.Location = new System.Drawing.Point(82, 683);
             this.btnAlterarColaborador.Name = "btnAlterarColaborador";
             this.btnAlterarColaborador.Size = new System.Drawing.Size(157, 45);
@@ -623,6 +623,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.btnInativar);
             this.Controls.Add(this.button1);

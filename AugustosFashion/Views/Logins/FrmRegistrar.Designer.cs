@@ -42,13 +42,16 @@
             // btnRegistrar
             // 
             this.btnRegistrar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRegistrar.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRegistrar.Location = new System.Drawing.Point(391, 470);
+            this.btnRegistrar.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrar.Location = new System.Drawing.Point(400, 464);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(111, 29);
+            this.btnRegistrar.Size = new System.Drawing.Size(111, 32);
             this.btnRegistrar.TabIndex = 13;
             this.btnRegistrar.Text = "Criar conta";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.UseVisualStyleBackColor = false;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // label4
@@ -135,6 +138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(910, 642);
             this.Controls.Add(this.txtIdColaborador);
             this.Controls.Add(this.btnRegistrar);

@@ -75,10 +75,10 @@ namespace AugustosFashion.Views
             // btnAlterarCliente
             // 
             this.btnAlterarCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAlterarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnAlterarCliente.BackColor = System.Drawing.Color.SteelBlue;
             this.btnAlterarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAlterarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAlterarCliente.ForeColor = System.Drawing.Color.Black;
+            this.btnAlterarCliente.ForeColor = System.Drawing.Color.White;
             this.btnAlterarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAlterarCliente.Location = new System.Drawing.Point(102, 669);
             this.btnAlterarCliente.Name = "btnAlterarCliente";
@@ -523,6 +523,7 @@ namespace AugustosFashion.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.btnInativar);
             this.Controls.Add(this.btnFechar);

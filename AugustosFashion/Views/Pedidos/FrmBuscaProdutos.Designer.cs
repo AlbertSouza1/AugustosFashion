@@ -80,18 +80,22 @@
             // 
             // btnSelecionarProduto
             // 
+            this.btnSelecionarProduto.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnSelecionarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelecionarProduto.ForeColor = System.Drawing.Color.White;
             this.btnSelecionarProduto.Location = new System.Drawing.Point(188, 344);
             this.btnSelecionarProduto.Name = "btnSelecionarProduto";
             this.btnSelecionarProduto.Size = new System.Drawing.Size(131, 23);
             this.btnSelecionarProduto.TabIndex = 4;
             this.btnSelecionarProduto.Text = "Selecionar";
-            this.btnSelecionarProduto.UseVisualStyleBackColor = true;
+            this.btnSelecionarProduto.UseVisualStyleBackColor = false;
             this.btnSelecionarProduto.Click += new System.EventHandler(this.btnSelecionarProduto_Click);
             // 
             // FrmBuscaProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(532, 416);
             this.Controls.Add(this.btnSelecionarProduto);
             this.Controls.Add(this.BtnBuscarProdutos);

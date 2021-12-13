@@ -103,13 +103,16 @@ namespace AugustosFashion.Views.Logins
             // btnLogar
             // 
             this.btnLogar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLogar.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnLogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLogar.ForeColor = System.Drawing.Color.White;
             this.btnLogar.Location = new System.Drawing.Point(402, 445);
             this.btnLogar.Name = "btnLogar";
-            this.btnLogar.Size = new System.Drawing.Size(111, 29);
+            this.btnLogar.Size = new System.Drawing.Size(111, 36);
             this.btnLogar.TabIndex = 6;
             this.btnLogar.Text = "Entrar";
-            this.btnLogar.UseVisualStyleBackColor = true;
+            this.btnLogar.UseVisualStyleBackColor = false;
             this.btnLogar.Click += new System.EventHandler(this.btnLogar_Click);
             // 
             // lblRegistrar
@@ -127,6 +130,7 @@ namespace AugustosFashion.Views.Logins
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(910, 642);
             this.Controls.Add(this.lblRegistrar);
             this.Controls.Add(this.btnLogar);

@@ -92,7 +92,7 @@ namespace AugustosFashion.Views
             // btnCadastrarColaborador
             // 
             this.btnCadastrarColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCadastrarColaborador.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnCadastrarColaborador.BackColor = System.Drawing.Color.SteelBlue;
             this.btnCadastrarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCadastrarColaborador.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCadastrarColaborador.ForeColor = System.Drawing.Color.White;
@@ -581,7 +581,7 @@ namespace AugustosFashion.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.mtxtCep);

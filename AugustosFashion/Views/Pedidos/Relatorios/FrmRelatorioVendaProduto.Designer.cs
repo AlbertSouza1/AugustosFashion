@@ -215,7 +215,7 @@
             // 
             // BtnFiltrar
             // 
-            this.BtnFiltrar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BtnFiltrar.BackColor = System.Drawing.Color.SteelBlue;
             this.BtnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFiltrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnFiltrar.ForeColor = System.Drawing.Color.White;
@@ -373,6 +373,8 @@
             this.btnFechar.BackColor = System.Drawing.Color.Transparent;
             this.btnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFechar.BackgroundImage")));
             this.btnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFechar.ForeColor = System.Drawing.Color.White;
@@ -479,6 +481,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.gbFiltros);
             this.Controls.Add(this.lblTotalLiquido);
@@ -493,6 +496,7 @@
             this.Controls.Add(this.BtnMostrarFiltros);
             this.Controls.Add(this.lblLucroTotal);
             this.Controls.Add(this.label9);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmRelatorioVendaProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -132,7 +132,7 @@ namespace AugustosFashion.Views
             // btnConsultarCliente
             // 
             this.btnConsultarCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnConsultarCliente.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnConsultarCliente.BackColor = System.Drawing.Color.SteelBlue;
             this.btnConsultarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnConsultarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnConsultarCliente.ForeColor = System.Drawing.Color.White;
@@ -164,6 +164,7 @@ namespace AugustosFashion.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConsultarCliente);

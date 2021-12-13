@@ -38,12 +38,15 @@
             // 
             // btnSelecionarCliente
             // 
+            this.btnSelecionarCliente.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnSelecionarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelecionarCliente.ForeColor = System.Drawing.Color.White;
             this.btnSelecionarCliente.Location = new System.Drawing.Point(202, 351);
             this.btnSelecionarCliente.Name = "btnSelecionarCliente";
             this.btnSelecionarCliente.Size = new System.Drawing.Size(131, 23);
             this.btnSelecionarCliente.TabIndex = 9;
             this.btnSelecionarCliente.Text = "Selecionar";
-            this.btnSelecionarCliente.UseVisualStyleBackColor = true;
+            this.btnSelecionarCliente.UseVisualStyleBackColor = false;
             this.btnSelecionarCliente.Click += new System.EventHandler(this.btnSelecionarCliente_Click);
             // 
             // BtnBuscar
@@ -93,6 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(532, 416);
             this.Controls.Add(this.btnSelecionarCliente);
             this.Controls.Add(this.BtnBuscar);

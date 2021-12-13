@@ -58,7 +58,7 @@ namespace AugustosFashion.Views.Colaborador
             // btnVisualizarColaborador
             // 
             this.btnVisualizarColaborador.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnVisualizarColaborador.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnVisualizarColaborador.BackColor = System.Drawing.Color.SteelBlue;
             this.btnVisualizarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVisualizarColaborador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnVisualizarColaborador.ForeColor = System.Drawing.Color.White;
@@ -135,10 +135,10 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(358, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(306, 25);
+            this.label1.Size = new System.Drawing.Size(280, 30);
             this.label1.TabIndex = 8;
             this.label1.Text = "Colaboradores Cadastrados";
             // 
@@ -162,6 +162,7 @@ namespace AugustosFashion.Views.Colaborador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);

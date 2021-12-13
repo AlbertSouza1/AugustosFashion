@@ -41,6 +41,7 @@
             // 
             // panelCentral
             // 
+            this.panelCentral.BackColor = System.Drawing.Color.White;
             this.panelCentral.Controls.Add(this.tituloPrincipal);
             this.panelCentral.Controls.Add(this.pictureBox1);
             this.panelCentral.Controls.Add(this.panel1);
