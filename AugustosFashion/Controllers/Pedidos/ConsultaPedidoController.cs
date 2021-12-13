@@ -42,15 +42,7 @@ namespace AugustosFashion.Controllers.Pedidos
 
         public void EliminarPedido(PedidoModel pedido)
         {
-            try
-            {
-                PedidoRepositorio.EliminarPedido(pedido);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
+            PedidoRepositorio.EliminarPedido(pedido);
         }
     }
 }

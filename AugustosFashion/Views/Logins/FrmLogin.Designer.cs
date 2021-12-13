@@ -43,10 +43,10 @@ namespace AugustosFashion.Views.Logins
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(327, 59);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(297, 73);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 25);
+            this.label1.Size = new System.Drawing.Size(332, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "Bem vindo ao Augustu\'s Fashion";
             // 
@@ -54,10 +54,10 @@ namespace AugustosFashion.Views.Logins
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(356, 154);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(343, 154);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(219, 21);
+            this.label2.Size = new System.Drawing.Size(243, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Entre com sua conta para usar";
             // 

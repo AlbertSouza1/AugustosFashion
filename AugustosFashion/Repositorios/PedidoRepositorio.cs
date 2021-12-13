@@ -254,6 +254,8 @@ namespace AugustosFashion.Repositorios
                 {
                     VoltarEstoqueDosProdutos(sqlCon, transaction, pedido.Produtos);
 
+                    ContaClienteRepositorio.PagarContaDoPedido(sqlCon, transaction, pedido.IdPedido);
+
                     sqlCon.Execute(strEliminaPedido, new { pedido.IdPedido }, transaction);
 
                     transaction.Commit();

@@ -35,7 +35,7 @@ namespace AugustosFashion.Controllers.Financeiro
 
         internal void PagarContaDoCliente(int idConta)
         {
-            ContaClienteRepositorio.PagarContaDoCliente(idConta);
+            ContaClienteRepositorio.PagarConta(idConta);
         }
     }
 }

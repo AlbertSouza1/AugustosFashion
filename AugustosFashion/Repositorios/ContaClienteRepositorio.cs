@@ -44,7 +44,7 @@ namespace AugustosFashion.Repositorios
             sqlCon.Execute(strInsereConta, new { pedido.Cliente.IdCliente, pedido.IdPedido }, transaction);
         }
 
-        public static void PagarContaDoCliente(int idConta)
+        public static void PagarConta(int idConta)
         {
             string strSqlContaCliente = @"UPDATE Contas_Clientes
             SET Pago = 1 WHERE IdConta = @idConta";
@@ -62,6 +62,14 @@ namespace AugustosFashion.Repositorios
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public static void PagarContaDoPedido(SqlConnection sqlCon, SqlTransaction transaction, int idPedido)
+        {
+            string strSqlContaCliente = @"UPDATE Contas_Clientes
+            SET Pago = 1 WHERE IdPedido = @idPedido";
+
+            sqlCon.Execute(strSqlContaCliente, new { idPedido }, transaction);
         }
 
         public static ContaClienteModel RecuperarContaDoCliente(int idPedido)
