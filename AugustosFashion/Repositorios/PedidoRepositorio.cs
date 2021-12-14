@@ -92,12 +92,8 @@ namespace AugustosFashion.Repositorios
                                 ContaClienteRepositorio.CadastrarContaDeCliente(sqlCon, transaction, pedido);
                         }
 
-                        //if(antigaFormaPagamento == (int)EFormaPagamento.Aprazo && pedido.FormaPagamento != EFormaPagamento.Aprazo)
-                        //{
-                        //    var conta = ContaClienteRepositorio.RecuperarContaDoCliente(pedido.IdPedido);
-
-                        //    ContaClienteRepositorio.PagarContaDoCliente(conta.IdConta);
-                        //}
+                        if(antigaFormaPagamento == (int)EFormaPagamento.Aprazo && pedido.FormaPagamento != EFormaPagamento.Aprazo)      
+                            ContaClienteRepositorio.ExcluirConta(sqlCon, transaction, pedido.IdPedido);                 
 
                         VoltarEstoqueDosProdutos(sqlCon, transaction, produtosPreAlteracao);
 
@@ -254,7 +250,7 @@ namespace AugustosFashion.Repositorios
                 {
                     VoltarEstoqueDosProdutos(sqlCon, transaction, pedido.Produtos);
 
-                    ContaClienteRepositorio.PagarContaDoPedido(sqlCon, transaction, pedido.IdPedido);
+                    ContaClienteRepositorio.ExcluirConta(sqlCon, transaction, pedido.IdPedido);
 
                     sqlCon.Execute(strEliminaPedido, new { pedido.IdPedido }, transaction);
 

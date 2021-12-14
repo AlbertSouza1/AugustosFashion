@@ -47,7 +47,7 @@ namespace AugustosFashion.Repositorios
         public static void PagarConta(int idConta)
         {
             string strSqlContaCliente = @"UPDATE Contas_Clientes
-            SET Pago = 1 WHERE IdConta = @idConta";
+            SET Pago = 1, DataPagamento = @dataPagamento WHERE IdConta = @idConta";
 
             try
             {
@@ -55,7 +55,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    sqlCon.Execute(strSqlContaCliente, new { idConta });
+                    sqlCon.Execute(strSqlContaCliente, new { idConta, dataPagamento = DateTime.Now });
                 }
             }
             catch (Exception ex)
@@ -71,30 +71,12 @@ namespace AugustosFashion.Repositorios
 
             sqlCon.Execute(strSqlContaCliente, new { idPedido }, transaction);
         }
-
-        public static ContaClienteModel RecuperarContaDoCliente(int idPedido)
+       
+        public static void ExcluirConta(SqlConnection sqlCon, SqlTransaction transaction, int idPedido)
         {
-            string strSqlContaCliente = @"select 
-	        cc.IdCliente, cc.IdConta, cc.IdPedido, cc.Pago, p.TotalLiquido as Valor, p.DataEmissao
-            from Contas_Clientes cc
-            inner join Pedidos p
-            on p.IdCliente = cc.IdCliente and p.IdPedido = cc.IdPedido
-            where cc.IdPedido = @idPedido";
+            var strDelete = @"delete from Contas_Clientes where IdPedido = @idPedido";
 
-            try
-            {
-                using (SqlConnection sqlCon = SqlHelper.ObterConexao())
-                {
-
-                    sqlCon.Open();
-
-                    return sqlCon.Query<ContaClienteModel>(strSqlContaCliente, new { idPedido }).FirstOrDefault();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            sqlCon.Execute(strDelete, new { idPedido }, transaction);
         }
     }
 }

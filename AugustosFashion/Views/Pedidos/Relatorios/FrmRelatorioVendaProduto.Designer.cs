@@ -505,15 +505,15 @@
             this.label12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label12.Location = new System.Drawing.Point(30, 572);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(180, 20);
+            this.label12.Size = new System.Drawing.Size(184, 20);
             this.label12.TabIndex = 118;
-            this.label12.Text = "Total Produtos Vendidos";
+            this.label12.Text = "Total Produtos Vendidos:";
             // 
             // lblTotalProdutosVendidos
             // 
             this.lblTotalProdutosVendidos.AutoSize = true;
             this.lblTotalProdutosVendidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalProdutosVendidos.Location = new System.Drawing.Point(207, 572);
+            this.lblTotalProdutosVendidos.Location = new System.Drawing.Point(211, 572);
             this.lblTotalProdutosVendidos.Name = "lblTotalProdutosVendidos";
             this.lblTotalProdutosVendidos.Size = new System.Drawing.Size(18, 20);
             this.lblTotalProdutosVendidos.TabIndex = 118;

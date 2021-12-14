@@ -50,7 +50,7 @@ namespace AugustosFashion.Views.Financeiro
         private void btnPagarConta_Click(object sender, EventArgs e)
         {
             if(VerificarSeHaContaSelecionada())
-            {
+            {                
                 int idConta = RecuperarIdDaConta();
 
                 try

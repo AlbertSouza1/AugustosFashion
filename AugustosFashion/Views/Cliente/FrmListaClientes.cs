@@ -113,7 +113,6 @@ namespace AugustosFashion.Views
                 int id = RecuperarIdClienteSelecionado();
                 
                 new AlteraClienteController().ConsultarCliente(id);
-                Close();
             }
             else
             {
