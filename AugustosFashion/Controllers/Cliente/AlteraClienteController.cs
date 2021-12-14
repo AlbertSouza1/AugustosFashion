@@ -17,7 +17,7 @@ namespace AugustosFashion.Controllers.Cliente
             frmAlteracaoCliente.Show();
 
         }
-        
+
         public void ConsultarCliente(int id)
         {
             var cliente = RecuperarInformacoesCliente(id);
@@ -34,21 +34,14 @@ namespace AugustosFashion.Controllers.Cliente
 
         public string AlterarCliente(ClienteModel cliente)
         {
-            try
+            var retornoValidacao = cliente.ValidarCliente();
+
+            if (retornoValidacao == string.Empty)
             {
-                var retornoValidacao = cliente.ValidarCliente();
-                if (retornoValidacao == string.Empty)
-                {
-                    ClienteRepositorio.AlterarCliente(cliente);
-                    return string.Empty;
-                }
-                else
-                    return retornoValidacao;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+                ClienteRepositorio.AlterarCliente(cliente);
+                return string.Empty;
+            }           
+            return retornoValidacao;
         }
 
         public void ExcluirCliente(int idCliente)

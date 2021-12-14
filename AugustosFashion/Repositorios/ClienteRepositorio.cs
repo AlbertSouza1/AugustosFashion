@@ -210,7 +210,14 @@ namespace AugustosFashion.Repositorios
                         cliente.Endereco.IdUsuario = idUsuario;
                         cliente.Telefones.ForEach(x => x.IdUsuario = idUsuario);
 
-                        sqlCon.Execute(strSqlAlterarCliente, cliente, transaction);
+                        sqlCon.Execute(strSqlAlterarCliente,
+                            new
+                            {
+                                cliente.Observacao,
+                                LimiteCompraAPrazo = cliente.LimiteCompraAPrazo.RetornaValor,
+                                cliente.IdCliente
+                            },
+                            transaction);
                         sqlCon.Execute(strSqlAlterarEndereco, EnderecoSql.MapearPropriedadesDeEndereco(cliente.Endereco), transaction);
                         sqlCon.Execute(strSqlAlterarTel, cliente.Telefones, transaction);
                         sqlCon.Execute(strSqlAlterarUsuario, UsuarioSql.MapearPropriedadesDeUsuario(cliente), transaction);

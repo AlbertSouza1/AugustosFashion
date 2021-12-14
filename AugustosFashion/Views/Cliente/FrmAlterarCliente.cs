@@ -47,9 +47,9 @@ namespace AugustosFashion.Views
                 }
             }
 
-            txtIdCliente.Text = _cliente.IdCliente.ToString();
             txtObservacoes.Text = _cliente.Observacao;
             txtLimiteCompraPrazo.Text = _cliente.LimiteCompraAPrazo.RetornaValor.ToString();
+            txtLimiteDisponivel.Text = _cliente.RetornarLimiteParaNovaCompra().ToString();
 
             txtNome.Text = _cliente.NomeCompleto.Nome;
             txtSobreNome.Text = _cliente.NomeCompleto.SobreNome;
@@ -65,6 +65,8 @@ namespace AugustosFashion.Views
             txtNumero.Text = _cliente.Endereco.Numero.ToString();
             mtxtCep.Text = _cliente.Endereco.CEP.RetornaValor;
             cbUf.SelectedIndex = EstadoIndexHelper.RetornarIndexComboBoxUfCadastrado(_cliente.Endereco.UF);
+            
+            
 
             var avisoDeAniversario = _cliente.VerificarSeEhAniversarioDoCliente();
             if (avisoDeAniversario != string.Empty)
@@ -268,7 +270,7 @@ namespace AugustosFashion.Views
             {
                 try
                 {
-                    _alteraClienteController.InativarCliente(int.Parse(txtIdCliente.Text));
+                    _alteraClienteController.InativarCliente(_cliente.IdCliente);
 
                     MessageBox.Show("Cliente inativado com sucesso!");
 
