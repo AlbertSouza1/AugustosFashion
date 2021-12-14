@@ -27,7 +27,7 @@ namespace AugustosFashion.Controllers.Cliente
         public ClienteModel RecuperarInformacoesCliente(int id)
         {
             var cliente = ClienteRepositorio.RecuperarInfoCliente(id);
-            cliente.Contas = ContaClienteRepositorio.RecuperarContasDoCliente(cliente.IdCliente);
+            cliente.Contas = ContaClienteRepositorio.RecuperarContasDoCliente(cliente.IdCliente, false);
 
             return cliente;
         }

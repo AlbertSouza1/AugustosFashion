@@ -127,7 +127,7 @@
             // BtnAlterar
             // 
             this.BtnAlterar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnAlterar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.BtnAlterar.BackColor = System.Drawing.Color.SteelBlue;
             this.BtnAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnAlterar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnAlterar.ForeColor = System.Drawing.Color.White;

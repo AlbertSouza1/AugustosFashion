@@ -30,10 +30,10 @@ namespace AugustosFashion.Controllers.Financeiro
 
         public FrmBuscaClientes RetornarFrmBuscaClientes() => _frmBuscaCliente;
 
-        internal List<ContaClienteModel> RecuperarContasDoCliente(int idCliente) =>
-            ContaClienteRepositorio.RecuperarContasDoCliente(idCliente);
+        public List<ContaClienteModel> RecuperarContasDoCliente(int idCliente, bool pagas) =>
+            ContaClienteRepositorio.RecuperarContasDoCliente(idCliente, pagas);
 
-        internal void PagarContaDoCliente(int idConta)
+        public void PagarContaDoCliente(int idConta)
         {
             ContaClienteRepositorio.PagarConta(idConta);
         }

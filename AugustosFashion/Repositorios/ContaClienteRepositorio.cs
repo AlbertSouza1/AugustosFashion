@@ -11,14 +11,14 @@ namespace AugustosFashion.Repositorios
 {
     public static class ContaClienteRepositorio
     {
-        public static List<ContaClienteModel> RecuperarContasDoCliente(int idCliente)
+        public static List<ContaClienteModel> RecuperarContasDoCliente(int idCliente, bool pagas)
         {
             string strSqlContaCliente = @"select 
-	        cc.IdCliente, cc.IdConta, cc.IdPedido, cc.Pago, p.TotalLiquido as Valor, p.DataEmissao
+	        cc.IdCliente, cc.IdConta, cc.IdPedido, cc.Pago, p.TotalLiquido as Valor, p.DataEmissao, cc.DataPagamento
             from Contas_Clientes cc
             inner join Pedidos p
             on p.IdCliente = cc.IdCliente and p.IdPedido = cc.IdPedido
-            where cc.IdCliente = @idCliente and cc.Pago = 0";
+            where cc.IdCliente = @idCliente and cc.Pago = @pagas";
 
             try
             {
@@ -27,7 +27,7 @@ namespace AugustosFashion.Repositorios
 
                     sqlCon.Open();
 
-                    return sqlCon.Query<ContaClienteModel>(strSqlContaCliente, new { idCliente }).ToList();
+                    return sqlCon.Query<ContaClienteModel>(strSqlContaCliente, new { idCliente, pagas }).ToList();
                 }
             }
             catch (Exception ex)

@@ -187,7 +187,6 @@
             this.txtValorAcima.Size = new System.Drawing.Size(199, 23);
             this.txtValorAcima.TabIndex = 113;
             this.txtValorAcima.Text = "0";
-            this.txtValorAcima.Leave += new System.EventHandler(this.txtValorComprado_Leave);
             // 
             // cbOrdenacao
             // 

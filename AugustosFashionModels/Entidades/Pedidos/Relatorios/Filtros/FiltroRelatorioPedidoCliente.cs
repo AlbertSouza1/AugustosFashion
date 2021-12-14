@@ -40,19 +40,14 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros
             Clientes.RemoveAt(indexClienteSelecionado);
         }
 
-        public bool SetarFiltros(DateTime dataInicial, DateTime dataFinal, int acimaDe , string valorBase, string qtdResultados, int ordenacao)
-        {
-            if (!ValidarFiltros(valorBase, qtdResultados))
-                return false;
-
+        public void SetarFiltros(DateTime dataInicial, DateTime dataFinal, int acimaDe , string valorBase, string qtdResultados, int ordenacao)
+        {           
             DataInicial = dataInicial;
             DataFinal = dataFinal;
             TipoValorBase = (ETipoValorBasePedidoCliente) acimaDe;
             ValorBase = string.IsNullOrEmpty(valorBase) ? 0 : decimal.Parse(valorBase);
             QuantidadeResultados = string.IsNullOrEmpty(qtdResultados) ? 0 : int.Parse(qtdResultados);
             Ordenacao = (EOrdenacaoPedidoCliente)ordenacao;
-
-            return true;
         }
 
         public bool ValidarFiltros(string valorBase, string qtdResultados)

@@ -30,22 +30,22 @@ namespace AugustosFashionModelsTest.PedidosTestes
         public static List<PedidoProduto> RetornarProdutosDeValoresAltos()
         {
             return new List<PedidoProduto>()
-        {
-            new PedidoProduto(){
-                IdProduto = 1,
-                PrecoVenda = 1000,
-                PrecoCusto = 200,
-                Quantidade = 3,
-                Desconto = 100
-            },
-            new PedidoProduto(){
-                IdProduto = 2,
-                PrecoVenda = 2000,
-                PrecoCusto = 500,
-                Quantidade = 5,
-                Desconto = 50
-            },
-        };
+            {
+                new PedidoProduto(){
+                    IdProduto = 1,
+                    PrecoVenda = 1000,
+                    PrecoCusto = 200,
+                    Quantidade = 3,
+                    Desconto = 100
+                },
+                new PedidoProduto(){
+                    IdProduto = 2,
+                    PrecoVenda = 2000,
+                    PrecoCusto = 500,
+                    Quantidade = 5,
+                    Desconto = 50
+                },
+            };
         }
 
         public static PedidoProduto RetornarPedidoProduto()

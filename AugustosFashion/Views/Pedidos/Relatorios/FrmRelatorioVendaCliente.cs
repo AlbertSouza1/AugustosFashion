@@ -54,9 +54,13 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             OcultarAbaDeFiltros();
 
-            if (!SetarFiltros())
+            if (!_filtroRelatorio.ValidarFiltros(txtValorAcima.Text, txtQuantidadeResultados.Text))
+            {
+                MessageBox.Show("Não foi possível aplicar os filtros. Verifique os valores inseridos e tente novamente.");
                 return;
+            }               
 
+            SetarFiltros();
             ConsultarRelatorio();
         }
 
@@ -86,14 +90,9 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             lblTotalLiquido.Text = _relatorioPedidoCliente.TotalLiquido.ToString();
         }
 
-        private bool SetarFiltros()
-        {
-            if (_filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, cbAcimaDe.SelectedIndex, txtValorAcima.Text, txtQuantidadeResultados.Text, cbOrdenacao.SelectedIndex))
-                return true;
-
-            MessageBox.Show("Não foi possível aplicar os filtros. Verifique os valores inseridos e tente novamente.");
-            return false;
-        }
+        private void SetarFiltros() =>
+            _filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, cbAcimaDe.SelectedIndex, txtValorAcima.Text, txtQuantidadeResultados.Text, cbOrdenacao.SelectedIndex);
+        
 
         private void FrmRelatorioVendaCliente_Load(object sender, EventArgs e)
         {
@@ -145,11 +144,6 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
                 e.Handled = true;
-        }
-
-        private void txtValorComprado_Leave(object sender, EventArgs e)
-        {
-            txtValorAcima.Text = (decimal.TryParse(txtValorAcima.Text, out decimal valorCompra) ? valorCompra : 0).ToString();
         }
 
         private void BtnMostrarClientes_Click(object sender, EventArgs e)

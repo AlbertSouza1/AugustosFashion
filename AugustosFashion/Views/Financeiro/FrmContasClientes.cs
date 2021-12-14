@@ -24,13 +24,19 @@ namespace AugustosFashion.Views.Financeiro
         {
             _cliente = cliente;
             lblCliente.Text = $"{_cliente.NomeCompleto.Nome} {_cliente.NomeCompleto.SobreNome}";
-            _contasClientesController.RetornarFrmBuscaClientes().Close();
+            _contasClientesController.RetornarFrmBuscaClientes().Close();                    
+        }
 
+        private void RecuperarContasDoCliente()
+        {
             try
             {
-                _contas = _contasClientesController.RecuperarContasDoCliente(_cliente.IdCliente);
-                dgvContas.DataSource = _contas;
-            }catch(Exception ex)
+                var pagas = cbStatus.SelectedIndex == 0 ? false : true;
+
+                _contas = _contasClientesController.RecuperarContasDoCliente(_cliente.IdCliente, pagas);
+                AtualizarDataGrid();
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -70,6 +76,7 @@ namespace AugustosFashion.Views.Financeiro
         {
             dgvContas.DataSource = null;
             dgvContas.DataSource = _contas;
+            dgvContas.Refresh();
         }
 
         private int RecuperarIdDaConta() => Convert.ToInt32(dgvContas.SelectedRows[0].Cells[0].Value);
@@ -79,6 +86,16 @@ namespace AugustosFashion.Views.Financeiro
             if (dgvContas.SelectedRows.Count == 0)
                 return false;
             return true;
+        }
+
+        private void FrmContasClientes_Load(object sender, EventArgs e)
+        {
+            cbStatus.SelectedIndex = 0;
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            RecuperarContasDoCliente();
         }
     }
 }
