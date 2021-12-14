@@ -63,11 +63,11 @@
     <Compile Include="Entidades\ContaBancaria\TipoConta.cs" />
     <Compile Include="Entidades\ContasClientes\ContaClienteModel.cs" />
     <Compile Include="Entidades\Pedidos\EFormaPagamento.cs" />
-    <Compile Include="Entidades\Pedidos\Relatorios\EOrdenacaoPedidoCliente.cs" />
-    <Compile Include="Entidades\Pedidos\Relatorios\EOrdenacaoPedidoProduto.cs" />
-    <Compile Include="Entidades\Pedidos\Relatorios\ETipoValorBasePedidoCliente.cs" />
-    <Compile Include="Entidades\Pedidos\Relatorios\FiltroRelatorioPedidoCliente.cs" />
-    <Compile Include="Entidades\Pedidos\Relatorios\FiltroRelatorioPedidoProduto.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\Enums\EOrdenacaoPedidoCliente.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\Enums\EOrdenacaoPedidoProduto.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\Enums\ETipoValorBasePedidoCliente.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\Filtros\FiltroRelatorioPedidoCliente.cs" />
+    <Compile Include="Entidades\Pedidos\Relatorios\Filtros\FiltroRelatorioPedidoProduto.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\ListaGenericaModel.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\RelatorioPedidoProdutoViewModel.cs" />
     <Compile Include="Entidades\Pedidos\Relatorios\RelatorioPedidoCliente.cs" />

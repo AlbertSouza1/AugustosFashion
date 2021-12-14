@@ -1,8 +1,9 @@
 ﻿using AugustosFashion.Entidades.Cliente;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
+namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros
 {
     public class FiltroRelatorioPedidoProduto
     {
@@ -61,6 +62,6 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
             DataInicial = dataInicial;
             DataFinal = dataFinal;
             Ordenacao = (EOrdenacaoPedidoProduto)ordenacao;
-        }
+        }       
     }
 }

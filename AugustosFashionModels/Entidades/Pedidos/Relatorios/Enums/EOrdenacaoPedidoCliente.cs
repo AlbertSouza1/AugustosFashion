@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
+namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Enums
 {
     public enum EOrdenacaoPedidoCliente
     {

@@ -1,10 +1,10 @@
 ﻿using AugustosFashion.Entidades;
-using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Repositorios;
 using AugustosFashion.Views.Pedidos;
 using AugustosFashion.Views.Pedidos.Relatorios;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using System.Collections.Generic;
 
 namespace AugustosFashion.Controllers.Pedidos.RelatoriosControllers

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaProduto));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbFiltros = new System.Windows.Forms.GroupBox();
             this.panelListaProdutos = new System.Windows.Forms.Panel();
             this.panelListaClientes = new System.Windows.Forms.Panel();
@@ -66,6 +66,8 @@
             this.lblTotalBruto = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblLucroTotal = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblTotalProdutosVendidos = new System.Windows.Forms.Label();
             this.gbFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioProdutos)).BeginInit();
             this.SuspendLayout();
@@ -360,24 +362,24 @@
             // 
             // dgvRelatorioProdutos
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvRelatorioProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvRelatorioProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRelatorioProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRelatorioProdutos.BackgroundColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRelatorioProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRelatorioProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRelatorioProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelatorioProdutos.Location = new System.Drawing.Point(30, 172);
             this.dgvRelatorioProdutos.Name = "dgvRelatorioProdutos";
             this.dgvRelatorioProdutos.ReadOnly = true;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            this.dgvRelatorioProdutos.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            this.dgvRelatorioProdutos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRelatorioProdutos.RowTemplate.Height = 25;
             this.dgvRelatorioProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRelatorioProdutos.Size = new System.Drawing.Size(921, 323);
@@ -406,6 +408,7 @@
             // 
             this.BtnMostrarFiltros.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMostrarFiltros.BackgroundImage")));
             this.BtnMostrarFiltros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnMostrarFiltros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnMostrarFiltros.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnMostrarFiltros.Location = new System.Drawing.Point(910, 142);
             this.BtnMostrarFiltros.Name = "BtnMostrarFiltros";
@@ -418,7 +421,7 @@
             // 
             this.lblTotalLiquido.AutoSize = true;
             this.lblTotalLiquido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalLiquido.Location = new System.Drawing.Point(554, 589);
+            this.lblTotalLiquido.Location = new System.Drawing.Point(577, 666);
             this.lblTotalLiquido.Name = "lblTotalLiquido";
             this.lblTotalLiquido.Size = new System.Drawing.Size(27, 20);
             this.lblTotalLiquido.TabIndex = 110;
@@ -428,7 +431,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(663, 589);
+            this.label9.Location = new System.Drawing.Point(693, 666);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(91, 20);
             this.label9.TabIndex = 111;
@@ -438,7 +441,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(454, 589);
+            this.label7.Location = new System.Drawing.Point(477, 666);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(104, 20);
             this.label7.TabIndex = 112;
@@ -448,7 +451,7 @@
             // 
             this.lblTotalDesconto.AutoSize = true;
             this.lblTotalDesconto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalDesconto.Location = new System.Drawing.Point(344, 589);
+            this.lblTotalDesconto.Location = new System.Drawing.Point(361, 666);
             this.lblTotalDesconto.Name = "lblTotalDesconto";
             this.lblTotalDesconto.Size = new System.Drawing.Size(27, 20);
             this.lblTotalDesconto.TabIndex = 113;
@@ -458,7 +461,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(233, 589);
+            this.label8.Location = new System.Drawing.Point(245, 666);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(118, 20);
             this.label8.TabIndex = 114;
@@ -468,31 +471,53 @@
             // 
             this.lblTotalBruto.AutoSize = true;
             this.lblTotalBruto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalBruto.Location = new System.Drawing.Point(118, 589);
+            this.lblTotalBruto.Location = new System.Drawing.Point(119, 666);
             this.lblTotalBruto.Name = "lblTotalBruto";
             this.lblTotalBruto.Size = new System.Drawing.Size(27, 20);
             this.lblTotalBruto.TabIndex = 115;
             this.lblTotalBruto.Text = "RS";
+            this.lblTotalBruto.Click += new System.EventHandler(this.lblTotalBruto_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(30, 589);
+            this.label10.Location = new System.Drawing.Point(30, 666);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(92, 20);
             this.label10.TabIndex = 116;
             this.label10.Text = "Total Bruto:";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // lblLucroTotal
             // 
             this.lblLucroTotal.AutoSize = true;
             this.lblLucroTotal.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblLucroTotal.Location = new System.Drawing.Point(750, 589);
+            this.lblLucroTotal.Location = new System.Drawing.Point(780, 666);
             this.lblLucroTotal.Name = "lblLucroTotal";
             this.lblLucroTotal.Size = new System.Drawing.Size(27, 20);
             this.lblLucroTotal.TabIndex = 117;
             this.lblLucroTotal.Text = "RS";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(30, 572);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(180, 20);
+            this.label12.TabIndex = 118;
+            this.label12.Text = "Total Produtos Vendidos";
+            // 
+            // lblTotalProdutosVendidos
+            // 
+            this.lblTotalProdutosVendidos.AutoSize = true;
+            this.lblTotalProdutosVendidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalProdutosVendidos.Location = new System.Drawing.Point(207, 572);
+            this.lblTotalProdutosVendidos.Name = "lblTotalProdutosVendidos";
+            this.lblTotalProdutosVendidos.Size = new System.Drawing.Size(18, 20);
+            this.lblTotalProdutosVendidos.TabIndex = 118;
+            this.lblTotalProdutosVendidos.Text = "0";
             // 
             // FrmRelatorioVendaProduto
             // 
@@ -501,6 +526,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
             this.Controls.Add(this.gbFiltros);
+            this.Controls.Add(this.lblTotalProdutosVendidos);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.lblTotalLiquido);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblTotalDesconto);
@@ -563,5 +590,7 @@
         private System.Windows.Forms.Panel panelListaProdutos;
         private System.Windows.Forms.ComboBox cbOrdenacao;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblTotalProdutosVendidos;
     }
 }

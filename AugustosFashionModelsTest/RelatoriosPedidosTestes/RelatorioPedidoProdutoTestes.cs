@@ -1,4 +1,5 @@
 ﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -14,6 +15,7 @@ namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
 
             Assert.AreEqual(50, sut.TotalLiquido.RetornaValor);
         }
+
         [TestMethod]
         public void LucroReais_deve_calcular_corretamente_com_base_em_liquido_e_custo()
         {
@@ -21,6 +23,7 @@ namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
 
             Assert.AreEqual(30, sut.LucroReais.RetornaValor);
         }
+
         [TestMethod]
         public void LucroPorcentagem_deve_calcular_corretamente_com_base_em_custo_e_lucro_reais()
         {
@@ -80,6 +83,17 @@ namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
             sut.Relatorio.AddRange(listaRelatorio);
 
             Assert.AreEqual(79, sut.TotalLucro.RetornaValor);
+        }
+
+        [TestMethod]
+        public void TotalProdutosVendidos_deve_calcular_total_de_produtos_vendidos_no_relatorio()
+        {
+            var sut = new RelatorioPedidoProdutoViewModel();
+            var listaRelatorio = RelatorioPedidoProdutoMock.RetornarListaDeItensRelatorio();
+
+            sut.Relatorio.AddRange(listaRelatorio);
+
+            Assert.AreEqual(6, sut.TotalProdutosVendidos);
         }
     }
 }

@@ -2,6 +2,7 @@
 using AugustosFashion.Repositorios.QueryHelpers;
 using AugustosFashionModels.Entidades.NomesCompletos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using Dapper;
 using System;
 using System.Collections.Generic;

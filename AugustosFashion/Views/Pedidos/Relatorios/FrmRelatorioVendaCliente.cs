@@ -3,6 +3,7 @@ using AugustosFashion.Controllers.Controls;
 using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using System;
 using System.Windows.Forms;
 
@@ -53,7 +54,8 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             OcultarAbaDeFiltros();
 
-            SetarFiltros();
+            if (!SetarFiltros())
+                return;
 
             ConsultarRelatorio();
         }
@@ -84,9 +86,13 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             lblTotalLiquido.Text = _relatorioPedidoCliente.TotalLiquido.ToString();
         }
 
-        private void SetarFiltros()
+        private bool SetarFiltros()
         {
-            _filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, cbAcimaDe.SelectedIndex,txtValorAcima.Text, txtQuantidadeResultados.Text, cbOrdenacao.SelectedIndex);           
+            if (_filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, cbAcimaDe.SelectedIndex, txtValorAcima.Text, txtQuantidadeResultados.Text, cbOrdenacao.SelectedIndex))
+                return true;
+
+            MessageBox.Show("Não foi possível aplicar os filtros. Verifique os valores inseridos e tente novamente.");
+            return false;
         }
 
         private void FrmRelatorioVendaCliente_Load(object sender, EventArgs e)

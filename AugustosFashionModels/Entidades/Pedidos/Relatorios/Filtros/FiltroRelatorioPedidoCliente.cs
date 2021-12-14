@@ -1,8 +1,9 @@
 ﻿using AugustosFashion.Entidades.Cliente;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
+namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros
 {
     public class FiltroRelatorioPedidoCliente
     {
@@ -39,14 +40,29 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
             Clientes.RemoveAt(indexClienteSelecionado);
         }
 
-        public void SetarFiltros(DateTime dataInicial, DateTime dataFinal, int acimaDe , string valorBase, string qtdResultados, int ordenacao)
+        public bool SetarFiltros(DateTime dataInicial, DateTime dataFinal, int acimaDe , string valorBase, string qtdResultados, int ordenacao)
         {
+            if (!ValidarFiltros(valorBase, qtdResultados))
+                return false;
+
             DataInicial = dataInicial;
             DataFinal = dataFinal;
             TipoValorBase = (ETipoValorBasePedidoCliente) acimaDe;
-            ValorBase = decimal.TryParse(valorBase, out decimal valorCompra) ? valorCompra : 0;
-            QuantidadeResultados = int.TryParse(qtdResultados, out int qtd) ? qtd : 0;
+            ValorBase = string.IsNullOrEmpty(valorBase) ? 0 : decimal.Parse(valorBase);
+            QuantidadeResultados = string.IsNullOrEmpty(qtdResultados) ? 0 : int.Parse(qtdResultados);
             Ordenacao = (EOrdenacaoPedidoCliente)ordenacao;
+
+            return true;
+        }
+
+        public bool ValidarFiltros(string valorBase, string qtdResultados)
+        {
+            if (!decimal.TryParse(valorBase, out _) && !string.IsNullOrEmpty(valorBase))
+                return false;
+            if (!int.TryParse(qtdResultados, out _) && !string.IsNullOrEmpty(qtdResultados))
+                return false;
+            
+            return true;
         }
     }
 }

@@ -15,18 +15,21 @@ namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
 
             lista.Add(new RelatorioPedidoProduto()
             {
+                QuantidadeVendida = 3,
                 TotalBruto = 20,
                 TotalCusto = 5,
                 TotalDesconto = 1,
             });
             lista.Add(new RelatorioPedidoProduto()
             {
+                QuantidadeVendida = 2,
                 TotalBruto = 40,
                 TotalCusto = 10,
                 TotalDesconto = 5
             });
             lista.Add(new RelatorioPedidoProduto()
             {
+                QuantidadeVendida = 1,
                 TotalBruto = 60,
                 TotalCusto = 10,
                 TotalDesconto = 10

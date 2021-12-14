@@ -3,6 +3,7 @@ using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using System;
 using System.Windows.Forms;
 
@@ -71,6 +72,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             lblTotalLiquido.Text = _relatorio.TotalLiquido.ToString();
             lblTotalDesconto.Text = _relatorio.TotalDesconto.ToString();
             lblLucroTotal.Text = _relatorio.TotalLucro.ToString();
+            lblTotalProdutosVendidos.Text = _relatorio.TotalProdutosVendidos.ToString();
         }
 
         private void FrmRelatorioVendaProduto_Load(object sender, EventArgs e)
@@ -182,6 +184,16 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 _ucDgvListaControllerProdutos.AbrirControl(panelListaProdutos);
                 _ucDgvListaControllerProdutos.AtualizarGrid(_filtroRelatorio.Produtos);
             }
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTotalBruto_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

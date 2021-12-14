@@ -1,10 +1,5 @@
-﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashionModelsTest.RelatoriosPedidosTestes
 {

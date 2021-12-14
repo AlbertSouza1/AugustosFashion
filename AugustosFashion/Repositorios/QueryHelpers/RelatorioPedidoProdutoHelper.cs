@@ -1,4 +1,4 @@
-﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
+﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using Dapper;
 using EnumsNET;
 using System.Linq;
