@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
 {
-    public class RelatorioPedidoProduto
+    public class RelatorioPedidoProduto : IRelatorio
     {
         [DisplayName("Produto")]
         public string Nome { get; set; }

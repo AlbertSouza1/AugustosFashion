@@ -1,11 +1,16 @@
 ﻿using AugustosFashion.Controllers.Controls;
 using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
+using AugustosFashionModels.Entidades.Helpers;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using System;
+using System.Threading;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
+using AugustosFashionModels.Entidades.Exporatacoes;
+using FastMember;
 
 namespace AugustosFashion.Views.Pedidos.Relatorios
 {
@@ -186,14 +191,51 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             }
         }
 
-        private void label10_Click(object sender, EventArgs e)
+        private void btnExportar_Click(object sender, EventArgs e)
         {
+            if (backgroundWorker1.IsBusy)
+                return;
 
+            IniciarExportacao();
         }
 
-        private void lblTotalBruto_Click(object sender, EventArgs e)
+        private void IniciarExportacao()
         {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Arquivo xlsx|*.xlsx" })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var parametros = new ParametroDeDados();
+                    parametros.NomeArquivo = sfd.FileName;
+                   
+                    backgroundWorker1.RunWorkerAsync(parametros);
+                    lblProgressoExport.Visible = true;
+                }
+            }
+        }
+      
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;
 
+            var dataTable = ExportaPlanilha.SetarDadosEmDataTable(_relatorio.Relatorio);
+
+            if (!ExportaPlanilha.Exportar(dataTable, fileName, "RELATORIO DE PRODUTOS"))
+                MessageBox.Show("Não foi possível exportar o relatório.");
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                Thread.Sleep(100);
+                lblProgressoExport.Visible = false;
+                MessageBox.Show("Exportação concluída com sucesso.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

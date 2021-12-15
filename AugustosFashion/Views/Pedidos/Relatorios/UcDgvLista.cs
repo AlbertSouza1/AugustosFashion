@@ -29,12 +29,22 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
-                return;
+            try
+            {
+                if (e.RowIndex == -1)
+                {
+                    MessageBox.Show("Falha ao selecionar item. Tente novamente");
 
-            int id = Convert.ToInt32(dgvLista.SelectedRows[0].Cells[0].Value);
+                }
+                    return;
 
-            SelectedGrid?.Invoke(id);
+                int id = Convert.ToInt32(dgvLista.SelectedRows[0].Cells[0].Value);
+
+                SelectedGrid?.Invoke(id);
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -20,7 +20,16 @@ namespace AugustosFashion
             var resultadoLogin = new LoginController().RetornarFormLogin().ShowDialog();
 
             if (resultadoLogin == DialogResult.OK)
-                Application.Run(MDIParentSingleton.InstanciarFrmMdiParent());
+            {
+                try
+                {
+                    Application.Run(MDIParentSingleton.InstanciarFrmMdiParent());
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um erro durante a execução do programa."+ex.Message);
+                }
+            }
+                
         }
     }
 }

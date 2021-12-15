@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
 {
-    public class RelatorioPedidoCliente
+    public class RelatorioPedidoCliente : IRelatorio
     {
         [DisplayName("Nome")]
         public NomeCompleto NomeCompleto { get; set; }
