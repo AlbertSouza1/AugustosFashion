@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaCliente));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnFechar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupFiltros = new System.Windows.Forms.GroupBox();
@@ -66,6 +66,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lblTotalCompras = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.lblProgressoExport = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
             this.SuspendLayout();
@@ -372,24 +375,24 @@
             // 
             // dgvRelatorioClientes
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvRelatorioClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvRelatorioClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dgvRelatorioClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRelatorioClientes.BackgroundColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRelatorioClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRelatorioClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dgvRelatorioClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelatorioClientes.Location = new System.Drawing.Point(31, 171);
             this.dgvRelatorioClientes.Name = "dgvRelatorioClientes";
             this.dgvRelatorioClientes.ReadOnly = true;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            this.dgvRelatorioClientes.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            this.dgvRelatorioClientes.RowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dgvRelatorioClientes.RowTemplate.Height = 25;
             this.dgvRelatorioClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRelatorioClientes.Size = new System.Drawing.Size(921, 368);
@@ -488,12 +491,45 @@
             this.label9.TabIndex = 123;
             this.label9.Text = "Total  de Compras:";
             // 
+            // lblProgressoExport
+            // 
+            this.lblProgressoExport.AutoSize = true;
+            this.lblProgressoExport.Location = new System.Drawing.Point(152, 678);
+            this.lblProgressoExport.Name = "lblProgressoExport";
+            this.lblProgressoExport.Size = new System.Drawing.Size(215, 15);
+            this.lblProgressoExport.TabIndex = 126;
+            this.lblProgressoExport.Text = "Exportando dados, por favor, aguarde...\r\n";
+            this.lblProgressoExport.Visible = false;
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnExportar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnExportar.ForeColor = System.Drawing.Color.White;
+            this.btnExportar.Location = new System.Drawing.Point(30, 674);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(116, 23);
+            this.btnExportar.TabIndex = 125;
+            this.btnExportar.Text = "&Exportar Relatório";
+            this.btnExportar.UseVisualStyleBackColor = false;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // FrmRelatorioVendaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.lblProgressoExport);
+            this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.groupFiltros);
             this.Controls.Add(this.lblTotalCompras);
             this.Controls.Add(this.label9);
@@ -556,5 +592,8 @@
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.ComboBox cbAcimaDe;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblProgressoExport;
+        private System.Windows.Forms.Button btnExportar;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
