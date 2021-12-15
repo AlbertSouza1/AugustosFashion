@@ -1,21 +1,20 @@
-﻿using AugustosFashion.Repositorios;
+﻿using AugustosFashion.Entidades.Colaborador;
+using AugustosFashion.Repositorios;
 using AugustosFashion.Repositorios.QueryHelpers;
 using AugustosFashion.Views.Logins;
+using AugustosFashion.Views.Pedidos;
 using AugustosFashionModels.Entidades.UsuariosSistema;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AugustosFashion.Controllers.Logins
 {
     public class RegistraUsuarioController
     {
+        private FrmRegistrar _frmRegistrar;
+
         public void AbrirFormDeRegistro()
         {
-            var frmRegistrar = new FrmRegistrar(this);
-            frmRegistrar.ShowDialog();
+            _frmRegistrar = new FrmRegistrar(this);
+            _frmRegistrar.ShowDialog();
         }
 
         public bool VerificarSeIdColaboradorEhValido(int idColaborador) =>
@@ -26,6 +25,17 @@ namespace AugustosFashion.Controllers.Logins
             usuarioSistemaModel.CriptografarSenha(CriptografiaRepositorio.RetornarChave());
 
             UsuarioSistemaRepositorio.RegistrarUsuario(usuarioSistemaModel);
+        }
+
+        public void RecuperarColaboradorSelecionado(ColaboradorListagem colaborador)
+        {
+            _frmRegistrar.ObterColaboradorSelecionado(colaborador);
+        }
+
+        public void AbrirFormBuscaColaborador()
+        {
+            var frmBuscaColaborador = new FrmBuscaColaborador(this, string.Empty);
+            frmBuscaColaborador.ShowDialog();
         }
     }
 }

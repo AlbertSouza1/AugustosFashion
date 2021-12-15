@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRegistrar));
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtIdColaborador = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnSelecionarColaborador = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnRegistrar
@@ -120,6 +122,7 @@
             // 
             this.txtIdColaborador.Location = new System.Drawing.Point(220, 409);
             this.txtIdColaborador.Name = "txtIdColaborador";
+            this.txtIdColaborador.ReadOnly = true;
             this.txtIdColaborador.Size = new System.Drawing.Size(471, 23);
             this.txtIdColaborador.TabIndex = 14;
             // 
@@ -130,9 +133,22 @@
             this.label5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.Location = new System.Drawing.Point(220, 386);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 20);
+            this.label5.Size = new System.Drawing.Size(166, 20);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Código de Colaborador";
+            this.label5.Text = "Selecionar Colaborador";
+            // 
+            // btnSelecionarColaborador
+            // 
+            this.btnSelecionarColaborador.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSelecionarColaborador.BackgroundImage")));
+            this.btnSelecionarColaborador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSelecionarColaborador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelecionarColaborador.ForeColor = System.Drawing.Color.White;
+            this.btnSelecionarColaborador.Location = new System.Drawing.Point(389, 385);
+            this.btnSelecionarColaborador.Name = "btnSelecionarColaborador";
+            this.btnSelecionarColaborador.Size = new System.Drawing.Size(24, 24);
+            this.btnSelecionarColaborador.TabIndex = 15;
+            this.btnSelecionarColaborador.UseVisualStyleBackColor = true;
+            this.btnSelecionarColaborador.Click += new System.EventHandler(this.btnSelecionarColaborador_Click);
             // 
             // FrmRegistrar
             // 
@@ -140,6 +156,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(910, 642);
+            this.Controls.Add(this.btnSelecionarColaborador);
             this.Controls.Add(this.txtIdColaborador);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.label5);
@@ -168,5 +185,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIdColaborador;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnSelecionarColaborador;
     }
 }

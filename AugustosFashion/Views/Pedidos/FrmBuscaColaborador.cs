@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Controllers.Colaborador;
+using AugustosFashion.Controllers.Logins;
 using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Entidades.Colaborador;
 using System;
@@ -16,12 +17,20 @@ namespace AugustosFashion.Views.Pedidos
     public partial class FrmBuscaColaborador : Form
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
+        private readonly RegistraUsuarioController _registraUsuarioController;
 
         public FrmBuscaColaborador(CadastroPedidoController cadastroPedidoController, string busca)
         {
             InitializeComponent();
             _cadastroPedidoController = cadastroPedidoController;
-            txtBuscar.Text = busca; 
+            txtBuscar.Text = busca;
+        }
+
+        public FrmBuscaColaborador(RegistraUsuarioController registraUsuarioController, string busca)
+        {
+            InitializeComponent();
+            _registraUsuarioController = registraUsuarioController;
+            txtBuscar.Text = busca;
         }
 
         private void FrmBuscaColaborador_Load(object sender, EventArgs e)
@@ -31,7 +40,8 @@ namespace AugustosFashion.Views.Pedidos
                 var colaboradores = BuscarColaboradores(true);
                 ListarProdutosBuscados(colaboradores);
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -45,7 +55,7 @@ namespace AugustosFashion.Views.Pedidos
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message); 
+                throw new Exception(ex.Message);
             }
         }
 
@@ -67,14 +77,25 @@ namespace AugustosFashion.Views.Pedidos
 
         private void btnSelecionarColaborador_Click(object sender, EventArgs e)
         {
-            if (VerificarSeHaColaboradorSelecionado())
+            if (!VerificarSeHaColaboradorSelecionado())
             {
-                var colaborador = InstanciarColaboradorSelecionado();
-                _cadastroPedidoController.RecuperarColaboradorSelecionado(colaborador);
-                Close();
-            }
-            else
                 MessageBox.Show("Selecione um produto na lista antes de confirmar.");
+                return;
+            }
+
+            var colaborador = InstanciarColaboradorSelecionado();
+
+            if(_cadastroPedidoController != null)
+            {
+                _cadastroPedidoController.RecuperarColaboradorSelecionado(colaborador);
+                return;
+            }
+            if(_registraUsuarioController != null)
+            {
+                _registraUsuarioController.RecuperarColaboradorSelecionado(colaborador);
+            }
+            
+            Close();
         }
         private bool VerificarSeHaColaboradorSelecionado() =>
           dgvColaboradores.SelectedRows.Count > 0;
