@@ -1,6 +1,7 @@
 ﻿using AugustosFashion.Controllers.Controls;
 using AugustosFashion.Controllers.Pedidos.RelatoriosControllers;
 using AugustosFashion.Entidades.Cliente;
+using AugustosFashionModels.Entidades.Exporatacoes;
 using AugustosFashionModels.Entidades.Helpers;
 using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
@@ -8,9 +9,6 @@ using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using System;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
-using AugustosFashionModels.Entidades.Exporatacoes;
-using FastMember;
 
 namespace AugustosFashion.Views.Pedidos.Relatorios
 {
@@ -216,11 +214,9 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
       
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;
+            string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;            
 
-            var dataTable = ExportaPlanilha.SetarDadosEmDataTable(_relatorio.Relatorio);
-
-            if (!ExportaPlanilha.Exportar(dataTable, fileName, "RELATORIO DE PRODUTOS"))
+            if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, fileName, "RELATORIO DE PRODUTOS"))
                 MessageBox.Show("Não foi possível exportar o relatório.");
         }
 

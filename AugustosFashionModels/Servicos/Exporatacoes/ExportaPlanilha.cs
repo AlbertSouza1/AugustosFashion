@@ -1,29 +1,20 @@
-﻿using AugustosFashionModels.Entidades.Pedidos.Relatorios;
-using ClosedXML.Excel;
-using FastMember;
+﻿using ClosedXML.Excel;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
+using System.Reflection;
 
 namespace AugustosFashionModels.Entidades.Exporatacoes
 {
     public static class ExportaPlanilha
     {
-        public static bool Exportar(DataTable dataTable, string nomeArquivo, string nomePlanilha)
+        public static bool Exportar<T>(List<T> lista, string nomeArquivo, string nomePlanilha)
         {            
             bool exportado = false;
 
-            //DataTable data = new DataTable();
-
-            //using (var reader = ObjectReader.Create(lista))
-            //{
-            //    data.Load(reader);
-
-            //}
+            var dataTable = ListaParaDataTable(lista);
 
             using (IXLWorkbook workbook = new XLWorkbook())
-            {
-                //workbook.AddWorksheet(nomePlanilha).FirstCell().InsertTable<T>((IEnumerable<T>)data, false);
+            {                
                 workbook.Worksheets.Add(dataTable, nomePlanilha);
 
                 workbook.SaveAs(nomeArquivo);
@@ -32,38 +23,26 @@ namespace AugustosFashionModels.Entidades.Exporatacoes
 
             return exportado;
         }
-
-        public static DataTable SetarDadosEmDataTable(List<RelatorioPedidoProduto> lista)
+        public static DataTable ListaParaDataTable<T>(List<T> items)
         {
-            DataTable data = new DataTable();
+            DataTable dataTable = new DataTable(typeof(T).Name);
 
-            data.Columns.Add("Produto");
-            data.Columns.Add("Vezes Vendido");
-            data.Columns.Add("Total Custo");
-            data.Columns.Add("Total Bruto");
-            data.Columns.Add("Total Desconto");
-            data.Columns.Add("Total Líquido");
-            data.Columns.Add("Lucro (R$)");
-            data.Columns.Add("Lucro (%)");
+            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            var i = 1;
-
-            foreach (var item in lista)
+            foreach (PropertyInfo prop in Props)
             {
-                data.Rows.Add(item.Nome, item.QuantidadeVendida, item.TotalCusto.RetornaValor, item.TotalBruto.RetornaValor, item.TotalDesconto.RetornaValor, item.TotalLiquido.RetornaValor, item.LucroReais.RetornaValor, RemoverPorcentagem(item.LucroPorcentagem));
-                i++;
+                dataTable.Columns.Add(prop.Name);
             }
-            return data;
-        }
-
-        private static string RemoverPorcentagem(string valor)
-        {
-            foreach (char c in "%")
+            foreach (T item in items)
             {
-                valor = valor.Replace(c.ToString(), string.Empty);
+                var values = new object[Props.Length];
+                for (int i = 0; i < Props.Length; i++)
+                {
+                    values[i] = Props[i].GetValue(item, null);
+                }
+                dataTable.Rows.Add(values);
             }
-
-            return valor;
-        }
+            return dataTable;
+        }       
     }
 }

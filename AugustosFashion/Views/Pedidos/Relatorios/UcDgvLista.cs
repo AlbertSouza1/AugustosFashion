@@ -33,10 +33,8 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             {
                 if (e.RowIndex == -1)
                 {
-                    MessageBox.Show("Falha ao selecionar item. Tente novamente");
-
-                }
                     return;
+                }
 
                 int id = Convert.ToInt32(dgvLista.SelectedRows[0].Cells[0].Value);
 
