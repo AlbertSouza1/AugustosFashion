@@ -63,7 +63,7 @@ namespace AugustosFashion.Views.Financeiro
                 {
                     _contasClientesController.PagarContaDoCliente(idConta);
                     MessageBox.Show("Conta paga com sucesso.");
-
+                    RemoverContaDaLista(idConta);
                     AtualizarDataGrid();
                 }catch(Exception ex)
                 {
@@ -71,6 +71,10 @@ namespace AugustosFashion.Views.Financeiro
                 }
             }
         }
+
+        private void RemoverContaDaLista(int idConta) =>       
+            _contas.RemoveAt(_contas.FindIndex(x => x.IdConta == idConta));
+        
 
         private void AtualizarDataGrid()
         {
@@ -96,6 +100,8 @@ namespace AugustosFashion.Views.Financeiro
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             RecuperarContasDoCliente();
+
+            btnPagarConta.Enabled = cbStatus.SelectedIndex == 0;
         }
     }
 }
