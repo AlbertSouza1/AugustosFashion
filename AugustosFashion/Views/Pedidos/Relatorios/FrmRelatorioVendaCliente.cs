@@ -61,7 +61,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             {
                 MessageBox.Show("Não foi possível aplicar os filtros. Verifique os valores inseridos e tente novamente.");
                 return;
-            }               
+            }
 
             SetarFiltros();
             ConsultarRelatorio();
@@ -95,7 +95,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void SetarFiltros() =>
             _filtroRelatorio.SetarFiltros(dtpInicial.Value, dtpFinal.Value, cbAcimaDe.SelectedIndex, txtValorAcima.Text, txtQuantidadeResultados.Text, cbOrdenacao.SelectedIndex);
-        
+
 
         private void FrmRelatorioVendaCliente_Load(object sender, EventArgs e)
         {
@@ -187,17 +187,25 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;
 
-            if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, fileName, "RELATORIO DE PRODUTOS"))
-                MessageBox.Show("Não foi possível exportar o relatório.");
+            try
+            {
+                if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, fileName, "RELATORIO DE PRODUTOS"))
+                    MessageBox.Show("Não foi possível exportar o relatório.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao exportar relatório. Erro: " + ex.Message);
+                e.Cancel = true ;
+            }
         }
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            if (e.Error == null)
+            if (e.Error == null && !e.Cancelled)
             {
                 Thread.Sleep(100);
                 lblProgressoExport.Visible = false;
-                MessageBox.Show("Exportação concluída com sucesso.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Exportação concluída.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

@@ -123,6 +123,12 @@ namespace AugustosFashion.Views
         private bool VerificarValidacoesDeCliente()
         {
             bool validacoes = true;
+
+            if (!decimal.TryParse(txtLimiteCompraPrazo.Text, out _))
+            {
+                validacoes = false;
+                MessageBox.Show("Limite de compra a prazo inválido.");
+            }
             if (!ValidadoresCadastro.ValidarSexo(cbSexo.SelectedItem))
             {
                 validacoes = false;

@@ -85,6 +85,7 @@ namespace AugustosFashion.Views.Produtos
             // 
             this.txtFabricante.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtFabricante.Location = new System.Drawing.Point(274, 271);
+            this.txtFabricante.MaxLength = 50;
             this.txtFabricante.Name = "txtFabricante";
             this.txtFabricante.Size = new System.Drawing.Size(462, 23);
             this.txtFabricante.TabIndex = 3;
@@ -100,6 +101,7 @@ namespace AugustosFashion.Views.Produtos
             // 
             this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNome.Location = new System.Drawing.Point(274, 153);
+            this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(462, 23);
             this.txtNome.TabIndex = 1;

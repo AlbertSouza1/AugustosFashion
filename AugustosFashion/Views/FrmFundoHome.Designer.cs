@@ -31,45 +31,47 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFundoHome));
             this.panelCentral = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tituloPrincipal = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.panelCentral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelCentral
             // 
             this.panelCentral.BackColor = System.Drawing.Color.White;
+            this.panelCentral.Controls.Add(this.label1);
+            this.panelCentral.Controls.Add(this.pictureBox2);
             this.panelCentral.Controls.Add(this.tituloPrincipal);
-            this.panelCentral.Controls.Add(this.pictureBox1);
             this.panelCentral.Controls.Add(this.panel1);
             this.panelCentral.Location = new System.Drawing.Point(2, -1);
             this.panelCentral.Name = "panelCentral";
             this.panelCentral.Size = new System.Drawing.Size(981, 742);
             this.panelCentral.TabIndex = 4;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(414, 128);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(171, 143);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            // 
             // tituloPrincipal
             // 
             this.tituloPrincipal.AutoSize = true;
-            this.tituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tituloPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tituloPrincipal.ForeColor = System.Drawing.Color.SteelBlue;
-            this.tituloPrincipal.Location = new System.Drawing.Point(301, 88);
+            this.tituloPrincipal.Location = new System.Drawing.Point(524, 298);
             this.tituloPrincipal.Name = "tituloPrincipal";
-            this.tituloPrincipal.Size = new System.Drawing.Size(419, 42);
+            this.tituloPrincipal.Size = new System.Drawing.Size(204, 46);
             this.tituloPrincipal.TabIndex = 1;
-            this.tituloPrincipal.Text = "AUGUSTU\'s FASHION";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(351, 227);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(269, 180);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.tituloPrincipal.Text = "FASHION";
             // 
             // panel1
             // 
@@ -85,6 +87,17 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(274, 298);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(254, 46);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "AUGUSTU\'s";
+            // 
             // FrmFundoHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -96,7 +109,7 @@
             this.Text = "FrmFundoHome";
             this.panelCentral.ResumeLayout(false);
             this.panelCentral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -105,8 +118,9 @@
 
         public System.Windows.Forms.Panel panelCentral;
         private System.Windows.Forms.Label tituloPrincipal;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label1;
     }
 }

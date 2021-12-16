@@ -217,16 +217,17 @@ namespace AugustosFashion.Views
         }
         private bool ValidarCamposDeCliente()
         {
-            var retorno = false;
-
             if (txtLimiteCompraPrazo.Text == string.Empty)
             {
                 MessageBox.Show("É necessário informar um limite para compra a prazo.");
+                return false;
             }
-            else
-                retorno = true;
-
-            return retorno;
+            if (!decimal.TryParse(txtLimiteCompraPrazo.Text, out _))
+            {
+                MessageBox.Show("Limite para compras a prazo inválido.");
+                return false;
+            }
+            return true;
         }
 
         private void btnExcluirCliente_Click(object sender, EventArgs e)

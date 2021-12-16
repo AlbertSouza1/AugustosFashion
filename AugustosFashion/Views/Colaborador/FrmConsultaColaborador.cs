@@ -66,8 +66,7 @@ namespace AugustosFashion.Views.Colaborador
             txtBanco.Text = colaborador.ContaBancaria.Banco;
             txtConta.Text = colaborador.ContaBancaria.Conta.ToString();
             txtAgencia.Text = colaborador.ContaBancaria.Agencia.ToString();
-            cbTipoConta.SelectedIndex = TipoContaBancariaComboBoxHelper.RetornarIndexComboBoxUfCadastrado(colaborador.ContaBancaria.TipoConta);
-
+            cbTipoConta.SelectedIndex = (int)colaborador.ContaBancaria.TipoConta;
         }
 
         private void btnAlterarColaborador_Click(object sender, EventArgs e)
@@ -186,20 +185,22 @@ namespace AugustosFashion.Views.Colaborador
 
         private bool ValidarCamposDeColaborador()
         {
-            var retorno = false;
-
             if (txtSalario.Text == string.Empty)
             {
                 MessageBox.Show("É necessário informar o salário do colaborador.");
+                return false;
+            }
+            if (!decimal.TryParse(txtSalario.Text, out _))
+            {
+                MessageBox.Show("Salário inválido.");
+                return false;
             }
             else if (txtComissao.Text == string.Empty)
             {
                 MessageBox.Show("É necessário informar a porcentagem de comissão.");
+                return false;
             }
-            else
-                retorno = true;
-
-            return retorno;
+            return true;
         }
 
         public ColaboradorModel InstanciarColaboradorParaAlteracao()

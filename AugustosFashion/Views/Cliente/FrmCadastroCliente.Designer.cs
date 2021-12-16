@@ -227,6 +227,7 @@ namespace AugustosFashion.Views
             // 
             this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNome.Location = new System.Drawing.Point(96, 157);
+            this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(355, 23);
             this.txtNome.TabIndex = 14;
@@ -235,6 +236,7 @@ namespace AugustosFashion.Views
             // 
             this.txtSobreNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtSobreNome.Location = new System.Drawing.Point(96, 223);
+            this.txtSobreNome.MaxLength = 50;
             this.txtSobreNome.Name = "txtSobreNome";
             this.txtSobreNome.Size = new System.Drawing.Size(355, 23);
             this.txtSobreNome.TabIndex = 15;
@@ -265,6 +267,7 @@ namespace AugustosFashion.Views
             // 
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEmail.Location = new System.Drawing.Point(96, 357);
+            this.txtEmail.MaxLength = 150;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(355, 23);
             this.txtEmail.TabIndex = 18;
@@ -282,6 +285,7 @@ namespace AugustosFashion.Views
             // 
             this.txtLogradouro.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtLogradouro.Location = new System.Drawing.Point(558, 223);
+            this.txtLogradouro.MaxLength = 100;
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(298, 23);
             this.txtLogradouro.TabIndex = 21;
@@ -290,6 +294,7 @@ namespace AugustosFashion.Views
             // 
             this.txtNumero.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNumero.Location = new System.Drawing.Point(558, 289);
+            this.txtNumero.MaxLength = 5;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(298, 23);
             this.txtNumero.TabIndex = 22;
@@ -298,6 +303,7 @@ namespace AugustosFashion.Views
             // 
             this.txtBairro.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBairro.Location = new System.Drawing.Point(558, 358);
+            this.txtBairro.MaxLength = 50;
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(298, 23);
             this.txtBairro.TabIndex = 23;
@@ -306,6 +312,7 @@ namespace AugustosFashion.Views
             // 
             this.txtComplemento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtComplemento.Location = new System.Drawing.Point(558, 426);
+            this.txtComplemento.MaxLength = 100;
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(298, 23);
             this.txtComplemento.TabIndex = 24;
@@ -314,6 +321,7 @@ namespace AugustosFashion.Views
             // 
             this.txtCidade.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCidade.Location = new System.Drawing.Point(558, 496);
+            this.txtCidade.MaxLength = 100;
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(214, 23);
             this.txtCidade.TabIndex = 25;
@@ -401,7 +409,7 @@ namespace AugustosFashion.Views
             // 
             this.txtLimiteCompraPrazo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtLimiteCompraPrazo.Location = new System.Drawing.Point(255, 426);
-            this.txtLimiteCompraPrazo.MaxLength = 7;
+            this.txtLimiteCompraPrazo.MaxLength = 9;
             this.txtLimiteCompraPrazo.Name = "txtLimiteCompraPrazo";
             this.txtLimiteCompraPrazo.Size = new System.Drawing.Size(196, 23);
             this.txtLimiteCompraPrazo.TabIndex = 31;
@@ -410,6 +418,7 @@ namespace AugustosFashion.Views
             // 
             this.txtObservacoes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtObservacoes.Location = new System.Drawing.Point(96, 565);
+            this.txtObservacoes.MaxLength = 200;
             this.txtObservacoes.Multiline = true;
             this.txtObservacoes.Name = "txtObservacoes";
             this.txtObservacoes.Size = new System.Drawing.Size(760, 66);

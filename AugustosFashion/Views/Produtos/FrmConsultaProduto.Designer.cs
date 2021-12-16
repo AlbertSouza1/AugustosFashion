@@ -93,6 +93,7 @@
             // numEstoque
             // 
             this.numEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numEstoque.Enabled = false;
             this.numEstoque.Location = new System.Drawing.Point(244, 356);
             this.numEstoque.Maximum = new decimal(new int[] {
             10000,
@@ -100,6 +101,7 @@
             0,
             0});
             this.numEstoque.Name = "numEstoque";
+            this.numEstoque.ReadOnly = true;
             this.numEstoque.Size = new System.Drawing.Size(176, 23);
             this.numEstoque.TabIndex = 4;
             // 
@@ -144,6 +146,7 @@
             // 
             this.txtFabricante.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtFabricante.Location = new System.Drawing.Point(244, 289);
+            this.txtFabricante.MaxLength = 50;
             this.txtFabricante.Name = "txtFabricante";
             this.txtFabricante.Size = new System.Drawing.Size(462, 23);
             this.txtFabricante.TabIndex = 3;
@@ -152,6 +155,7 @@
             // 
             this.txtNome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNome.Location = new System.Drawing.Point(244, 171);
+            this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(462, 23);
             this.txtNome.TabIndex = 1;

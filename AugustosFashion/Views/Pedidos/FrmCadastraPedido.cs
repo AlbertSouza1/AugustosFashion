@@ -194,13 +194,18 @@ namespace AugustosFashion.Views.Pedidos
                 MessageBox.Show("Quantidade deve ser maior que 0");
                 return false;
             }
+            if (numQuantidade.Value > 999_999)
+            {
+                MessageBox.Show("O limite de items foi ultrapassado.");
+                return false;
+            }
 
             return true;
         }
         private void SetarDadosDoProdudoCarrinho()
         {
             _produto.Quantidade = int.TryParse(numQuantidade.Text, out int value) ? value : 0;
-            _produto.Desconto = decimal.Parse(txtDesconto.Text);
+            _produto.Desconto = decimal.TryParse(txtDesconto.Text, out decimal desconto) ? desconto : 0;
         }
 
         private void LimparCamposDeProduto()

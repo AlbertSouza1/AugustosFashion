@@ -75,6 +75,11 @@ namespace AugustosFashion.Views.Produtos
                 validacoes = false;
                 MessageBox.Show("Preço de custo não pode ser vazio.");
             }
+            else if (!decimal.TryParse(numPrecoCusto.Text, out _))
+            {
+                validacoes = false;
+                MessageBox.Show("Preço de custo inválido.");
+            }
             else if (string.IsNullOrEmpty(numPrecoVenda.Text) || double.Parse(numPrecoVenda.Text) == 0)
             {
                 validacoes = false;

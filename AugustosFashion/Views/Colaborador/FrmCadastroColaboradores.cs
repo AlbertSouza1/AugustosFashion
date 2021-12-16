@@ -29,10 +29,11 @@ namespace AugustosFashion.Views
 
                     CadastrarColaborador(colaborador);
                 }
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Falha ao instanciar colaborador para cadastro.");
+                MessageBox.Show("Falha ao instanciar colaborador para cadastro. Erro:"+ex.Message);
             }
         }
 
@@ -150,20 +151,22 @@ namespace AugustosFashion.Views
 
         private bool ValidarCamposDeColaborador()
         {
-            var retorno = false;
-
             if (txtSalario.Text == string.Empty)
             {
                 MessageBox.Show("É necessário informar o salário do colaborador.");
+                return false;
+            }
+            if (!decimal.TryParse(txtSalario.Text, out _))
+            {
+                MessageBox.Show("Salário inválido.");
+                return false;
             }
             else if (txtComissao.Text == string.Empty)
             {
                 MessageBox.Show("É necessário informar a porcentagem de comissão.");
+                return false;
             }
-            else
-                retorno = true;
-
-            return retorno;
+            return true;
         }
 
         public ColaboradorModel InstanciarColaboradorParaCadastro()

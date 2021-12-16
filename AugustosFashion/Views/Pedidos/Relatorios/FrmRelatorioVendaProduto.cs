@@ -214,23 +214,25 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
       
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;            
-
-            if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, fileName, "RELATORIO DE PRODUTOS"))
-                MessageBox.Show("Não foi possível exportar o relatório.");
-        }
-
-        private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
+            string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;
+            try
+            {
+                if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, fileName, "RELATORIO DE PRODUTOS"))
+                    MessageBox.Show("Não foi possível exportar o relatório.");
+            }catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao exportar relatório. Erro: " + ex.Message);
+                e.Cancel = true;
+            }
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            if (e.Error == null)
+            if (e.Error == null && !e.Cancelled)
             {
                 Thread.Sleep(100);
                 lblProgressoExport.Visible = false;
-                MessageBox.Show("Exportação concluída com sucesso.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Exportação concluída.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
