@@ -29,12 +29,12 @@ namespace AugustosFashion.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListaClientes));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListaClientes));
             this.label1 = new System.Windows.Forms.Label();
             this.txtNomeBuscado = new System.Windows.Forms.TextBox();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
@@ -42,6 +42,7 @@ namespace AugustosFashion.Views
             this.label2 = new System.Windows.Forms.Label();
             this.btnConsultarCliente = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,21 +61,25 @@ namespace AugustosFashion.Views
             // 
             this.txtNomeBuscado.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNomeBuscado.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtNomeBuscado.Location = new System.Drawing.Point(306, 148);
+            this.txtNomeBuscado.Location = new System.Drawing.Point(60, 164);
             this.txtNomeBuscado.Name = "txtNomeBuscado";
-            this.txtNomeBuscado.Size = new System.Drawing.Size(204, 27);
+            this.txtNomeBuscado.Size = new System.Drawing.Size(257, 27);
             this.txtNomeBuscado.TabIndex = 1;
             // 
             // btnBuscarCliente
             // 
             this.btnBuscarCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBuscarCliente.BackColor = System.Drawing.Color.White;
+            this.btnBuscarCliente.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBuscarCliente.BackgroundImage")));
+            this.btnBuscarCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBuscarCliente.Location = new System.Drawing.Point(507, 148);
+            this.btnBuscarCliente.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.btnBuscarCliente.Location = new System.Drawing.Point(314, 164);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(345, 30);
+            this.btnBuscarCliente.Size = new System.Drawing.Size(39, 27);
             this.btnBuscarCliente.TabIndex = 3;
-            this.btnBuscarCliente.Text = "Buscar por nome ou código (% para trazer todos)";
-            this.btnBuscarCliente.UseVisualStyleBackColor = true;
+            this.btnBuscarCliente.UseVisualStyleBackColor = false;
             this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 
             // dgvClientes
@@ -164,12 +169,23 @@ namespace AugustosFashion.Views
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(60, 146);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(232, 17);
+            this.label3.TabIndex = 134;
+            this.label3.Text = "Digite o nome ou % para trazer todos";
+            // 
             // FrmListaClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConsultarCliente);
             this.Controls.Add(this.label2);
@@ -197,5 +213,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConsultarCliente;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
     }
 }

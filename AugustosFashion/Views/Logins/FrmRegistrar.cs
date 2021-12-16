@@ -24,9 +24,9 @@ namespace AugustosFashion.Views.Logins
             if (!ValidarCampos())
                 return;
 
-            if(!_registraUsuarioController.VerificarSeIdColaboradorEhValido(_colaborador.IdColaborador))
+            if(_registraUsuarioController.VerificarSeLoginJaExiste(txtNomeUsuario.Text))
             {
-                MessageBox.Show("Colaborador não encontrado. Verifique o código inserido e tente novamente.");
+                MessageBox.Show("Este nome de usuário já existe.");
                 return;
             }
             try

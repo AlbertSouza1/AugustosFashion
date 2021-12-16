@@ -4,11 +4,9 @@ using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.Pedidos;
-using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using AugustosFashionModels.Helpers;
 using EnumsNET;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -18,11 +16,11 @@ namespace AugustosFashion.Views.Pedidos
     {
         private readonly CadastroPedidoController _cadastroPedidoController;
         private readonly BuscaClienteController _buscaClienteController;
+        private readonly AlteraPedidoController _alteraPedidoController;
 
         private PedidoModel _pedido;
-        private PedidoProduto _produto = new PedidoProduto();
-        private ColaboradorModel _colaborador = new ColaboradorModel();
-        private AlteraPedidoController _alteraPedidoController = new AlteraPedidoController();
+        private PedidoProduto _produto;
+        private ColaboradorModel _colaborador;        
 
         private int _quantidadePreviamenteVendida = 0;
 
@@ -32,6 +30,9 @@ namespace AugustosFashion.Views.Pedidos
             _cadastroPedidoController = cadastroPedidoController;
             _buscaClienteController = new BuscaClienteController();
             _pedido = pedido;
+            _produto = new PedidoProduto();
+            _colaborador = new ColaboradorModel();
+            _alteraPedidoController = new AlteraPedidoController();
         }
 
         private void FrmCadastraPedido_Load(object sender, EventArgs e)
@@ -79,10 +80,9 @@ namespace AugustosFashion.Views.Pedidos
         }
 
         private void ExibirInformacoesDoCliente()
-        {
-            VerificarSeEhAniversarioCliente();
-
+        {           
             txtCliente.Text = _pedido.Cliente.NomeCompleto.Nome + ' ' + _pedido.Cliente.NomeCompleto.SobreNome;
+            VerificarSeEhAniversarioCliente();
         }
 
         private void VerificarSeEhAniversarioCliente()
@@ -90,7 +90,9 @@ namespace AugustosFashion.Views.Pedidos
             var mensagem = _pedido.Cliente.VerificarSeEhAniversarioDoCliente();
 
             if (!string.IsNullOrEmpty(mensagem))
+            {
                 MessageBox.Show(mensagem);
+            }
         }
 
         private void EsconderSelecaoDeClienteEColaborador()
@@ -253,7 +255,7 @@ namespace AugustosFashion.Views.Pedidos
                 if (string.IsNullOrEmpty(mensagem))
                 {
                     MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Close();
+                    LimparPedido();
                 }
                 else
                     MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -273,7 +275,7 @@ namespace AugustosFashion.Views.Pedidos
                 if (string.IsNullOrEmpty(mensagemRetorno))
                 {
                     MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Close();
+                    LimparPedido();
                 }
                 else
                     MessageBox.Show(mensagemRetorno, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -282,6 +284,23 @@ namespace AugustosFashion.Views.Pedidos
             {
                 MessageBox.Show("Falha ao atualizar pedido. Erro: " + ex.Message);
             }
+        }
+
+        private void LimparPedido()
+        {
+            _pedido = new PedidoModel();
+            _colaborador = new ColaboradorModel();
+            _produto = new PedidoProduto();
+
+            AtualizarCarrinho();
+
+            LimparCamposDeProduto();
+
+            txtCliente.Text = string.Empty;
+            txtColaborador.Text = string.Empty;
+            cbFormaPagamento.SelectedItem = null;
+
+            AtualizarTotaisDoPedido();
         }
 
         private bool VerificarSeNaoHaCamposInvalidos()

@@ -44,7 +44,7 @@ namespace AugustosFashion.Views.Logins
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(297, 73);
+            this.label1.Location = new System.Drawing.Point(101, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(332, 30);
             this.label1.TabIndex = 0;
@@ -55,7 +55,7 @@ namespace AugustosFashion.Views.Logins
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(343, 154);
+            this.label2.Location = new System.Drawing.Point(148, 173);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(243, 23);
             this.label2.TabIndex = 1;
@@ -64,18 +64,19 @@ namespace AugustosFashion.Views.Logins
             // txtNomeUsuario
             // 
             this.txtNomeUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtNomeUsuario.Location = new System.Drawing.Point(218, 300);
+            this.txtNomeUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNomeUsuario.Location = new System.Drawing.Point(115, 284);
             this.txtNomeUsuario.Name = "txtNomeUsuario";
-            this.txtNomeUsuario.Size = new System.Drawing.Size(471, 23);
+            this.txtNomeUsuario.Size = new System.Drawing.Size(307, 23);
             this.txtNomeUsuario.TabIndex = 2;
             // 
             // txtSenha
             // 
             this.txtSenha.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSenha.Location = new System.Drawing.Point(218, 385);
+            this.txtSenha.Location = new System.Drawing.Point(115, 369);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(471, 23);
+            this.txtSenha.Size = new System.Drawing.Size(307, 23);
             this.txtSenha.TabIndex = 3;
             // 
             // label3
@@ -83,7 +84,7 @@ namespace AugustosFashion.Views.Logins
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(402, 277);
+            this.label3.Location = new System.Drawing.Point(115, 261);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 20);
             this.label3.TabIndex = 4;
@@ -94,7 +95,7 @@ namespace AugustosFashion.Views.Logins
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(431, 362);
+            this.label4.Location = new System.Drawing.Point(115, 346);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 5;
@@ -107,9 +108,9 @@ namespace AugustosFashion.Views.Logins
             this.btnLogar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnLogar.ForeColor = System.Drawing.Color.White;
-            this.btnLogar.Location = new System.Drawing.Point(402, 445);
+            this.btnLogar.Location = new System.Drawing.Point(207, 445);
             this.btnLogar.Name = "btnLogar";
-            this.btnLogar.Size = new System.Drawing.Size(111, 36);
+            this.btnLogar.Size = new System.Drawing.Size(111, 32);
             this.btnLogar.TabIndex = 6;
             this.btnLogar.Text = "Entrar";
             this.btnLogar.UseVisualStyleBackColor = false;
@@ -117,13 +118,15 @@ namespace AugustosFashion.Views.Logins
             // 
             // lblRegistrar
             // 
+            this.lblRegistrar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblRegistrar.AutoSize = true;
             this.lblRegistrar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.lblRegistrar.Location = new System.Drawing.Point(402, 496);
+            this.lblRegistrar.Location = new System.Drawing.Point(203, 491);
             this.lblRegistrar.Name = "lblRegistrar";
             this.lblRegistrar.Size = new System.Drawing.Size(120, 15);
             this.lblRegistrar.TabIndex = 7;
             this.lblRegistrar.Text = "Registrar colaborador";
+            this.lblRegistrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblRegistrar.Click += new System.EventHandler(this.lblRegistrar_Click);
             // 
             // FrmLogin
@@ -131,7 +134,7 @@ namespace AugustosFashion.Views.Logins
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(910, 642);
+            this.ClientSize = new System.Drawing.Size(520, 642);
             this.Controls.Add(this.lblRegistrar);
             this.Controls.Add(this.btnLogar);
             this.Controls.Add(this.label4);
@@ -140,6 +143,7 @@ namespace AugustosFashion.Views.Logins
             this.Controls.Add(this.txtNomeUsuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logar";

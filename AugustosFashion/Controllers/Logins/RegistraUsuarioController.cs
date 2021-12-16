@@ -17,8 +17,8 @@ namespace AugustosFashion.Controllers.Logins
             _frmRegistrar.ShowDialog();
         }
 
-        public bool VerificarSeIdColaboradorEhValido(int idColaborador) =>
-            UsuarioSistemaRepositorio.VerificarIdColaborador(idColaborador);
+        public bool VerificarSeLoginJaExiste(string login) =>
+            UsuarioSistemaRepositorio.VerificarIdColaborador(login);
 
         public void RegistrarUsuario(UsuarioSistemaModel usuarioSistemaModel)
         {           

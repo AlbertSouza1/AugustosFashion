@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaCliente));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnFechar = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
             this.groupFiltros = new System.Windows.Forms.GroupBox();
             this.panelListaClientes = new System.Windows.Forms.Panel();
@@ -69,33 +68,17 @@
             this.lblProgressoExport = new System.Windows.Forms.Label();
             this.btnExportar = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnFechar = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnFechar
-            // 
-            this.btnFechar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnFechar.BackColor = System.Drawing.Color.Transparent;
-            this.btnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFechar.BackgroundImage")));
-            this.btnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnFechar.ForeColor = System.Drawing.Color.White;
-            this.btnFechar.Location = new System.Drawing.Point(31, 67);
-            this.btnFechar.Name = "btnFechar";
-            this.btnFechar.Size = new System.Drawing.Size(43, 36);
-            this.btnFechar.TabIndex = 108;
-            this.btnFechar.UseVisualStyleBackColor = false;
-            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(315, 73);
+            this.label6.Location = new System.Drawing.Point(315, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(331, 30);
             this.label6.TabIndex = 107;
@@ -292,7 +275,7 @@
             this.txtQuantidadeResultados.Name = "txtQuantidadeResultados";
             this.txtQuantidadeResultados.Size = new System.Drawing.Size(200, 23);
             this.txtQuantidadeResultados.TabIndex = 4;
-            this.txtQuantidadeResultados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantidadeResultados_KeyPress);
+            this.txtQuantidadeResultados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQuantidadeResultados_KeyPress);
             // 
             // dtpFinal
             // 
@@ -375,27 +358,27 @@
             // 
             // dgvRelatorioClientes
             // 
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvRelatorioClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvRelatorioClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRelatorioClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvRelatorioClientes.BackgroundColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRelatorioClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            this.dgvRelatorioClientes.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRelatorioClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRelatorioClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRelatorioClientes.Location = new System.Drawing.Point(31, 171);
+            this.dgvRelatorioClientes.Location = new System.Drawing.Point(54, 171);
             this.dgvRelatorioClientes.Name = "dgvRelatorioClientes";
             this.dgvRelatorioClientes.ReadOnly = true;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            this.dgvRelatorioClientes.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            this.dgvRelatorioClientes.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRelatorioClientes.RowTemplate.Height = 25;
             this.dgvRelatorioClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRelatorioClientes.Size = new System.Drawing.Size(921, 368);
+            this.dgvRelatorioClientes.Size = new System.Drawing.Size(887, 395);
             this.dgvRelatorioClientes.TabIndex = 111;
             // 
             // BtnMostrarFiltros
@@ -404,7 +387,7 @@
             this.BtnMostrarFiltros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnMostrarFiltros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnMostrarFiltros.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnMostrarFiltros.Location = new System.Drawing.Point(911, 141);
+            this.BtnMostrarFiltros.Location = new System.Drawing.Point(903, 141);
             this.BtnMostrarFiltros.Name = "BtnMostrarFiltros";
             this.BtnMostrarFiltros.Size = new System.Drawing.Size(39, 27);
             this.BtnMostrarFiltros.TabIndex = 112;
@@ -414,89 +397,90 @@
             // lblTotalLiquido
             // 
             this.lblTotalLiquido.AutoSize = true;
-            this.lblTotalLiquido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalLiquido.Location = new System.Drawing.Point(805, 615);
+            this.lblTotalLiquido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalLiquido.Location = new System.Drawing.Point(714, 606);
             this.lblTotalLiquido.Name = "lblTotalLiquido";
-            this.lblTotalLiquido.Size = new System.Drawing.Size(27, 20);
+            this.lblTotalLiquido.Size = new System.Drawing.Size(26, 20);
             this.lblTotalLiquido.TabIndex = 117;
             this.lblTotalLiquido.Text = "RS";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(705, 615);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(653, 606);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 20);
+            this.label7.Size = new System.Drawing.Size(62, 20);
             this.label7.TabIndex = 118;
-            this.label7.Text = "Total Líquido:";
+            this.label7.Text = "Líquido:";
             // 
             // lblTotalDesconto
             // 
             this.lblTotalDesconto.AutoSize = true;
-            this.lblTotalDesconto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalDesconto.Location = new System.Drawing.Point(583, 615);
+            this.lblTotalDesconto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalDesconto.Location = new System.Drawing.Point(557, 606);
             this.lblTotalDesconto.Name = "lblTotalDesconto";
-            this.lblTotalDesconto.Size = new System.Drawing.Size(27, 20);
+            this.lblTotalDesconto.Size = new System.Drawing.Size(26, 20);
             this.lblTotalDesconto.TabIndex = 119;
             this.lblTotalDesconto.Text = "RS";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(472, 615);
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(482, 606);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 20);
+            this.label8.Size = new System.Drawing.Size(75, 20);
             this.label8.TabIndex = 120;
-            this.label8.Text = "Total Desconto:";
+            this.label8.Text = "Desconto:";
             // 
             // lblTotalBruto
             // 
             this.lblTotalBruto.AutoSize = true;
-            this.lblTotalBruto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalBruto.Location = new System.Drawing.Point(357, 615);
+            this.lblTotalBruto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalBruto.Location = new System.Drawing.Point(364, 606);
             this.lblTotalBruto.Name = "lblTotalBruto";
-            this.lblTotalBruto.Size = new System.Drawing.Size(27, 20);
+            this.lblTotalBruto.Size = new System.Drawing.Size(26, 20);
             this.lblTotalBruto.TabIndex = 121;
             this.lblTotalBruto.Text = "RS";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(269, 615);
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(316, 606);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(92, 20);
+            this.label10.Size = new System.Drawing.Size(48, 20);
             this.label10.TabIndex = 122;
-            this.label10.Text = "Total Bruto:";
+            this.label10.Text = "Bruto:";
             // 
             // lblTotalCompras
             // 
             this.lblTotalCompras.AutoSize = true;
-            this.lblTotalCompras.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalCompras.Location = new System.Drawing.Point(166, 615);
+            this.lblTotalCompras.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalCompras.Location = new System.Drawing.Point(204, 606);
             this.lblTotalCompras.Name = "lblTotalCompras";
-            this.lblTotalCompras.Size = new System.Drawing.Size(27, 20);
+            this.lblTotalCompras.Size = new System.Drawing.Size(26, 20);
             this.lblTotalCompras.TabIndex = 124;
             this.lblTotalCompras.Text = "RS";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(30, 615);
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(136, 606);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(139, 20);
+            this.label9.Size = new System.Drawing.Size(71, 20);
             this.label9.TabIndex = 123;
-            this.label9.Text = "Total  de Compras:";
+            this.label9.Text = "Compras:";
             // 
             // lblProgressoExport
             // 
             this.lblProgressoExport.AutoSize = true;
-            this.lblProgressoExport.Location = new System.Drawing.Point(152, 678);
+            this.lblProgressoExport.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblProgressoExport.Location = new System.Drawing.Point(176, 693);
             this.lblProgressoExport.Name = "lblProgressoExport";
-            this.lblProgressoExport.Size = new System.Drawing.Size(215, 15);
+            this.lblProgressoExport.Size = new System.Drawing.Size(254, 17);
             this.lblProgressoExport.TabIndex = 126;
             this.lblProgressoExport.Text = "Exportando dados, por favor, aguarde...\r\n";
             this.lblProgressoExport.Visible = false;
@@ -508,19 +492,48 @@
             this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnExportar.ForeColor = System.Drawing.Color.White;
-            this.btnExportar.Location = new System.Drawing.Point(30, 674);
+            this.btnExportar.Location = new System.Drawing.Point(54, 691);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(116, 23);
             this.btnExportar.TabIndex = 125;
             this.btnExportar.Text = "&Exportar Relatório";
             this.btnExportar.UseVisualStyleBackColor = false;
-            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            this.btnExportar.Click += new System.EventHandler(this.BtnExportar_Click);
             // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
+            // 
+            // btnFechar
+            // 
+            this.btnFechar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFechar.BackColor = System.Drawing.Color.Transparent;
+            this.btnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFechar.BackgroundImage")));
+            this.btnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFechar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnFechar.ForeColor = System.Drawing.Color.White;
+            this.btnFechar.Location = new System.Drawing.Point(41, 67);
+            this.btnFechar.Name = "btnFechar";
+            this.btnFechar.Size = new System.Drawing.Size(43, 36);
+            this.btnFechar.TabIndex = 127;
+            this.btnFechar.UseVisualStyleBackColor = false;
+            this.btnFechar.Click += new System.EventHandler(this.BtnFechar_Click_1);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label14.Location = new System.Drawing.Point(54, 606);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(59, 21);
+            this.label14.TabIndex = 128;
+            this.label14.Text = "Totais:";
             // 
             // FrmRelatorioVendaCliente
             // 
@@ -528,9 +541,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(983, 740);
+            this.Controls.Add(this.groupFiltros);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.lblProgressoExport);
             this.Controls.Add(this.btnExportar);
-            this.Controls.Add(this.groupFiltros);
             this.Controls.Add(this.lblTotalCompras);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblTotalLiquido);
@@ -541,7 +556,6 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dgvRelatorioClientes);
             this.Controls.Add(this.BtnMostrarFiltros);
-            this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.label6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmRelatorioVendaCliente";
@@ -557,8 +571,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnFechar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupFiltros;
         private System.Windows.Forms.Button BtnFecharFiltro;
@@ -595,5 +607,7 @@
         private System.Windows.Forms.Label lblProgressoExport;
         private System.Windows.Forms.Button btnExportar;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnFechar;
+        private System.Windows.Forms.Label label14;
     }
 }

@@ -12,9 +12,9 @@ namespace AugustosFashion.Repositorios
 {
     public static class UsuarioSistemaRepositorio
     {
-        public static bool VerificarIdColaborador(int idColaborador)
+        public static bool VerificarIdColaborador(string login)
         {
-            var strSqlBusca = @"select count(*) from Colaboradores where IdColaborador = @idColaborador";
+            var strSqlBusca = @"select count(*) from Usuarios_Sistema where NomeUsuario = @login";
 
             try
             {
@@ -22,7 +22,7 @@ namespace AugustosFashion.Repositorios
                 {
                     sqlCon.Open();
 
-                    return sqlCon.Query<bool>(strSqlBusca, new { idColaborador }).FirstOrDefault();
+                    return sqlCon.Query<bool>(strSqlBusca, new { login }).FirstOrDefault();
                 }
             }
             catch (Exception ex)

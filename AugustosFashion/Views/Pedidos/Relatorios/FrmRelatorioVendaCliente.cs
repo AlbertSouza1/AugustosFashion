@@ -143,7 +143,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         private void OcultarAbaDeFiltros() => groupFiltros.Left = 1000;
         private void MostrarAbaDeFiltros() => groupFiltros.Left = 741;
 
-        private void txtQuantidadeResultados_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtQuantidadeResultados_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
                 e.Handled = true;
@@ -160,7 +160,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             }
         }
 
-        private void btnExportar_Click(object sender, EventArgs e)
+        private void BtnExportar_Click(object sender, EventArgs e)
         {
             if (backgroundWorker1.IsBusy)
                 return;
@@ -183,7 +183,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             }
         }
 
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void BackgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;
 
@@ -191,7 +191,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 MessageBox.Show("Não foi possível exportar o relatório.");
         }
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             if (e.Error == null)
             {
@@ -199,6 +199,11 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 lblProgressoExport.Visible = false;
                 MessageBox.Show("Exportação concluída com sucesso.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void BtnFechar_Click_1(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
