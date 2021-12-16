@@ -103,6 +103,8 @@
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvClientes);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmBuscaClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmBuscaClientes";

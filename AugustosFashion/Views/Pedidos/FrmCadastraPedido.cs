@@ -1,4 +1,5 @@
 ﻿using AugustosFashion.Controllers.Cliente;
+using AugustosFashion.Controllers.Colaborador;
 using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
@@ -152,18 +153,20 @@ namespace AugustosFashion.Views.Pedidos
             ExibirInformacoesDoCliente();
         }
 
-        public void CarregarDadosDeColaboradorSelecionado(ColaboradorListagem colaborador)
+        private void BtnBuscarColaborador_Click(object sender, EventArgs e)
+        {
+            var buscaColaboradorController = new BuscaColaboradorController();
+            buscaColaboradorController.AbrirFormBuscaColaborador();
+            buscaColaboradorController.RetornarFrmBuscaColaborador().SelectedColaborador += FrmCadastraPedido_SelectedColaborador;            
+        }
+
+        private void FrmCadastraPedido_SelectedColaborador(ColaboradorListagem colaborador)
         {
             _colaborador.NomeCompleto.Nome = colaborador.NomeCompleto.Nome;
             _colaborador.IdColaborador = colaborador.IdColaborador;
 
             txtColaborador.Text = _colaborador.NomeCompleto.Nome;
             _pedido.IdColaborador = _colaborador.IdColaborador;
-        }
-
-        private void BtnBuscarColaborador_Click(object sender, EventArgs e)
-        {
-            _cadastroPedidoController.AbrirFormBuscaColaborador(txtBuscarColaborador.Text);
         }
 
         private void BtnAdicionarAoCarrinho_Click(object sender, EventArgs e)

@@ -26,16 +26,5 @@ namespace AugustosFashion.Controllers.Logins
 
             UsuarioSistemaRepositorio.RegistrarUsuario(usuarioSistemaModel);
         }
-
-        public void RecuperarColaboradorSelecionado(ColaboradorListagem colaborador)
-        {
-            _frmRegistrar.ObterColaboradorSelecionado(colaborador);
-        }
-
-        public void AbrirFormBuscaColaborador()
-        {
-            var frmBuscaColaborador = new FrmBuscaColaborador(this, string.Empty);
-            frmBuscaColaborador.ShowDialog();
-        }
     }
 }

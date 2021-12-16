@@ -1,36 +1,19 @@
 ﻿using AugustosFashion.Controllers.Colaborador;
-using AugustosFashion.Controllers.Logins;
-using AugustosFashion.Controllers.Pedidos;
 using AugustosFashion.Entidades.Colaborador;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos
 {
     public partial class FrmBuscaColaborador : Form
     {
-        private readonly CadastroPedidoController _cadastroPedidoController;
-        private readonly RegistraUsuarioController _registraUsuarioController;
+        public delegate void SelectedHandler(ColaboradorListagem colaborador);
+        public event SelectedHandler SelectedColaborador;
 
-        public FrmBuscaColaborador(CadastroPedidoController cadastroPedidoController, string busca)
+        public FrmBuscaColaborador()
         {
             InitializeComponent();
-            _cadastroPedidoController = cadastroPedidoController;
-            txtBuscar.Text = busca;
-        }
-
-        public FrmBuscaColaborador(RegistraUsuarioController registraUsuarioController, string busca)
-        {
-            InitializeComponent();
-            _registraUsuarioController = registraUsuarioController;
-            txtBuscar.Text = busca;
         }
 
         private void FrmBuscaColaborador_Load(object sender, EventArgs e)
@@ -38,7 +21,7 @@ namespace AugustosFashion.Views.Pedidos
             try
             {
                 var colaboradores = BuscarColaboradores(true);
-                ListarProdutosBuscados(colaboradores);
+                ListarColaboradoresBuscados(colaboradores);
 
             }
             catch (Exception ex)
@@ -59,7 +42,7 @@ namespace AugustosFashion.Views.Pedidos
             }
         }
 
-        private void ListarProdutosBuscados(List<ColaboradorListagem> colaboradores)
+        private void ListarColaboradoresBuscados(List<ColaboradorListagem> colaboradores)
         {
             dgvColaboradores.DataSource = colaboradores;
         }
@@ -72,30 +55,20 @@ namespace AugustosFashion.Views.Pedidos
             colaborador.NomeCompleto.Nome = dgvColaboradores.SelectedRows[0].Cells[1].Value.ToString();
 
             return colaborador;
-
         }
 
         private void btnSelecionarColaborador_Click(object sender, EventArgs e)
         {
             if (!VerificarSeHaColaboradorSelecionado())
             {
-                MessageBox.Show("Selecione um produto na lista antes de confirmar.");
+                MessageBox.Show("Selecione um colaborador na lista antes de confirmar.");
                 return;
             }
 
             var colaborador = InstanciarColaboradorSelecionado();
 
-            if(_cadastroPedidoController != null)
-            {
-                _cadastroPedidoController.RecuperarColaboradorSelecionado(colaborador);
-                return;
-            }
-            if(_registraUsuarioController != null)
-            {
-                _registraUsuarioController.RecuperarColaboradorSelecionado(colaborador);
-            }
-            
-            Close();
+            SelectedColaborador?.Invoke(colaborador);
+            Close();                            
         }
         private bool VerificarSeHaColaboradorSelecionado() =>
           dgvColaboradores.SelectedRows.Count > 0;
@@ -103,7 +76,7 @@ namespace AugustosFashion.Views.Pedidos
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             var colaboradores = BuscarColaboradores(true);
-            ListarProdutosBuscados(colaboradores);
+            ListarColaboradoresBuscados(colaboradores);
         }
     }
 }

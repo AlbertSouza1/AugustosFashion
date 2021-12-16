@@ -1,16 +1,8 @@
-﻿using AugustosFashion.Controllers.Cliente;
+﻿using AugustosFashion.Controllers.Colaborador;
 using AugustosFashion.Controllers.Logins;
-using AugustosFashion.Entidades.Cliente;
 using AugustosFashion.Entidades.Colaborador;
 using AugustosFashionModels.Entidades.UsuariosSistema;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Logins
@@ -27,7 +19,7 @@ namespace AugustosFashion.Views.Logins
             _colaborador = new ColaboradorListagem();
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
+        private void BtnRegistrar_Click(object sender, EventArgs e)
         {
             if (!ValidarCampos())
                 return;
@@ -48,13 +40,6 @@ namespace AugustosFashion.Views.Logins
             {
                 MessageBox.Show("Não foi possível registrar o usuário no sistema. Erro: " + ex.Message);
             }
-        }
-
-        public void ObterColaboradorSelecionado(ColaboradorListagem colaborador)
-        {
-            _colaborador = colaborador;
-
-            txtIdColaborador.Text = $"{colaborador.NomeCompleto.Nome} {colaborador.NomeCompleto.SobreNome}";
         }
 
         private bool ValidarCampos()
@@ -85,9 +70,18 @@ namespace AugustosFashion.Views.Logins
                 );       
         }
 
-        private void btnSelecionarColaborador_Click(object sender, EventArgs e)
+        private void BtnSelecionarColaborador_Click(object sender, EventArgs e)
         {
-            _registraUsuarioController.AbrirFormBuscaColaborador();
+            var buscaColaboradorController = new BuscaColaboradorController();
+            buscaColaboradorController.AbrirFormBuscaColaboradorSemMdi();
+            buscaColaboradorController.RetornarFrmBuscaColaborador().SelectedColaborador += FrmRegistrar_SelectedColaborador;
+        }
+
+        private void FrmRegistrar_SelectedColaborador(ColaboradorListagem colaborador)
+        {
+            _colaborador = colaborador;
+
+            txtIdColaborador.Text = $"{_colaborador.NomeCompleto.Nome} {_colaborador.NomeCompleto.SobreNome}";
         }
     }
 }

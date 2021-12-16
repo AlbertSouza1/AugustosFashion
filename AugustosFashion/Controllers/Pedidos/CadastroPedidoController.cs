@@ -64,18 +64,6 @@ namespace AugustosFashion.Controllers.Pedidos
             _frmCadastroPedido.CarregarDadosDeProdutoSelecionado(produto);
         }
 
-        public void AbrirFormBuscaColaborador(string busca)
-        {
-            var frmBuscaColaborador = new FrmBuscaColaborador(this, busca);
-            frmBuscaColaborador.MdiParent = MDIParentSingleton.InstanciarFrmMdiParent();
-            frmBuscaColaborador.Show();
-            frmBuscaColaborador.BringToFront();
-        }
-        public void RecuperarColaboradorSelecionado(ColaboradorListagem colaborador)
-        {
-            _frmCadastroPedido.CarregarDadosDeColaboradorSelecionado(colaborador);
-        }
-
         public void EnviarEmailNovoPedido(PedidoModel pedido)
         {
             new ServicoEmailController().PrepararEmailNovoPedido(pedido.Cliente, pedido);

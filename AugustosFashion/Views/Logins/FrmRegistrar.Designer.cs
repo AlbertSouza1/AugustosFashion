@@ -54,7 +54,7 @@
             this.btnRegistrar.TabIndex = 13;
             this.btnRegistrar.Text = "Criar conta";
             this.btnRegistrar.UseVisualStyleBackColor = false;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.btnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click);
             // 
             // label4
             // 
@@ -148,7 +148,7 @@
             this.btnSelecionarColaborador.Size = new System.Drawing.Size(24, 24);
             this.btnSelecionarColaborador.TabIndex = 15;
             this.btnSelecionarColaborador.UseVisualStyleBackColor = true;
-            this.btnSelecionarColaborador.Click += new System.EventHandler(this.btnSelecionarColaborador_Click);
+            this.btnSelecionarColaborador.Click += new System.EventHandler(this.BtnSelecionarColaborador_Click);
             // 
             // FrmRegistrar
             // 

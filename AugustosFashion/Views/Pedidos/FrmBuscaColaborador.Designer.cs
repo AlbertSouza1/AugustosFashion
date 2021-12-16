@@ -102,6 +102,8 @@
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvColaboradores);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmBuscaColaborador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmBuscaColaborador";
