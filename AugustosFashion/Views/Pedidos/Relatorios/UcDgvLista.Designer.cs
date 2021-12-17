@@ -58,6 +58,7 @@
             this.dgvLista.Size = new System.Drawing.Size(203, 196);
             this.dgvLista.TabIndex = 0;
             this.dgvLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_CellContentClick);
+            this.dgvLista.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvLista_CellMouseClick);
             // 
             // UcDgvLista
             // 

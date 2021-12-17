@@ -2,13 +2,14 @@
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace AugustosFashion.Views.Pedidos.Relatorios
 {
     public partial class UcDgvLista : UserControl
     {
-        private List<ListaGenericaModel> _lista;
+        private BindingList<ListaGenericaModel> _lista { get; set; } = new BindingList<ListaGenericaModel>();
 
         public delegate void SelectedGridHandler(int id);
 
@@ -19,20 +20,24 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             InitializeComponent();
         }
 
-        public void AtualizarLista(List<ListaGenericaModel> lista)
-        {
-            _lista = lista;
+        public void AtualizarLista(BindingList<ListaGenericaModel> lista)
+        {           
+             _lista = lista;
 
             dgvLista.DataSource = null;
             dgvLista.DataSource = _lista;
         }
 
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {         
+            if(e.ColumnIndex == -1)
+            {
+                return;
+            }
             try
             {
                 if (e.RowIndex == -1)
-                {
+                {                  
                     return;
                 }
 
@@ -43,6 +48,12 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void dgvLista_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1)
+                return;
         }
     }
 }

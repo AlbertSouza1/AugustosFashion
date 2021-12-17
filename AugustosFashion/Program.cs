@@ -28,8 +28,7 @@ namespace AugustosFashion
                 {
                     MessageBox.Show("Ocorreu um erro durante a execução do programa."+ex.Message);
                 }
-            }
-                
+            }               
         }
     }
 }
