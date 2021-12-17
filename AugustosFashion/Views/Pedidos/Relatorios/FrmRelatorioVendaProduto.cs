@@ -59,7 +59,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             try
             {
                 _relatorio.Relatorio = _relatorioVendaProdutoController.ConsultarRelatorio(_filtroRelatorio);
-                
+
                 dgvRelatorioProdutos.DataSource = _relatorio.Relatorio;
 
                 ExibirTotais();
@@ -159,7 +159,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
             _ucDgvListaControllerClientes.AtualizarGrid(_filtroRelatorio.Clientes);
 
-            LimparDadosDeFiltroCliente();            
+            LimparDadosDeFiltroCliente();
         }
 
         private void LimparDadosDeFiltroCliente()
@@ -174,7 +174,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 panelListaClientes.Visible = false;
             else
             {
-                 _ucDgvListaControllerClientes.AbrirControl(panelListaClientes);
+                _ucDgvListaControllerClientes.AbrirControl(panelListaClientes);
                 _ucDgvListaControllerClientes.AtualizarGrid(_filtroRelatorio.Clientes);
             }
         }
@@ -206,13 +206,13 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 {
                     var parametros = new ParametroDeDados();
                     parametros.NomeArquivo = sfd.FileName;
-                   
+
                     backgroundWorker1.RunWorkerAsync(parametros);
                     lblProgressoExport.Visible = true;
                 }
             }
         }
-      
+
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;
@@ -220,9 +220,16 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             {
                 if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, fileName, "RELATORIO DE PRODUTOS"))
                     MessageBox.Show("Não foi possível exportar o relatório.");
-            }catch (Exception ex)
+            }
+            catch (ArgumentException)
             {
-                MessageBox.Show("Falha ao exportar relatório. Erro: " + ex.Message);
+                MessageBox.Show("Falha ao exportar relatório. Extensão não suportada. "
+                    + Environment.NewLine + "Os formatos suportados são: '.xlsx', '.xlsm', '.xltx' and '.xltm' ");
+                e.Cancel = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Não foi possível exportar o relatório.");
                 e.Cancel = true;
             }
         }
@@ -232,9 +239,9 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             if (e.Error == null && !e.Cancelled)
             {
                 Thread.Sleep(100);
-                lblProgressoExport.Visible = false;
                 MessageBox.Show("Exportação concluída.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            lblProgressoExport.Visible = false;
         }
 
         private void BtnLimpar_Click(object sender, EventArgs e)
@@ -247,7 +254,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
             _ucDgvListaControllerProdutos.AtualizarGrid(_filtroRelatorio.Produtos);
             _ucDgvListaControllerClientes.AtualizarGrid(_filtroRelatorio.Clientes);
-            
+
             LimparDadosDeFiltroProduto();
             LimparDadosDeFiltroCliente();
         }

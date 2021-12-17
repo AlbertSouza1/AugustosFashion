@@ -192,10 +192,16 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, fileName, "RELATORIO DE PRODUTOS"))
                     MessageBox.Show("Não foi possível exportar o relatório.");
             }
-            catch (Exception ex)
+            catch (ArgumentException)
             {
-                MessageBox.Show("Falha ao exportar relatório. Erro: " + ex.Message);
-                e.Cancel = true ;
+                MessageBox.Show("Falha ao exportar relatório. Extensão não suportada. "
+                    + Environment.NewLine + "Os formatos suportados são: '.xlsx', '.xlsm', '.xltx' and '.xltm' ");
+                e.Cancel = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Não foi possível exportar o relatório.");
+                e.Cancel = true;
             }
         }
 
@@ -203,10 +209,10 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             if (e.Error == null && !e.Cancelled)
             {
-                Thread.Sleep(100);
-                lblProgressoExport.Visible = false;
+                Thread.Sleep(100);              
                 MessageBox.Show("Exportação concluída.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            lblProgressoExport.Visible = false;
         }
 
         private void BtnFechar_Click_1(object sender, EventArgs e)

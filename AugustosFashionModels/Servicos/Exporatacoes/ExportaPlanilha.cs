@@ -10,8 +10,7 @@ namespace AugustosFashionModels.Entidades.Exporatacoes
     {
         public static bool Exportar<T>(List<T> lista, string nomeArquivo, string nomePlanilha) where T : class
         {
-            try
-            {
+           
                 bool exportado = false;
 
                 var dataTable = ListaParaDataTable(lista);
@@ -25,10 +24,7 @@ namespace AugustosFashionModels.Entidades.Exporatacoes
                 }
 
                 return exportado;
-            }catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            
         }
 
         public static DataTable ListaParaDataTable<T>(List<T> items) where T : class
