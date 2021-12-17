@@ -189,6 +189,11 @@ namespace AugustosFashion.Views.Pedidos
 
         private bool ValidarInformacoesDeProdutoParaAdicionarAoCarrinho()
         {
+            if(_produto.IdProduto == 0 || txtNome.Text == string.Empty)
+            {
+                return false;
+            }
+
             if (numQuantidade.Value < 1)
             {
                 MessageBox.Show("Quantidade deve ser maior que 0");
@@ -197,6 +202,11 @@ namespace AugustosFashion.Views.Pedidos
             if (numQuantidade.Value > 999_999)
             {
                 MessageBox.Show("O limite de items foi ultrapassado.");
+                return false;
+            }
+            if(decimal.Parse(txtDesconto.Text) < 0)
+            {
+                MessageBox.Show("Desconto não pode ser negativo.");
                 return false;
             }
 
@@ -260,7 +270,6 @@ namespace AugustosFashion.Views.Pedidos
                 if (string.IsNullOrEmpty(mensagem))
                 {
                     MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimparPedido();
                 }
                 else
                     MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -279,8 +288,7 @@ namespace AugustosFashion.Views.Pedidos
                 var mensagemRetorno = new AlteraPedidoController().AlterarPedido(_pedido);
                 if (string.IsNullOrEmpty(mensagemRetorno))
                 {
-                    MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimparPedido();
+                    MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);                   
                 }
                 else
                     MessageBox.Show(mensagemRetorno, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -454,11 +462,13 @@ namespace AugustosFashion.Views.Pedidos
             {
                 AlterarPedido();
                 EnviarEmailAlteracaoPedido();
+                LimparPedido();
             }
             else
             {
                 EfeutarPedido();
                 EnviarEmailNovoPedido();
+                LimparPedido();
             }
         }
 
@@ -472,7 +482,7 @@ namespace AugustosFashion.Views.Pedidos
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Não foi possível enviar o e-mail. Erro: "+ex.Message);
                 }
             }
         }
