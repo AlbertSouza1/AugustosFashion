@@ -23,7 +23,6 @@ namespace AugustosFashion.Views.Pedidos
         private ColaboradorModel _colaborador;        
 
         private int _quantidadePreviamenteVendida = 0;
-
         public FrmCadastraPedido(CadastroPedidoController cadastroPedidoController, PedidoModel pedido)
         {
             InitializeComponent();
@@ -261,7 +260,7 @@ namespace AugustosFashion.Views.Pedidos
             AtualizarCarrinho();
         }
 
-        private void EfeutarPedido()
+        private bool EfeutarPedido()
         {
             try
             {
@@ -270,32 +269,39 @@ namespace AugustosFashion.Views.Pedidos
                 if (string.IsNullOrEmpty(mensagem))
                 {
                     MessageBox.Show("Pedido efetuado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
                 }
                 else
+                {
                     MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-               
+                    return false;
+                }                                 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
+                throw new Exception(ex.Message);
             }
         }
 
-        private void AlterarPedido()
+        private bool AlterarPedido()
         {
             try
             {
                 var mensagemRetorno = new AlteraPedidoController().AlterarPedido(_pedido);
                 if (string.IsNullOrEmpty(mensagemRetorno))
                 {
-                    MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);                   
+                    MessageBox.Show("Pedido atualizado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
                 }
                 else
+                {
                     MessageBox.Show(mensagemRetorno, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }                    
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Falha ao atualizar pedido. Erro: " + ex.Message);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -460,15 +466,30 @@ namespace AugustosFashion.Views.Pedidos
 
             if (_pedido.IdPedido != 0)
             {
-                AlterarPedido();
-                EnviarEmailAlteracaoPedido();
-                LimparPedido();
+                try
+                {
+                    if (AlterarPedido())
+                    {
+                        EnviarEmailAlteracaoPedido();
+                        LimparPedido();
+                    }
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("Falha ao atualizar pedido. Erro: " + ex.Message);
+                }
             }
             else
             {
-                EfeutarPedido();
-                EnviarEmailNovoPedido();
-                LimparPedido();
+                try
+                {
+                    if (EfeutarPedido())
+                    {
+                        EnviarEmailNovoPedido();                        
+                    }                   
+                }catch (Exception ex)
+                {
+                    MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
+                }
             }
         }
 
@@ -478,7 +499,8 @@ namespace AugustosFashion.Views.Pedidos
             {
                 try
                 {
-                    _cadastroPedidoController.EnviarEmailNovoPedido(_pedido);
+                    panel1.Visible = true;
+                    bgWorkerEmail.RunWorkerAsync();                   
                 }
                 catch (Exception ex)
                 {
@@ -555,6 +577,17 @@ namespace AugustosFashion.Views.Pedidos
             CalcularTotalProduto();
             CalcularTotalDesconto();
             CalcularPrecoLiquido();
+        }
+
+        private void bgWorkerEmail_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {                     
+            _cadastroPedidoController.EnviarEmailNovoPedido(_pedido);       
+        }
+
+        private void bgWorkerEmail_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {           
+            panel1.Visible = false;
+            LimparPedido();
         }
     }
 }

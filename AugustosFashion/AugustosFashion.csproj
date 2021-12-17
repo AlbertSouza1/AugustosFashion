@@ -55,5 +55,9 @@
   <ItemGroup>
     <ProjectReference Include="..\AugustosFashionModels\AugustosFashionModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Helpers\" />
+  </ItemGroup>
 	
 </Project>
