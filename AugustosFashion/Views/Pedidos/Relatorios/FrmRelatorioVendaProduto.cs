@@ -7,6 +7,7 @@ using AugustosFashionModels.Entidades.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios;
 using AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -234,6 +235,21 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
                 lblProgressoExport.Visible = false;
                 MessageBox.Show("Exportação concluída.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void BtnLimpar_Click(object sender, EventArgs e)
+        {
+            SetarDataInicialParaPrimeiroDiaDoMes();
+            dtpFinal.Value = DateTime.Now;
+            cbOrdenacao.SelectedIndex = 0;
+
+            _filtroRelatorio.LimparFiltros(dtpInicial.Value, dtpFinal.Value);
+
+            _ucDgvListaControllerProdutos.AtualizarGrid(_filtroRelatorio.Produtos);
+            _ucDgvListaControllerClientes.AtualizarGrid(_filtroRelatorio.Clientes);
+            
+            LimparDadosDeFiltroProduto();
+            LimparDadosDeFiltroCliente();
         }
     }
 }

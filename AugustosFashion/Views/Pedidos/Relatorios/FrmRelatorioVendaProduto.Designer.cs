@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaProduto));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbFiltros = new System.Windows.Forms.GroupBox();
-            this.panelListaProdutos = new System.Windows.Forms.Panel();
+            this.BtnLimpar = new System.Windows.Forms.Button();
             this.cbOrdenacao = new System.Windows.Forms.ComboBox();
-            this.panelListaClientes = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.BtnMostrarClientes = new System.Windows.Forms.Button();
             this.BtnMostrarProdutos = new System.Windows.Forms.Button();
@@ -54,6 +53,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblProduto = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
+            this.panelListaProdutos = new System.Windows.Forms.Panel();
+            this.panelListaClientes = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvRelatorioProdutos = new System.Windows.Forms.DataGridView();
             this.btnFechar = new System.Windows.Forms.Button();
@@ -80,8 +81,9 @@
             // 
             this.gbFiltros.BackColor = System.Drawing.Color.LightSlateGray;
             this.gbFiltros.Controls.Add(this.panelListaProdutos);
-            this.gbFiltros.Controls.Add(this.cbOrdenacao);
+            this.gbFiltros.Controls.Add(this.BtnLimpar);
             this.gbFiltros.Controls.Add(this.panelListaClientes);
+            this.gbFiltros.Controls.Add(this.cbOrdenacao);
             this.gbFiltros.Controls.Add(this.label11);
             this.gbFiltros.Controls.Add(this.BtnMostrarClientes);
             this.gbFiltros.Controls.Add(this.BtnMostrarProdutos);
@@ -107,13 +109,20 @@
             this.gbFiltros.TabIndex = 0;
             this.gbFiltros.TabStop = false;
             // 
-            // panelListaProdutos
+            // BtnLimpar
             // 
-            this.panelListaProdutos.Location = new System.Drawing.Point(20, 311);
-            this.panelListaProdutos.Name = "panelListaProdutos";
-            this.panelListaProdutos.Size = new System.Drawing.Size(200, 198);
-            this.panelListaProdutos.TabIndex = 118;
-            this.panelListaProdutos.Visible = false;
+            this.BtnLimpar.BackColor = System.Drawing.Color.Transparent;
+            this.BtnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimpar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BtnLimpar.ForeColor = System.Drawing.Color.White;
+            this.BtnLimpar.Location = new System.Drawing.Point(20, 462);
+            this.BtnLimpar.Name = "BtnLimpar";
+            this.BtnLimpar.Size = new System.Drawing.Size(94, 29);
+            this.BtnLimpar.TabIndex = 121;
+            this.BtnLimpar.Text = "Limpar";
+            this.BtnLimpar.UseVisualStyleBackColor = false;
+            this.BtnLimpar.Click += new System.EventHandler(this.BtnLimpar_Click);
             // 
             // cbOrdenacao
             // 
@@ -132,14 +141,6 @@
             this.cbOrdenacao.Name = "cbOrdenacao";
             this.cbOrdenacao.Size = new System.Drawing.Size(200, 23);
             this.cbOrdenacao.TabIndex = 119;
-            // 
-            // panelListaClientes
-            // 
-            this.panelListaClientes.Location = new System.Drawing.Point(20, 371);
-            this.panelListaClientes.Name = "panelListaClientes";
-            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
-            this.panelListaClientes.TabIndex = 121;
-            this.panelListaClientes.Visible = false;
             // 
             // label11
             // 
@@ -228,7 +229,7 @@
             this.BtnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFiltrar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BtnFiltrar.ForeColor = System.Drawing.Color.White;
-            this.BtnFiltrar.Location = new System.Drawing.Point(72, 463);
+            this.BtnFiltrar.Location = new System.Drawing.Point(126, 462);
             this.BtnFiltrar.Name = "BtnFiltrar";
             this.BtnFiltrar.Size = new System.Drawing.Size(94, 29);
             this.BtnFiltrar.TabIndex = 40;
@@ -354,6 +355,22 @@
             this.lblCliente.Size = new System.Drawing.Size(200, 22);
             this.lblCliente.TabIndex = 119;
             // 
+            // panelListaProdutos
+            // 
+            this.panelListaProdutos.Location = new System.Drawing.Point(20, 311);
+            this.panelListaProdutos.Name = "panelListaProdutos";
+            this.panelListaProdutos.Size = new System.Drawing.Size(200, 198);
+            this.panelListaProdutos.TabIndex = 118;
+            this.panelListaProdutos.Visible = false;
+            // 
+            // panelListaClientes
+            // 
+            this.panelListaClientes.Location = new System.Drawing.Point(20, 371);
+            this.panelListaClientes.Name = "panelListaClientes";
+            this.panelListaClientes.Size = new System.Drawing.Size(200, 198);
+            this.panelListaClientes.TabIndex = 121;
+            this.panelListaClientes.Visible = false;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -366,24 +383,24 @@
             // 
             // dgvRelatorioProdutos
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvRelatorioProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvRelatorioProdutos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRelatorioProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRelatorioProdutos.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRelatorioProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRelatorioProdutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRelatorioProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelatorioProdutos.Location = new System.Drawing.Point(51, 172);
             this.dgvRelatorioProdutos.Name = "dgvRelatorioProdutos";
             this.dgvRelatorioProdutos.ReadOnly = true;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            this.dgvRelatorioProdutos.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            this.dgvRelatorioProdutos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRelatorioProdutos.RowTemplate.Height = 25;
             this.dgvRelatorioProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRelatorioProdutos.Size = new System.Drawing.Size(887, 395);
@@ -643,5 +660,6 @@
         private System.Windows.Forms.Label lblProgressoExport;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button BtnLimpar;
     }
 }

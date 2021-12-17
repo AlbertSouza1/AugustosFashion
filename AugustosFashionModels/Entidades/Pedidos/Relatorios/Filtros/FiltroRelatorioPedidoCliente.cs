@@ -59,5 +59,16 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros
             
             return true;
         }
+
+        public void LimparFiltros(DateTime inicial, DateTime final)
+        {
+            DataInicial = inicial;
+            DataFinal = final;
+            Ordenacao = 0;
+            Clientes = new List<ListaGenericaModel>();
+            TipoValorBase = 0;
+            ValorBase = 0;
+            QuantidadeResultados = 0;
+        }
     }
 }

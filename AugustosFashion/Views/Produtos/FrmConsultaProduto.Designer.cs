@@ -94,6 +94,7 @@
             // 
             this.numEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numEstoque.Enabled = false;
+            this.numEstoque.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.numEstoque.Location = new System.Drawing.Point(244, 356);
             this.numEstoque.Maximum = new decimal(new int[] {
             10000,

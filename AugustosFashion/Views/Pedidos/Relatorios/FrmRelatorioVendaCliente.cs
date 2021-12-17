@@ -213,5 +213,21 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
         {
             Close();
         }
+
+        private void BtnLimpar_Click(object sender, EventArgs e)
+        {
+            SetarDataInicialParaPrimeiroDiaDoMes();
+            dtpFinal.Value = DateTime.Now;
+            cbAcimaDe.SelectedIndex = 0;
+            txtValorAcima.Text = string.Empty;
+            txtQuantidadeResultados.Text = string.Empty;
+            cbOrdenacao.SelectedIndex = 0;
+
+            _filtroRelatorio.LimparFiltros(dtpInicial.Value, dtpFinal.Value);
+
+            _ucDgvListaController.AtualizarGrid(_filtroRelatorio.Clientes);
+
+            LimparDadosDeFiltroCliente();
+        }
     }
 }
