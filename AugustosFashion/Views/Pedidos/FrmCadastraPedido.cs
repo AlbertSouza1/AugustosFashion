@@ -20,7 +20,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private PedidoModel _pedido;
         private PedidoProduto _produto;
-        private ColaboradorModel _colaborador;        
+        private ColaboradorModel _colaborador;
 
         private int _quantidadePreviamenteVendida = 0;
         public FrmCadastraPedido(CadastroPedidoController cadastroPedidoController, PedidoModel pedido)
@@ -79,7 +79,7 @@ namespace AugustosFashion.Views.Pedidos
         }
 
         private void ExibirInformacoesDoCliente()
-        {           
+        {
             txtCliente.Text = _pedido.Cliente.NomeCompleto.Nome + ' ' + _pedido.Cliente.NomeCompleto.SobreNome;
             VerificarSeEhAniversarioCliente();
         }
@@ -158,7 +158,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             var buscaColaboradorController = new BuscaColaboradorController();
             buscaColaboradorController.AbrirFormBuscaColaborador();
-            buscaColaboradorController.RetornarFrmBuscaColaborador().SelectedColaborador += FrmCadastraPedido_SelectedColaborador;            
+            buscaColaboradorController.RetornarFrmBuscaColaborador().SelectedColaborador += FrmCadastraPedido_SelectedColaborador;
         }
 
         private void FrmCadastraPedido_SelectedColaborador(ColaboradorListagem colaborador)
@@ -188,7 +188,7 @@ namespace AugustosFashion.Views.Pedidos
 
         private bool ValidarInformacoesDeProdutoParaAdicionarAoCarrinho()
         {
-            if(_produto.IdProduto == 0 || txtNome.Text == string.Empty)
+            if (_produto.IdProduto == 0 || txtNome.Text == string.Empty)
             {
                 return false;
             }
@@ -203,7 +203,7 @@ namespace AugustosFashion.Views.Pedidos
                 MessageBox.Show("O limite de items foi ultrapassado.");
                 return false;
             }
-            if(decimal.Parse(txtDesconto.Text) < 0)
+            if (decimal.Parse(txtDesconto.Text) < 0)
             {
                 MessageBox.Show("Desconto não pode ser negativo.");
                 return false;
@@ -264,7 +264,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             try
             {
-                var mensagem =  _cadastroPedidoController.CadastrarPedido(_pedido);
+                var mensagem = _cadastroPedidoController.CadastrarPedido(_pedido);
 
                 if (string.IsNullOrEmpty(mensagem))
                 {
@@ -275,7 +275,7 @@ namespace AugustosFashion.Views.Pedidos
                 {
                     MessageBox.Show(mensagem, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
-                }                                 
+                }
             }
             catch (Exception ex)
             {
@@ -297,7 +297,7 @@ namespace AugustosFashion.Views.Pedidos
                 {
                     MessageBox.Show(mensagemRetorno, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
-                }                    
+                }
             }
             catch (Exception ex)
             {
@@ -456,7 +456,7 @@ namespace AugustosFashion.Views.Pedidos
         {
             _pedido.SetarInformacoes(cbFormaPagamento.SelectedIndex);
 
-            FinalizarPedido();           
+            FinalizarPedido();
         }
 
         private void FinalizarPedido()
@@ -470,10 +470,10 @@ namespace AugustosFashion.Views.Pedidos
                 {
                     if (AlterarPedido())
                     {
-                        EnviarEmailAlteracaoPedido();
-                        LimparPedido();
+                        EnviarEmailAlteracaoPedido();                       
                     }
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("Falha ao atualizar pedido. Erro: " + ex.Message);
                 }
@@ -484,9 +484,10 @@ namespace AugustosFashion.Views.Pedidos
                 {
                     if (EfeutarPedido())
                     {
-                        EnviarEmailNovoPedido();                        
-                    }                   
-                }catch (Exception ex)
+                        EnviarEmailNovoPedido();
+                    }
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("Falha ao efetuar pedido. Erro: " + ex.Message);
                 }
@@ -500,11 +501,11 @@ namespace AugustosFashion.Views.Pedidos
                 try
                 {
                     panel1.Visible = true;
-                    bgWorkerEmail.RunWorkerAsync();                   
+                    bgWorkerEmail.RunWorkerAsync(_cadastroPedidoController);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Não foi possível enviar o e-mail. Erro: "+ex.Message);
+                    MessageBox.Show("Não foi possível enviar o e-mail. Erro: " + ex.Message);
                 }
             }
         }
@@ -514,7 +515,8 @@ namespace AugustosFashion.Views.Pedidos
             {
                 try
                 {
-                    _cadastroPedidoController.EnviarEmailAlteracaoPedido(_pedido);
+                    panel1.Visible = true;
+                    bgWorkerEmail.RunWorkerAsync(_alteraPedidoController);
                 }
                 catch (Exception ex)
                 {
@@ -580,14 +582,24 @@ namespace AugustosFashion.Views.Pedidos
         }
 
         private void bgWorkerEmail_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {                     
-            _cadastroPedidoController.EnviarEmailNovoPedido(_pedido);       
+        {
+            if (e.Argument is CadastroPedidoController)
+            {
+                _cadastroPedidoController.EnviarEmailNovoPedido(_pedido);
+            }
+            else
+            {
+                _alteraPedidoController.EnviarEmailAlteracaoPedido(_pedido);
+            }
         }
 
         private void bgWorkerEmail_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {           
-            panel1.Visible = false;
-            LimparPedido();
+        {
+            if(e.Error == null)
+            {
+                panel1.Visible = false;
+                LimparPedido();
+            }            
         }
     }
 }

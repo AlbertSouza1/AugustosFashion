@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Repositorios;
+﻿using AugustosFashion.Controllers.ServicosEmail;
+using AugustosFashion.Repositorios;
 using AugustosFashionModels.Entidades.Pedidos;
 using System;
 
@@ -28,6 +29,11 @@ namespace AugustosFashion.Controllers.Pedidos
         internal int RecuperarQuantidadePreviamenteVendida(int idProduto, int idPedido)
         {
             return PedidoRepositorio.RecuperarQuantidadePreviamenteVendida(idProduto, idPedido);
+        }
+
+        internal void EnviarEmailAlteracaoPedido(PedidoModel pedido)
+        {
+            new ServicoEmailController().PrepararEmailAlteracaoPedido(pedido.Cliente, pedido);
         }
     }
 }

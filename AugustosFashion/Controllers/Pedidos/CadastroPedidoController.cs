@@ -67,10 +67,6 @@ namespace AugustosFashion.Controllers.Pedidos
         public void EnviarEmailNovoPedido(PedidoModel pedido)
         {
             new ServicoEmailController().PrepararEmailNovoPedido(pedido.Cliente, pedido);
-        }
-        public void EnviarEmailAlteracaoPedido(PedidoModel pedido)
-        {
-            new ServicoEmailController().PrepararEmailAlteracaoPedido(pedido.Cliente, pedido);
-        }
+        }        
     }
 }
