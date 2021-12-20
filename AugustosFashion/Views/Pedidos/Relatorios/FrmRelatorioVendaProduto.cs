@@ -76,6 +76,7 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
             lblTotalLiquido.Text = _relatorio.TotalLiquido.ToString();
             lblTotalDesconto.Text = _relatorio.TotalDesconto.ToString();
             lblLucroTotal.Text = _relatorio.TotalLucro.ToString();
+            lblTotalCusto.Text = _relatorio.TotalCusto.ToString();
             lblTotalProdutosVendidos.Text = _relatorio.TotalProdutosVendidos.ToString();
         }
 

@@ -39,7 +39,6 @@ namespace AugustosFashion.Views
             this.txtNomeBuscado = new System.Windows.Forms.TextBox();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnConsultarCliente = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,7 +50,7 @@ namespace AugustosFashion.Views
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(391, 73);
+            this.label1.Location = new System.Drawing.Point(370, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(238, 25);
             this.label1.TabIndex = 0;
@@ -124,19 +123,8 @@ namespace AugustosFashion.Views
             this.dgvClientes.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvClientes.RowTemplate.Height = 25;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(862, 325);
+            this.dgvClientes.Size = new System.Drawing.Size(862, 356);
             this.dgvClientes.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(262, 543);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(517, 18);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Selecione um cliente na tabela para interagir com as opções abaixo";
             // 
             // btnConsultarCliente
             // 
@@ -145,7 +133,7 @@ namespace AugustosFashion.Views
             this.btnConsultarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnConsultarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnConsultarCliente.ForeColor = System.Drawing.Color.White;
-            this.btnConsultarCliente.Location = new System.Drawing.Point(420, 594);
+            this.btnConsultarCliente.Location = new System.Drawing.Point(409, 586);
             this.btnConsultarCliente.Name = "btnConsultarCliente";
             this.btnConsultarCliente.Size = new System.Drawing.Size(165, 52);
             this.btnConsultarCliente.TabIndex = 8;
@@ -188,7 +176,6 @@ namespace AugustosFashion.Views
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConsultarCliente);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.btnBuscarCliente);
             this.Controls.Add(this.txtNomeBuscado);
@@ -210,7 +197,6 @@ namespace AugustosFashion.Views
         private System.Windows.Forms.TextBox txtNomeBuscado;
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.DataGridView dgvClientes;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConsultarCliente;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;

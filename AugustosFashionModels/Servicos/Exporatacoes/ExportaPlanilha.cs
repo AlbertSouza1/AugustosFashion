@@ -1,5 +1,4 @@
 ﻿using ClosedXML.Excel;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
@@ -10,21 +9,18 @@ namespace AugustosFashionModels.Entidades.Exporatacoes
     {
         public static bool Exportar<T>(List<T> lista, string nomeArquivo, string nomePlanilha) where T : class
         {
-           
-                bool exportado = false;
+            bool exportado = false;
 
-                var dataTable = ListaParaDataTable(lista);
+            var dataTable = ListaParaDataTable(lista);
 
-                using (IXLWorkbook workbook = new XLWorkbook())
-                {
-                    workbook.Worksheets.Add(dataTable, nomePlanilha);
+            using (IXLWorkbook workbook = new XLWorkbook())
+            {
+                workbook.Worksheets.Add(dataTable, nomePlanilha);
 
-                    workbook.SaveAs(nomeArquivo);
-                    exportado = true;
-                }
-
-                return exportado;
-            
+                workbook.SaveAs(nomeArquivo);
+                exportado = true;
+            }
+            return exportado;
         }
 
         public static DataTable ListaParaDataTable<T>(List<T> items) where T : class
@@ -37,16 +33,18 @@ namespace AugustosFashionModels.Entidades.Exporatacoes
             {
                 dataTable.Columns.Add(prop.Name);
             }
+
             foreach (T item in items)
             {
-                var values = new object[Props.Length];
+                var valores = new object[Props.Length];
                 for (int i = 0; i < Props.Length; i++)
                 {
-                    values[i] = Props[i].GetValue(item, null);
+                    valores[i] = Props[i].GetValue(item, null);
                 }
-                dataTable.Rows.Add(values);
+                dataTable.Rows.Add(valores);
             }
+
             return dataTable;
-        }       
+        }
     }
 }

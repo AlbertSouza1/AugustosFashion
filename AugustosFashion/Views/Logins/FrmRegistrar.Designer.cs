@@ -81,6 +81,7 @@
             // 
             this.txtSenha.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtSenha.Location = new System.Drawing.Point(115, 327);
+            this.txtSenha.MaxLength = 32;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(307, 23);

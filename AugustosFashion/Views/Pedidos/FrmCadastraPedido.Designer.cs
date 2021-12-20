@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastraPedido));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -254,8 +254,8 @@
             // 
             this.dgvCarrinho.AllowUserToResizeColumns = false;
             this.dgvCarrinho.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvCarrinho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvCarrinho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCarrinho.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvCarrinho.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCarrinho.BackgroundColor = System.Drawing.SystemColors.Control;
@@ -264,8 +264,8 @@
             this.dgvCarrinho.MultiSelect = false;
             this.dgvCarrinho.Name = "dgvCarrinho";
             this.dgvCarrinho.ReadOnly = true;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            this.dgvCarrinho.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            this.dgvCarrinho.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCarrinho.RowTemplate.Height = 25;
             this.dgvCarrinho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarrinho.Size = new System.Drawing.Size(861, 196);
@@ -607,16 +607,16 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(399, 265);
+            this.panel1.Location = new System.Drawing.Point(392, 291);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.Size = new System.Drawing.Size(247, 74);
             this.panel1.TabIndex = 53;
             this.panel1.Visible = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-1, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(9, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(56, 47);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -627,7 +627,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(55, 29);
+            this.label1.Location = new System.Drawing.Point(76, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 40);
             this.label1.TabIndex = 0;

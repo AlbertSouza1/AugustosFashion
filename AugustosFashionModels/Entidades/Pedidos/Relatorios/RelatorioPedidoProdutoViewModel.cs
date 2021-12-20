@@ -12,6 +12,7 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios
         }
 
         public List<RelatorioPedidoProduto> Relatorio { get; set; }
+        public Dinheiro TotalCusto { get => Relatorio.Sum(x => x.TotalCusto.RetornaValor); }
         public Dinheiro TotalBruto { get => Relatorio.Sum(x => x.TotalBruto.RetornaValor); }
         public Dinheiro TotalDesconto { get => Relatorio.Sum(x => x.TotalDesconto.RetornaValor); }
         public Dinheiro TotalLiquido { get => Relatorio.Sum(x => x.TotalLiquido.RetornaValor); }
