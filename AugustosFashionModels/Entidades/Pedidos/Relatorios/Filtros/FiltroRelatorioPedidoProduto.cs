@@ -21,6 +21,9 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros
 
         public void AdicionarCliente(ClienteModel cliente)
         {
+            if (VerificarSeClienteJaEstaInserido(cliente.IdCliente))
+                return;
+
             Clientes.Add(new ListaGenericaModel()
             {
                 Nome = $"{cliente.NomeCompleto.Nome} {cliente.NomeCompleto.SobreNome}",
@@ -28,13 +31,34 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros
             });
         }
 
+        public bool VerificarSeClienteJaEstaInserido(int idCliente)
+        {
+            var indice = Clientes.FindIndex(x => x.Id == idCliente);
+
+            if(indice == -1)
+                return false;
+            return true;
+        }
+
         public void AdicionarProduto(PedidoProduto produto)
         {
+            if (VerificarSeProdutoJaEstaInserido(produto.IdProduto))
+                return;
+
             Produtos.Add(new ListaGenericaModel()
             {
                 Nome = produto.Nome,
                 Id = produto.IdProduto
             });
+        }
+
+        public bool VerificarSeProdutoJaEstaInserido(int idProduto)
+        {
+            var indice = Produtos.FindIndex(x => x.Id == idProduto);
+
+            if (indice == -1)
+                return false;
+            return true;
         }
 
         public void RemoverProduto(int indexProdutoSelecionado)

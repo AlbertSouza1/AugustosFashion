@@ -508,6 +508,10 @@ namespace AugustosFashion.Views.Pedidos
                     MessageBox.Show("Não foi possível enviar o e-mail. Erro: " + ex.Message);
                 }
             }
+            else
+            {
+                LimparPedido();
+            }
         }
         private void EnviarEmailAlteracaoPedido()
         {
@@ -522,6 +526,10 @@ namespace AugustosFashion.Views.Pedidos
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+            else
+            {
+                LimparPedido();
             }
         }
 

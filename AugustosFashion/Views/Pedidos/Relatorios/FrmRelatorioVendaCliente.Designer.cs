@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRelatorioVendaCliente));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
             this.groupFiltros = new System.Windows.Forms.GroupBox();
+            this.BtnLimpar = new System.Windows.Forms.Button();
             this.panelListaClientes = new System.Windows.Forms.Panel();
             this.cbAcimaDe = new System.Windows.Forms.ComboBox();
             this.BtnMostrarClientes = new System.Windows.Forms.Button();
@@ -70,7 +71,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btnFechar = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
-            this.BtnLimpar = new System.Windows.Forms.Button();
             this.groupFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorioClientes)).BeginInit();
             this.SuspendLayout();
@@ -116,6 +116,21 @@
             this.groupFiltros.Size = new System.Drawing.Size(242, 748);
             this.groupFiltros.TabIndex = 110;
             this.groupFiltros.TabStop = false;
+            // 
+            // BtnLimpar
+            // 
+            this.BtnLimpar.BackColor = System.Drawing.Color.Transparent;
+            this.BtnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimpar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BtnLimpar.ForeColor = System.Drawing.Color.White;
+            this.BtnLimpar.Location = new System.Drawing.Point(21, 588);
+            this.BtnLimpar.Name = "BtnLimpar";
+            this.BtnLimpar.Size = new System.Drawing.Size(94, 29);
+            this.BtnLimpar.TabIndex = 122;
+            this.BtnLimpar.Text = "Limpar";
+            this.BtnLimpar.UseVisualStyleBackColor = false;
+            this.BtnLimpar.Click += new System.EventHandler(this.BtnLimpar_Click);
             // 
             // panelListaClientes
             // 
@@ -360,24 +375,24 @@
             // 
             // dgvRelatorioClientes
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvRelatorioClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvRelatorioClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRelatorioClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRelatorioClientes.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRelatorioClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRelatorioClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRelatorioClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRelatorioClientes.Location = new System.Drawing.Point(54, 171);
             this.dgvRelatorioClientes.Name = "dgvRelatorioClientes";
             this.dgvRelatorioClientes.ReadOnly = true;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            this.dgvRelatorioClientes.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            this.dgvRelatorioClientes.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRelatorioClientes.RowTemplate.Height = 25;
             this.dgvRelatorioClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRelatorioClientes.Size = new System.Drawing.Size(887, 395);
@@ -400,7 +415,7 @@
             // 
             this.lblTotalLiquido.AutoSize = true;
             this.lblTotalLiquido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalLiquido.Location = new System.Drawing.Point(714, 606);
+            this.lblTotalLiquido.Location = new System.Drawing.Point(697, 606);
             this.lblTotalLiquido.Name = "lblTotalLiquido";
             this.lblTotalLiquido.Size = new System.Drawing.Size(26, 20);
             this.lblTotalLiquido.TabIndex = 117;
@@ -410,7 +425,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(653, 606);
+            this.label7.Location = new System.Drawing.Point(636, 606);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 20);
             this.label7.TabIndex = 118;
@@ -420,7 +435,7 @@
             // 
             this.lblTotalDesconto.AutoSize = true;
             this.lblTotalDesconto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalDesconto.Location = new System.Drawing.Point(557, 606);
+            this.lblTotalDesconto.Location = new System.Drawing.Point(540, 606);
             this.lblTotalDesconto.Name = "lblTotalDesconto";
             this.lblTotalDesconto.Size = new System.Drawing.Size(26, 20);
             this.lblTotalDesconto.TabIndex = 119;
@@ -430,7 +445,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(482, 606);
+            this.label8.Location = new System.Drawing.Point(465, 606);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(75, 20);
             this.label8.TabIndex = 120;
@@ -440,7 +455,7 @@
             // 
             this.lblTotalBruto.AutoSize = true;
             this.lblTotalBruto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalBruto.Location = new System.Drawing.Point(364, 606);
+            this.lblTotalBruto.Location = new System.Drawing.Point(347, 606);
             this.lblTotalBruto.Name = "lblTotalBruto";
             this.lblTotalBruto.Size = new System.Drawing.Size(26, 20);
             this.lblTotalBruto.TabIndex = 121;
@@ -450,7 +465,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(316, 606);
+            this.label10.Location = new System.Drawing.Point(299, 606);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(48, 20);
             this.label10.TabIndex = 122;
@@ -536,21 +551,6 @@
             this.label14.Size = new System.Drawing.Size(59, 21);
             this.label14.TabIndex = 128;
             this.label14.Text = "Totais:";
-            // 
-            // BtnLimpar
-            // 
-            this.BtnLimpar.BackColor = System.Drawing.Color.Transparent;
-            this.BtnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLimpar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BtnLimpar.ForeColor = System.Drawing.Color.White;
-            this.BtnLimpar.Location = new System.Drawing.Point(21, 588);
-            this.BtnLimpar.Name = "BtnLimpar";
-            this.BtnLimpar.Size = new System.Drawing.Size(94, 29);
-            this.BtnLimpar.TabIndex = 122;
-            this.BtnLimpar.Text = "Limpar";
-            this.BtnLimpar.UseVisualStyleBackColor = false;
-            this.BtnLimpar.Click += new System.EventHandler(this.BtnLimpar_Click);
             // 
             // FrmRelatorioVendaCliente
             // 

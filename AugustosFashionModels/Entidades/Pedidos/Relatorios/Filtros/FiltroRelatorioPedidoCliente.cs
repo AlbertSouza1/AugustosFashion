@@ -25,11 +25,22 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros
 
         public void AdicionarCliente(ClienteModel cliente)
         {
+            if (VerificarSeClienteJaEstaInserido(cliente.IdCliente))
+                return;
+
             Clientes.Add(new ListaGenericaModel()
             {
                 Nome = $"{cliente.NomeCompleto.Nome} {cliente.NomeCompleto.SobreNome}",
                 Id = cliente.IdCliente
             });
+        }
+        private bool VerificarSeClienteJaEstaInserido(int idCliente)
+        {
+            var indice = Clientes.FindIndex(x => x.Id == idCliente);
+
+            if (indice == -1)
+                return false;
+            return true;
         }
 
         public void RemoverCliente(int indexClienteSelecionado)
