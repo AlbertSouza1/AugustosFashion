@@ -44,7 +44,7 @@ namespace AugustosFashion.Views.Logins
 
         private bool ValidarCampos()
         {
-            if(string.IsNullOrWhiteSpace(txtNomeUsuario.Text)){               
+            if(string.IsNullOrWhiteSpace(txtIdColaborador.Text)){               
                 MessageBox.Show("É necessário informar o código de colaborador do usuário.");
                 return false;
             }
@@ -63,11 +63,12 @@ namespace AugustosFashion.Views.Logins
 
         private UsuarioSistemaModel InstanciarUsuarioSistema()
         {
-            return new UsuarioSistemaModel(
-                idColaborador: int.Parse(txtIdColaborador.Text),
+            var usuario = new UsuarioSistemaModel(
+                idColaborador: _colaborador.IdColaborador,
                 nomeUsuario: txtNomeUsuario.Text,
                 senha: txtSenha.Text
-                );       
+                );
+            return usuario;
         }
 
         private void BtnSelecionarColaborador_Click(object sender, EventArgs e)
