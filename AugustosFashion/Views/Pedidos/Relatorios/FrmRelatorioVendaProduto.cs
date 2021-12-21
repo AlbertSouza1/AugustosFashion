@@ -216,10 +216,10 @@ namespace AugustosFashion.Views.Pedidos.Relatorios
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string fileName = ((ParametroDeDados)e.Argument).NomeArquivo;
+            string nomeArquivo = ((ParametroDeDados)e.Argument).NomeArquivo;
             try
             {
-                if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, fileName, "RELATORIO DE PRODUTOS"))
+                if (!ExportaPlanilha.Exportar(_relatorio.Relatorio, nomeArquivo, "RELATORIO DE PRODUTOS"))
                     MessageBox.Show("Não foi possível exportar o relatório.");
             }
             catch (ArgumentException)

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="ClientesTestes\ClienteModelMock.cs" />
     <Compile Include="PedidosTestes\PedidoModelMock.cs" />
+    <Compile Include="RelatoriosPedidosTestes\FiltroRelatorioPedidoClienteTeste.cs" />
     <Compile Include="RelatoriosPedidosTestes\FiltroRelatorioPedidoProdutoTeste.cs" />
     <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoClienteMock.cs" />
     <Compile Include="RelatoriosPedidosTestes\RelatorioPedidoClienteTestes.cs" />

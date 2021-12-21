@@ -34,9 +34,10 @@ namespace AugustosFashionModels.Entidades.Pedidos.Relatorios.Filtros
                 Id = cliente.IdCliente
             });
         }
-        private bool VerificarSeClienteJaEstaInserido(int idCliente)
+
+        public bool VerificarSeClienteJaEstaInserido(int idCliente)
         {
-            var indice = Clientes.FindIndex(x => x.Id == idCliente);
+            var indice = EncontrarIndexDoCliente(idCliente);
 
             if (indice == -1)
                 return false;
