@@ -36,11 +36,12 @@ namespace AugustosFashionModels.Entidades.Exporatacoes
 
             foreach (T item in items)
             {
+                var valores = new object[Props.Length];
                 for (int i = 0; i < Props.Length; i++)
-                {
+                {                   
                     valores[i] = Props[i].GetValue(item, null);
                 }
-                var valores = new object[Props.Length];
+                
                 dataTable.Rows.Add(valores);
             }
 
