@@ -1,8 +1,6 @@
-﻿using AugustosFashion.Entidades.Colaborador;
-using AugustosFashion.Repositorios;
+﻿using AugustosFashion.Repositorios;
 using AugustosFashion.Repositorios.QueryHelpers;
 using AugustosFashion.Views.Logins;
-using AugustosFashion.Views.Pedidos;
 using AugustosFashionModels.Entidades.UsuariosSistema;
 
 namespace AugustosFashion.Controllers.Logins
@@ -18,7 +16,7 @@ namespace AugustosFashion.Controllers.Logins
         }
 
         public bool VerificarSeLoginJaExiste(string login) =>
-            UsuarioSistemaRepositorio.VerificarIdColaborador(login);
+            UsuarioSistemaRepositorio.VerificarSeLoginJaExiste(login);
 
         public void RegistrarUsuario(UsuarioSistemaModel usuarioSistemaModel)
         {           

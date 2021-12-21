@@ -12,7 +12,7 @@ namespace AugustosFashion.Repositorios
 {
     public static class UsuarioSistemaRepositorio
     {
-        public static bool VerificarIdColaborador(string login)
+        public static bool VerificarSeLoginJaExiste(string login)
         {
             var strSqlBusca = @"select count(*) from Usuarios_Sistema where NomeUsuario = @login";
 

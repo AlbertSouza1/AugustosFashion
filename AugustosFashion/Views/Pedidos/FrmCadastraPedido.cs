@@ -390,6 +390,11 @@ namespace AugustosFashion.Views.Pedidos
             if (_produto.IdProduto == 0)
                 return;
 
+            if(numQuantidade.Value == numQuantidade.Maximum)
+            {
+                MessageBox.Show($"O produto possui apenas {numQuantidade.Maximum} unidades em estoque.");
+            }
+
             CalcularTotalProduto();
             CalcularTotalDesconto();
             CalcularPrecoLiquido();
@@ -406,7 +411,7 @@ namespace AugustosFashion.Views.Pedidos
                 lblTotalProduto.Text =
                     ((preco - desconto) * quantidade).ToString("c");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Insira valores válidos");
             }
@@ -422,7 +427,7 @@ namespace AugustosFashion.Views.Pedidos
                 txtTotalDescontoProduto.Text =
                     (desconto * quantidade).ToString("c");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 txtDesconto.Text = "0";
                 numQuantidade.Value = 0;
@@ -439,7 +444,7 @@ namespace AugustosFashion.Views.Pedidos
                 txtPrecoLiquido.Text =
                     (preco - desconto).ToString("c");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 txtDesconto.Text = "0";
                 numQuantidade.Value = 0;
