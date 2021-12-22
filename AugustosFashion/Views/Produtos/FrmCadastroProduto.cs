@@ -21,10 +21,15 @@ namespace AugustosFashion.Views.Produtos
                 var produto = InstanciarProdutoParaCadastro();
                 try
                 {
-                    _cadastroProdutoController.CadastrarProduto(produto);
+                    var retorno = _cadastroProdutoController.CadastrarProduto(produto);
 
-                    MessageBox.Show("Produto cadastrado com sucesso");
-                    Close();
+                    if (string.IsNullOrEmpty(retorno))
+                    {
+                        MessageBox.Show("Produto cadastrado com sucesso");
+                        Close();
+                        return;
+                    }
+                    MessageBox.Show(retorno);
                 }
                 catch (Exception ex)
                 {

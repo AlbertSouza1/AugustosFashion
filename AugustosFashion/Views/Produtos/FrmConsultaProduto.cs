@@ -44,9 +44,14 @@ namespace AugustosFashion.Views.Produtos
                 
                 try
                 {
-                    _consultaProdutoController.AlterarProduto(_produto);
+                    var retorno = _consultaProdutoController.AlterarProduto(_produto);
 
-                    MessageBox.Show("Produto alterado com sucesso");
+                    if (string.IsNullOrEmpty(retorno))
+                    {
+                        MessageBox.Show("Produto alterado com sucesso");
+                        return;
+                    }
+                    MessageBox.Show(retorno);
                 }
                 catch (Exception ex)
                 {

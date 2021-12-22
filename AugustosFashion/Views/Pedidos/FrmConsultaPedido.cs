@@ -41,8 +41,7 @@ namespace AugustosFashion.Views.Pedidos
             {
                 btnAlterar.Visible = false;
                 btnEliminar.Visible = false;
-            }
-                
+            }               
         }
 
         private void RecuperarColaboradorDoPedido()

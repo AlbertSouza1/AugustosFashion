@@ -12,5 +12,15 @@ namespace AugustosFashionModels.Entidades.Produtos
         public Dinheiro PrecoVenda { get; set; }
         public int Estoque { get; set; }
         public EStatusProduto Status { get; set; }      
+
+        public string ValidarProduto()
+        {
+            var retorno = new ProdutoValidator().Validate(this);
+
+            if (!retorno.IsValid)
+                return retorno.ToString();
+
+            return string.Empty;
+        }
     }
 }

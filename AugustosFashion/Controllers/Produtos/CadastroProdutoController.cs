@@ -16,9 +16,14 @@ namespace AugustosFashion.Controllers.Produtos
             frmCadastroProduto.Show();
         }
 
-        public void CadastrarProduto(ProdutoModel produto)
+        public string CadastrarProduto(ProdutoModel produto)
         {
-            ProdutoRepositorio.CadastrarProduto(produto);
+            var retorno = produto.ValidarProduto();
+            if (string.IsNullOrEmpty(retorno))
+            {
+                ProdutoRepositorio.CadastrarProduto(produto);                
+            }
+            return retorno;
         }
     }
 }

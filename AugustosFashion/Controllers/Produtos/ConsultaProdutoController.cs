@@ -26,9 +26,15 @@ namespace AugustosFashion.Controllers.Produtos
             }
         }
 
-        internal void AlterarProduto(ProdutoModel produto)
+        internal string AlterarProduto(ProdutoModel produto)
         {
-            ProdutoRepositorio.AlterarProduto(produto);
+            var retorno = produto.ValidarProduto();
+
+            if (string.IsNullOrEmpty(retorno))
+            {
+                ProdutoRepositorio.AlterarProduto(produto);
+            }
+            return retorno;
         }
 
         internal void InativarProduto(int idProduto)
