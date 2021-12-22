@@ -1,4 +1,5 @@
-﻿using AugustosFashion.Controllers.Pedidos;
+﻿using AugustosFashion.Controllers.Financeiro;
+using AugustosFashion.Controllers.Pedidos;
 using AugustosFashionModels.Entidades.Pedidos;
 using EnumsNET;
 using System;
@@ -73,10 +74,33 @@ namespace AugustosFashion.Views.Pedidos
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            _consultaPedidoController.AlterarPedido(_pedido);
-            Close();
+            try
+            {
+                if (!VerificarSePedidoPodeSerAlterado())
+                {
+                    MessageBox.Show("Não é possível alterar este pedido, pois a conta referente já foi paga.\nCadastre um novo pedido ou elimine este.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                _consultaPedidoController.AlterarPedido(_pedido);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problemas ao alterar pedido. Erro: "+ex.Message);
+            }
         }
 
+        private bool VerificarSePedidoPodeSerAlterado() 
+        {
+            if (_pedido.FormaPagamento is not EFormaPagamento.Aprazo)
+                return true;
+
+            if (new ContasClientesController().VerificarSeContaJaFoiPaga(_pedido.IdPedido))
+                return false;    
+            return true;
+        }
+            
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Tem certeza que deseja eliminar esta venda?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);

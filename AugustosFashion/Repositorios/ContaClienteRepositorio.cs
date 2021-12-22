@@ -44,6 +44,19 @@ namespace AugustosFashion.Repositorios
             sqlCon.Execute(strInsereConta, new { pedido.Cliente.IdCliente, pedido.IdPedido }, transaction);
         }
 
+        public static bool VerificarSeContaJaFoiPaga(int idPedido)
+        {
+            string query = @"SELECT Pago FROM Contas_Clientes
+            WHERE IdPedido = @idPedido";
+
+            using (SqlConnection sqlCon = SqlHelper.ObterConexao())
+            {
+                sqlCon.Open();
+
+                return sqlCon.Query<bool>(query, new { idPedido }).FirstOrDefault();
+            }
+        }
+
         public static void PagarConta(int idConta)
         {
             string strSqlContaCliente = @"UPDATE Contas_Clientes
@@ -71,7 +84,7 @@ namespace AugustosFashion.Repositorios
 
             sqlCon.Execute(strSqlContaCliente, new { idPedido }, transaction);
         }
-       
+
         public static void ExcluirConta(SqlConnection sqlCon, SqlTransaction transaction, int idPedido)
         {
             var strDelete = @"delete from Contas_Clientes where IdPedido = @idPedido";

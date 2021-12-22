@@ -37,5 +37,7 @@ namespace AugustosFashion.Controllers.Financeiro
         {
             ContaClienteRepositorio.PagarConta(idConta);
         }
+
+        public bool VerificarSeContaJaFoiPaga(int idPedido) => ContaClienteRepositorio.VerificarSeContaJaFoiPaga(idPedido);
     }
 }

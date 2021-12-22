@@ -74,7 +74,7 @@ namespace AugustosFashionModels.Entidades.Pedidos
             FormaPagamento = (EFormaPagamento)formaPagamento;
             DataEmissao = DateTime.Now;
         }
-     
+  
         public bool VerificarSeClientePossuiLimite()
         {
             decimal limiteAtual;
