@@ -1,6 +1,5 @@
 ﻿using AugustosFashion.Controllers.Produtos;
 using AugustosFashionModels.Entidades.Produtos;
-using AugustosFashionModels.Helpers;
 using System;
 using System.Windows.Forms;
 

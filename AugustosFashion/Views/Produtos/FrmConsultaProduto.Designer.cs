@@ -45,7 +45,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.txtIdProduto = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.numAddEstoque = new System.Windows.Forms.NumericUpDown();
             this.btnAdicionarEstoque = new System.Windows.Forms.Button();
@@ -253,15 +252,6 @@
             this.btnExcluir.UseVisualStyleBackColor = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
-            // txtIdProduto
-            // 
-            this.txtIdProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtIdProduto.Location = new System.Drawing.Point(764, 171);
-            this.txtIdProduto.Name = "txtIdProduto";
-            this.txtIdProduto.Size = new System.Drawing.Size(50, 23);
-            this.txtIdProduto.TabIndex = 152;
-            this.txtIdProduto.Visible = false;
-            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -289,9 +279,10 @@
             // btnAdicionarEstoque
             // 
             this.btnAdicionarEstoque.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAdicionarEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAdicionarEstoque.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnAdicionarEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdicionarEstoque.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAdicionarEstoque.ForeColor = System.Drawing.Color.White;
             this.btnAdicionarEstoque.Location = new System.Drawing.Point(648, 356);
             this.btnAdicionarEstoque.Name = "btnAdicionarEstoque";
             this.btnAdicionarEstoque.Size = new System.Drawing.Size(58, 23);
@@ -304,9 +295,10 @@
             // btnAtivarProduto
             // 
             this.btnAtivarProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAtivarProduto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAtivarProduto.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnAtivarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAtivarProduto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAtivarProduto.ForeColor = System.Drawing.Color.White;
             this.btnAtivarProduto.Location = new System.Drawing.Point(536, 642);
             this.btnAtivarProduto.Name = "btnAtivarProduto";
             this.btnAtivarProduto.Size = new System.Drawing.Size(150, 37);
@@ -358,7 +350,6 @@
             this.Controls.Add(this.btnAdicionarEstoque);
             this.Controls.Add(this.numAddEstoque);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtIdProduto);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.numPrecoVenda);
             this.Controls.Add(this.numPrecoCusto);
@@ -408,7 +399,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExcluir;
-        private System.Windows.Forms.TextBox txtIdProduto;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numAddEstoque;
         private System.Windows.Forms.Button btnAdicionarEstoque;
